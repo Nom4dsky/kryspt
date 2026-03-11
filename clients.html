@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KRYS PT — Client Portal</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <style>
+    :root {
+      --black:  #252422;
+      --dark:   #403D39;
+      --silver: #CCC5B9;
+      --orange: #EB5E28;
+      --cream:  #FFFCF2;
+      --f: 'Oswald', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--black);
+      font-family: var(--f);
+      font-weight: 400;
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ── LOGIN SCREEN ── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .login-logo {
+      font-size: 1.1rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--cream);
+      text-decoration: none; margin-bottom: 2.5rem;
+    }
+    .login-logo span { color: var(--orange); }
+
+    .login-box {
+      background: #2E2B28;
+      border-top: 3px solid var(--orange);
+      padding: 2.8rem 2.4rem;
+      width: 100%; max-width: 380px;
+    }
+    .login-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--orange);
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 1.4rem;
+    }
+    .login-label::before { content: ''; width: 16px; height: 2px; background: var(--orange); }
+    .login-box h2 {
+      font-size: 1.5rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: -0.02em; margin-bottom: 0.5rem;
+    }
+    .login-box p {
+      font-size: 0.78rem; color: var(--silver); line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .login-box input {
+      width: 100%; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--cream); padding: 0.85rem 1rem;
+      font-family: var(--f); font-size: 0.9rem;
+      letter-spacing: 0.1em; outline: none;
+      transition: border-color 0.2s; margin-bottom: 1rem;
+    }
+    .login-box input:focus { border-color: var(--orange); }
+    .login-box input::placeholder { color: #5C5752; letter-spacing: 0.05em; }
+    .login-btn {
+      width: 100%; background: var(--orange); color: var(--cream);
+      border: none; padding: 0.9rem; font-family: var(--f);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; cursor: pointer; transition: opacity 0.2s;
+    }
+    .login-btn:hover { opacity: 0.85; }
+    .login-error {
+      display: none; margin-top: 1rem;
+      font-size: 0.75rem; color: #e05555;
+      text-align: center; letter-spacing: 0.05em;
+    }
+    .login-error.show { display: block; }
+
+    /* ── DASHBOARD ── */
+    #dashboard { display: none; }
+
+    .dash-nav {
+      background: var(--black); border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5vw; position: sticky; top: 0; z-index: 100;
+    }
+    .dash-nav-logo {
+      font-size: 1rem; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--cream); text-decoration: none;
+    }
+    .dash-nav-logo span { color: var(--orange); }
+    .dash-nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .dash-greeting {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--silver);
+    }
+    .dash-greeting strong { color: var(--orange); }
+    .logout-btn {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--silver); background: none;
+      border: 1px solid rgba(255,255,255,0.12); padding: 0.4rem 0.8rem;
+      cursor: pointer; font-family: var(--f); transition: all 0.2s;
+    }
+    .logout-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+    .dash-body { padding: 3rem 5vw; max-width: 900px; }
+
+    .dash-welcome {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .dash-week-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--orange);
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;
+    }
+    .dash-week-label::before { content: ''; width: 16px; height: 2px; background: var(--orange); }
+    .dash-welcome h1 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800;
+      text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .dash-welcome h1 span { color: var(--orange); }
+    .dash-note {
+      margin-top: 1rem; font-size: 0.85rem; color: var(--silver);
+      line-height: 1.8; max-width: 600px; background: rgba(255,255,255,0.03);
+      border-left: 3px solid var(--orange); padding: 1rem 1.2rem;
+    }
+
+    /* ── WORKOUT PLAN ── */
+    .section-title {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--orange);
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.6rem;
+    }
+    .section-title::before { content: ''; width: 16px; height: 2px; background: var(--orange); }
+
+    .plan-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2px; background: #1A1917; margin-bottom: 3rem;
+    }
+    .day-card {
+      background: #2E2B28; padding: 1.6rem;
+    }
+    .day-card.rest { background: #272420; }
+    .day-name {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem;
+    }
+    .day-focus {
+      font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.8rem;
+    }
+    .day-card.rest .day-focus { color: var(--silver); }
+    .exercise-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .exercise-list li {
+      font-size: 0.78rem; color: rgba(255,255,255,0.65);
+      padding-left: 1rem; position: relative; line-height: 1.5;
+    }
+    .exercise-list li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--orange); font-size: 0.65rem;
+    }
+    .exercise-list li strong { color: var(--cream); font-weight: 600; }
+
+    /* ── DOWNLOADS ── */
+    .downloads-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2px; background: #1A1917; margin-bottom: 3rem;
+    }
+    .download-card {
+      background: #2E2B28; padding: 1.6rem;
+      display: flex; flex-direction: column; gap: 0.8rem;
+      border-bottom: 3px solid transparent; transition: border-color 0.2s, background 0.2s;
+    }
+    .download-card:hover { border-bottom-color: var(--orange); background: #342F2C; }
+    .download-icon {
+      width: 32px; height: 32px; color: var(--silver);
+    }
+    .download-title {
+      font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .download-meta {
+      font-size: 0.68rem; color: var(--silver);
+    }
+    .download-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.4rem; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--orange); text-decoration: none;
+      border-bottom: 1px solid var(--orange); padding-bottom: 2px;
+      width: fit-content; transition: opacity 0.2s;
+    }
+    .download-btn:hover { opacity: 0.7; }
+
+    /* ── MESSAGE FROM KRYS ── */
+    .coach-message {
+      background: #2E2B28; border-left: 3px solid var(--orange);
+      padding: 1.6rem 1.8rem; margin-bottom: 3rem;
+    }
+    .coach-msg-label {
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 0.6rem;
+    }
+    .coach-msg-text {
+      font-size: 0.85rem; color: var(--silver); line-height: 1.85;
+    }
+
+    @media (max-width: 600px) {
+      .dash-body { padding: 2rem 1.2rem; }
+      .plan-grid, .downloads-grid { grid-template-columns: 1fr; }
+      .dash-greeting { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+<div id="login-screen">
+  <a href="index.html" class="login-logo">KRYS<span>.</span>PT</a>
+  <div class="login-box">
+    <div class="login-label">Client Portal</div>
+    <h2>Welcome<br>Back.</h2>
+    <p>Enter the access code provided by Krys to view your personal training program.</p>
+    <input type="password" id="password-input" placeholder="Enter your access code" autocomplete="off" />
+    <button class="login-btn" onclick="checkPassword()">Access My Program →</button>
+    <div class="login-error" id="login-error">Incorrect code. Contact Krys if you've forgotten it.</div>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div id="dashboard">
+  <nav class="dash-nav">
+    <a href="index.html" class="dash-nav-logo">KRYS<span>.</span>PT</a>
+    <div class="dash-nav-right">
+      <div class="dash-greeting">Hello, <strong id="client-name-display"></strong></div>
+      <button class="logout-btn" onclick="logout()">Log out</button>
+    </div>
+  </nav>
+  <div class="dash-body" id="dash-body">
+    <!-- injected by JS -->
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  CLIENT DATA — edit this section to add/update clients
+//
+//  Each client has:
+//    password  : their unique access code (keep it simple)
+//    name      : their first name
+//    week      : current week label e.g. "Week 4 — Strength Block"
+//    note      : your personal message to them this week
+//    plan      : array of training days
+//    downloads : array of PDF files (put PDFs in /files/ folder)
+// ═══════════════════════════════════════════════════════════
+
+const CLIENTS = [
+
+  {
+    password: "marco2025",
+    name: "Marco",
+    week: "Week 6 — Strength Block",
+    note: "Great effort last week Marco. Focus on keeping rest periods to 90 seconds on the compound lifts this week. Your form on the squat has improved a lot — now let's push the weight slightly.",
+    plan: [
+      {
+        day: "Monday",
+        focus: "Lower Body — Squat Focus",
+        exercises: [
+          "<strong>Back Squat</strong> — 4×5 @ RPE 8",
+          "<strong>Romanian Deadlift</strong> — 3×10",
+          "<strong>Leg Press</strong> — 3×12",
+          "<strong>Walking Lunges</strong> — 3×12 each leg",
+          "<strong>Calf Raises</strong> — 4×15"
+        ]
+      },
+      {
+        day: "Tuesday",
+        focus: "Upper Body — Push",
+        exercises: [
+          "<strong>Bench Press</strong> — 4×5 @ RPE 8",
+          "<strong>Overhead Press</strong> — 3×8",
+          "<strong>Incline DB Press</strong> — 3×10",
+          "<strong>Tricep Pushdowns</strong> — 3×12",
+          "<strong>Lateral Raises</strong> — 3×15"
+        ]
+      },
+      {
+        day: "Wednesday",
+        focus: "Active Recovery",
+        rest: true,
+        exercises: [
+          "20–30 min easy walk or Zone 2 cardio",
+          "10 min mobility — hips & thoracic spine"
+        ]
+      },
+      {
+        day: "Thursday",
+        focus: "Lower Body — Hinge Focus",
+        exercises: [
+          "<strong>Deadlift</strong> — 4×4 @ RPE 8",
+          "<strong>Bulgarian Split Squat</strong> — 3×8 each",
+          "<strong>Leg Curl</strong> — 3×12",
+          "<strong>Hip Thrust</strong> — 3×12",
+          "<strong>Plank</strong> — 3×45 sec"
+        ]
+      },
+      {
+        day: "Friday",
+        focus: "Upper Body — Pull",
+        exercises: [
+          "<strong>Weighted Pull-Ups</strong> — 4×5",
+          "<strong>Barbell Row</strong> — 3×8",
+          "<strong>Seated Cable Row</strong> — 3×12",
+          "<strong>Face Pulls</strong> — 3×15",
+          "<strong>Bicep Curls</strong> — 3×12"
+        ]
+      },
+      {
+        day: "Saturday",
+        focus: "Conditioning",
+        exercises: [
+          "<strong>Ski Erg</strong> — 4×500m @ 85%",
+          "<strong>KB Swings</strong> — 4×20",
+          "<strong>Burpee Broad Jump</strong> — 3×10",
+          "Rest 2 min between rounds"
+        ]
+      },
+      {
+        day: "Sunday",
+        focus: "Full Rest",
+        rest: true,
+        exercises: [
+          "Rest and recover.",
+          "Optional: 15 min stretching"
+        ]
+      }
+    ],
+    downloads: [
+      {
+        title: "Training Program — Block 2",
+        meta: "PDF · Weeks 5–8 · Strength Focus",
+        file: "files/marco-block2.pdf"
+      },
+      {
+        title: "Nutrition Guidelines",
+        meta: "PDF · Calorie & macro targets",
+        file: "files/marco-nutrition.pdf"
+      }
+    ]
+  },
+
+  // ── ADD MORE CLIENTS BELOW ──
+  // Copy the block above, change password/name/plan etc.
+
+  {
+    password: "anna2025",
+    name: "Anna",
+    week: "Week 3 — Foundation Block",
+    note: "You're doing really well Anna. Week 3 — keep focusing on technique over weight. If the squat still feels uncomfortable at depth, stick with goblet squats for now and we'll reassess next check-in.",
+    plan: [
+      {
+        day: "Monday",
+        focus: "Full Body A",
+        exercises: [
+          "<strong>Goblet Squat</strong> — 3×10",
+          "<strong>DB Romanian Deadlift</strong> — 3×10",
+          "<strong>DB Bench Press</strong> — 3×10",
+          "<strong>Seated Row</strong> — 3×12",
+          "<strong>Plank</strong> — 3×30 sec"
+        ]
+      },
+      {
+        day: "Tuesday",
+        focus: "Rest / Walk",
+        rest: true,
+        exercises: ["20 min easy walk", "5 min stretching"]
+      },
+      {
+        day: "Wednesday",
+        focus: "Full Body B",
+        exercises: [
+          "<strong>Leg Press</strong> — 3×12",
+          "<strong>Hip Thrust</strong> — 3×12",
+          "<strong>Overhead Press</strong> — 3×10",
+          "<strong>Lat Pulldown</strong> — 3×12",
+          "<strong>Dead Bug</strong> — 3×8 each side"
+        ]
+      },
+      {
+        day: "Thursday",
+        focus: "Rest",
+        rest: true,
+        exercises: ["Full rest day"]
+      },
+      {
+        day: "Friday",
+        focus: "Full Body C",
+        exercises: [
+          "<strong>DB Sumo Deadlift</strong> — 3×10",
+          "<strong>Step-Ups</strong> — 3×10 each leg",
+          "<strong>Push-Ups</strong> — 3×max",
+          "<strong>One-Arm DB Row</strong> — 3×10 each",
+          "<strong>Glute Bridge</strong> — 3×15"
+        ]
+      },
+      {
+        day: "Saturday",
+        focus: "Light Cardio",
+        rest: true,
+        exercises: ["30 min walk or easy bike", "10 min yoga / stretching"]
+      },
+      {
+        day: "Sunday",
+        focus: "Full Rest",
+        rest: true,
+        exercises: ["Rest and recover."]
+      }
+    ],
+    downloads: [
+      {
+        title: "Training Program — Block 1",
+        meta: "PDF · Weeks 1–4 · Foundation",
+        file: "files/anna-block1.pdf"
+      }
+    ]
+  }
+
+];
+
+// ═══════════════════════════════════════════════════════════
+//  LOGIC — no need to edit below this line
+// ═══════════════════════════════════════════════════════════
+
+function checkPassword() {
+  const input = document.getElementById('password-input').value.trim().toLowerCase();
+  const client = CLIENTS.find(c => c.password.toLowerCase() === input);
+
+  if (client) {
+    document.getElementById('login-error').classList.remove('show');
+    showDashboard(client);
+  } else {
+    document.getElementById('login-error').classList.add('show');
+    document.getElementById('password-input').value = '';
+    document.getElementById('password-input').focus();
+  }
+}
+
+// Allow Enter key on password field
+document.getElementById('password-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+function showDashboard(client) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('client-name-display').textContent = client.name;
+
+  const body = document.getElementById('dash-body');
+
+  // Welcome
+  let html = `
+    <div class="dash-welcome">
+      <div class="dash-week-label">${client.week}</div>
+      <h1>Hey <span>${client.name}</span>,<br>Here's Your Plan.</h1>
+      ${client.note ? `<div class="dash-note">${client.note}</div>` : ''}
+    </div>
+  `;
+
+  // Workout plan
+  html += `<div class="section-title">This Week's Training</div>`;
+  html += `<div class="plan-grid">`;
+  client.plan.forEach(day => {
+    html += `
+      <div class="day-card ${day.rest ? 'rest' : ''}">
+        <div class="day-name">${day.day}</div>
+        <div class="day-focus">${day.focus}</div>
+        <ul class="exercise-list">
+          ${day.exercises.map(e => `<li>${e}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  });
+  html += `</div>`;
+
+  // Downloads
+  if (client.downloads && client.downloads.length > 0) {
+    html += `<div class="section-title">Your Documents</div>`;
+    html += `<div class="downloads-grid">`;
+    client.downloads.forEach(dl => {
+      html += `
+        <div class="download-card">
+          <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="12" y1="12" x2="12" y2="18"/>
+            <polyline points="9 15 12 18 15 15"/>
+          </svg>
+          <div class="download-title">${dl.title}</div>
+          <div class="download-meta">${dl.meta}</div>
+          <a href="${dl.file}" download class="download-btn">Download PDF →</a>
+        </div>
+      `;
+    });
+    html += `</div>`;
+  }
+
+  body.innerHTML = html;
+}
+
+function logout() {
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('password-input').value = '';
+}
+</script>
+
+</body>
+</html>
