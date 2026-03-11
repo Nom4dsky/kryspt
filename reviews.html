@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Reviews — KRYS PT</title>
+  <meta name="description" content="What clients say about training with Przemyslaw Krys — personal trainer in Oslo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <style>
+    :root {
+      --black:#252422; --dark:#403D39; --silver:#CCC5B9;
+      --orange:#EB5E28; --cream:#FFFCF2; --f:'Oswald',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);font-family:var(--f);font-weight:400;color:var(--cream);overflow-x:hidden;}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;padding:1rem 5vw;}
+    .nav-logo{font-size:1rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cream);text-decoration:none;}
+    .nav-logo span{color:var(--orange);}
+    .nav-back{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color .2s;}
+    .nav-back:hover{color:var(--orange);}
+
+    /* HERO */
+    .reviews-hero{padding:5rem 5vw 4rem;position:relative;overflow:hidden;}
+    .reviews-label{font-size:.62rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;}
+    .reviews-label::before{content:'';width:18px;height:2px;background:var(--orange);}
+    .reviews-hero h1{font-size:clamp(2rem,5vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin-bottom:1rem;}
+    .reviews-hero h1 span{color:var(--orange);}
+    .reviews-hero p{font-size:.88rem;color:var(--silver);max-width:480px;line-height:1.85;}
+    .reviews-bg-word{position:absolute;bottom:-.05em;right:-.02em;font-size:clamp(5rem,14vw,12rem);font-weight:800;text-transform:uppercase;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;white-space:nowrap;}
+
+    /* FILTERS */
+    .reviews-filters{padding:0 5vw 2rem;display:flex;gap:.5rem;flex-wrap:wrap;}
+    .f-btn{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:2px solid rgba(255,255,255,.12);color:var(--silver);padding:.4rem 1rem;cursor:pointer;background:transparent;font-family:var(--f);transition:all .2s;}
+    .f-btn:hover{border-color:var(--orange);color:var(--orange);}
+    .f-btn.active{background:var(--orange);border-color:var(--orange);color:var(--cream);}
+
+    /* CAROUSEL — shown when >3 reviews in filtered set */
+    .carousel-wrap{padding:0 5vw 2rem;position:relative;}
+    .carousel-track{position:relative;overflow:hidden;}
+    .carousel-slide{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+      background:#1A1917;
+      opacity:0;position:absolute;top:0;left:0;width:100%;
+      transition:opacity .8s ease;pointer-events:none;
+    }
+    .carousel-slide.active{opacity:1;position:relative;pointer-events:auto;}
+
+    /* STATIC GRID — shown when ≤3 reviews */
+    .static-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#1A1917;padding:0 5vw 3rem;}
+
+    /* DOTS */
+    .carousel-dots{display:flex;justify-content:center;gap:.5rem;padding:1.5rem 0 3rem;}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer;transition:background .3s;}
+    .dot.active{background:var(--orange);}
+
+    /* CARD */
+    .tcard{background:#2E2B28;padding:2.2rem 2rem;border-top:3px solid transparent;transition:border-color .3s;}
+    .tcard:hover{border-top-color:var(--orange);}
+    .tcard-type{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;margin-bottom:1.2rem;}
+    .tcard-type.online{background:rgba(225,93,10,.15);color:var(--orange);}
+    .tcard-type.inperson{background:rgba(163,163,163,.12);color:var(--silver);}
+    .tcard-quote{font-size:3.2rem;font-weight:800;color:var(--orange);line-height:.7;margin-bottom:1rem;font-family:Georgia,serif;}
+    .tcard p{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.85;font-style:italic;margin-bottom:1.6rem;}
+    .tcard-author{display:flex;align-items:center;gap:.9rem;}
+    .tcard-initials{width:38px;height:38px;border-radius:50%;background:var(--orange);color:var(--cream);font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;letter-spacing:.05em;flex-shrink:0;}
+    .tcard-name{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);}
+
+    /* CTA */
+    .reviews-cta{margin:0 5vw 5rem;background:#2E2B28;border-top:3px solid var(--orange);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+    .reviews-cta h3{font-size:1.2rem;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;}
+    .reviews-cta h3 span{color:var(--orange);}
+    .reviews-cta p{font-size:.82rem;color:var(--silver);line-height:1.75;max-width:420px;}
+    .cta-btn{background:var(--orange);color:var(--cream);padding:.85rem 2rem;text-decoration:none;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:opacity .2s;white-space:nowrap;}
+    .cta-btn:hover{opacity:.85;}
+
+    /* FOOTER */
+    footer{background:#1A1917;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;padding:1.4rem 5vw;flex-wrap:wrap;gap:1rem;}
+    .foot-logo{font-size:.88rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cream);text-decoration:none;}
+    .foot-logo span{color:var(--orange);}
+    .foot-copy{font-size:.62rem;color:#5C5752;}
+
+    @media(max-width:900px){
+      .carousel-slide,.static-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      .carousel-slide,.static-grid{grid-template-columns:1fr;}
+      .reviews-cta{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">KRYS<span>.</span>PT</a>
+  <a href="index.html" class="nav-back">← Back to site</a>
+</nav>
+
+<div class="reviews-hero">
+  <div class="reviews-label">Client Reviews</div>
+  <h1>What People <span>Say.</span></h1>
+  <p>Honest feedback from real clients. Names kept private — initials only.</p>
+  <div class="reviews-bg-word">REVIEWS</div>
+</div>
+
+<div class="reviews-filters">
+  <button class="f-btn active" data-filter="all">All</button>
+  <button class="f-btn" data-filter="online">Online Coaching</button>
+  <button class="f-btn" data-filter="inperson">In-Person</button>
+</div>
+
+<div id="reviews-mount"></div>
+
+<div class="reviews-cta">
+  <div>
+    <h3>Ready to be <span>next?</span></h3>
+    <p>Limited spots available. Get in touch and let's talk about your goals.</p>
+  </div>
+  <a href="index.html#contact" class="cta-btn">Start Now →</a>
+</div>
+
+<footer>
+  <a href="index.html" class="foot-logo">KRYS<span>.</span>PT</a>
+  <p class="foot-copy">© 2026 Przemyslaw Krys. All rights reserved.</p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  ADD ALL REVIEWS HERE — just copy a block and fill in
+// ═══════════════════════════════════════════════════
+const REVIEWS = [
+  {
+    type: "inperson",
+    initials: "V.S.",
+    name: "V.S.O.",
+    text: "Krys combines professional expertise with a rare ability to motivate and inspire. He always meets me with calm, humour, and precise feedback. Variety and clear progression make every session feel like real growth."
+  },
+  {
+    type: "online",
+    initials: "C.K.",
+    name: "C.K.",
+    text: "I've had the pleasure of training with Krys for about 5 months, and I can confidently say that working with this guy is an absolute pleasure. His approach to the client is exemplary. The training plan is perfectly tailored to my sports goals — ultra-running requires a huge amount of endurance, strength, and conditioning, and he delivered all of that. Results exceeded my expectations after just a few months. Putting myself in Krys' hands was a bullseye."
+  },
+  {
+    type: "online",
+    initials: "M.K.",
+    name: "M.K.",
+    text: "Started working with Przemek in late March 2025 — 13 kg ago! From day one I could count on professional training plans and real help understanding my diet. Thanks for your flexibility with constant training adjustments around my travels. With your support and individual approach, I'm closer to my goal than ever. And we keep going!"
+  }
+  // Add more reviews below — copy the block above
+];
+
+// ═══════════════════════════════════════════════════
+//  LOGIC — no need to edit below
+// ═══════════════════════════════════════════════════
+
+const PER_SLIDE = 3;
+let currentSlide = 0;
+let autoTimer = null;
+let activeFilter = 'all';
+
+function cardHTML(r) {
+  return `
+    <div class="tcard">
+      <span class="tcard-type ${r.type}">${r.type === 'online' ? 'Online' : 'In-Person'}</span>
+      <div class="tcard-quote">"</div>
+      <p>${r.text}</p>
+      <div class="tcard-author">
+        <div class="tcard-initials">${r.initials}</div>
+        <div class="tcard-meta">
+          <div class="tcard-name">${r.name}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function chunkArray(arr, size) {
+  const chunks = [];
+  for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
+  return chunks;
+}
+
+function render(filter) {
+  activeFilter = filter;
+  const mount = document.getElementById('reviews-mount');
+  const filtered = filter === 'all' ? REVIEWS : REVIEWS.filter(r => r.type === filter);
+
+  clearInterval(autoTimer);
+
+  if (filtered.length <= PER_SLIDE) {
+    // Static grid — no carousel needed
+    mount.innerHTML = `<div class="static-grid">${filtered.map(cardHTML).join('')}</div>`;
+  } else {
+    // Carousel — chunk into slides of 3
+    const slides = chunkArray(filtered, PER_SLIDE);
+    currentSlide = 0;
+
+    const slidesHTML = slides.map((chunk, i) => `
+      <div class="carousel-slide ${i === 0 ? 'active' : ''}">
+        ${chunk.map(cardHTML).join('')}
+      </div>`).join('');
+
+    const dotsHTML = slides.map((_, i) =>
+      `<div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`
+    ).join('');
+
+    mount.innerHTML = `
+      <div class="carousel-wrap">
+        <div class="carousel-track">${slidesHTML}</div>
+        <div class="carousel-dots">${dotsHTML}</div>
+      </div>`;
+
+    // Dot click
+    mount.querySelectorAll('.dot').forEach(dot => {
+      dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
+    });
+
+    // Auto-rotate every 5 seconds
+    autoTimer = setInterval(() => {
+      goToSlide((currentSlide + 1) % slides.length);
+    }, 5000);
+  }
+}
+
+function goToSlide(index) {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.dot');
+  if (!slides.length) return;
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = index;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+// Filter buttons
+document.querySelectorAll('.f-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.filter);
+  });
+});
+
+render('all');
+</script>
+
+</body>
+</html>
