@@ -95,7 +95,7 @@ nav {
   width: auto !important; display: block;
 }
 .nav-logo-text { display: inline; letter-spacing: 0.08em; }
-.nav-logo-dot { color: var(--orange); }
+.nav-logo-dot { color: var(--orange); letter-spacing: 0; margin: 0; padding: 0; }
 
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a {
