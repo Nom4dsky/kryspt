@@ -223,7 +223,7 @@ h2 .o { color: var(--orange); }
 .about-img {
   position: relative; overflow: hidden;
   background: var(--black);
-  max-width: 340px;
+  max-width: 480px;
   justify-self: center;
 }
 .about-img img { width: 100%; display: block; object-fit: cover; }
@@ -656,7 +656,7 @@ footer {
   .nav-burger { display: flex; }
 
   #about { grid-template-columns: 1fr; gap: 3rem; }
-  .about-img { max-width: 280px; }
+  .about-img { max-width: 100%; }
   .expertise-grid, .services-grid, .testimonials-grid, .blog-grid { grid-template-columns: 1fr; }
   .services-grid--two { grid-template-columns: 1fr; }
   .services-top, .blog-top { flex-direction: column; align-items: flex-start; gap: 1rem; }
