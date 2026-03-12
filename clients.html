@@ -11,78 +11,168 @@
   <link rel="icon" type="image/png" href="images/favicon.png" />
   <style>
     :root {
-      --orange:#EB5E28; --black:#252422; --dark:#403D39;
-      --silver:#8A8580; --bg:#F4F1EA; --card:#FFFFFF; --border:#E5E1D8;
-      --f:'Oswald',sans-serif; --fb:'Poppins',sans-serif;
+      --f:'Oswald',sans-serif;
+      --fb:'Poppins',sans-serif;
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);font-family:var(--fb);color:var(--black);min-height:100vh;}
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:#fff; font-family:var(--fb); color:#000; min-height:100vh; }
 
-    /* LOGIN */
-    #login-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;}
-    .login-logo{display:flex;align-items:center;gap:0.6rem;font-family:var(--f);font-size:1rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--black);text-decoration:none;margin-bottom:2.5rem;}
-    .login-logo img{height:30px;width:auto;}
-    .login-box{background:var(--card);border:1px solid var(--border);border-top:4px solid var(--orange);padding:2.8rem 2.4rem;width:100%;max-width:400px;box-shadow:0 4px 24px rgba(0,0,0,0.06);}
-    .login-label{font-family:var(--f);font-size:0.58rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:0.5rem;margin-bottom:1.2rem;}
-    .login-label::before{content:'';width:16px;height:2px;background:var(--orange);}
-    .login-box h2{font-family:var(--f);font-size:1.8rem;font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:0.5rem;color:var(--black);}
-    .login-box p{font-size:0.82rem;color:var(--silver);line-height:1.7;margin-bottom:2rem;}
-    .login-box input{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--black);padding:0.9rem 1rem;font-family:var(--fb);font-size:0.88rem;outline:none;transition:border-color 0.2s;margin-bottom:0.8rem;}
-    .login-box input:focus{border-color:var(--orange);}
-    .login-box input::placeholder{color:#bbb;}
-    .login-btn{width:100%;background:var(--orange);color:white;border:none;padding:0.95rem;font-family:var(--f);font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;}
-    .login-btn:hover{opacity:0.88;}
-    .login-error{display:none;margin-top:1rem;font-size:0.75rem;color:#d94f4f;text-align:center;}
-    .login-error.show{display:block;}
+    /* ── LOGIN ── */
+    #login-screen {
+      min-height:100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; padding:2rem;
+      background:#f5f5f5;
+    }
+    .login-logo {
+      display:flex; align-items:center; gap:0.6rem;
+      font-family:var(--f); font-size:1rem; font-weight:700;
+      letter-spacing:0.08em; text-transform:uppercase;
+      color:#000; text-decoration:none; margin-bottom:2.5rem;
+    }
+    .login-logo img { height:30px; width:auto;  }
 
-    /* DASHBOARD */
-    #dashboard{display:none;}
-    .dash-nav{background:white;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0.9rem 5vw;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.05);}
-    .dash-nav-logo{display:flex;align-items:center;gap:0.5rem;font-family:var(--f);font-size:0.95rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--black);text-decoration:none;}
-    .dash-nav-logo img{height:26px;width:auto;}
-    .dash-nav-logo span{color:var(--orange);letter-spacing:0;}
-    .dash-nav-right{display:flex;align-items:center;gap:1rem;}
-    .dash-greeting{font-size:0.72rem;font-weight:500;color:var(--silver);}
-    .dash-greeting strong{color:var(--orange);font-weight:600;}
-    .logout-btn{font-family:var(--f);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver);background:none;border:1px solid var(--border);padding:0.4rem 0.8rem;cursor:pointer;transition:all 0.2s;}
-    .logout-btn:hover{border-color:var(--orange);color:var(--orange);}
+    .login-box {
+      background:#f8f8f8; border:1px solid #e0e0e0;
+      border-top:3px solid #000;
+      padding:2.8rem 2.4rem; width:100%; max-width:400px;
+    }
+    .login-label {
+      font-family:var(--f); font-size:0.58rem; font-weight:700;
+      letter-spacing:0.22em; text-transform:uppercase; color:#888;
+      display:flex; align-items:center; gap:0.5rem; margin-bottom:1.2rem;
+    }
+    .login-label::before { content:''; width:16px; height:2px; background:#444; }
+    .login-box h2 {
+      font-family:var(--f); font-size:1.8rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:-0.01em;
+      margin-bottom:0.5rem; color:#000;
+    }
+    .login-box p { font-size:0.82rem; color:#888; line-height:1.7; margin-bottom:2rem; }
+    .login-box input {
+      width:100%; background:#fff; border:1px solid #ccc;
+      color:#000; padding:0.9rem 1rem; font-family:var(--fb);
+      font-size:0.88rem; outline:none; transition:border-color 0.2s; margin-bottom:0.8rem;
+    }
+    .login-box input:focus { border-color:#000; }
+    .login-box input::placeholder { color:#aaa; }
+    .login-btn {
+      width:100%; background:#000; color:#fff; border:none;
+      padding:0.95rem; font-family:var(--f); font-size:0.72rem;
+      font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+      cursor:pointer; transition:opacity 0.2s;
+    }
+    .login-btn:hover { opacity:0.85; }
+    .login-error { display:none; margin-top:1rem; font-size:0.75rem; color:#888; text-align:center; }
+    .login-error.show { display:block; }
 
-    .dash-body{padding:2.5rem 5vw 5rem;max-width:960px;margin:0 auto;}
+    /* ── DASHBOARD ── */
+    #dashboard { display:none; }
 
-    .dash-welcome{margin-bottom:2.5rem;}
-    .dash-welcome h1{font-family:var(--f);font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;text-transform:uppercase;letter-spacing:-0.01em;line-height:1.1;color:var(--black);margin-bottom:1rem;}
-    .dash-welcome h1 span{color:var(--orange);}
-    .tip-box{font-size:0.85rem;color:var(--dark);line-height:1.85;background:white;border-left:4px solid var(--orange);padding:1rem 1.4rem;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-    .tip-label{font-family:var(--f);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:0.4rem;}
+    .dash-nav {
+      background:#fff; border-bottom:1px solid #e0e0e0;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0.9rem 5vw; position:sticky; top:0; z-index:100;
+    }
+    .dash-nav-logo {
+      display:flex; align-items:center; gap:0.5rem;
+      font-family:var(--f); font-size:0.95rem; font-weight:700;
+      letter-spacing:0.08em; text-transform:uppercase;
+      color:#000; text-decoration:none;
+    }
+    .dash-nav-logo img { height:26px; width:auto;  }
+    .dash-nav-logo span { letter-spacing:0; }
+    .dash-nav-right { display:flex; align-items:center; gap:1rem; }
+    .dash-greeting { font-size:0.72rem; color:#888; }
+    .dash-greeting strong { color:#000; font-weight:600; }
+    .logout-btn {
+      font-family:var(--f); font-size:0.6rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase;
+      color:#888; background:none; border:1px solid #ccc;
+      padding:0.4rem 0.8rem; cursor:pointer; transition:all 0.2s;
+    }
+    .logout-btn:hover { border-color:#000; color:#000; }
 
-    .section-label{font-family:var(--f);font-size:0.58rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:0.5rem;margin-bottom:1.2rem;margin-top:2.5rem;}
-    .section-label::before{content:'';width:16px;height:2px;background:var(--orange);}
+    /* ── BODY ── */
+    .dash-body { padding:2.5rem 5vw 5rem; max-width:960px; margin:0 auto; }
 
-    .plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);overflow:hidden;}
-    .day-card{background:white;padding:1.4rem 1.2rem;}
-    .day-card.rest{background:#FAFAF8;}
-    .day-name{font-family:var(--f);font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:0.4rem;}
-    .day-focus{font-family:var(--f);font-size:0.88rem;font-weight:700;text-transform:uppercase;color:var(--black);border-bottom:1px solid var(--border);padding-bottom:0.8rem;margin-bottom:0.9rem;}
-    .day-card.rest .day-focus{color:var(--silver);}
-    .exercise-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
-    .exercise-list li{font-size:0.78rem;color:var(--dark);padding-left:1rem;position:relative;line-height:1.55;}
-    .exercise-list li::before{content:'→';position:absolute;left:0;color:var(--orange);font-size:0.65rem;top:1px;}
-    .exercise-list li strong{color:var(--black);font-weight:600;}
+    /* ── WELCOME ── */
+    .dash-welcome { margin-bottom:2.5rem; }
+    .dash-welcome h1 {
+      font-family:var(--f); font-size:clamp(1.6rem,4vw,2.6rem);
+      font-weight:700; text-transform:uppercase; letter-spacing:-0.01em;
+      line-height:1.1; color:#000; margin-bottom:1rem;
+    }
+    .dash-welcome h1 span { color:#000; }
+    .tip-box {
+      font-size:0.85rem; color:#888; line-height:1.85;
+      background:#f8f8f8; border-left:3px solid #000;
+      padding:1rem 1.4rem;
+    }
+    .tip-label {
+      font-family:var(--f); font-size:0.55rem; font-weight:700;
+      letter-spacing:0.18em; text-transform:uppercase; color:#aaa; margin-bottom:0.4rem;
+    }
 
-    .downloads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
-    .download-card{background:white;padding:1.6rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:0.7rem;transition:box-shadow 0.2s,border-color 0.2s;}
-    .download-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08);border-color:var(--orange);}
-    .download-icon{width:28px;height:28px;color:var(--orange);}
-    .download-title{font-family:var(--f);font-size:0.88rem;font-weight:700;text-transform:uppercase;color:var(--black);}
-    .download-meta{font-size:0.72rem;color:var(--silver);}
-    .download-btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--f);font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);text-decoration:none;transition:opacity 0.2s;}
-    .download-btn:hover{opacity:0.7;}
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family:var(--f); font-size:0.58rem; font-weight:700;
+      letter-spacing:0.22em; text-transform:uppercase; color:#888;
+      display:flex; align-items:center; gap:0.5rem;
+      margin-bottom:1.2rem; margin-top:2.5rem;
+    }
+    .section-label::before { content:''; width:16px; height:2px; background:#333; }
+
+    /* ── PLAN GRID ── */
+    .plan-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:1px; background:#e0e0e0; border:1px solid #e0e0e0; overflow:hidden;
+    }
+    .day-card { background:#f8f8f8; padding:1.4rem 1.2rem; }
+    .day-card.rest { background:#f2f2f2; }
+    .day-name {
+      font-family:var(--f); font-size:0.58rem; font-weight:700;
+      letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-bottom:0.4rem;
+    }
+    .day-focus {
+      font-family:var(--f); font-size:0.88rem; font-weight:700;
+      text-transform:uppercase; color:#000;
+      border-bottom:1px solid #e0e0e0; padding-bottom:0.8rem; margin-bottom:0.9rem;
+    }
+    .day-card.rest .day-focus { color:#aaa; }
+    .exercise-list { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+    .exercise-list li {
+      font-size:0.78rem; color:#888;
+      padding-left:1rem; position:relative; line-height:1.55;
+    }
+    .exercise-list li::before { content:'–'; position:absolute; left:0; color:#aaa; font-size:0.65rem; top:1px; }
+    .exercise-list li strong { color:#111; font-weight:600; }
+
+    /* ── DOWNLOADS ── */
+    .downloads-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1px; background:#e0e0e0; }
+    .download-card {
+      background:#f8f8f8; padding:1.6rem;
+      display:flex; flex-direction:column; gap:0.7rem;
+      transition:background 0.2s;
+    }
+    .download-card:hover { background:#efefef; }
+    .download-icon { width:28px; height:28px; color:#888; }
+    .download-title { font-family:var(--f); font-size:0.88rem; font-weight:700; text-transform:uppercase; color:#000; }
+    .download-meta { font-size:0.72rem; color:#888; }
+    .download-btn {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      font-family:var(--f); font-size:0.62rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase;
+      color:#000; text-decoration:none;
+      border-bottom:1px solid #999; padding-bottom:2px;
+      width:fit-content; transition:border-color 0.2s;
+    }
+    .download-btn:hover { border-color:#000; }
 
     @media(max-width:600px){
-      .dash-body{padding:1.5rem 1rem 4rem;}
-      .plan-grid,.downloads-grid{grid-template-columns:1fr;}
-      .dash-greeting{display:none;}
-      .login-box{padding:2rem 1.4rem;}
+      .dash-body { padding:1.5rem 1rem 4rem; }
+      .plan-grid, .downloads-grid { grid-template-columns:1fr; }
+      .dash-greeting { display:none; }
+      .login-box { padding:2rem 1.4rem; }
     }
   </style>
 </head>
@@ -91,7 +181,7 @@
 <div id="login-screen">
   <a href="index.html" class="login-logo">
     <img src="images/logo.png" alt="KRYS.PT" />
-    KRYS<span style="color:var(--orange);letter-spacing:0">.</span>PT
+    KRYS<span style="letter-spacing:0">.</span>PT
   </a>
   <div class="login-box">
     <div class="login-label">Client Portal</div>
@@ -205,7 +295,7 @@ function showDashboard(client) {
     <div class="dash-welcome">
       <h1>Hey <span>${client.name}</span>,<br>Here's Your Plan.</h1>
       <div class="tip-box">
-        <div class="tip-label">💡 Tip of the Day</div>
+        <div class="tip-label">Tip of the Day</div>
         ${tip}
       </div>
     </div>
