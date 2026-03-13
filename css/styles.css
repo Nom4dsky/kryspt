@@ -1,5 +1,5 @@
 /* =============================================
-   KRYS PT — styles.css
+   KRYS PT - styles.css
    ============================================= */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -165,7 +165,7 @@ nav {
 .hero-tag::before { content: ''; width: 20px; height: 2px; background: var(--orange); }
 
 h1 {
-  font-size: clamp(2rem, 4.5vw, 4.2rem); font-weight: 800;
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem); font-weight: 800;
   line-height: 1.02; letter-spacing: -0.02em; text-transform: uppercase;
   color: var(--white); margin-bottom: 1.6rem;
 }
@@ -190,13 +190,13 @@ h1 .highlight { color: var(--orange); display: block; }
 
 /* ─── TICKER ─── */
 .ticker-wrap { background: var(--orange); overflow: hidden; padding: 0.45rem 0; white-space: nowrap; }
-.ticker { display: inline-block; animation: tick 28s linear infinite; }
+.ticker { display: inline-block; animation: tick 28s linear infinite; will-change: transform; }
 .ticker span {
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--white); margin: 0 2.5rem;
 }
 .ticker span::before { content: '✦  '; }
-@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes tick { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 
 /* ─── SHARED SECTION ─── */
 section { padding: 6rem 5vw; }
@@ -225,6 +225,7 @@ h2 .o { color: var(--orange); }
   background: var(--black);
   max-width: 480px;
   justify-self: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
 }
 .about-img img { width: 100%; display: block; object-fit: cover; }
 .about-img::before {
@@ -400,8 +401,8 @@ h2 .o { color: var(--orange); }
 }
 .t-filter {
   font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  border: 2px solid rgba(255,255,255,0.12); color: var(--silver);
-  padding: 0.45rem 1.1rem; cursor: pointer; background: transparent;
+  border: 2px solid rgba(255,255,255,0.25); color: #CCC5B9;
+  padding: 0.45rem 1.1rem; cursor: pointer; background: rgba(255,255,255,0.05);
   font-family: var(--f); transition: all 0.2s;
 }
 .t-filter:hover { border-color: var(--orange); color: var(--orange); }
@@ -497,6 +498,8 @@ h2 .o { color: var(--orange); }
 .blog-card h4 { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; line-height: 1.3; margin-bottom: 0.6rem; }
 .blog-card p { font-size: 0.78rem; color: #5C5752; line-height: 1.75; }
 .blog-meta { font-size: 0.62rem; color: var(--silver); margin-top: 1rem; font-weight: 600; }
+.blog-read { display: inline-block; margin-top: 1rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); text-decoration: none; border-bottom: 1px solid var(--orange); padding-bottom: 2px; transition: opacity 0.2s; }
+.blog-read:hover { opacity: 0.7; }
 
 /* ─── CONTACT ─── */
 #contact { background: var(--black); padding: 0; }
@@ -565,10 +568,12 @@ h2 .o { color: var(--orange); }
 
 .form-success {
   display: none; padding: 1rem 1.4rem;
-  background: rgba(225,93,10,0.12); border-left: 3px solid var(--orange);
+  background: rgba(235,94,40,0.1); border-left: 3px solid var(--orange);
   font-size: 0.82rem; color: var(--silver); margin-top: 0.5rem;
+  animation: fadeIn 0.3s ease;
 }
 .form-success.show { display: block; }
+@keyframes fadeIn { from { opacity:0; transform: translateY(-6px); } to { opacity:1; transform: translateY(0); } }
 
 /* ─── INSTAGRAM ─── */
 .instagram-section { background: var(--cream); padding: 5rem 5vw; }
@@ -614,7 +619,9 @@ footer {
 .foot-social a { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5C5752; text-decoration: none; transition: color 0.2s; }
 .foot-social a:hover { color: var(--orange); }
 .foot-client-link { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5C5752; text-decoration: none; margin-top: 0.4rem; transition: color 0.2s; }
+.foot-client-link:visited { color: #5C5752; }
 .foot-client-link:hover { color: var(--orange); }
+.foot-social a:visited { color: #5C5752; }
 
 /* ─── SCROLL REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -667,4 +674,16 @@ footer {
   .frow { grid-template-columns: 1fr; }
   .contact-form-wrap { max-width: 100%; }
   .hiw-features { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2.4rem; letter-spacing: -0.02em; }
+  .hero-sub { font-size: 0.82rem; }
+  .section-inner { padding: 4rem 5vw; }
+  .hiw-features { grid-template-columns: 1fr; }
+  .t-filters { gap: 0.4rem; }
+  .t-filter { font-size: 0.58rem; padding: 0.4rem 0.8rem; }
+  .blog-card h4 { font-size: 0.88rem; }
+  footer { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+  .foot-social { gap: 1rem; }
 }
