@@ -52,8 +52,17 @@ document.querySelectorAll('.t-filter').forEach(btn => {
 /* ── CONTACT FORM ── */
 document.getElementById('contact-form')?.addEventListener('submit', e => {
   e.preventDefault();
-  document.getElementById('form-success').style.display = 'block';
-  e.target.reset();
+  const btn = e.target.querySelector('.btn-send');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    const success = document.getElementById('form-success');
+    success.classList.add('show');
+    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    e.target.reset();
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+  }, 600);
 });
 
 /* ── LANGUAGE TOGGLE ── */

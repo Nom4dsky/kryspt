@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog — KRYS PT</title>
-  <meta name="description" content="Training, nutrition, and performance articles by Przemyslaw Krys — personal trainer based in Oslo." />
+  <title>Blog - KRYS PT</title>
+  <meta name="description" content="Training, nutrition, and performance articles by Przemyslaw Krys - personal trainer based in Oslo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -161,7 +161,7 @@
 <div class="blog-hero">
   <div class="blog-hero-label">Knowledge Base</div>
   <h1>Training.<br><span>Free Reads.</span></h1>
-  <p>Evidence-based articles on strength, conditioning, nutrition, and performance. No fluff — just what works.</p>
+  <p>Evidence-based articles on strength, conditioning, nutrition, and performance. No fluff - just what works.</p>
   <div class="blog-bg-word">READ</div>
 </div>
 
@@ -186,13 +186,13 @@
 
 <script>
 // ═══════════════════════════════════════════════════════
-//  ARTICLES — add your articles here
+//  ARTICLES - add your articles here
 //  Each article needs a matching HTML file in /blog/
 // ═══════════════════════════════════════════════════════
 const ARTICLES = [
   {
     slug: "why-you-are-not-losing-weight",
-    title: "Why You're Not Losing Weight — And What to Actually Do",
+    title: "Why You're Not Losing Weight - And What to Actually Do",
     excerpt: "Most people fail at fat loss not because of genetics, but because of a few fixable habits. Here's what's actually going on.",
     category: "Nutrition",
     date: "March 4, 2026",
@@ -202,7 +202,7 @@ const ARTICLES = [
   {
     slug: "minimum-effective-dose-muscle",
     title: "Minimum Effective Dose for Building Muscle",
-    excerpt: "How much training do you really need? The answer might surprise you — and free up a lot of your week.",
+    excerpt: "How much training do you really need? The answer might surprise you - and free up a lot of your week.",
     category: "Training",
     date: "Feb 18, 2026",
     readTime: "4 min read",
@@ -211,7 +211,7 @@ const ARTICLES = [
   {
     slug: "build-engine-without-losing-strength",
     title: "How to Build Your Engine Without Losing Strength",
-    excerpt: "Concurrent training done right — how to raise your aerobic ceiling without sacrificing the strength you've worked hard to build.",
+    excerpt: "Concurrent training done right - how to raise your aerobic ceiling without sacrificing the strength you've worked hard to build.",
     category: "HYROX",
     date: "Feb 1, 2026",
     readTime: "5 min read",
@@ -225,7 +225,7 @@ function renderArticles(filter) {
   const filtered = filter === 'all' ? ARTICLES : ARTICLES.filter(a => a.category === filter);
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<div class="no-articles">No articles in this category yet — check back soon.</div>`;
+    grid.innerHTML = `<div class="no-articles">No articles in this category yet - check back soon.</div>`;
     return;
   }
 

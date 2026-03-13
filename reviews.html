@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Client Reviews — KRYS PT</title>
-  <meta name="description" content="What clients say about training with Przemyslaw Krys — personal trainer in Oslo." />
+  <title>Client Reviews - KRYS PT</title>
+  <meta name="description" content="What clients say about training with Przemyslaw Krys - personal trainer in Oslo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -40,7 +40,7 @@
     .f-btn:hover{border-color:var(--orange);color:var(--orange);}
     .f-btn.active{background:var(--orange);border-color:var(--orange);color:var(--cream);}
 
-    /* CAROUSEL — shown when >3 reviews in filtered set */
+    /* CAROUSEL - shown when >3 reviews in filtered set */
     .carousel-wrap{padding:0 5vw 2rem;position:relative;}
     .carousel-track{position:relative;overflow:hidden;}
     .carousel-slide{
@@ -51,7 +51,7 @@
     }
     .carousel-slide.active{opacity:1;position:relative;pointer-events:auto;}
 
-    /* STATIC GRID — shown when ≤3 reviews */
+    /* STATIC GRID - shown when ≤3 reviews */
     .static-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#1A1917;padding:0 5vw 3rem;}
 
     /* DOTS */
@@ -104,7 +104,7 @@
 <div class="reviews-hero">
   <div class="reviews-label">Client Reviews</div>
   <h1>What People <span>Say.</span></h1>
-  <p>Honest feedback from real clients. Names kept private — initials only.</p>
+  <p>Honest feedback from real clients. Names kept private - initials only.</p>
   <div class="reviews-bg-word">REVIEWS</div>
 </div>
 
@@ -131,7 +131,7 @@
 
 <script>
 // ═══════════════════════════════════════════════════
-//  ADD ALL REVIEWS HERE — just copy a block and fill in
+//  ADD ALL REVIEWS HERE - just copy a block and fill in
 // ═══════════════════════════════════════════════════
 const REVIEWS = [
   {
@@ -144,19 +144,19 @@ const REVIEWS = [
     type: "online",
     initials: "C.K.",
     name: "C.K.",
-    text: "I've had the pleasure of training with Krys for about 5 months, and I can confidently say that working with this guy is an absolute pleasure. His approach to the client is exemplary. The training plan is perfectly tailored to my sports goals — ultra-running requires a huge amount of endurance, strength, and conditioning, and he delivered all of that. Results exceeded my expectations after just a few months. Putting myself in Krys' hands was a bullseye."
+    text: "I've had the pleasure of training with Krys for about 5 months, and I can confidently say that working with this guy is an absolute pleasure. His approach to the client is exemplary. The training plan is perfectly tailored to my sports goals - ultra-running requires a huge amount of endurance, strength, and conditioning, and he delivered all of that. Results exceeded my expectations after just a few months. Putting myself in Krys' hands was a bullseye."
   },
   {
     type: "online",
     initials: "M.K.",
     name: "M.K.",
-    text: "Started working with Przemek in late March 2025 — 13 kg ago! From day one I could count on professional training plans and real help understanding my diet. Thanks for your flexibility with constant training adjustments around my travels. With your support and individual approach, I'm closer to my goal than ever. And we keep going!"
+    text: "Started working with Przemek in late March 2025 - 13 kg ago! From day one I could count on professional training plans and real help understanding my diet. Thanks for your flexibility with constant training adjustments around my travels. With your support and individual approach, I'm closer to my goal than ever. And we keep going!"
   }
-  // Add more reviews below — copy the block above
+  // Add more reviews below - copy the block above
 ];
 
 // ═══════════════════════════════════════════════════
-//  LOGIC — no need to edit below
+//  LOGIC - no need to edit below
 // ═══════════════════════════════════════════════════
 
 const PER_SLIDE = 3;
@@ -193,10 +193,10 @@ function render(filter) {
   clearInterval(autoTimer);
 
   if (filtered.length <= PER_SLIDE) {
-    // Static grid — no carousel needed
+    // Static grid - no carousel needed
     mount.innerHTML = `<div class="static-grid">${filtered.map(cardHTML).join('')}</div>`;
   } else {
-    // Carousel — chunk into slides of 3
+    // Carousel - chunk into slides of 3
     const slides = chunkArray(filtered, PER_SLIDE);
     currentSlide = 0;
 
