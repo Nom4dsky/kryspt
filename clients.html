@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KRYS PT — Client Portal</title>
+  <title>KRYS PT - Client Portal</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -144,7 +144,7 @@
       font-size:0.78rem; color:#888;
       padding-left:1rem; position:relative; line-height:1.55;
     }
-    .exercise-list li::before { content:'–'; position:absolute; left:0; color:#aaa; font-size:0.65rem; top:1px; }
+    .exercise-list li::before { content:'-'; position:absolute; left:0; color:#aaa; font-size:0.65rem; top:1px; }
     .exercise-list li strong { color:#111; font-weight:600; }
 
     /* ── DOWNLOADS ── */
@@ -167,6 +167,26 @@
       width:fit-content; transition:border-color 0.2s;
     }
     .download-btn:hover { border-color:#000; }
+
+    .rir-explainer{margin-top:2.5rem;background:#f8f8f8;border:1px solid #e8e8e8;padding:1.4rem 1.6rem;}
+    .rir-title{font-family:var(--f);font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:0.7rem;}
+    .rir-explainer p{font-size:0.82rem;color:#555;line-height:1.7;margin-bottom:1rem;}
+    .rir-scale{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+    .rir-item{display:flex;align-items:baseline;gap:1rem;font-size:0.8rem;}
+    .rir-num{font-family:var(--f);font-weight:700;font-size:0.78rem;min-width:46px;color:#111;}
+    .rir-desc{color:#777;}
+    .rir-note{font-size:0.78rem;color:#999;font-style:italic;margin-bottom:0!important;}
+
+    .day-notes { margin-top:0.9rem; padding-top:0.9rem; border-top:1px solid #e0e0e0; }
+    .day-notes textarea {
+      width:100%; background:#fff; border:1px solid #e0e0e0;
+      padding:0.6rem 0.7rem; font-family:var(--fb); font-size:0.75rem;
+      color:#333; outline:none; resize:none; min-height:140px;
+      transition:border-color 0.2s; line-height:1.6;
+    }
+    .day-notes textarea:focus { border-color:#000; }
+    .day-notes textarea::placeholder { color:#bbb; }
+    .day-card.rest .day-notes textarea { background:#f8f8f8; }
 
     @media(max-width:600px){
       .dash-body { padding:1.5rem 1rem 4rem; }
@@ -209,26 +229,26 @@
 
 <script>
 const TIPS = [
-  "Sleep is your most underrated recovery tool. 7–9 hours will do more for your progress than any supplement.",
+  "Sleep is your most underrated recovery tool. 7-9 hours will do more for your progress than any supplement.",
   "You don't need to feel destroyed after every session. Consistent, smart training beats grinding yourself into the ground every time.",
-  "Progressive overload is the engine of muscle growth. Add a little more — one rep, one kg — week by week and the results will come.",
+  "Progressive overload is the engine of muscle growth. Add a little more - one rep, one kg - week by week and the results will come.",
   "Protein is non-negotiable. Aim for at least 1.6g per kg of bodyweight to support muscle building and recovery.",
   "The best workout is the one you actually show up to. Consistency over months beats perfection once a week.",
   "Rest days are training days. Your muscles grow when you recover, not when you lift.",
   "Tracking your lifts is one of the simplest things you can do to accelerate progress.",
-  "Don't skip the warm-up. 5–10 minutes of movement prep protects your joints and improves every set.",
+  "Don't skip the warm-up. 5-10 minutes of movement prep protects your joints and improves every set.",
   "Hydration directly affects strength. Even mild dehydration can reduce performance noticeably.",
   "Form first, weight second. Ego lifting leads to plateaus and injuries. Master the movement, then load it.",
-  "Compound lifts — squat, hinge, press, pull — give you the most return for your time.",
+  "Compound lifts - squat, hinge, press, pull - give you the most return for your time.",
   "Stress outside the gym affects recovery inside it. High cortisol = slower gains. Manage your load.",
   "Zone 2 cardio (a pace where you can hold a conversation) builds your aerobic base without eating into recovery.",
   "Meal timing matters less than total daily intake. Hit your calories and protein first.",
   "Every elite athlete has a coach. Feedback on your movement is how you avoid years of wasted effort.",
-  "Muscle soreness doesn't mean a workout was effective — it just means your body wasn't used to that stimulus.",
-  "You can train hard or train often — but rarely both, long-term. Find the intensity that lets you keep showing up.",
-  "If you're not sleeping, not eating enough protein, or skipping sessions — no program will fix that.",
+  "Muscle soreness doesn't mean a workout was effective - it just means your body wasn't used to that stimulus.",
+  "You can train hard or train often - but rarely both, long-term. Find the intensity that lets you keep showing up.",
+  "If you're not sleeping, not eating enough protein, or skipping sessions - no program will fix that.",
   "Mind-muscle connection is real. Slowing down and feeling the target muscle leads to better results over time.",
-  "Trust the process. Visible results take 8–12 weeks of consistent effort. Most people quit at week 4. Don't be most people."
+  "Trust the process. Visible results take 8-12 weeks of consistent effort. Most people quit at week 4. Don't be most people."
 ];
 
 const CLIENTS = [
@@ -236,16 +256,16 @@ const CLIENTS = [
     password: "marco2025",
     name: "Marco",
     plan: [
-      { day: "Monday", focus: "Lower Body — Squat Focus", exercises: ["<strong>Back Squat</strong> — 4×5 @ RIR 2","<strong>Romanian Deadlift</strong> — 3×10 @ RIR 3","<strong>Leg Press</strong> — 3×12 @ RIR 2","<strong>Walking Lunges</strong> — 3×12 each @ RIR 3","<strong>Calf Raises</strong> — 4×15 @ RIR 1"] },
-      { day: "Tuesday", focus: "Upper Body — Push", exercises: ["<strong>Bench Press</strong> — 4×5 @ RIR 2","<strong>Overhead Press</strong> — 3×8 @ RIR 2","<strong>Incline DB Press</strong> — 3×10 @ RIR 3","<strong>Tricep Pushdowns</strong> — 3×12 @ RIR 2","<strong>Lateral Raises</strong> — 3×15 @ RIR 1"] },
-      { day: "Wednesday", focus: "Active Recovery", rest: true, exercises: ["20–30 min easy walk or Zone 2 cardio","10 min mobility — hips & thoracic spine"] },
-      { day: "Thursday", focus: "Lower Body — Hinge Focus", exercises: ["<strong>Deadlift</strong> — 4×4 @ RIR 2","<strong>Bulgarian Split Squat</strong> — 3×8 each @ RIR 2","<strong>Leg Curl</strong> — 3×12 @ RIR 2","<strong>Hip Thrust</strong> — 3×12 @ RIR 2","<strong>Plank</strong> — 3×45 sec"] },
-      { day: "Friday", focus: "Upper Body — Pull", exercises: ["<strong>Weighted Pull-Ups</strong> — 4×5 @ RIR 2","<strong>Barbell Row</strong> — 3×8 @ RIR 2","<strong>Seated Cable Row</strong> — 3×12 @ RIR 2","<strong>Face Pulls</strong> — 3×15 @ RIR 1","<strong>Bicep Curls</strong> — 3×12 @ RIR 2"] },
-      { day: "Saturday", focus: "Conditioning", exercises: ["<strong>Ski Erg</strong> — 4×500m @ 85%","<strong>KB Swings</strong> — 4×20","<strong>Burpee Broad Jump</strong> — 3×10","Rest 2 min between rounds"] },
+      { day: "Monday", focus: "Lower Body - Squat Focus", exercises: ["<strong>Back Squat</strong> - 4×5 @ RIR 2","<strong>Romanian Deadlift</strong> - 3×10 @ RIR 3","<strong>Leg Press</strong> - 3×12 @ RIR 2","<strong>Walking Lunges</strong> - 3×12 each @ RIR 3","<strong>Calf Raises</strong> - 4×15 @ RIR 1"] },
+      { day: "Tuesday", focus: "Upper Body - Push", exercises: ["<strong>Bench Press</strong> - 4×5 @ RIR 2","<strong>Overhead Press</strong> - 3×8 @ RIR 2","<strong>Incline DB Press</strong> - 3×10 @ RIR 3","<strong>Tricep Pushdowns</strong> - 3×12 @ RIR 2","<strong>Lateral Raises</strong> - 3×15 @ RIR 1"] },
+      { day: "Wednesday", focus: "Active Recovery", rest: true, exercises: ["20-30 min easy walk or Zone 2 cardio","10 min mobility - hips & thoracic spine"] },
+      { day: "Thursday", focus: "Lower Body - Hinge Focus", exercises: ["<strong>Deadlift</strong> - 4×4 @ RIR 2","<strong>Bulgarian Split Squat</strong> - 3×8 each @ RIR 2","<strong>Leg Curl</strong> - 3×12 @ RIR 2","<strong>Hip Thrust</strong> - 3×12 @ RIR 2","<strong>Plank</strong> - 3×45 sec"] },
+      { day: "Friday", focus: "Upper Body - Pull", exercises: ["<strong>Weighted Pull-Ups</strong> - 4×5 @ RIR 2","<strong>Barbell Row</strong> - 3×8 @ RIR 2","<strong>Seated Cable Row</strong> - 3×12 @ RIR 2","<strong>Face Pulls</strong> - 3×15 @ RIR 1","<strong>Bicep Curls</strong> - 3×12 @ RIR 2"] },
+      { day: "Saturday", focus: "Conditioning", exercises: ["<strong>Ski Erg</strong> - 4×500m @ 85%","<strong>KB Swings</strong> - 4×20","<strong>Burpee Broad Jump</strong> - 3×10","Rest 2 min between rounds"] },
       { day: "Sunday", focus: "Full Rest", rest: true, exercises: ["Rest and recover.","Optional: 15 min stretching"] }
     ],
     downloads: [
-      { title: "Training Program — Block 2", meta: "PDF · Weeks 5–8 · Strength Focus", file: "files/marco-block2.pdf" },
+      { title: "Training Program - Block 2", meta: "PDF · Weeks 5-8 · Strength Focus", file: "files/marco-block2.pdf" },
       { title: "Nutrition Guidelines", meta: "PDF · Calorie & macro targets", file: "files/marco-nutrition.pdf" }
     ]
   },
@@ -253,17 +273,64 @@ const CLIENTS = [
     password: "anna2025",
     name: "Anna",
     plan: [
-      { day: "Monday", focus: "Full Body A", exercises: ["<strong>Goblet Squat</strong> — 3×10 @ RIR 3","<strong>DB Romanian Deadlift</strong> — 3×10 @ RIR 3","<strong>DB Bench Press</strong> — 3×10 @ RIR 3","<strong>Seated Row</strong> — 3×12 @ RIR 2","<strong>Plank</strong> — 3×30 sec"] },
+      { day: "Monday", focus: "Full Body A", exercises: ["<strong>Goblet Squat</strong> - 3×10 @ RIR 3","<strong>DB Romanian Deadlift</strong> - 3×10 @ RIR 3","<strong>DB Bench Press</strong> - 3×10 @ RIR 3","<strong>Seated Row</strong> - 3×12 @ RIR 2","<strong>Plank</strong> - 3×30 sec"] },
       { day: "Tuesday", focus: "Rest / Walk", rest: true, exercises: ["20 min easy walk","5 min stretching"] },
-      { day: "Wednesday", focus: "Full Body B", exercises: ["<strong>Leg Press</strong> — 3×12 @ RIR 2","<strong>Hip Thrust</strong> — 3×12 @ RIR 2","<strong>Overhead Press</strong> — 3×10 @ RIR 3","<strong>Lat Pulldown</strong> — 3×12 @ RIR 2","<strong>Dead Bug</strong> — 3×8 each side"] },
+      { day: "Wednesday", focus: "Full Body B", exercises: ["<strong>Leg Press</strong> - 3×12 @ RIR 2","<strong>Hip Thrust</strong> - 3×12 @ RIR 2","<strong>Overhead Press</strong> - 3×10 @ RIR 3","<strong>Lat Pulldown</strong> - 3×12 @ RIR 2","<strong>Dead Bug</strong> - 3×8 each side"] },
       { day: "Thursday", focus: "Rest", rest: true, exercises: ["Full rest day"] },
-      { day: "Friday", focus: "Full Body C", exercises: ["<strong>DB Sumo Deadlift</strong> — 3×10 @ RIR 3","<strong>Step-Ups</strong> — 3×10 each @ RIR 3","<strong>Push-Ups</strong> — 3×max @ RIR 1","<strong>One-Arm DB Row</strong> — 3×10 each @ RIR 2","<strong>Glute Bridge</strong> — 3×15 @ RIR 1"] },
+      { day: "Friday", focus: "Full Body C", exercises: ["<strong>DB Sumo Deadlift</strong> - 3×10 @ RIR 3","<strong>Step-Ups</strong> - 3×10 each @ RIR 3","<strong>Push-Ups</strong> - 3×max @ RIR 1","<strong>One-Arm DB Row</strong> - 3×10 each @ RIR 2","<strong>Glute Bridge</strong> - 3×15 @ RIR 1"] },
       { day: "Saturday", focus: "Light Cardio", rest: true, exercises: ["30 min walk or easy bike","10 min yoga / stretching"] },
       { day: "Sunday", focus: "Full Rest", rest: true, exercises: ["Rest and recover."] }
     ],
     downloads: [
-      { title: "Training Program — Block 1", meta: "PDF · Weeks 1–4 · Foundation", file: "files/anna-block1.pdf" }
+      { title: "Training Program - Block 1", meta: "PDF · Weeks 1-4 · Foundation", file: "files/anna-block1.pdf" }
     ]
+  }
+  ,
+      {
+    password: "Maxime2026",
+    name: "Maxime",
+    plan: [
+      { day: "Day 1", focus: "PT Session - Upper Strength", exercises: [
+        "<strong>Medicine Ball Slam</strong> - 3-4 sets × 5 reps · rest 60s",
+        "<strong>Trap Bar Deadlift</strong> - 3 sets × 5 reps · rest 2-3 min",
+        "<strong>Assisted Pull-up</strong> - 5 sets × 3-5 reps · rest 2-3 min",
+        "<strong>DB Incline Press</strong> or Machine Press - 4 sets × 4-6 reps · rest 2-3 min",
+        "<strong>Chest-Supported DB Row</strong> - 4 sets × 6-8 reps · rest 2 min",
+        "<strong>DB Pullover</strong> - 3 sets × 10-12 reps · rest 60s",
+        "<strong>Half-Kneeling Cable Chop</strong> - 3 sets × 8 reps/side · rest 60s"
+      ]},
+      { day: "Day 2", focus: "Running + Upper Add-on", exercises: [
+        "<em style='color:#aaa;font-size:0.72rem'>After running - quality work, not exhaustion. Use lower loads if the run was brutal.</em>",
+        "<strong>Interval Running Class</strong> - Hard conditioning",
+        "<strong>Assisted Pull-up</strong> - 4 sets × 4-6 reps · RIR 2",
+        "<strong>Seated Cable Row</strong> - 3 sets × 8-10 reps · RIR 2",
+        "<strong>DB Incline Press</strong> or Machine Chest Press - 3 sets × 6-8 reps · RIR 2",
+        "<strong>Face Pull</strong> - 2-3 sets × 12-15 reps · RIR 1",
+        "<strong>Pallof Press</strong> - 2-3 sets × 10 reps/side · RIR 2"
+      ]},
+      { day: "Day 3", focus: "Solo Strength + Finisher", exercises: [
+        "<em style='color:#aaa;font-size:0.72rem'>Gym busy? Lat pulldown → assisted pull-up · Machine press → DB incline · Leg press → goblet squat</em>",
+        "<strong>Lat Pulldown</strong> neutral grip - 4 sets × 6-8 reps · RIR 2",
+        "<strong>Machine Chest Press</strong> - 4 sets × 6-8 reps · RIR 2",
+        "<strong>Seated Cable Row</strong> - 3 sets × 8-10 reps · RIR 2",
+        "<strong>DB Shoulder Press</strong> or Machine - 3 sets × 8 reps · RIR 2",
+        "<strong>Face Pull</strong> - 3 sets × 12-15 reps · RIR 1",
+        "<strong>Leg Press</strong> - 2-3 sets × 10-12 reps · RIR 2",
+        "<div style='margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid #e0e0e0;font-family:var(--f);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#999'>Conditioning Finisher - pick 1 · 10-15 min</div>",
+        "<em style='color:#aaa;font-size:0.72rem'>Skip if energy is low - strength work is the priority</em>",
+        "<strong>Sled Push</strong> - 6 × 20m · rest 60s · moderate load, fast feet",
+        "<strong>Kettlebell Swings</strong> - 5 × 15 reps · rest 45s · hinge hard, snap the hips",
+        "<strong>Assault Bike Intervals</strong> - 8 × 20s all-out / 40s easy · total 8 min",
+        "<strong>Farmer's Carry</strong> - 4 × 40m · heavy DBs · tall posture, no leaning"
+      ]},
+      { day: "Day 4", focus: "Zone 2 Row - Optional", rest: true, exercises: [
+        "<em style='color:#aaa;font-size:0.72rem'>Talk test: speak in full sentences without gasping. Too hard = not Zone 2. Form breaks? Switch to bike or incline treadmill.</em>",
+        "<strong>Warm-up</strong> - Easy row 5 min",
+        "<strong>Main Set</strong> - Steady Zone 2, 20-50 min",
+        "<strong>Cool-down</strong> - Easy row 5 min"
+      ]}
+    ],
+    downloads: []
   }
 ];
 
@@ -301,13 +368,33 @@ function showDashboard(client) {
     </div>
     <div class="section-label">This Week's Training</div>
     <div class="plan-grid">
-      ${client.plan.map(day => `
+      ${client.plan.map((day, di) => `
         <div class="day-card ${day.rest ? 'rest' : ''}">
           <div class="day-name">${day.day}</div>
           <div class="day-focus">${day.focus}</div>
           <ul class="exercise-list">${day.exercises.map(e => `<li>${e}</li>`).join('')}</ul>
+          <div class="day-notes">
+            <textarea id="note-${di}" placeholder="Weights, how you felt, anything…"></textarea>
+          </div>
         </div>`).join('')}
     </div>`;
+
+  // RIR explanation - only show if client has exercises with RIR
+  const hasRIR = client.plan.some(d => d.exercises.some(e => e.includes('RIR')));
+  if (hasRIR) {
+    html += `
+    <div class="rir-explainer">
+      <div class="rir-title">What is RIR?</div>
+      <p><strong>RIR = Reps In Reserve</strong> - how many more reps you could do before failure.</p>
+      <div class="rir-scale">
+        <div class="rir-item"><span class="rir-num">RIR 0</span><span class="rir-desc">Absolute max - nothing left</span></div>
+        <div class="rir-item"><span class="rir-num">RIR 1</span><span class="rir-desc">1 rep left in the tank - very hard</span></div>
+        <div class="rir-item"><span class="rir-num">RIR 2</span><span class="rir-desc">2 reps left - challenging but controlled</span></div>
+        <div class="rir-item"><span class="rir-num">RIR 3</span><span class="rir-desc">3 reps left - moderately hard</span></div>
+      </div>
+      <p class="rir-note">RIR 2 is your default target - hard enough to drive progress, smart enough to recover from.</p>
+    </div>`;
+  }
 
   if (client.downloads && client.downloads.length > 0) {
     html += `<div class="section-label">Your Documents</div><div class="downloads-grid">`;
