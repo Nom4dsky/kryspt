@@ -613,6 +613,8 @@ footer {
 .foot-social { display: flex; gap: 1.4rem; }
 .foot-social a { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5C5752; text-decoration: none; transition: color 0.2s; }
 .foot-social a:hover { color: var(--orange); }
+.foot-client-link { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5C5752; text-decoration: none; margin-top: 0.4rem; transition: color 0.2s; }
+.foot-client-link:hover { color: var(--orange); }
 
 /* ─── SCROLL REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
