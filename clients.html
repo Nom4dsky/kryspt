@@ -168,6 +168,60 @@
     }
     .download-btn:hover { border-color:#000; }
 
+    /* ── WEEKLY VIEW TABS ── */
+    .week-tabs {
+      display: flex; gap: 0; margin-bottom: 2rem;
+      border-bottom: 2px solid #e0e0e0; overflow-x: auto; scrollbar-width: none;
+    }
+    .week-tabs::-webkit-scrollbar { display: none; }
+    .week-tab {
+      font-family: var(--f); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #aaa; background: none; border: none;
+      padding: 0.7rem 1.2rem; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
+      white-space: nowrap; transition: all 0.15s;
+    }
+    .week-tab:hover { color: #333; }
+    .week-tab.active { color: #000; border-bottom-color: #000; }
+
+    .week-panel { display: none; }
+    .week-panel.active { display: block; }
+
+    .day-section { margin-bottom: 2rem; }
+    .day-section-header {
+      font-family: var(--f); font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: #fff; background: #111;
+      padding: 0.5rem 0.9rem; margin-bottom: 0;
+    }
+    .day-section-body {
+      background: #f8f8f8; padding: 1rem 1.2rem;
+    }
+    .day-section-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .day-section-body ul li {
+      position: relative; padding-left: 1rem;
+      font-size: 0.78rem; line-height: 1.65; color: #333;
+    }
+    .day-section-body ul li::before { content: '-'; position: absolute; left: 0; color: #aaa; }
+
+    .week-card { background: #f8f8f8; padding: 1.4rem 1.2rem; margin-bottom: 0.15rem; }
+    .week-card-title {
+      font-family: var(--f); font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem;
+    }
+    .week-card-sub { font-size: 0.72rem; color: #888; margin-bottom: 1rem; }
+
+    .wk-notes { margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid #e0e0e0; }
+    .wk-notes textarea {
+      width: 100%; background: #fff; border: 1px solid #e0e0e0;
+      padding: 0.6rem 0.7rem; font-family: var(--fb); font-size: 0.75rem;
+      color: #333; outline: none; resize: none; min-height: 140px;
+      transition: border-color 0.2s; line-height: 1.6;
+    }
+    .wk-notes textarea:focus { border-color: #000; }
+    .wk-notes textarea::placeholder { color: #bbb; }
+
     .rir-explainer{margin-top:2.5rem;background:#f8f8f8;border:1px solid #e8e8e8;padding:1.4rem 1.6rem;}
     .rir-title{font-family:var(--f);font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:0.7rem;}
     .rir-explainer p{font-size:0.82rem;color:#555;line-height:1.7;margin-bottom:1rem;}
@@ -337,6 +391,7 @@ const CLIENTS = [
   {
     password: "Overall2026",
     name: "Overall",
+    weeklyView: true,
     plan: [
       { day: "Block Overview", focus: "Overall Games - 4-Week Focused Block", exercises: [
         "<strong>Focus tests:</strong> 5RM Deadlift · 5×OHP · 30s Burpee · Broad Jump · 5k Run",
@@ -489,6 +544,67 @@ document.getElementById('password-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkPassword();
 });
 
+function renderWeeklyView(client) {
+  // Split exercises into day sections by looking for day-header divs
+  function buildDaySections(exercises) {
+    const sections = [];
+    let current = null;
+    exercises.forEach(ex => {
+      // Detect day-divider headers we embedded
+      const headerMatch = ex.match(/style='[^']*text-transform:uppercase[^']*'>([^<]+)<\/div>/);
+      if (headerMatch) {
+        if (current) sections.push(current);
+        current = { title: headerMatch[1], items: [] };
+      } else {
+        if (!current) current = { title: null, items: [] };
+        current.items.push(ex);
+      }
+    });
+    if (current) sections.push(current);
+    return sections;
+  }
+
+  const tabs = client.plan.map((w, i) =>
+    `<button class="week-tab ${i===0?'active':''}" onclick="switchWeekTab(${i}, this)">${w.day}</button>`
+  ).join('');
+
+  const panels = client.plan.map((w, wi) => {
+    const sections = buildDaySections(w.exercises);
+    const sectionsHtml = sections.map((s, si) => {
+      const itemsHtml = s.items.map(e => `<li>${e}</li>`).join('');
+      return `
+        <div class="day-section">
+          ${s.title ? `<div class="day-section-header">${s.title}</div>` : ''}
+          <div class="day-section-body"><ul>${itemsHtml}</ul></div>
+        </div>`;
+    }).join('');
+
+    return `
+      <div class="week-panel ${wi===0?'active':''}" id="wpanel-${wi}">
+        <div class="week-card">
+          <div class="week-card-title">${w.day}</div>
+          <div class="week-card-sub">${w.focus}</div>
+          ${sectionsHtml}
+          <div class="wk-notes">
+            <textarea id="wnote-${wi}" placeholder="Week notes - weights, energy, anything…"></textarea>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="section-label">Training Block</div>
+    <div class="week-tabs">${tabs}</div>
+    ${panels}`;
+}
+
+function switchWeekTab(idx, el) {
+  document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.week-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('wpanel-' + idx).classList.add('active');
+}
+
 function showDashboard(client) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
@@ -505,6 +621,7 @@ function showDashboard(client) {
         ${tip}
       </div>
     </div>
+    ${client.weeklyView ? renderWeeklyView(client) : `
     <div class="section-label">This Week's Training</div>
     <div class="plan-grid">
       ${client.plan.map((day, di) => `
@@ -516,7 +633,7 @@ function showDashboard(client) {
             <textarea id="note-${di}" placeholder="Weights, how you felt, anything…"></textarea>
           </div>
         </div>`).join('')}
-    </div>`;
+    </div>`}`;
 
   // RIR explanation - only show if client has exercises with RIR
   const hasRIR = client.plan.some(d => d.exercises.some(e => e.includes('RIR')));
