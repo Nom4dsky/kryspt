@@ -171,6 +171,8 @@ h1 {
 }
 h1 .highlight { color: var(--orange); display: block; }
 
+.hero-kw { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.6rem; }
+
 .hero-sub {
   font-size: 0.88rem; font-weight: 400; color: var(--silver);
   max-width: 580px; line-height: 1.9; margin-bottom: 1.6rem;
@@ -678,7 +680,9 @@ footer {
 
 @media (max-width: 480px) {
   h1 { font-size: 2.4rem; letter-spacing: -0.02em; }
-  .hero-sub { font-size: 0.82rem; }
+  .hero-kw { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.6rem; }
+
+.hero-sub { font-size: 0.82rem; }
   .section-inner { padding: 4rem 5vw; }
   .hiw-features { grid-template-columns: 1fr; }
   .t-filters { gap: 0.4rem; }
