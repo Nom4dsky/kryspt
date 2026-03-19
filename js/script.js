@@ -50,19 +50,33 @@ document.querySelectorAll('.t-filter').forEach(btn => {
 });
 
 /* ── CONTACT FORM ── */
-document.getElementById('contact-form')?.addEventListener('submit', e => {
+document.getElementById('contact-form')?.addEventListener('submit', async e => {
   e.preventDefault();
   const btn = e.target.querySelector('.btn-send');
+  const success = document.getElementById('form-success');
   btn.textContent = 'Sending...';
   btn.disabled = true;
-  setTimeout(() => {
-    const success = document.getElementById('form-success');
-    success.classList.add('show');
-    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    e.target.reset();
-    btn.textContent = 'Send Message';
+  try {
+    const data = new FormData(e.target);
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data
+    });
+    const json = await res.json();
+    if (json.success) {
+      success.classList.add('show');
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      e.target.reset();
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+    } else {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Something went wrong — try again';
     btn.disabled = false;
-  }, 600);
+  }
 });
 
 /* ── LANGUAGE TOGGLE ── */
