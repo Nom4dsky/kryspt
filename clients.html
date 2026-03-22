@@ -526,6 +526,13 @@ const CLIENTS = [
     ],
     downloads: []
   }
+
+  ,
+  {
+    password: "Cyprian2026",
+    name: "Cyprian",
+    redirect: "/clients/cyprian.html"
+  }
 ];
 
 function checkPassword() {
@@ -533,6 +540,10 @@ function checkPassword() {
   const client = CLIENTS.find(c => c.password.toLowerCase() === input);
   if (client) {
     document.getElementById('login-error').classList.remove('show');
+    if (client.redirect) {
+      window.location.href = client.redirect;
+      return;
+    }
     showDashboard(client);
   } else {
     document.getElementById('login-error').classList.add('show');
