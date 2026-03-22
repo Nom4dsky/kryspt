@@ -636,60 +636,14 @@
       background: #111110;
       display: flex; align-items: center; justify-content: center;
     }
-    .pw-box {
-      text-align: center;
-      font-family: 'DM Mono', monospace;
-    }
-    .pw-box .pw-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      color: #f5f2ec;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-    .pw-box .pw-sub {
-      font-size: 11px;
-      color: #666;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-    .pw-box input {
-      display: block;
-      width: 260px;
-      background: #1a1a18;
-      border: 1px solid #333;
-      color: #f5f2ec;
-      font-family: 'DM Mono', monospace;
-      font-size: 14px;
-      padding: 12px 16px;
-      outline: none;
-      margin: 0 auto 12px;
-      text-align: center;
-      letter-spacing: 0.1em;
-    }
+    .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
+    .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #f5f2ec; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .pw-box .pw-sub { font-size: 11px; color: #666; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 32px; }
+    .pw-box input { display: block; width: 260px; background: #1a1a18; border: 1px solid #333; color: #f5f2ec; font-family: 'DM Mono', monospace; font-size: 14px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
     .pw-box input:focus { border-color: #c8960a; }
-    .pw-box button {
-      width: 260px;
-      background: #c8960a;
-      border: none;
-      color: #111;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 12px;
-      cursor: pointer;
-    }
+    .pw-box button { width: 260px; background: #c8960a; border: none; color: #111; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
     .pw-box button:hover { background: #e0a80c; }
-    .pw-error {
-      font-size: 10px;
-      color: #c8960a;
-      letter-spacing: 0.1em;
-      margin-top: 10px;
-      height: 14px;
-    }
+    .pw-error { font-size: 10px; color: #c8960a; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
   </style>
 </head>
 <body>
@@ -757,55 +711,55 @@
     <div class="sidebar-section">
       <div class="phase-header teal">M1 · Baza aerobowa</div>
       <button class="mezo-btn teal active" data-panel="overview" onclick="show('overview', this, 'teal')">
-        Przegląd planu <span class="weeks">28 tydz.</span>
+        Przegląd planu <span class="weeks">23.03 – 04.10</span>
       </button>
       <button class="mezo-btn teal" data-panel="m1-1" onclick="show('m1-1', this, 'teal')">
-        Mezo 1.1 — start <span class="weeks">tydz. 1–3</span>
+        Mezo 1.1 — start <span class="weeks">23.03 – 12.04</span>
       </button>
       <button class="mezo-btn teal" data-panel="m1-2" onclick="show('m1-2', this, 'teal')">
-        Mezo 1.2 — budowanie <span class="weeks">tydz. 4–6</span>
+        Mezo 1.2 — budowanie <span class="weeks">13.04 – 03.05</span>
       </button>
       <button class="deload-btn mezo-btn gray" data-panel="d1" onclick="show('d1', this, 'gray')">
-        ↓ Deload 1 <span class="weeks">tydz. 7</span>
+        ↓ Deload 1 <span class="weeks">04.05 – 10.05</span>
       </button>
       <button class="mezo-btn teal" data-panel="m1-3" onclick="show('m1-3', this, 'teal')">
-        Mezo 1.3 — koniec fazy <span class="weeks">tydz. 8</span>
+        Mezo 1.3 — koniec fazy <span class="weeks">11.05 – 17.05</span>
       </button>
     </div>
     <div class="sidebar-section">
       <div class="phase-header purple">M2 · Objętość + specyfika</div>
       <button class="mezo-btn purple" data-panel="m2-1" onclick="show('m2-1', this, 'purple')">
-        Mezo 2.1 — 4 dni bieg. <span class="weeks">tydz. 9–11</span>
+        Mezo 2.1 — 4 dni bieg. <span class="weeks">18.05 – 07.06</span>
       </button>
       <button class="deload-btn mezo-btn gray" data-panel="d2" onclick="show('d2', this, 'gray')">
-        ↓ Deload 2 <span class="weeks">tydz. 12</span>
+        ↓ Deload 2 <span class="weeks">08.06 – 14.06</span>
       </button>
       <button class="mezo-btn purple" data-panel="m2-2" onclick="show('m2-2', this, 'purple')">
-        Mezo 2.2 — B2B start <span class="weeks">tydz. 13–15</span>
+        Mezo 2.2 — B2B start <span class="weeks">15.06 – 05.07</span>
       </button>
       <button class="deload-btn mezo-btn gray" data-panel="d3" onclick="show('d3', this, 'gray')">
-        ↓ Deload 3 / pre-start <span class="weeks">tydz. 16</span>
+        ↓ Deload 3 / pre-start <span class="weeks">06.07 – 12.07</span>
       </button>
       <button class="mezo-btn amber" data-panel="dfbg" onclick="show('dfbg', this, 'amber')">
-        TEST START — DFBG <span class="weeks">tydz. 17–18</span>
+        TEST START — DFBG <span class="weeks">13.07 – 26.07</span>
       </button>
     </div>
     <div class="sidebar-section">
       <div class="phase-header coral">M3 · Peak training</div>
       <button class="mezo-btn coral" data-panel="m3-1" onclick="show('m3-1', this, 'coral')">
-        Mezo 3.1 — nocny bieg <span class="weeks">tydz. 19–21</span>
+        Mezo 3.1 — nocny bieg <span class="weeks">27.07 – 16.08</span>
       </button>
       <button class="deload-btn mezo-btn gray" data-panel="d4" onclick="show('d4', this, 'gray')">
-        ↓ Deload 4 <span class="weeks">tydz. 22</span>
+        ↓ Deload 4 <span class="weeks">17.08 – 23.08</span>
       </button>
       <button class="mezo-btn coral" data-panel="m3-2" onclick="show('m3-2', this, 'coral')">
-        Mezo 3.2 — peak <span class="weeks">tydz. 23–25</span>
+        Mezo 3.2 — peak <span class="weeks">24.08 – 13.09</span>
       </button>
     </div>
     <div class="sidebar-section">
       <div class="phase-header gray">M4 · Tapering</div>
       <button class="mezo-btn gray" data-panel="taper" onclick="show('taper', this, 'gray')">
-        Tapering <span class="weeks">tydz. 26–28</span>
+        Tapering <span class="weeks">14.09 – 04.10</span>
       </button>
     </div>
   </nav>
@@ -829,7 +783,7 @@
       <div class="overview-grid">
         <div class="macro-card teal" onclick="show('m1-1', document.querySelector('[data-panel=m1-1]'), 'teal')">
           <h3 class="teal">M1 — Baza aerobowa</h3>
-          <div class="sub">Tygodnie 1–8 · marzec – maj</div>
+          <div class="sub">23.03 – 17.05.2026</div>
           <div class="detail">
             30 → 55 km/tydz.<br>
             3x siłowy (bez zmian)<br>
@@ -839,7 +793,7 @@
         </div>
         <div class="macro-card purple" onclick="show('m2-1', document.querySelector('[data-panel=m2-1]'), 'purple')">
           <h3 class="purple">M2 — Objętość + specyfika</h3>
-          <div class="sub">Tygodnie 9–18 · maj – lipiec</div>
+          <div class="sub">18.05 – 26.07.2026</div>
           <div class="detail">
             55 → 80 km/tydz.<br>
             Siłowy 3x → 2x<br>
@@ -849,7 +803,7 @@
         </div>
         <div class="macro-card coral" onclick="show('m3-1', document.querySelector('[data-panel=m3-1]'), 'coral')">
           <h3 class="coral">M3 — Peak training</h3>
-          <div class="sub">Tygodnie 19–25 · lipiec – wrzesień</div>
+          <div class="sub">27.07 – 13.09.2026</div>
           <div class="detail">
             80 → 105 km/tydz.<br>
             Siłowy 1x podtrzymanie<br>
@@ -859,7 +813,7 @@
         </div>
         <div class="macro-card gray" onclick="show('taper', document.querySelector('[data-panel=taper]'), 'gray')">
           <h3 class="gray">M4 — Tapering</h3>
-          <div class="sub">Tygodnie 26–28 · październik</div>
+          <div class="sub">14.09 – 04.10.2026</div>
           <div class="detail">
             65 → 22 km/tydz.<br>
             -40% / -55% / race week<br>
@@ -905,7 +859,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Start bazy aerobowej · marzec</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tygodnie 1–3</span>
+          <span class="weeks-badge">23.03 – 12.04</span>
           <span class="km-range">30–40 km</span>
         </div>
       </div>
@@ -914,7 +868,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header teal">Tydzień 1 <span class="week-km">30 km</span></div>
+          <div class="week-card-header teal">23.03 – 29.03 <span class="week-km">30 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km Z2</span></div>
@@ -926,7 +880,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header teal">Tydzień 2 <span class="week-km">35 km</span></div>
+          <div class="week-card-header teal">30.03 – 05.04 <span class="week-km">35 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 9 km Z2</span></div>
@@ -938,7 +892,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header teal">Tydzień 3 <span class="week-km">40 km</span></div>
+          <div class="week-card-header teal">06.04 – 12.04 <span class="week-km">40 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
@@ -980,7 +934,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Budowanie bazy · kwiecień</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tygodnie 4–6</span>
+          <span class="weeks-badge">13.04 – 03.05</span>
           <span class="km-range">40–50 km</span>
         </div>
       </div>
@@ -989,7 +943,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header teal">Tydzień 4 <span class="week-km">42 km</span></div>
+          <div class="week-card-header teal">13.04 – 19.04 <span class="week-km">42 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
@@ -1001,7 +955,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header teal">Tydzień 5 <span class="week-km">46 km</span></div>
+          <div class="week-card-header teal">20.04 – 26.04 <span class="week-km">46 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 11 km Z2</span></div>
@@ -1013,7 +967,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header teal">Tydzień 6 <span class="week-km">50 km</span></div>
+          <div class="week-card-header teal">27.04 – 03.05 <span class="week-km">50 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
@@ -1055,7 +1009,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Pierwszy roztrenowanie · kwiecień/maj</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tydzień 7</span>
+          <span class="weeks-badge">04.05 – 10.05</span>
           <span class="km-range">~35 km</span>
         </div>
       </div>
@@ -1064,7 +1018,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header gray">Tydzień 7 <span class="week-km">35 km</span></div>
+          <div class="week-card-header gray">04.05 – 10.05 <span class="week-km">35 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km Z2</span></div>
@@ -1095,7 +1049,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Zamknięcie bazy · maj</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tydzień 8</span>
+          <span class="weeks-badge">11.05 – 17.05</span>
           <span class="km-range">55 km</span>
         </div>
       </div>
@@ -1104,7 +1058,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header teal">Tydzień 8 <span class="week-km">55 km</span></div>
+          <div class="week-card-header teal">11.05 – 17.05 <span class="week-km">55 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
@@ -1134,7 +1088,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Cztery dni biegowe · maj</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tygodnie 9–11</span>
+          <span class="weeks-badge">18.05 – 07.06</span>
           <span class="km-range">55–72 km</span>
         </div>
       </div>
@@ -1143,7 +1097,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header purple">Tydzień 9 <span class="week-km">58 km</span></div>
+          <div class="week-card-header purple">18.05 – 24.05 <span class="week-km">58 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 13 km Z2</span></div>
@@ -1155,7 +1109,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header purple">Tydzień 10 <span class="week-km">65 km</span></div>
+          <div class="week-card-header purple">25.05 – 31.05 <span class="week-km">65 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 15 km Z2</span></div>
@@ -1167,7 +1121,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header purple">Tydzień 11 <span class="week-km">72 km</span></div>
+          <div class="week-card-header purple">01.06 – 07.06 <span class="week-km">72 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 16 km Z2</span></div>
@@ -1209,7 +1163,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Siłowy schodzi do 2x · czerwiec</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tydzień 12</span>
+          <span class="weeks-badge">08.06 – 14.06</span>
           <span class="km-range">~50 km</span>
         </div>
       </div>
@@ -1218,7 +1172,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header gray">Tydzień 12 <span class="week-km">50 km</span></div>
+          <div class="week-card-header gray">08.06 – 14.06 <span class="week-km">50 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (RDL, nordic, tibialis)</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
@@ -1240,7 +1194,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Back-to-back start · czerwiec–lipiec</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tygodnie 13–15</span>
+          <span class="weeks-badge">15.06 – 05.07</span>
           <span class="km-range">68–80 km</span>
         </div>
       </div>
@@ -1249,7 +1203,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header purple">Tydzień 13 <span class="week-km">68 km</span></div>
+          <div class="week-card-header purple">15.06 – 21.06 <span class="week-km">68 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
@@ -1261,7 +1215,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header purple">Tydzień 14 <span class="week-km">75 km</span></div>
+          <div class="week-card-header purple">22.06 – 28.06 <span class="week-km">75 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 16 km Z2</span></div>
@@ -1273,7 +1227,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header purple">Tydzień 15 <span class="week-km">80 km</span></div>
+          <div class="week-card-header purple">29.06 – 05.07 <span class="week-km">80 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 17 km Z2</span></div>
@@ -1303,10 +1257,10 @@
       <div class="panel-header">
         <div>
           <div class="panel-title amber">TEST START</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Dolnośląski Festiwal Biegów Górskich · lipiec</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Dolnośląski Festiwal Biegów Górskich · 13.07 – 26.07.2026</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tygodnie 17–18</span>
+          <span class="weeks-badge">13.07 – 26.07</span>
           <span class="km-range">45 lub 70 km</span>
         </div>
       </div>
@@ -1348,7 +1302,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Peak start + nocny bieg · lipiec–sierpień</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tygodnie 19–21</span>
+          <span class="weeks-badge">27.07 – 16.08</span>
           <span class="km-range">82–95 km</span>
         </div>
       </div>
@@ -1357,7 +1311,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header coral">Tydzień 19 <span class="week-km">82 km</span></div>
+          <div class="week-card-header coral">27.07 – 02.08 <span class="week-km">82 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (podtrzymanie)</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 18 km Z2</span></div>
@@ -1369,7 +1323,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header coral">Tydzień 20 <span class="week-km">88 km</span></div>
+          <div class="week-card-header coral">03.08 – 09.08 <span class="week-km">88 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 19 km Z2</span></div>
@@ -1381,7 +1335,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header coral">Tydzień 21 <span class="week-km">95 km</span></div>
+          <div class="week-card-header coral">10.08 – 16.08 <span class="week-km">95 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 20 km Z2</span></div>
@@ -1414,7 +1368,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Peak — najcięższy blok · sierpień–wrzesień</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tygodnie 23–25</span>
+          <span class="weeks-badge">24.08 – 13.09</span>
           <span class="km-range">98–105 km</span>
         </div>
       </div>
@@ -1423,7 +1377,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header coral">Tydzień 23 <span class="week-km">98 km</span></div>
+          <div class="week-card-header coral">24.08 – 30.08 <span class="week-km">98 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (RDL, nordic, tibialis)</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 22 km Z2</span></div>
@@ -1435,7 +1389,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header coral">Tydzień 24 <span class="week-km">100 km</span></div>
+          <div class="week-card-header coral">31.08 – 06.09 <span class="week-km">100 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 22 km Z2</span></div>
@@ -1447,7 +1401,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header coral">Tydzień 25 <span class="week-km">105 km</span></div>
+          <div class="week-card-header coral">07.09 – 13.09 <span class="week-km">105 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 23 km Z2</span></div>
@@ -1489,7 +1443,7 @@
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Październik — finał przygotowań</div>
         </div>
         <div class="panel-meta">
-          <span class="weeks-badge">Tygodnie 26–28</span>
+          <span class="weeks-badge">14.09 – 04.10</span>
           <span class="km-range">65 → 22 km</span>
         </div>
       </div>
@@ -1498,7 +1452,7 @@
       </div>
       <div class="week-grid">
         <div class="week-card">
-          <div class="week-card-header gray">Tydzień 26 <span class="week-km">65 km</span></div>
+          <div class="week-card-header gray">14.09 – 20.09 <span class="week-km">65 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A lekka</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 15 km Z2</span></div>
@@ -1510,7 +1464,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header gray">Tydzień 27 <span class="week-km">48 km</span></div>
+          <div class="week-card-header gray">21.09 – 27.09 <span class="week-km">48 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
@@ -1522,7 +1476,7 @@
           </div>
         </div>
         <div class="week-card">
-          <div class="week-card-header coral">Race week <span class="week-km">22 km</span></div>
+          <div class="week-card-header coral">28.09 – 04.10 <span class="week-km">22 km</span></div>
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 6 km + strides</span></div>
