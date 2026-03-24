@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultation Script — KRYS.PT</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #0a0a0a;
+    --mid: #444444;
+    --light: #888888;
+    --xlight: #cccccc;
+    --rule: #e0e0e0;
+    --stripe: #f4f4f4;
+    --invert: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 48px 24px 100px;
+  }
+
+  header {
+    max-width: 760px;
+    margin: 0 auto 60px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--fg);
+    padding-bottom: 16px;
+  }
+
+  .logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .doc-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  main { max-width: 760px; margin: 0 auto; }
+
+  /* HERO */
+  .page-hero {
+    margin-bottom: 64px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .page-hero h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 700;
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .page-hero h1 em {
+    font-style: normal;
+    display: block;
+    -webkit-text-stroke: 2px var(--fg);
+    color: transparent;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+
+  .hero-stat .val {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+    display: block;
+  }
+
+  .hero-stat .lbl {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  .hero-principle {
+    padding: 16px 20px;
+    border-left: 4px solid var(--fg);
+    background: var(--stripe);
+    font-size: 13px;
+    color: var(--mid);
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  /* PHASE */
+  .phase { margin-bottom: 72px; }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .phase-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--fg);
+    color: var(--invert);
+    padding: 5px 12px;
+    flex-shrink: 0;
+  }
+
+  .phase-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .phase-time {
+    margin-left: auto;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--light);
+    border: 1px solid var(--xlight);
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
+  /* STEP */
+  .step {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0 28px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light);
+    padding-top: 2px;
+    line-height: 1.4;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--mid);
+    margin-bottom: 16px;
+    line-height: 1.65;
+  }
+
+  /* Q CARDS */
+  .q-stack { display: flex; flex-direction: column; gap: 12px; }
+
+  .q-card {
+    border: 1px solid var(--rule);
+    padding: 16px 20px;
+  }
+
+  .q-card.primary {
+    background: var(--fg);
+    color: var(--invert);
+    border-color: var(--fg);
+  }
+
+  .q-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 6px;
+  }
+
+  .q-card.primary .q-tag { color: rgba(255,255,255,0.4); }
+
+  .q-text {
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--fg);
+  }
+
+  .q-card.primary .q-text { color: var(--invert); }
+
+  .q-why {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  .q-card.primary .q-why {
+    border-top-color: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* LISTEN BLOCK */
+  .listen-block {
+    margin-top: 16px;
+    background: var(--stripe);
+    border: 1px solid var(--rule);
+    padding: 16px 20px;
+  }
+
+  .listen-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 12px;
+  }
+
+  .listen-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+  }
+
+  .listen-item {
+    font-size: 12px;
+    color: var(--mid);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.4;
+  }
+
+  .listen-item::before {
+    content: '→';
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    color: var(--xlight);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* SIGNALS */
+  .signals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .signal {
+    padding: 14px 16px;
+    border: 1px solid var(--rule);
+    background: var(--stripe);
+  }
+
+  .signal.bad {
+    background: var(--bg);
+    border-style: dashed;
+  }
+
+  .signal-hd {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--fg);
+  }
+
+  .signal.bad .signal-hd { color: var(--light); }
+
+  .signal ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+
+  .signal li {
+    font-size: 12px;
+    color: var(--mid);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .signal.good li::before { content: '✓'; position: absolute; left: 0; font-size: 10px; }
+  .signal.bad li::before { content: '✗'; position: absolute; left: 0; font-size: 10px; color: var(--xlight); }
+
+  /* TIPS GRID */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .tip {
+    border: 1px solid var(--rule);
+    padding: 16px;
+  }
+
+  .tip-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--rule);
+    margin-bottom: 8px;
+  }
+
+  .tip-text {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.55;
+  }
+
+  .tip-text strong {
+    font-weight: 500;
+    color: var(--fg);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* SEEDS */
+  .seed {
+    border-left: 3px solid var(--fg);
+    padding: 12px 16px;
+    background: var(--stripe);
+    margin-bottom: 10px;
+  }
+
+  .seed-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 5px;
+  }
+
+  .seed-text {
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--fg);
+  }
+
+  .seed-note {
+    font-size: 11px;
+    color: var(--light);
+    margin-top: 6px;
+    font-style: normal;
+  }
+
+  /* SCALE */
+  .scale-wrapper {
+    margin-top: 20px;
+    border: 1px solid var(--rule);
+    padding: 20px;
+    background: var(--stripe);
+  }
+
+  .scale-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 14px;
+  }
+
+  .scale-vis {
+    display: flex;
+    height: 8px;
+    margin-bottom: 6px;
+  }
+
+  .scale-vis span { flex: 1; }
+
+  .scale-nums {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    color: var(--xlight);
+    margin-bottom: 20px;
+  }
+
+  .scale-responses {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .scale-resp {
+    border: 1px solid var(--rule);
+    padding: 14px;
+    background: var(--bg);
+  }
+
+  .scale-resp.active {
+    background: var(--fg);
+    border-color: var(--fg);
+  }
+
+  .scale-resp-range {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .scale-resp.active .scale-resp-range { color: var(--invert); }
+
+  .scale-resp-verdict {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .scale-resp.active .scale-resp-verdict {
+    color: rgba(255,255,255,0.4);
+    border-bottom-color: rgba(255,255,255,0.12);
+  }
+
+  .scale-resp-action {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .scale-resp.active .scale-resp-action { color: rgba(255,255,255,0.7); }
+
+  .scale-resp-script {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--mid);
+    padding-top: 8px;
+    border-top: 1px solid var(--rule);
+    line-height: 1.5;
+  }
+
+  .scale-resp.active .scale-resp-script {
+    color: rgba(255,255,255,0.55);
+    border-top-color: rgba(255,255,255,0.12);
+  }
+
+  /* MINDSET */
+  .mindset {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  .mindset-item {
+    background: var(--bg);
+    padding: 16px;
+  }
+
+  .mindset-item.inverted { background: var(--fg); }
+
+  .mindset-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 6px;
+  }
+
+  .mindset-item.inverted .mindset-label { color: rgba(255,255,255,0.35); }
+
+  .mindset-val {
+    font-size: 12px;
+    color: var(--fg);
+    line-height: 1.45;
+  }
+
+  .mindset-item.inverted .mindset-val { color: var(--invert); }
+
+  /* CLOSE SCRIPT */
+  .close-script {
+    background: var(--fg);
+    color: var(--invert);
+    padding: 32px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .close-script::before {
+    content: '"';
+    position: absolute;
+    top: -16px;
+    left: 24px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 100px;
+    line-height: 1;
+    color: rgba(255,255,255,0.07);
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  .close-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 12px;
+  }
+
+  .close-text {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .close-text mark {
+    background: rgba(255,255,255,0.15);
+    color: inherit;
+    padding: 1px 5px;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* OBJECTION TABLE */
+  .obj-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 13px;
+  }
+
+  .obj-table thead tr { background: var(--fg); color: var(--invert); }
+
+  .obj-table th {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+  }
+
+  .obj-table td {
+    padding: 12px 14px;
+    vertical-align: top;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--rule);
+    color: var(--mid);
+  }
+
+  .obj-table tr:nth-child(even) td { background: var(--stripe); }
+  .obj-table .objection { font-style: italic; color: var(--fg); }
+  .obj-table .response { font-style: italic; color: var(--fg); }
+
+  /* FOLLOW-UP */
+  .followup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .fu-card {
+    border: 1px solid var(--rule);
+    padding: 16px;
+  }
+
+  .fu-trigger {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .fu-say {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--fg);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .fu-logic {
+    font-size: 11px;
+    color: var(--light);
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .principle-footer {
+    border: 2px solid var(--fg);
+    padding: 24px 28px;
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .pf-icon {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--fg);
+    color: var(--invert);
+    padding: 6px 12px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .pf-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  .pf-text strong { color: var(--fg); font-weight: 500; }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 48px 0;
+  }
+</style>
+
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .pw-box { text-align: center; font-family: 'Poppins', sans-serif; }
+    .pw-box .pw-title { font-family: 'Oswald', sans-serif; font-size: 42px; font-weight: 700; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+    .pw-box .pw-sub { font-size: 11px; color: #555; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+    .pw-box input { display: block; width: 260px; background: #1a1a1a; border: 1px solid #333; color: #fff; font-family: 'Poppins', sans-serif; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
+    .pw-box input:focus { border-color: #EB5E28; }
+    .pw-box button { width: 260px; background: #EB5E28; border: none; color: #fff; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
+    .pw-box button:hover { background: #d4521f; }
+    .pw-error { font-size: 10px; color: #EB5E28; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
+  </style>
+</head>
+<body>
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">KRYS.PT</div>
+    <div class="pw-sub">Restricted Access</div>
+    <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">ENTER →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+  function checkPw() {
+    const v = document.getElementById('pw-input').value.trim();
+    if (v === 'SCRIPT') {
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+</script>
+
+<header>
+  <div class="logo">KRYS.PT</div>
+  <div class="doc-title">Trial Session — Conversion Script</div>
+</header>
+
+<main>
+
+  <div class="page-hero">
+    <h1>Consultation<br><em>Script</em></h1>
+    <div class="hero-meta">
+      <div class="hero-stat"><span class="val">5</span><span class="lbl">Phases</span></div>
+      <div class="hero-stat"><span class="val">~70</span><span class="lbl">Min Total</span></div>
+      <div class="hero-stat"><span class="val">0</span><span class="lbl">Hard Pitches</span></div>
+    </div>
+    <div class="hero-principle">
+      Core principle: you are not selling — you are guiding the client to sell themselves. Every question is designed to get them talking. The more they articulate the problem and the cost of inaction, the more they commit. Your role is to listen, reflect, and at the end connect what they said to what you offer.
+    </div>
+  </div>
+
+  <!-- PHASE 01 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 01</div>
+      <div class="phase-name">Before You Touch a Bar</div>
+      <div class="phase-time">5 min</div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Setup</div>
+      <div class="step-body">
+        <div class="step-desc">Sit down face to face before you go anywhere near the gym floor. A table or bench works — somewhere that says "conversation," not "assessment." No clipboard, no form, no rushing to warm up. The session starts here. How you run this 5 minutes signals the entire dynamic: you're in control, you're thoughtful, and you care about more than just the workout.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Open with</div>
+      <div class="step-body">
+        <div class="q-stack">
+          <div class="q-card primary">
+            <div class="q-tag">Question 1 — The Trigger</div>
+            <div class="q-text">"What made you reach out now — what changed recently?"</div>
+            <div class="q-why">Don't ask "what's your goal." You'll get a vague answer like "lose weight" or "get stronger" that tells you nothing useful. This question surfaces the trigger event — the specific thing that pushed them from thinking about training to actually contacting you. That's where real motivation lives. Listen for: a health scare, a bad photo, a birthday, a breakup, a new job, watching someone else get results. Whatever they say — that's what you come back to at the close.</div>
+          </div>
+          <div class="q-card">
+            <div class="q-tag">Question 2 — The Timeline</div>
+            <div class="q-text">"How long have you been thinking about this?"</div>
+            <div class="q-why">This is a readiness probe. Two years of circling means a lot of accumulated frustration — which is a lot of energy available. Two weeks means fresh motivation but not yet conviction. Either way the answer tells you how to calibrate your close. Longer timeline = lean on the "what's stopped you" angle. Shorter = lean on momentum.</div>
+          </div>
+          <div class="q-card">
+            <div class="q-tag">Question 3 — The Real Goal</div>
+            <div class="q-text">"When you imagine things going really well — what does that actually look like? Not just the number on the scale or the bar — what changes day to day?"</div>
+            <div class="q-why">People have a surface goal and a real goal. Surface: "lose 10kg." Real: "feel confident," "keep up with my kids," "not be out of breath on stairs." The real goal carries emotional weight. Use their exact language from this answer in your close — it lands differently than generic benefit-speak.</div>
+          </div>
+        </div>
+
+        <div class="listen-block">
+          <div class="listen-title">What you're listening for</div>
+          <div class="listen-items">
+            <div class="listen-item">A specific triggering event — not just a vague desire</div>
+            <div class="listen-item">Emotional language — frustration, embarrassment, hope</div>
+            <div class="listen-item">How long they've been circling without acting</div>
+            <div class="listen-item">Whether motivation is pain-driven or aspiration-driven</div>
+            <div class="listen-item">Lifestyle details — work, stress, schedule constraints</div>
+            <div class="listen-item">Whether they researched you specifically or just any PT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 02 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 02</div>
+      <div class="phase-name">Surface the Cost of Staying the Same</div>
+      <div class="phase-time">5–8 min</div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">The logic</div>
+      <div class="step-body">
+        <div class="step-desc">Most trainers immediately pitch benefits: "you'll feel stronger, have more energy, sleep better." That's fine but it's weak. Benefits are future and hypothetical. Pain is present and real. This phase gets the client to articulate — in their own words — what the cost of not changing looks like. You don't say it. They do. Once they've said it out loud, the case for action is already made before you've offered anything.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Questions</div>
+      <div class="step-body">
+        <div class="q-stack">
+          <div class="q-card primary">
+            <div class="q-tag">The Cost Question</div>
+            <div class="q-text">"What happens if nothing changes in the next 6 months?"</div>
+            <div class="q-why">Don't rush past this. Ask it, then stop talking. Let the silence sit. The discomfort is doing your work. Most people have never been asked to articulate the cost of inaction directly — when they do, it lands harder than anything you could say about your service.</div>
+          </div>
+          <div class="q-card">
+            <div class="q-tag">The History Question</div>
+            <div class="q-text">"Have you tried to sort this before — on your own or with someone else? What happened?"</div>
+            <div class="q-why">Past failed attempts are gold. If they've tried and it didn't stick, they already know at some level that they need external structure or expertise. You don't have to argue that point — they've already proven it to themselves. Acknowledge it simply: "That's really common — it's exactly why most people who get results work with someone."</div>
+          </div>
+          <div class="q-card">
+            <div class="q-tag">The Obstacle Question</div>
+            <div class="q-text">"What's actually stopped you from doing this before?"</div>
+            <div class="q-why">This is the most important question in the whole consultation. The answer is the real objection — not the one they'll give you at the close, but the deeper one underneath. Common answers: time, money, not knowing what to do, fear of injury, lack of motivation, a bad experience before. Note it. Your close needs to address it directly.</div>
+          </div>
+        </div>
+
+        <div class="signals">
+          <div class="signal good">
+            <div class="signal-hd">Strong buy-in signals</div>
+            <ul>
+              <li>Mentions time already wasted</li>
+              <li>Emotional when describing the goal</li>
+              <li>Very specific about what's not working</li>
+              <li>Has tried multiple approaches already</li>
+              <li>Brings up the problem unprompted</li>
+              <li>Asks you questions about your approach</li>
+            </ul>
+          </div>
+          <div class="signal bad">
+            <div class="signal-hd">Proceed with caution</div>
+            <ul>
+              <li>Vague or shrugging answers</li>
+              <li>Asking about price before anything else</li>
+              <li>"Just want to try it out"</li>
+              <li>No clear trigger for reaching out</li>
+              <li>Distracted, disengaged</li>
+              <li>Someone else pushed them to come</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 03 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 03</div>
+      <div class="phase-name">The Session</div>
+      <div class="phase-time">45–50 min</div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Your goal</div>
+      <div class="step-body">
+        <div class="step-desc">This is your proof of concept. They're evaluating you as much as they're evaluating training. Coach with full attention — cue technique, explain reasoning briefly, keep intensity appropriate for a first session. Don't go easy to be liked, and don't destroy them to prove a point. Leave them tired but not wrecked, and already feeling like they learned something they didn't know before.</div>
+
+        <div class="tips-grid">
+          <div class="tip">
+            <div class="tip-num">01</div>
+            <div class="tip-text"><strong>Cue early and often</strong>Most people have never had movement corrected in real-time. One well-delivered technical cue they've never heard before makes you stand out from every YouTube workout they've done alone.</div>
+          </div>
+          <div class="tip">
+            <div class="tip-num">02</div>
+            <div class="tip-text"><strong>Name the "why" briefly</strong>"The reason we do this before that is..." or "Most people skip this but it matters because..." — brief reasoning signals expertise without lecturing. Keep it to one sentence.</div>
+          </div>
+          <div class="tip">
+            <div class="tip-num">03</div>
+            <div class="tip-text"><strong>Reference their goal</strong>Connect exercises to what they told you in Phase 01. "This directly relates to what you mentioned about posture" — they feel heard and coached, not processed.</div>
+          </div>
+          <div class="tip">
+            <div class="tip-num">04</div>
+            <div class="tip-text"><strong>Control the pace</strong>Rushed sessions feel chaotic. Calm, deliberate pacing signals that you're experienced and that working with you would be well-structured — not just hard.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Seed lines</div>
+      <div class="step-body">
+        <div class="step-desc">Drop 2–3 lines during the session that plant the idea of continuity — without pitching. These feel like natural coaching comments, not sales talk. Say them during rest periods, not mid-set.</div>
+
+        <div class="seed">
+          <div class="seed-tag">Seed 1 — Progression</div>
+          <div class="seed-text">"This is the kind of thing that compounds quickly — in 4–6 weeks, this same movement would feel completely different."</div>
+          <div class="seed-note">Plants the idea of a longer arc without making it a sales line.</div>
+        </div>
+        <div class="seed">
+          <div class="seed-tag">Seed 2 — Structure</div>
+          <div class="seed-text">"The reason I program it this way is [brief reason] — most people in commercial gyms never get this level of structure. It makes a bigger difference than people expect."</div>
+          <div class="seed-note">Differentiates you from self-guided training without directly criticising it.</div>
+        </div>
+        <div class="seed">
+          <div class="seed-tag">Seed 3 — Personalisation</div>
+          <div class="seed-text">"Based on what you told me earlier, this [movement / pattern / habit] is probably the biggest lever for you specifically."</div>
+          <div class="seed-note">Shows you were listening in Phase 01. This one carries a lot of weight — it makes the session feel personalised, not generic.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 04 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 04</div>
+      <div class="phase-name">Commitment Reveal</div>
+      <div class="phase-time">5 min — post-session</div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Timing</div>
+      <div class="step-body">
+        <div class="step-desc">Ask this while they're cooling down, grabbing water, or towelling off — not sitting formally across from you. Casual setting gets a more honest answer. The question is simple but precise: it filters readiness, reveals the real objection if there is one, and creates self-commitment all in one move.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">The question</div>
+      <div class="step-body">
+        <div class="q-stack">
+          <div class="q-card primary">
+            <div class="q-tag">Scale Question</div>
+            <div class="q-text">"On a scale of 1 to 10 — how important is sorting this out to you right now?"</div>
+            <div class="q-why">Ask it clean — don't soften it or add explanation. Then wait for the number. Whatever they say, your next move is determined by the response tree below.</div>
+          </div>
+        </div>
+
+        <div class="scale-wrapper">
+          <div class="scale-title">Reading the answer</div>
+          <div class="scale-vis">
+            <span style="background:#ebebeb;"></span>
+            <span style="background:#e0e0e0;"></span>
+            <span style="background:#d0d0d0;"></span>
+            <span style="background:#bcbcbc;"></span>
+            <span style="background:#a0a0a0;"></span>
+            <span style="background:#848484;"></span>
+            <span style="background:#646464;"></span>
+            <span style="background:#484848;"></span>
+            <span style="background:#282828;"></span>
+            <span style="background:#0a0a0a;"></span>
+          </div>
+          <div class="scale-nums">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+            <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+          </div>
+
+          <div class="scale-responses">
+            <div class="scale-resp">
+              <div class="scale-resp-range">1–5</div>
+              <div class="scale-resp-verdict">Not ready</div>
+              <div class="scale-resp-action">Don't push. Chasing low-readiness clients costs you time and rarely converts. Let it go with grace — they may come back later.</div>
+              <div class="scale-resp-script">"No problem at all — reach out whenever the timing feels right for you."</div>
+            </div>
+            <div class="scale-resp active">
+              <div class="scale-resp-range">7–9</div>
+              <div class="scale-resp-verdict">Ready — find the gap</div>
+              <div class="scale-resp-action">Something is in the way. Ask the follow-up immediately. They will tell you the exact objection — address only that one thing, nothing else.</div>
+              <div class="scale-resp-script">"What would make it a 10 for you?"</div>
+            </div>
+            <div class="scale-resp">
+              <div class="scale-resp-range">10</div>
+              <div class="scale-resp-verdict">Move to close</div>
+              <div class="scale-resp-action">Don't keep checking boxes. They're decided. Transition immediately into options.</div>
+              <div class="scale-resp-script">"Then let's talk about what working together actually looks like."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PHASE 05 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 05</div>
+      <div class="phase-name">The Close</div>
+      <div class="phase-time">5–10 min</div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">The method</div>
+      <div class="step-body">
+        <div class="step-desc">You're not closing a sale — you're connecting the dots between what they told you and what you can do about it. Use their exact words: the trigger from Phase 01, the cost they described in Phase 02, their specific goal. When they hear their own language reflected back with a solution attached, the decision feels obvious rather than pressured.</div>
+
+        <div class="mindset">
+          <div class="mindset-item">
+            <div class="mindset-label">Don't say</div>
+            <div class="mindset-val">"Would you like to sign up for PT sessions?"</div>
+          </div>
+          <div class="mindset-item inverted">
+            <div class="mindset-label">Say instead</div>
+            <div class="mindset-val">"Based on what you told me, here's exactly what I'd do with you. Does that make sense as a next step?"</div>
+          </div>
+          <div class="mindset-item">
+            <div class="mindset-label">The difference</div>
+            <div class="mindset-val">One asks them to buy. The other proposes a solution to their specific stated problem.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Close script</div>
+      <div class="step-body">
+        <div class="close-script">
+          <div class="close-tag">Fill in the brackets with their exact words from Phases 01 and 02</div>
+          <div class="close-text">
+            "You mentioned that <mark>[trigger — what changed recently]</mark> and that you've been trying to sort <mark>[their specific goal]</mark> for <mark>[their timeframe]</mark> — and it hasn't moved. Based on what we did today and what you told me, I have a clear picture of where to start and what the biggest levers are for you. Here's what I'd do: <mark>[2–3 sentence outline — specific, not generic]</mark>. Does that feel like the right direction?"
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Handling objections</div>
+      <div class="step-body">
+        <div class="step-desc">Don't pre-empt objections by over-explaining your offer. Wait for them to surface, then respond to the specific one raised — not all possible ones at once. Volunteering extra justifications signals insecurity and can introduce doubts that weren't there.</div>
+
+        <table class="obj-table">
+          <thead>
+            <tr>
+              <th>They say</th>
+              <th>What it really means</th>
+              <th>Your response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="objection">"I need to think about it."</td>
+              <td>One unresolved question they haven't said out loud yet.</td>
+              <td class="response">"Of course — what specifically do you need to think through? Maybe I can answer it now."</td>
+            </tr>
+            <tr>
+              <td class="objection">"It's a bit expensive."</td>
+              <td>Haven't connected the cost to the value yet. Or comparing to the wrong thing.</td>
+              <td class="response">"That's fair — what are you comparing it to? I want to make sure we're looking at it the same way."</td>
+            </tr>
+            <tr>
+              <td class="objection">"I'm not sure I have the time."</td>
+              <td>Fear of commitment or failure, not actual schedule conflict.</td>
+              <td class="response">"How many days a week would feel realistic without adding stress? We can absolutely work with that."</td>
+            </tr>
+            <tr>
+              <td class="objection">"I want to try on my own first."</td>
+              <td>Hasn't fully trusted you yet, or hasn't acknowledged past solo failures.</td>
+              <td class="response">"That makes sense — you mentioned you tried that before though. What would be different this time?"</td>
+            </tr>
+            <tr>
+              <td class="objection">"Can I start next month?"</td>
+              <td>Momentum is there but looking for permission to delay.</td>
+              <td class="response">"You could — but you said you've already been waiting [timeframe]. What changes next month?"</td>
+            </tr>
+            <tr>
+              <td class="objection">"I need to check with my partner."</td>
+              <td>Usually price. Sometimes genuine. Surfaces a second decision-maker.</td>
+              <td class="response">"Of course. What do you think their main question will be? I can make sure you have what you need to explain it."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Follow-up</div>
+      <div class="step-body">
+        <div class="step-desc">If they don't commit on the day, get a specific next step before they leave — not a vague "I'll follow up." Ambiguity kills conversions. Two follow-ups max — after that you're chasing, not converting.</div>
+
+        <div class="followup-grid">
+          <div class="fu-card">
+            <div class="fu-trigger">If they leave undecided</div>
+            <div class="fu-say">"I'll send you a brief outline of what I'd structure for you — so you've got something concrete to look at."</div>
+            <div class="fu-logic">Gives you a reason to follow up and positions it as delivering value, not chasing.</div>
+          </div>
+          <div class="fu-card">
+            <div class="fu-trigger">Follow-up message (24–48 hrs)</div>
+            <div class="fu-say">"Good session yesterday. Here's a rough outline of the direction I'd take with you based on what you told me. Let me know if it resonates or if you have questions."</div>
+            <div class="fu-logic">Short. No pressure. Delivers something useful. Easy to respond to.</div>
+          </div>
+          <div class="fu-card">
+            <div class="fu-trigger">If no reply after 4–5 days</div>
+            <div class="fu-say">"Just checking in — any questions on what I sent over?"</div>
+            <div class="fu-logic">One more touch. If still nothing — move on. Two is the limit before it becomes chasing.</div>
+          </div>
+          <div class="fu-card">
+            <div class="fu-trigger">If they say "not yet"</div>
+            <div class="fu-say">"No problem. I'll check back in [timeframe] — anything useful I can send in the meantime?"</div>
+            <div class="fu-logic">Keeps the door open without pressure. Offering something useful keeps you top of mind positively.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="principle-footer">
+    <div class="pf-icon">Core Rule</div>
+    <div class="pf-text">
+      <strong>You're not selling a PT package. You're solving a specific stated problem.</strong> Every phase of this script is designed to get the client to articulate their own problem clearly — because once they've said it out loud, you no longer have to argue for the value of solving it. The close is just you connecting what they already said to what you do. If the fit isn't genuine, don't force it. Bad-fit clients cost more than they're worth in time, energy, and reputation.
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
