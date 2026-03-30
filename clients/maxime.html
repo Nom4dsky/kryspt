@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxime — Training Block</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fff;
+    --surface: #f6f6f6;
+    --surface2: #ececec;
+    --border: #e0e0e0;
+    --text: #0a0a0a;
+    --muted: #aaa;
+    --label: #666;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.5; }
+
+  /* HEADER */
+  header { padding: 52px 48px 36px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .header-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 88px); letter-spacing: 2px; line-height: 0.9; }
+  .header-left p { margin-top: 14px; color: var(--label); font-size: 12px; font-weight: 300; letter-spacing: 2.5px; text-transform: uppercase; }
+  .header-right { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+
+  /* WEEK TABS */
+  .tabs-wrap { padding: 0 48px; border-bottom: 1px solid var(--border); display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 16px 24px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; margin-bottom: -1px; }
+  .tab-btn:hover { color: var(--label); }
+  .tab-btn.active { color: #000; border-bottom-color: #000; font-weight: 600; }
+
+  /* MAIN */
+  main { padding: 0 48px 80px; }
+  .week-panel { display: none; }
+  .week-panel.active { display: block; animation: fadeIn 0.2s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* WEEK HEADER */
+  .week-header { padding: 40px 0 32px; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; border-bottom: 2px solid #000; margin-bottom: 40px; }
+  .week-title { font-family: 'Bebas Neue', sans-serif; font-size: 52px; letter-spacing: 2px; }
+  .week-phase { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 4px; }
+  .phase-acc { background: #f0f0f0; color: #333; border: 1px solid #ccc; }
+  .phase-int { background: #e0e0e0; color: #111; border: 1px solid #bbb; }
+  .phase-over { background: #222; color: #fff; border: 1px solid #000; }
+  .phase-del { background: #fff; color: #999; border: 1px solid #ddd; }
+  .week-note { font-size: 12px; color: var(--label); font-style: italic; margin-left: auto; }
+
+  /* WEEKLY STRIP */
+  .week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 48px; }
+  .wday { border: 1px solid var(--border); border-radius: 8px; padding: 12px 8px; text-align: center; background: var(--surface); }
+  .wday-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+  .wday-label { font-size: 11px; font-weight: 600; line-height: 1.3; color: #000; }
+  .wday-sub { font-size: 10px; color: var(--label); margin-top: 3px; }
+  .wday-run { border-color: #999; }
+  .wday-pt { border-color: #000; border-width: 2px; }
+  .wday-solo { border-color: #666; }
+  .wday-rec { border-color: #ccc; } .wday-rec .wday-label { color: var(--label); font-weight: 400; }
+  .wday-rest .wday-label { color: var(--muted); font-weight: 400; }
+
+  /* SESSION BLOCKS */
+  .session-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .session-full { grid-column: 1 / -1; }
+
+  .session-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .session-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .session-day { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+  .session-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; flex: 1; }
+  .session-duration { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  .session-head-pt { background: #000; }
+  .session-head-pt .session-day, .session-head-pt .session-name, .session-head-pt .session-duration { color: #fff; }
+  .session-head-run { background: var(--surface2); }
+  .session-head-solo { background: var(--surface); }
+  .session-head-rec { background: var(--surface); }
+
+  .session-body { padding: 16px 20px; }
+
+  /* SUPERSET GROUP */
+  .ss-group { margin-bottom: 16px; }
+  .ss-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .ss-rest { color: var(--label); font-size: 9px; }
+
+  .ex-row { display: flex; align-items: center; padding: 10px 14px; background: var(--surface); border-radius: 7px; margin-bottom: 3px; gap: 10px; }
+  .ex-id { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); width: 20px; flex-shrink: 0; }
+  .ex-name { font-weight: 500; font-size: 13px; flex: 1; }
+  .ex-note { font-size: 11px; color: var(--label); font-style: italic; }
+  .ex-sets { font-family: 'DM Mono', monospace; font-size: 12px; color: #000; font-weight: 600; white-space: nowrap; }
+  .ex-rir { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 4px; margin-left: 8px; white-space: nowrap; }
+  .ex-rest { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--label); margin-left: 6px; white-space: nowrap; }
+
+  .rir-high { background: #f0f0f0; color: #555; border: 1px solid #ddd; }
+  .rir-mid { background: #e0e0e0; color: #222; border: 1px solid #ccc; }
+  .rir-low { background: #222; color: #fff; border: 1px solid #000; }
+  .rir-del { background: #fff; color: #aaa; border: 1px solid #e0e0e0; }
+  .rir-none { background: #f8f8f8; color: #aaa; border: 1px solid #eee; }
+
+  /* STANDALONE EX */
+  .standalone { margin-bottom: 4px; }
+
+  /* REC LIST */
+  .rec-block { background: var(--surface); border-radius: 8px; padding: 14px 16px; margin-bottom: 8px; }
+  .rec-title { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .rec-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 5px 0; border-bottom: 1px solid var(--border); }
+  .rec-row:last-child { border-bottom: none; }
+  .rec-row span:last-child { font-family: 'DM Mono', monospace; font-size: 11px; color: #000; font-weight: 500; }
+
+  /* DIVIDER */
+  .day-divider { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .day-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  footer { border-top: 1px solid var(--border); padding: 20px 48px; color: var(--muted); font-size: 11px; letter-spacing: 1px; display: flex; justify-content: space-between; }
+
+  @media (max-width: 780px) {
+    header { flex-direction: column; padding: 32px 20px 24px; }
+    .tabs-wrap { padding: 0 20px; }
+    main { padding: 0 20px 60px; }
+    footer { padding: 20px; flex-direction: column; gap: 6px; }
+    .session-grid { grid-template-columns: 1fr; }
+    .week-strip { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
+    .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #fff; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .pw-box .pw-sub { font-size: 11px; color: #555; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+    .pw-box input { display: block; width: 260px; background: #1a1a1a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
+    .pw-box input:focus { border-color: #0a0a0a; }
+    .pw-box button { width: 260px; background: #0a0a0a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
+    .pw-box button:hover { background: #222; }
+    .pw-error { font-size: 10px; color: #aaa; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
+  </style>
+</head>
+<body>
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">MAXIME</div>
+    <div class="pw-sub">Training Block · KRYS.PT</div>
+    <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">ENTER →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+  function checkPw() {
+    const v = document.getElementById('pw-input').value.trim();
+    if (v === 'Maxime2026') {
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+</script>
+
+<header>
+  <div class="header-left">
+    <h1>MAXIME<br>LASAGE</h1>
+    <p>4-Week Training Block · Strength + Hypertrophy</p>
+  </div>
+  <div class="header-right">
+    <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--label);text-align:right;line-height:2">
+      Mon · Run + Upper<br>
+      Wed · FBW with PT<br>
+      Fri · Run + Upper<br>
+      Sat · FBW Solo<br>
+      Sun · Active Recovery
+    </div>
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <button class="tab-btn active" onclick="sw(1)">Week 1 — Accumulation</button>
+  <button class="tab-btn" onclick="sw(2)">Week 2 — Intensification</button>
+  <button class="tab-btn" onclick="sw(3)">Week 3 — Overreach</button>
+  <button class="tab-btn" onclick="sw(4)">Week 4 — Deload</button>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     WEEK 1 — ACCUMULATION
+══════════════════════════════════════════ -->
+<div class="week-panel active" id="w1">
+  <div class="week-header">
+    <div class="week-title">Week 1</div>
+    <div class="week-phase phase-acc">Accumulation</div>
+    <div class="week-note">Top of rep range · build work capacity · learn the loads</div>
+  </div>
+
+  <div class="week-strip">
+    <div class="wday wday-run"><div class="wday-name">Mon</div><div class="wday-label">Run</div><div class="wday-sub">+ Upper</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Tue</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-pt"><div class="wday-name">Wed</div><div class="wday-label">FBW</div><div class="wday-sub">with PT</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Thu</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-run"><div class="wday-name">Fri</div><div class="wday-label">Run</div><div class="wday-sub">+ Upper</div></div>
+    <div class="wday wday-solo"><div class="wday-name">Sat</div><div class="wday-label">FBW</div><div class="wday-sub">Solo</div></div>
+    <div class="wday wday-rec"><div class="wday-name">Sun</div><div class="wday-label">Recovery</div></div>
+  </div>
+
+  <!-- MON -->
+  <div class="day-divider">Monday — Run + Upper Finisher</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-run">
+        <div><div class="session-day">Monday</div><div class="session-name">Running + Upper Finisher</div></div>
+        <div class="session-duration">~15 min finisher</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Group intervals first · then straight into finisher</div>
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Cable row</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Dead bug</span><span class="ex-sets">3 × 8 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">No rest between A→B→C→D, just transition. Dead bug — slow, full exhale at bottom. RPE 6–7 max.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WED -->
+  <div class="day-divider">Wednesday — FBW with PT · 55 min</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-pt">
+        <div><div class="session-day">Wednesday</div><div class="session-name">FBW with PT</div></div>
+        <div class="session-duration">55 min</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Superset 1 <span class="ss-rest">· 60 sec → next exercise · 90 sec → repeat superset</span></div>
+          <div class="ex-row"><span class="ex-id">1a</span><span class="ex-name">Assisted pull-up <span class="ex-note">green band</span></span><span class="ex-sets">3 × 5</span><span class="ex-rir rir-high">RIR —</span></div>
+          <div class="ex-row"><span class="ex-id">1b</span><span class="ex-name">DB bench press</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-high">RIR 3–4</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Superset 2 <span class="ss-rest">· 60 sec → next exercise · 90 sec → repeat superset</span></div>
+          <div class="ex-row"><span class="ex-id">2a</span><span class="ex-name">Zercher squat</span><span class="ex-sets">3 × 6</span><span class="ex-rir rir-high">RIR 3–4</span></div>
+          <div class="ex-row"><span class="ex-id">2b</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-high">RIR 3–4</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Superset 3 <span class="ss-rest">· 60 sec → next exercise · 60 sec → repeat superset</span></div>
+          <div class="ex-row"><span class="ex-id">3a</span><span class="ex-name">Bulgarian split squat</span><span class="ex-sets">3 × 8 each</span><span class="ex-rir rir-high">RIR 3–4</span></div>
+          <div class="ex-row"><span class="ex-id">3b</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-none">RIR —</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRI -->
+  <div class="day-divider">Friday — Run + Upper Finisher</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-run">
+        <div><div class="session-day">Friday</div><div class="session-name">Running + Upper Finisher</div></div>
+        <div class="session-duration">~15 min finisher</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Group intervals first · then straight into finisher</div>
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">Poliquin fly</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Pallof press</span><span class="ex-sets">3 × 12 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">Poliquin fly — light load, cue external rotation hard. Pallof press — tall stance, no trunk rotation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAT -->
+  <div class="day-divider">Saturday — FBW Solo</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-solo">
+        <div><div class="session-day">Saturday</div><div class="session-name">FBW Solo</div></div>
+        <div class="session-duration">55 min</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Main lift <span class="ss-rest">· 2–3 min between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Trap bar deadlift</span><span class="ex-sets">4 × 6</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">2–3 min</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Block 1 <span class="ss-rest">· 90 sec between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">DB incline press</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Block 2 <span class="ss-rest">· 90 sec between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">DB pullover</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">E</span><span class="ex-name">Half-kneeling cable chop</span><span class="ex-sets">3 × 16 each</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUN -->
+  <div class="day-divider">Sunday — Active Recovery · 60 min</div>
+  <div class="session-grid">
+    <div class="session-card session-full">
+      <div class="session-head session-head-rec">
+        <div><div class="session-day">Sunday</div><div class="session-name">Active Recovery</div></div>
+        <div class="session-duration">60 min</div>
+      </div>
+      <div class="session-body">
+        <div class="rec-block">
+          <div class="rec-title">Cardio</div>
+          <div class="rec-row"><span>Easy bike or brisk walk</span><span>25–30 min · RPE 3–4</span></div>
+        </div>
+        <div class="rec-block">
+          <div class="rec-title">Mobility + Posture · 30 min</div>
+          <div class="rec-row"><span>KB halo</span><span>3 × 8 each direction · 30 sec rest</span></div>
+          <div class="rec-row"><span>Goblet squat hold</span><span>3 × 30–45 sec · 45 sec rest</span></div>
+          <div class="rec-row"><span>Scapular wall slide</span><span>3 × 10 · 30 sec rest</span></div>
+          <div class="rec-row"><span>Wall slide</span><span>3 × 10 · 30 sec rest</span></div>
+          <div class="rec-row"><span>90/90 hip stretch</span><span>2 × 60 sec each side</span></div>
+          <div class="rec-row"><span>Thoracic rotation</span><span>2 × 10 each side</span></div>
+          <div class="rec-row"><span>Child's pose to cobra</span><span>2 × 8 slow</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     WEEK 2 — INTENSIFICATION
+══════════════════════════════════════════ -->
+<div class="week-panel" id="w2">
+  <div class="week-header">
+    <div class="week-title">Week 2</div>
+    <div class="week-phase phase-int">Intensification</div>
+    <div class="week-note">Mid rep range · increase load vs week 1</div>
+  </div>
+
+  <div class="week-strip">
+    <div class="wday wday-run"><div class="wday-name">Mon</div><div class="wday-label">Run</div><div class="wday-sub">+ Upper</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Tue</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-pt"><div class="wday-name">Wed</div><div class="wday-label">FBW</div><div class="wday-sub">with PT</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Thu</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-run"><div class="wday-name">Fri</div><div class="wday-label">Run</div><div class="wday-sub">+ Upper</div></div>
+    <div class="wday wday-solo"><div class="wday-name">Sat</div><div class="wday-label">FBW</div><div class="wday-sub">Solo</div></div>
+    <div class="wday wday-rec"><div class="wday-name">Sun</div><div class="wday-label">Recovery</div></div>
+  </div>
+
+  <div class="day-divider">Monday — Run + Upper Finisher</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-run">
+        <div><div class="session-day">Monday</div><div class="session-name">Running + Upper Finisher</div></div>
+        <div class="session-duration">~15 min finisher</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Cable row</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Dead bug</span><span class="ex-sets">3 × 8 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">Slight load increase vs week 1, or reduce the reps if the load still feels heavy.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Wednesday — FBW with PT · 55 min</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-pt">
+        <div><div class="session-day">Wednesday</div><div class="session-name">FBW with PT</div></div>
+        <div class="session-duration">55 min</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Superset 1 <span class="ss-rest">· 60 sec → next · 90 sec → repeat</span></div>
+          <div class="ex-row"><span class="ex-id">1a</span><span class="ex-name">Assisted pull-up <span class="ex-note">green band</span></span><span class="ex-sets">3 × 5</span><span class="ex-rir rir-none">RIR —</span></div>
+          <div class="ex-row"><span class="ex-id">1b</span><span class="ex-name">DB bench press</span><span class="ex-sets">3 × 8–9</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Superset 2 <span class="ss-rest">· 60 sec → next · 90 sec → repeat</span></div>
+          <div class="ex-row"><span class="ex-id">2a</span><span class="ex-name">Zercher squat <span class="ex-note">add small load vs wk1</span></span><span class="ex-sets">3 × 5</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+          <div class="ex-row"><span class="ex-id">2b</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 8–9</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Superset 3 <span class="ss-rest">· 60 sec → next · 60 sec → repeat</span></div>
+          <div class="ex-row"><span class="ex-id">3a</span><span class="ex-name">Bulgarian split squat <span class="ex-note">add load vs wk1</span></span><span class="ex-sets">3 × 7 each</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+          <div class="ex-row"><span class="ex-id">3b</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 11</span><span class="ex-rir rir-none">RIR —</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Friday — Run + Upper Finisher</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-run">
+        <div><div class="session-day">Friday</div><div class="session-name">Running + Upper Finisher</div></div>
+        <div class="session-duration">~15 min finisher</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">Poliquin fly</span><span class="ex-sets">3 × 12–13</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Pallof press</span><span class="ex-sets">3 × 12 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Saturday — FBW Solo</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-solo">
+        <div><div class="session-day">Saturday</div><div class="session-name">FBW Solo</div></div>
+        <div class="session-duration">55 min</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Main lift <span class="ss-rest">· 2–3 min between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Trap bar deadlift <span class="ex-note">add load vs wk1</span></span><span class="ex-sets">4 × 5</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">2–3 min</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Block 1 <span class="ss-rest">· 90 sec between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">DB incline press</span><span class="ex-sets">3 × 8–9</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Block 2 <span class="ss-rest">· 90 sec between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">DB pullover</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">E</span><span class="ex-name">Half-kneeling cable chop</span><span class="ex-sets">3 × 14–15 each</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Sunday — Active Recovery · 60 min</div>
+  <div class="session-grid">
+    <div class="session-card session-full">
+      <div class="session-head session-head-rec">
+        <div><div class="session-day">Sunday</div><div class="session-name">Active Recovery</div></div>
+        <div class="session-duration">60 min</div>
+      </div>
+      <div class="session-body">
+        <div class="rec-block">
+          <div class="rec-title">Cardio</div>
+          <div class="rec-row"><span>Easy bike or brisk walk</span><span>25–30 min · RPE 3–4</span></div>
+        </div>
+        <div class="rec-block">
+          <div class="rec-title">Mobility + Posture · 30 min</div>
+          <div class="rec-row"><span>KB halo</span><span>3 × 8 each direction · 30 sec rest</span></div>
+          <div class="rec-row"><span>Goblet squat hold</span><span>3 × 30–45 sec · 45 sec rest</span></div>
+          <div class="rec-row"><span>Scapular wall slide</span><span>3 × 10 · 30 sec rest</span></div>
+          <div class="rec-row"><span>Wall slide</span><span>3 × 10 · 30 sec rest</span></div>
+          <div class="rec-row"><span>90/90 hip stretch</span><span>2 × 60 sec each side</span></div>
+          <div class="rec-row"><span>Thoracic rotation</span><span>2 × 10 each side</span></div>
+          <div class="rec-row"><span>Child's pose to cobra</span><span>2 × 8 slow</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     WEEK 3 — OVERREACH
+══════════════════════════════════════════ -->
+<div class="week-panel" id="w3">
+  <div class="week-header">
+    <div class="week-title">Week 3</div>
+    <div class="week-phase phase-over">Overreach</div>
+    <div class="week-note">Bottom of rep range · highest loads of the block · push intensity</div>
+  </div>
+
+  <div class="week-strip">
+    <div class="wday wday-run"><div class="wday-name">Mon</div><div class="wday-label">Run</div><div class="wday-sub">+ Upper</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Tue</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-pt"><div class="wday-name">Wed</div><div class="wday-label">FBW</div><div class="wday-sub">with PT</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Thu</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-run"><div class="wday-name">Fri</div><div class="wday-label">Run</div><div class="wday-sub">+ Upper</div></div>
+    <div class="wday wday-solo"><div class="wday-name">Sat</div><div class="wday-label">FBW</div><div class="wday-sub">Solo</div></div>
+    <div class="wday wday-rec"><div class="wday-name">Sun</div><div class="wday-label">Recovery</div></div>
+  </div>
+
+  <div class="day-divider">Monday — Run + Upper Finisher</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-run">
+        <div><div class="session-day">Monday</div><div class="session-name">Running + Upper Finisher</div></div>
+        <div class="session-duration">~15 min finisher</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Cable row</span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Dead bug</span><span class="ex-sets">3 × 8 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">Heaviest finisher of the block — still keep form clean, no grinding reps post-intervals.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Wednesday — FBW with PT · 55 min</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-pt">
+        <div><div class="session-day">Wednesday</div><div class="session-name">FBW with PT</div></div>
+        <div class="session-duration">55 min</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Superset 1 <span class="ss-rest">· 60 sec → next · 90–120 sec → repeat</span></div>
+          <div class="ex-row"><span class="ex-id">1a</span><span class="ex-name">Assisted pull-up <span class="ex-note">try red band this week</span></span><span class="ex-sets">3 × 4–5</span><span class="ex-rir rir-none">RIR —</span></div>
+          <div class="ex-row"><span class="ex-id">1b</span><span class="ex-name">DB bench press</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Superset 2 <span class="ss-rest">· 60 sec → next · 90–120 sec → repeat</span></div>
+          <div class="ex-row"><span class="ex-id">2a</span><span class="ex-name">Zercher squat <span class="ex-note">heaviest of the block</span></span><span class="ex-sets">3 × 4–5</span><span class="ex-rir rir-low">RIR 1–2</span></div>
+          <div class="ex-row"><span class="ex-id">2b</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Superset 3 <span class="ss-rest">· 60 sec → next · 60–90 sec → repeat</span></div>
+          <div class="ex-row"><span class="ex-id">3a</span><span class="ex-name">Bulgarian split squat <span class="ex-note">heaviest of the block</span></span><span class="ex-sets">3 × 6 each</span><span class="ex-rir rir-low">RIR 1–2</span></div>
+          <div class="ex-row"><span class="ex-id">3b</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-none">RIR —</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Friday — Run + Upper Finisher</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-run">
+        <div><div class="session-day">Friday</div><div class="session-name">Running + Upper Finisher</div></div>
+        <div class="session-duration">~15 min finisher</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">Poliquin fly</span><span class="ex-sets">3 × 10–12</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Pallof press</span><span class="ex-sets">3 × 10 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Saturday — FBW Solo</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-solo">
+        <div><div class="session-day">Saturday</div><div class="session-name">FBW Solo</div></div>
+        <div class="session-duration">55 min</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Main lift <span class="ss-rest">· 2–3 min between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Trap bar deadlift <span class="ex-note">heaviest of the block</span></span><span class="ex-sets">4–5 × 4–5</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">2–3 min</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Block 1 <span class="ss-rest">· 90 sec between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">DB incline press</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Block 2 <span class="ss-rest">· 90 sec between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">DB pullover</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">E</span><span class="ex-name">Half-kneeling cable chop</span><span class="ex-sets">3 × 12–14 each</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Sunday — Active Recovery · 60 min</div>
+  <div class="session-grid">
+    <div class="session-card session-full">
+      <div class="session-head session-head-rec">
+        <div><div class="session-day">Sunday</div><div class="session-name">Active Recovery</div></div>
+        <div class="session-duration">60 min</div>
+      </div>
+      <div class="session-body">
+        <div class="rec-block">
+          <div class="rec-title">Cardio</div>
+          <div class="rec-row"><span>Easy bike or brisk walk</span><span>25–30 min · RPE 3–4</span></div>
+        </div>
+        <div class="rec-block">
+          <div class="rec-title">Mobility + Posture · 30 min</div>
+          <div class="rec-row"><span>KB halo</span><span>3 × 8 each direction · 30 sec rest</span></div>
+          <div class="rec-row"><span>Goblet squat hold</span><span>3 × 30–45 sec · 45 sec rest</span></div>
+          <div class="rec-row"><span>Scapular wall slide</span><span>3 × 10 · 30 sec rest</span></div>
+          <div class="rec-row"><span>Wall slide</span><span>3 × 10 · 30 sec rest</span></div>
+          <div class="rec-row"><span>90/90 hip stretch</span><span>2 × 60 sec each side</span></div>
+          <div class="rec-row"><span>Thoracic rotation</span><span>2 × 10 each side</span></div>
+          <div class="rec-row"><span>Child's pose to cobra</span><span>2 × 8 slow</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     WEEK 4 — DELOAD
+══════════════════════════════════════════ -->
+<div class="week-panel" id="w4">
+  <div class="week-header">
+    <div class="week-title">Week 4</div>
+    <div class="week-phase phase-del">Deload</div>
+    <div class="week-note">−40% volume · same load as week 2 · absorb the block</div>
+  </div>
+
+  <div class="week-strip">
+    <div class="wday wday-run"><div class="wday-name">Mon</div><div class="wday-label">Run</div><div class="wday-sub">+ Upper</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Tue</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-pt"><div class="wday-name">Wed</div><div class="wday-label">FBW</div><div class="wday-sub">with PT</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Thu</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-run"><div class="wday-name">Fri</div><div class="wday-label">Run</div><div class="wday-sub">+ Upper</div></div>
+    <div class="wday wday-solo"><div class="wday-name">Sat</div><div class="wday-label">FBW</div><div class="wday-sub">Solo</div></div>
+    <div class="wday wday-rec"><div class="wday-name">Sun</div><div class="wday-label">Recovery</div></div>
+  </div>
+
+  <div class="day-divider">Monday — Run + Upper Finisher</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-run">
+        <div><div class="session-day">Monday</div><div class="session-name">Running + Upper Finisher</div></div>
+        <div class="session-duration">~10 min finisher</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Cable row</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Dead bug</span><span class="ex-sets">2 × 8 each side</span><span class="ex-rir rir-del">RIR —</span><span class="ex-rest">30 sec</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">2 sets only. Same load as week 2. Should feel very easy — that's correct.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Wednesday — FBW with PT · 55 min</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-pt">
+        <div><div class="session-day">Wednesday</div><div class="session-name">FBW with PT — Deload</div></div>
+        <div class="session-duration">55 min</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Superset 1 <span class="ss-rest">· easy pace · 90 sec between supersets</span></div>
+          <div class="ex-row"><span class="ex-id">1a</span><span class="ex-name">Assisted pull-up <span class="ex-note">green band · no grind</span></span><span class="ex-sets">2 × 4</span><span class="ex-rir rir-del">RIR —</span></div>
+          <div class="ex-row"><span class="ex-id">1b</span><span class="ex-name">DB bench press</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Superset 2 <span class="ss-rest">· easy pace · 90 sec between supersets</span></div>
+          <div class="ex-row"><span class="ex-id">2a</span><span class="ex-name">Zercher squat <span class="ex-note">wk2 load</span></span><span class="ex-sets">2 × 5</span><span class="ex-rir rir-del">RIR 4+</span></div>
+          <div class="ex-row"><span class="ex-id">2b</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Superset 3 <span class="ss-rest">· easy pace · 60 sec between supersets</span></div>
+          <div class="ex-row"><span class="ex-id">3a</span><span class="ex-name">Bulgarian split squat <span class="ex-note">wk2 load</span></span><span class="ex-sets">2 × 6 each</span><span class="ex-rir rir-del">RIR 4+</span></div>
+          <div class="ex-row"><span class="ex-id">3b</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR —</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--label);font-style:italic;margin-top:12px">Use the extra time to review technique — Zercher position, pull-up scapular control, BSS alignment.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Friday — Run + Upper Finisher</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-run">
+        <div><div class="session-day">Friday</div><div class="session-name">Running + Upper Finisher</div></div>
+        <div class="session-duration">~10 min finisher</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">Poliquin fly</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">45 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Pallof press</span><span class="ex-sets">2 × 12 each side</span><span class="ex-rir rir-del">RIR —</span><span class="ex-rest">30 sec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Saturday — FBW Solo · Deload</div>
+  <div class="session-grid" style="margin-bottom:32px">
+    <div class="session-card session-full">
+      <div class="session-head session-head-solo">
+        <div><div class="session-day">Saturday</div><div class="session-name">FBW Solo — Deload</div></div>
+        <div class="session-duration">40–45 min</div>
+      </div>
+      <div class="session-body">
+        <div class="ss-group">
+          <div class="ss-label">Main lift <span class="ss-rest">· 2 min between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">A</span><span class="ex-name">Trap bar deadlift <span class="ex-note">wk2 load</span></span><span class="ex-sets">3 × 5</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">2 min</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Block 1 <span class="ss-rest">· 90 sec between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">B</span><span class="ex-name">DB incline press</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
+        </div>
+        <div class="ss-group">
+          <div class="ss-label">Block 2 <span class="ss-rest">· 60 sec between sets</span></div>
+          <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">DB pullover</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
+          <div class="ex-row standalone"><span class="ex-id">E</span><span class="ex-name">Half-kneeling cable chop</span><span class="ex-sets">2 × 14 each</span><span class="ex-rir rir-del">RIR —</span><span class="ex-rest">60 sec</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--label);font-style:italic;margin-top:12px">Finish early — that's fine. Next block starts Monday with heavier loads at week 1 rep ranges.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider">Sunday — Active Recovery · 60 min</div>
+  <div class="session-grid">
+    <div class="session-card session-full">
+      <div class="session-head session-head-rec">
+        <div><div class="session-day">Sunday</div><div class="session-name">Active Recovery</div></div>
+        <div class="session-duration">60 min</div>
+      </div>
+      <div class="session-body">
+        <div class="rec-block">
+          <div class="rec-title">Cardio</div>
+          <div class="rec-row"><span>Easy bike or brisk walk</span><span>25–30 min · RPE 3–4</span></div>
+        </div>
+        <div class="rec-block">
+          <div class="rec-title">Mobility + Posture · 30 min</div>
+          <div class="rec-row"><span>KB halo</span><span>3 × 8 each direction · 30 sec rest</span></div>
+          <div class="rec-row"><span>Goblet squat hold</span><span>3 × 30–45 sec · 45 sec rest</span></div>
+          <div class="rec-row"><span>Scapular wall slide</span><span>3 × 10 · 30 sec rest</span></div>
+          <div class="rec-row"><span>Wall slide</span><span>3 × 10 · 30 sec rest</span></div>
+          <div class="rec-row"><span>90/90 hip stretch</span><span>2 × 60 sec each side</span></div>
+          <div class="rec-row"><span>Thoracic rotation</span><span>2 × 10 each side</span></div>
+          <div class="rec-row"><span>Child's pose to cobra</span><span>2 × 8 slow</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>Maxime Lasage · 4-Week Training Block</span>
+  <span>Mon Run · Wed PT · Fri Run · Sat Solo · Sun Recovery</span>
+</footer>
+
+<script>
+  function sw(n) {
+    document.querySelectorAll('.week-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('w' + n).classList.add('active');
+    document.querySelectorAll('.tab-btn')[n - 1].classList.add('active');
+  }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'Maxime2026') {
+    const gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>
