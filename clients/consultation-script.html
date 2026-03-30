@@ -1107,5 +1107,14 @@
   </div>
 
 </main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'SCRIPT') {
+    const gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+});
+</script>
 </body>
 </html>

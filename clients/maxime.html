@@ -154,11 +154,6 @@
       document.getElementById('pw-input').value = '';
     }
   }
-  // Auto-unlock if coming from portal
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('auth') === 'Maxime2026') {
-    document.getElementById('pw-gate').style.display = 'none';
-  }
 </script>
 
 <header>
@@ -758,6 +753,15 @@
     document.getElementById('w' + n).classList.add('active');
     document.querySelectorAll('.tab-btn')[n - 1].classList.add('active');
   }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'Maxime2026') {
+    const gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>

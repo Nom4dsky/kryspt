@@ -1553,12 +1553,15 @@ kmData.forEach(({w,km,c,d,r}) => {
   lbl.textContent = w % 4 === 0 ? w : '';
   labels.appendChild(lbl);
 });
-
-  // Auto-unlock if coming from portal
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('auth') === 'Cyprian2026') {
-    document.getElementById('pw-gate').style.display = 'none';
+    const gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
   }
+});
 </script>
 </body>
 </html>
