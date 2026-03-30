@@ -1553,6 +1553,12 @@ kmData.forEach(({w,km,c,d,r}) => {
   lbl.textContent = w % 4 === 0 ? w : '';
   labels.appendChild(lbl);
 });
+
+  // Auto-unlock if coming from portal
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'Cyprian2026') {
+    document.getElementById('pw-gate').style.display = 'none';
+  }
 </script>
 </body>
 </html>

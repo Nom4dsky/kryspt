@@ -154,6 +154,11 @@
       document.getElementById('pw-input').value = '';
     }
   }
+  // Auto-unlock if coming from portal
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'Maxime2026') {
+    document.getElementById('pw-gate').style.display = 'none';
+  }
 </script>
 
 <header>

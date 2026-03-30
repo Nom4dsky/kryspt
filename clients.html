@@ -506,7 +506,7 @@ function checkPassword() {
   if (client) {
     document.getElementById('login-error').classList.remove('show');
     if (client.redirect) {
-      window.location.href = client.redirect;
+      window.location.href = client.redirect + "?auth=" + client.password;
       return;
     }
     showDashboard(client);
