@@ -120,8 +120,41 @@
     .week-strip { grid-template-columns: repeat(4, 1fr); }
   }
 </style>
+
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
+    .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #fff; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .pw-box .pw-sub { font-size: 11px; color: #555; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+    .pw-box input { display: block; width: 260px; background: #1a1a1a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
+    .pw-box input:focus { border-color: #0a0a0a; }
+    .pw-box button { width: 260px; background: #0a0a0a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
+    .pw-box button:hover { background: #222; }
+    .pw-error { font-size: 10px; color: #aaa; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
+  </style>
 </head>
 <body>
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">MAXIME</div>
+    <div class="pw-sub">Training Block · KRYS.PT</div>
+    <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">ENTER →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+  function checkPw() {
+    const v = document.getElementById('pw-input').value.trim();
+    if (v === 'Maxime2026') {
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+</script>
 
 <header>
   <div class="header-left">
@@ -184,7 +217,7 @@
           <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">45 sec</span></div>
           <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Dead bug</span><span class="ex-sets">3 × 8 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
         </div>
-        <div style="font-size:11px;color:var(--label);font-style:italic">Straight sets — complete all sets of A, then B, then C, then D. Rest shown is between sets. RPE 6–7 max. Dead bug — slow, full exhale at bottom.</div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">No rest between A→B→C→D, just transition. Dead bug — slow, full exhale at bottom. RPE 6–7 max.</div>
       </div>
     </div>
   </div>
@@ -233,7 +266,7 @@
           <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">45 sec</span></div>
           <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Pallof press</span><span class="ex-sets">3 × 12 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
         </div>
-        <div style="font-size:11px;color:var(--label);font-style:italic">Straight sets — complete all sets of A, then B, then C, then D. Poliquin fly — light load, cue external rotation hard. Pallof press — tall stance, no trunk rotation.</div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">Poliquin fly — light load, cue external rotation hard. Pallof press — tall stance, no trunk rotation.</div>
       </div>
     </div>
   </div>
@@ -327,7 +360,7 @@
           <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
           <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Dead bug</span><span class="ex-sets">3 × 8 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
         </div>
-        <div style="font-size:11px;color:var(--label);font-style:italic">Straight sets — complete all sets of A, then B, then C, then D. Slight load increase vs week 1, or reduce reps if load still feels heavy.</div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">Slight load increase vs week 1, or reduce the reps if the load still feels heavy.</div>
       </div>
     </div>
   </div>
@@ -373,7 +406,6 @@
           <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 10–11</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
           <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Pallof press</span><span class="ex-sets">3 × 12 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
         </div>
-        <div style="font-size:11px;color:var(--label);font-style:italic">Straight sets — complete all sets of A, then B, then C, then D. Poliquin fly — light load, cue external rotation hard.</div>
       </div>
     </div>
   </div>
@@ -465,7 +497,7 @@
           <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">45 sec</span></div>
           <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Dead bug</span><span class="ex-sets">3 × 8 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
         </div>
-        <div style="font-size:11px;color:var(--label);font-style:italic">Straight sets — complete all sets of A, then B, then C, then D. Heaviest finisher of the block — keep form clean, no grinding reps post-intervals.</div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">Heaviest finisher of the block — still keep form clean, no grinding reps post-intervals.</div>
       </div>
     </div>
   </div>
@@ -511,7 +543,6 @@
           <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">45 sec</span></div>
           <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Pallof press</span><span class="ex-sets">3 × 10 each side</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">30 sec</span></div>
         </div>
-        <div style="font-size:11px;color:var(--label);font-style:italic">Straight sets — complete all sets of A, then B, then C, then D. Poliquin fly — keep the load honest, this is not the place to grind.</div>
       </div>
     </div>
   </div>
@@ -603,7 +634,7 @@
           <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">45 sec</span></div>
           <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Dead bug</span><span class="ex-sets">2 × 8 each side</span><span class="ex-rir rir-del">RIR —</span><span class="ex-rest">30 sec</span></div>
         </div>
-        <div style="font-size:11px;color:var(--label);font-style:italic">Straight sets — complete all sets of A, then B, then C, then D. 2 sets only. Same load as week 2. Should feel very easy — that's correct.</div>
+        <div style="font-size:11px;color:var(--label);font-style:italic">2 sets only. Same load as week 2. Should feel very easy — that's correct.</div>
       </div>
     </div>
   </div>
@@ -650,7 +681,6 @@
           <div class="ex-row standalone"><span class="ex-id">C</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">45 sec</span></div>
           <div class="ex-row standalone"><span class="ex-id">D</span><span class="ex-name">Pallof press</span><span class="ex-sets">2 × 12 each side</span><span class="ex-rir rir-del">RIR —</span><span class="ex-rest">30 sec</span></div>
         </div>
-        <div style="font-size:11px;color:var(--label);font-style:italic">Straight sets — 2 sets only. Same load as week 2. Very easy — that's the point.</div>
       </div>
     </div>
   </div>
@@ -723,6 +753,15 @@
     document.getElementById('w' + n).classList.add('active');
     document.querySelectorAll('.tab-btn')[n - 1].classList.add('active');
   }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'Maxime2026') {
+    const gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>
