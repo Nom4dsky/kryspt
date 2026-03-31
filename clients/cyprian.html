@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyprian — UK140 Plan Treningowy 2026</title>
+<title>Cyprian — UK140 Plan Treningowy 2026 v2</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -23,6 +23,7 @@
     --amber-dim: #fdf0cc;
     --gray: #aaa89e;
     --accent: #c8960a;
+    --vo2: #2a6496;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,7 +37,6 @@
     overflow-x: hidden;
   }
 
-  /* HEADER */
   header {
     padding: 48px 48px 32px;
     border-bottom: 1px solid var(--border);
@@ -54,9 +54,7 @@
     color: var(--text);
   }
 
-  .header-left h1 span {
-    color: #c8960a;
-  }
+  .header-left h1 span { color: #c8960a; }
 
   .header-left p {
     margin-top: 12px;
@@ -66,10 +64,7 @@
     letter-spacing: 0.05em;
   }
 
-  .header-right {
-    text-align: right;
-    flex-shrink: 0;
-  }
+  .header-right { text-align: right; flex-shrink: 0; }
 
   .race-badge {
     display: inline-block;
@@ -84,6 +79,20 @@
     text-transform: uppercase;
   }
 
+  .version-badge {
+    display: inline-block;
+    background: rgba(42,100,150,0.1);
+    border: 1px solid #2a6496;
+    color: #2a6496;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+
   .race-info {
     margin-top: 8px;
     font-size: 12px;
@@ -91,34 +100,27 @@
     font-family: 'DM Mono', monospace;
   }
 
-  /* TIMELINE STRIP */
   .timeline-strip {
     padding: 0 48px;
     display: flex;
     gap: 0;
     height: 8px;
-    margin-top: 0;
   }
 
-  .phase-bar {
-    height: 100%;
-    transition: opacity 0.2s;
-  }
-
+  .phase-bar { height: 100%; }
   .phase-bar.teal { background: #f0c240; flex: 8; }
   .phase-bar.purple { background: #888; flex: 10; }
   .phase-bar.coral { background: #1a1a18; flex: 7; }
   .phase-bar.gray { background: #ccc9c0; flex: 3; }
 
-  /* STATS ROW */
   .stats-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     border-bottom: 1px solid var(--border);
   }
 
   .stat {
-    padding: 20px 48px;
+    padding: 20px 32px;
     border-right: 1px solid var(--border);
   }
 
@@ -142,26 +144,22 @@
     margin-top: 2px;
   }
 
-  /* MAIN LAYOUT */
   .main {
     display: grid;
     grid-template-columns: 280px 1fr;
-    min-height: calc(100vh - 220px);
+    min-height: calc(100vh - 240px);
   }
 
-  /* SIDEBAR */
   .sidebar {
     border-right: 1px solid var(--border);
     padding: 32px 0;
     position: sticky;
     top: 0;
-    height: calc(100vh - 220px);
+    height: calc(100vh - 240px);
     overflow-y: auto;
   }
 
-  .sidebar-section {
-    margin-bottom: 8px;
-  }
+  .sidebar-section { margin-bottom: 8px; }
 
   .phase-header {
     padding: 10px 24px;
@@ -206,17 +204,8 @@
     border-left: 2px solid transparent;
   }
 
-  .mezo-btn:hover {
-    color: var(--text);
-    background: var(--surface2);
-  }
-
-  .mezo-btn.active {
-    color: var(--text);
-    background: var(--surface2);
-    font-weight: 500;
-  }
-
+  .mezo-btn:hover { color: var(--text); background: var(--surface2); }
+  .mezo-btn.active { color: var(--text); background: var(--surface2); font-weight: 500; }
   .mezo-btn.active.teal { border-left-color: #f0c240; }
   .mezo-btn.active.purple { border-left-color: #888; }
   .mezo-btn.active.coral { border-left-color: #111111; }
@@ -240,17 +229,9 @@
   .deload-btn:hover { color: var(--muted); background: var(--surface); }
   .deload-btn.active { color: var(--muted); background: var(--surface); border-left-color: #3a3a38; }
 
-  /* CONTENT AREA */
-  .content {
-    padding: 40px 48px;
-    overflow-y: auto;
-  }
+  .content { padding: 40px 48px; overflow-y: auto; }
 
-  .mezo-panel {
-    display: none;
-    animation: fadeIn 0.2s ease;
-  }
-
+  .mezo-panel { display: none; animation: fadeIn 0.2s ease; }
   .mezo-panel.active { display: block; }
 
   @keyframes fadeIn {
@@ -258,7 +239,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* PANEL HEADER */
   .panel-header {
     display: flex;
     align-items: flex-start;
@@ -281,9 +261,7 @@
   .panel-title.amber { color: #c8960a; }
   .panel-title.gray { color: #888; }
 
-  .panel-meta {
-    text-align: right;
-  }
+  .panel-meta { text-align: right; }
 
   .panel-meta .weeks-badge {
     font-family: 'DM Mono', monospace;
@@ -304,7 +282,6 @@
     display: block;
   }
 
-  /* WEEK GRID */
   .week-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -343,9 +320,7 @@
     letter-spacing: 0.05em;
   }
 
-  .week-card-body {
-    padding: 10px 14px;
-  }
+  .week-card-body { padding: 10px 14px; }
 
   .day-row {
     display: flex;
@@ -363,10 +338,7 @@
     flex-shrink: 0;
   }
 
-  .day-content {
-    color: var(--text);
-    font-size: 12px;
-  }
+  .day-content { color: var(--text); font-size: 12px; }
 
   .day-dot {
     width: 6px;
@@ -381,11 +353,19 @@
   .dot-rest { background: transparent; border: 1px solid #bbb; }
   .dot-race { background: #f0c240; }
   .dot-longrun { background: #111111; }
+  .dot-vo2 { background: #2a6496; }
+  .dot-nutrition { background: #e07b39; }
 
-  /* SECTION BLOCKS */
   .section-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .section-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
     margin-bottom: 24px;
   }
@@ -406,9 +386,7 @@
     margin-bottom: 12px;
   }
 
-  .info-block ul {
-    list-style: none;
-  }
+  .info-block ul { list-style: none; }
 
   .info-block ul li {
     font-size: 13px;
@@ -443,16 +421,12 @@
   .highlight-bar.coral { border-left-color: #111111; }
   .highlight-bar.amber { border-left-color: #f0c240; }
   .highlight-bar.gray { border-left-color: #3a3a38; }
+  .highlight-bar.blue { border-left-color: #2a6496; background: rgba(42,100,150,0.06); }
+  .highlight-bar.orange { border-left-color: #e07b39; background: rgba(224,123,57,0.06); }
 
-  .highlight-bar strong {
-    color: var(--text);
-    font-weight: 500;
-  }
+  .highlight-bar strong { color: var(--text); font-weight: 500; }
 
-  /* WAVE CHART */
-  .wave-section {
-    margin-top: 24px;
-  }
+  .wave-section { margin-top: 24px; }
 
   .wave-section h3 {
     font-family: 'DM Mono', monospace;
@@ -468,42 +442,37 @@
     align-items: flex-end;
     gap: 3px;
     height: 60px;
-    padding: 0 4px;
   }
 
   .km-bar {
     flex: 1;
     border-radius: 2px 2px 0 0;
-    min-height: 4px;
-    transition: opacity 0.2s;
+    cursor: pointer;
+    transition: opacity 0.15s;
     position: relative;
   }
 
+  .km-bar:hover { opacity: 0.7; }
   .km-bar:hover::after {
-    content: attr(data-km) 'km';
+    content: attr(data-km) ' km';
     position: absolute;
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    padding: 2px 6px;
-    font-size: 10px;
+    font-size: 9px;
     font-family: 'DM Mono', monospace;
+    color: var(--muted);
     white-space: nowrap;
-    pointer-events: none;
-    margin-bottom: 4px;
-    color: var(--text);
-    border-radius: 2px;
+    margin-bottom: 2px;
   }
 
   .km-bar.deload { opacity: 0.4; }
-  .km-bar.race-week { opacity: 0.3; }
+  .km-bar.race-week { opacity: 0.9; }
 
   .bar-labels {
     display: flex;
     gap: 3px;
-    padding: 4px 4px 0;
+    margin-top: 4px;
   }
 
   .bar-label {
@@ -514,11 +483,10 @@
     text-align: center;
   }
 
-  /* OVERVIEW PANEL */
   .overview-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
     margin-bottom: 32px;
   }
 
@@ -526,7 +494,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 20px;
+    padding: 18px;
     cursor: pointer;
     transition: all 0.15s;
     position: relative;
@@ -545,10 +513,7 @@
   .macro-card.coral::after { background: #111111; }
   .macro-card.gray::after { background: #ccc9c0; }
 
-  .macro-card:hover {
-    border-color: #3a3a3a;
-    transform: translateY(-2px);
-  }
+  .macro-card:hover { border-color: #3a3a3a; transform: translateY(-2px); }
 
   .macro-card h3 {
     font-family: 'Bebas Neue', sans-serif;
@@ -570,13 +535,8 @@
     margin-bottom: 12px;
   }
 
-  .macro-card .detail {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.8;
-  }
+  .macro-card .detail { font-size: 12px; color: var(--muted); line-height: 1.8; }
 
-  /* RESULTS TABLE */
   .results-table {
     width: 100%;
     border-collapse: collapse;
@@ -597,17 +557,16 @@
 
   .results-table td {
     padding: 6px 10px;
-    border-bottom: 1px solid #1e1e1e;
+    border-bottom: 1px solid #e8e4dc;
     color: var(--text);
   }
 
   .results-table tr:hover td { background: var(--surface); }
-
   .results-table .highlight td { color: #c8960a; font-weight: 500; }
 
   .target-zone {
-    background: rgba(200, 150, 10, 0.08);
-    border: 1px solid rgba(200, 150, 10, 0.3);
+    background: rgba(200,150,10,0.08);
+    border: 1px solid rgba(200,150,10,0.3);
     border-radius: 4px;
     padding: 12px 16px;
     font-size: 12px;
@@ -616,7 +575,53 @@
     margin-top: 12px;
   }
 
-  /* RESPONSIVE */
+  .legend-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .nutrition-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    margin-top: 8px;
+  }
+
+  .nutrition-table th {
+    text-align: left;
+    padding: 6px 10px;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+
+  .nutrition-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e8e4dc;
+    color: var(--text);
+  }
+
   @media (max-width: 768px) {
     header { padding: 24px; }
     .stats-row { grid-template-columns: repeat(2, 1fr); }
@@ -625,44 +630,12 @@
     .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
     .content { padding: 24px; }
     .section-grid { grid-template-columns: 1fr; }
-    .overview-grid { grid-template-columns: 1fr; }
+    .section-grid-3 { grid-template-columns: 1fr; }
+    .overview-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
-
-  <meta name="robots" content="noindex, nofollow">
-  <style>
-    #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #111110; display: flex; align-items: center; justify-content: center; }
-    .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
-    .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #f5f2ec; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .pw-box .pw-sub { font-size: 11px; color: #666; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 32px; }
-    .pw-box input { display: block; width: 260px; background: #1a1a18; border: 1px solid #333; color: #f5f2ec; font-family: 'DM Mono', monospace; font-size: 14px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
-    .pw-box input:focus { border-color: #c8960a; }
-    .pw-box button { width: 260px; background: #c8960a; border: none; color: #111; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
-    .pw-box button:hover { background: #e0a80c; }
-    .pw-error { font-size: 10px; color: #c8960a; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
-  </style>
 </head>
 <body>
-<div id="pw-gate">
-  <div class="pw-box">
-    <div class="pw-title">CYPRIAN</div>
-    <div class="pw-sub">UK140 · Plan Treningowy 2026</div>
-    <input type="password" id="pw-input" placeholder="KOD DOSTĘPU" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
-    <button onclick="checkPw()">WEJDŹ →</button>
-    <div class="pw-error" id="pw-error"></div>
-  </div>
-</div>
-<script>
-  function checkPw() {
-    const v = document.getElementById('pw-input').value.trim();
-    if (v === 'Cyprian2026') {
-      document.getElementById('pw-gate').style.display = 'none';
-    } else {
-      document.getElementById('pw-error').textContent = 'Nieprawidłowy kod.';
-      document.getElementById('pw-input').value = '';
-    }
-  }
-</script>
 
 <header>
   <div class="header-left">
@@ -671,7 +644,8 @@
   </div>
   <div class="header-right">
     <div class="race-badge">A-START</div>
-    <div class="race-info">11.10.2026 · 144 km · D+ 5484 m<br>cel: top 10–20 · target 21–24h</div>
+    <span class="version-badge">v2.0 — ZAKTUALIZOWANY</span>
+    <div class="race-info">05.10.2026 · 144 km · D+ 5484 m<br>cel: top 10–20 · target 21–24h</div>
   </div>
 </header>
 
@@ -699,15 +673,21 @@
     <div class="stat-val"><span>21–24</span>h</div>
     <div class="stat-label">Target czas finiszu</div>
   </div>
+  <div class="stat">
+    <div class="stat-val" style="color:#2a6496;">v2</div>
+    <div class="stat-label">VO2max + Żywienie + Zjazdy</div>
+  </div>
 </div>
 
 <div class="main">
-  <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="sidebar-section">
       <div class="phase-header teal">M1 · Baza aerobowa</div>
       <button class="mezo-btn teal active" data-panel="overview" onclick="show('overview', this, 'teal')">
         Przegląd planu <span class="weeks">23.03 – 04.10</span>
+      </button>
+      <button class="mezo-btn teal" data-panel="protokoly" onclick="show('protokoly', this, 'teal')">
+        ★ Protokoły v2 <span class="weeks">NOWE</span>
       </button>
       <button class="mezo-btn teal" data-panel="m1-1" onclick="show('m1-1', this, 'teal')">
         Mezo 1.1 — start <span class="weeks">23.03 – 12.04</span>
@@ -723,9 +703,9 @@
       </button>
     </div>
     <div class="sidebar-section">
-      <div class="phase-header purple">M2 · Objętość + specyfika</div>
+      <div class="phase-header purple">M2 · Objętość + VO2max</div>
       <button class="mezo-btn purple" data-panel="m2-1" onclick="show('m2-1', this, 'purple')">
-        Mezo 2.1 — 4 dni bieg. <span class="weeks">18.05 – 07.06</span>
+        Mezo 2.1 — VO2max blok <span class="weeks">18.05 – 07.06</span>
       </button>
       <button class="deload-btn mezo-btn gray" data-panel="d2" onclick="show('d2', this, 'gray')">
         ↓ Deload 2 <span class="weeks">08.06 – 14.06</span>
@@ -760,7 +740,6 @@
     </div>
   </nav>
 
-  <!-- CONTENT -->
   <div class="content">
 
     <!-- OVERVIEW -->
@@ -768,12 +747,16 @@
       <div class="panel-header">
         <div>
           <div class="panel-title teal">PRZEGLĄD</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:6px;">22 marca → 11 października 2026</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">22 marca → 5 października 2026 · Plan v2.0</div>
         </div>
         <div class="panel-meta">
           <span class="weeks-badge">28 tygodni</span>
           <span class="km-range">30 → 105 km</span>
         </div>
+      </div>
+
+      <div class="highlight-bar blue" style="margin-bottom:20px;">
+        <strong>Co nowego w v2.0:</strong> Blok VO2max w M2.1 (1x/tydz. interwały), protokół żywienia od M2 B2B, kompensacja zjazd przez siłę ekscentryczną + priorytety na górach, trening z kijami od M2.2.
       </div>
 
       <div class="overview-grid">
@@ -784,16 +767,18 @@
             30 → 55 km/tydz.<br>
             3x siłowy (bez zmian)<br>
             100% zone 2<br>
-            Pierwsze wyjazdy górskie
+            Pierwsze wyjazdy górskie<br>
+            Holmich podtrzymanie 2x/tydz.
           </div>
         </div>
         <div class="macro-card purple" onclick="show('m2-1', document.querySelector('[data-panel=m2-1]'), 'purple')">
-          <h3 class="purple">M2 — Objętość + specyfika</h3>
+          <h3 class="purple">M2 — Objętość + VO2max</h3>
           <div class="sub">18.05 – 26.07.2026</div>
           <div class="detail">
             55 → 80 km/tydz.<br>
-            Siłowy 3x → 2x<br>
-            4 dni biegowe, B2B start<br>
+            <strong style="color:#2a6496;">VO2max 1x/tydz. (M2.1)</strong><br>
+            B2B start + kije od M2.2<br>
+            Żywienie od 1. B2B<br>
             Test start: DFBG lipiec
           </div>
         </div>
@@ -802,9 +787,10 @@
           <div class="sub">27.07 – 13.09.2026</div>
           <div class="detail">
             80 → 105 km/tydz.<br>
-            Siłowy 1x podtrzymanie<br>
             B2B co weekend<br>
-            Nocny bieg, trening żywienia
+            Nocny bieg, trening żywienia<br>
+            Góry: zjazdy jako priorytet<br>
+            Kije obowiązkowo
           </div>
         </div>
         <div class="macro-card gray" onclick="show('taper', document.querySelector('[data-panel=taper]'), 'gray')">
@@ -832,11 +818,11 @@
             <tr><td>9</td><td>Jasik Wojciech</td><td>21:18</td><td>9:00/km</td></tr>
             <tr class="highlight"><td>10</td><td>Hanuš Martin</td><td>21:23</td><td>9:02/km</td></tr>
             <tr><td>14</td><td>Krakowiak Rafał</td><td>22:12</td><td>9:22/km</td></tr>
-            <tr class="highlight"><td>20</td><td>M. Graczyk / Wejman</td><td>23:17</td><td>9:50/km</td></tr>
+            <tr class="highlight"><td>20</td><td>Graczyk / Wejman</td><td>23:17</td><td>9:50/km</td></tr>
           </tbody>
         </table>
         <div class="target-zone">
-          TARGET CYPRIAN · top 10 = ~21:23 · top 20 = ~23:17 · DNF rate 2025: 42%
+          TARGET CYPRIAN · top 10 = ~21:23 · top 20 = ~23:17 · DNF rate 2025: 42% · Start godz. 07:00, noc od ~km 90
         </div>
       </div>
 
@@ -844,6 +830,146 @@
         <h3>Fala obciążenia — km / tydzień</h3>
         <div class="km-bars" id="wave-chart"></div>
         <div class="bar-labels" id="wave-labels"></div>
+      </div>
+    </div>
+
+    <!-- PROTOKOLY v2 -->
+    <div id="panel-protokoly" class="mezo-panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title teal">PROTOKOŁY</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Nowe elementy v2.0 — szczegóły</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">3 protokoły</span>
+          <span class="km-range">v2.0</span>
+        </div>
+      </div>
+
+      <!-- VO2MAX -->
+      <div class="highlight-bar blue">
+        <strong>1. VO2max — blok M2.1 (tydz. 9–11)</strong> · Podniesienie sufitu aerobowego przed szczytem objętości. Kilian Jornet, literatura naukowa i dane z laboratorium potwierdzają: wyższy VO2max = wyższe tempo na każdym % intensywności.
+      </div>
+      <div class="section-grid" style="margin-bottom:24px;">
+        <div class="info-block">
+          <h3>Struktura sesji VO2max</h3>
+          <ul>
+            <li>1x/tydz. — środa lub czwartek, nie przed długim weekendem</li>
+            <li>Opcja A: 10x 1 min @ 5k pace / 1 min marsz-trucht</li>
+            <li>Opcja B: 5x 3 min @ 5k pace / 3 min odpoczynek</li>
+            <li>Rozgrzewka 15 min Z2 przed, 10 min Z1 po</li>
+            <li>Całkowity dystans sesji: 10–14 km</li>
+            <li>Po tydz. 11 (Deload 2) — VO2max odpada, wraca objętość</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Dlaczego VO2max tu, a nie później</h3>
+          <ul>
+            <li>M2.1 to okno przed szczytem objętości — regeneracja jeszcze dobra</li>
+            <li>W M3 objętość za wysoka żeby dodawać intensywność</li>
+            <li>3 tygodnie interwałów wystarczą na adaptację</li>
+            <li>Znika przed Deload 2 — pełne wypoczęcie przed B2B</li>
+            <li>Uważaj na przepuklinę — jeśli ból pachwiny po sesji, cofnij</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ŻYWIENIE -->
+      <div class="highlight-bar orange">
+        <strong>2. Protokół żywienia — start od M2 B2B</strong> · Jelito to organ trenowalny. UK140 trwa 21–24h — po 15h żel przestaje działać. Trening żołądka zaczyna się teraz, nie w M3.
+      </div>
+      <div class="section-grid" style="margin-bottom:8px;">
+        <div class="info-block">
+          <h3>Fazy żywienia w planie</h3>
+          <ul>
+            <li><strong>M1 (teraz):</strong> Karmienie na biegach 1h+ — żel/bar co 45 min, nawodnienie</li>
+            <li><strong>M2.1:</strong> Systematyczny protokół na longruns — 60–80g węglo/h</li>
+            <li><strong>M2.2 B2B:</strong> Pełny test race nutrition — żele + real food na longrun</li>
+            <li><strong>M3.1:</strong> Żywienie na zmęczeniu — co 30 min przez 5–6h</li>
+            <li><strong>M3.2:</strong> Real food test — ryż, ziemniaki, bulion po km 50 sym.</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Strategia żywienia na wyścig</h3>
+          <ul>
+            <li>Km 0–70: 80g węglo/h — żele + napoje izotoniczne</li>
+            <li>Km 70–115: zmiana na real food — ziemniaki, ryż, bulion</li>
+            <li>Km 115–144: cokolwiek wchodzi — Coca-Cola, słone przekąski</li>
+            <li>Białko 10–20g/h na odcinkach 3h+ (bar proteinowy)</li>
+            <li>Alarm na zegarku co 20 min = jedzenie</li>
+            <li>Imodium w kieszeni — gotowość na gut issues po km 70</li>
+          </ul>
+        </div>
+      </div>
+      <div class="info-block" style="margin-bottom:24px;">
+        <h3>Periodyzacja żywienia w trakcie wyścigu (Kilian Jornet)</h3>
+        <table class="nutrition-table">
+          <thead>
+            <tr><th>Odcinek</th><th>Intensywność</th><th>Główne paliwo</th><th>Uwagi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Km 0–25 (podejścia)</td><td>Wysoka</td><td>Żele + izotonik</td><td>Węgle priorytetem na podejściach</td></tr>
+            <tr><td>Km 25–62 (zejścia/flat)</td><td>Niska-średnia</td><td>Real food + tłuszcze</td><td>Jelito odpoczynek od żeli</td></tr>
+            <tr><td>Km 62–90 (rolling)</td><td>Średnia</td><td>Mix żele + real food</td><td>Test tolerancji po 8–10h</td></tr>
+            <tr><td>Km 90–115 (noc)</td><td>Niska</td><td>Bulion, ziemniaki, ryż</td><td>Żele mogą nie wchodzić — plan B</td></tr>
+            <tr><td>Km 115–144</td><td>Zmienna</td><td>Coca-Cola, sól, cokolwiek</td><td>Przeżycie — nie optymalizacja</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ZJAZDY -->
+      <div class="highlight-bar coral">
+        <strong>3. Protokół zjazd — kompensacja braku gór na co dzień</strong> · Teren płaski = mięśnie nie mają pamięci ekscentrycznej. Dwa filary kompensacji: siłownia + maksymalizacja każdego wyjazdu górskiego.
+      </div>
+      <div class="section-grid" style="margin-bottom:16px;">
+        <div class="info-block">
+          <h3>Ekscentryczny trening siłowy (co tydzień)</h3>
+          <ul>
+            <li>Bulgarian split squat — wolne opuszczanie 4 sek. w dół</li>
+            <li>Step-down off box — kontrolowane zejście jednonóż</li>
+            <li>Nordic hamstring curl — ekscentryczna faza priorytetem</li>
+            <li>Single-leg press — 4 sek. ekscentrycznie</li>
+            <li>Heavy calf raise — 3 sek. wolno w dół, pełen zakres</li>
+            <li>Copenhagen adductor plank (przepuklina prewencja)</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Protokół na górach (każdy wyjazd)</h3>
+          <ul>
+            <li>Zejścia biegiem — nie chód, chyba że ekstremalnie strome</li>
+            <li>Ostatnie zejście w sesji = na zmęczonych nogach (kluczowe)</li>
+            <li>Progresja D+ na zejściach: M1=500m, M2=800m, M3=1200m+</li>
+            <li>Po 3h+ biegu — zejście jest głównym bodźcem sesji</li>
+            <li>Kilian: relaks, wzrok dalej, nie hamuj — ćwicz to aktywnie</li>
+            <li>Strategia wyścig: km 0–45 zejścia konserwatywnie, dalej dawaj</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- KIJE -->
+      <div class="highlight-bar" style="margin-bottom:24px;">
+        <strong>4. Kije — obowiązkowo od M2.2</strong> · UK140 z 5484m D+ bez kijów to strata energii. Kilian: trening z kijami jest konieczny — niewytrenowane używanie = więcej energii niż bez kijów.
+      </div>
+      <div class="section-grid">
+        <div class="info-block">
+          <h3>Plan wdrożenia kijów</h3>
+          <ul>
+            <li>M2.2 (15.06): pierwsze longruny z kijami — nauka techniki</li>
+            <li>M3: wszystkie wyjazdy górskie z kijami obowiązkowo</li>
+            <li>Technika: pchnięcie za siebie, nie opieranie przed sobą</li>
+            <li>Składanie/rozkładanie — ćwicz w ruchu do automatyzmu</li>
+            <li>Przechowywanie: pas bioder lub boczne kieszenie plecaka</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Kiedy używać w wyścigu</h3>
+          <ul>
+            <li>Podejścia 10%+ — kije zawsze</li>
+            <li>Flat i zejścia — złożone, nie trać czasu na składanie</li>
+            <li>Po km 100 — zmęczenie chodu = kije pomagają nawet na flat</li>
+            <li>Nocny segment — stabilność na technicznym terenie</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -860,16 +986,16 @@
         </div>
       </div>
       <div class="highlight-bar">
-        <strong>Cel mezocyklu:</strong> Zachować obecną strukturę tygodnia, stopniowo dodawać kilometry na każdym z 3 dni biegowych. Zero zmian w siłowni — nowy blok Silny Biegacz się stabilizuje.
+        <strong>Cel mezocyklu:</strong> Zachować obecną strukturę tygodnia, stopniowo dodawać kilometry. Zero zmian w siłowni. Holmich 2x/tydz. podtrzymanie — nie przerywaj po zakończeniu rehabilitacji.
       </div>
       <div class="week-grid">
         <div class="week-card">
           <div class="week-card-header teal">23.03 – 29.03 <span class="week-km">30 km</span></div>
           <div class="week-card-body">
-            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1 (ekscentryczny)</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km Z2</span></div>
-            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body</span></div>
-            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body + Copenhagen plank</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2 (ekscentryczny)</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab / odpoczynek</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 14 km Z2</span></div>
@@ -880,7 +1006,7 @@
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 9 km Z2</span></div>
-            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body + Nordic curl intro</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 9 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab</span></div>
@@ -892,7 +1018,7 @@
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
-            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body + Bulgarian (ekscentr.)</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab</span></div>
@@ -904,19 +1030,21 @@
         <div class="info-block">
           <h3>Bieganie</h3>
           <ul>
-            <li>100% zone 2 — HR kontrolowane</li>
+            <li>100% zone 2 — HR kontrolowane, tempo nieważne</li>
             <li>Wtorek + piątek: krótkie medium</li>
             <li>Niedziela: longrun, progresja +3km/tydz.</li>
-            <li>Teren płaski OK, szukaj pagórków gdy możliwe</li>
+            <li>Teren płaski OK — pagórki gdy możliwe</li>
+            <li>Pierwsze karmienie na biegach 1h+ — żel co 45 min</li>
           </ul>
         </div>
         <div class="info-block">
-          <h3>Siłowy</h3>
+          <h3>Siłowy — ekscentryczny priorytet</h3>
           <ul>
             <li>3x/tydz. bez zmian w programie</li>
-            <li>Silny Biegacz się wdraża — nie dokładaj obciążenia</li>
-            <li>Upper body środa — zostaje jeszcze przez ten mezo</li>
-            <li>Rehab codziennie rano gdzie możliwe</li>
+            <li>Dodaj ekscentryczną fazę: 3–4 sek. opuszczanie w każdym ćwiczeniu nóg</li>
+            <li>Nordic curl — intro z asekuracją, 2x8</li>
+            <li>Copenhagen plank — adduktory (przepuklina prewencja) 3x20 sek.</li>
+            <li>Holmich 2x/tydz. podtrzymanie — nie przerywaj</li>
           </ul>
         </div>
       </div>
@@ -931,11 +1059,11 @@
         </div>
         <div class="panel-meta">
           <span class="weeks-badge">13.04 – 03.05</span>
-          <span class="km-range">40–50 km</span>
+          <span class="km-range">42–50 km</span>
         </div>
       </div>
       <div class="highlight-bar">
-        <strong>Cel mezocyklu:</strong> Pierwsza wizyta w górach. Longrun zaczyna rosnąć powyżej 2h. Organizm adaptuje się do wyższej objętości przed deloadem.
+        <strong>Cel:</strong> Budowanie objętości + pierwsze wyjazdy górskie. Longrun powyżej 2h po raz pierwszy — karmienie w biegu obowiązkowo. Na górach: zejścia biegiem, nie chód.
       </div>
       <div class="week-grid">
         <div class="week-card">
@@ -943,11 +1071,11 @@
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
-            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body + step-down box</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
-            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 11 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab</span></div>
-            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 22 km Z2</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 21 km Z2 (żywienie!)</span></div>
           </div>
         </div>
         <div class="week-card">
@@ -955,11 +1083,11 @@
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 11 km Z2</span></div>
-            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-strength"></div><span class="day-content">Upper body + Nordic curl</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 11 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab</span></div>
-            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 24 km Z2 + D+</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 24 km Z2 + D+ (góry!)</span></div>
           </div>
         </div>
         <div class="week-card">
@@ -971,7 +1099,7 @@
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab</span></div>
-            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 26 km Z2 + D+</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 26 km Z2 + D+ góry (zejście!)</span></div>
           </div>
         </div>
       </div>
@@ -979,18 +1107,18 @@
         <div class="info-block">
           <h3>Priorytety</h3>
           <ul>
-            <li>1x wyjazd górski w tydz. 5 lub 6 na longrun</li>
-            <li>Longrun powyżej 2h po raz pierwszy — karmienie w biegu</li>
-            <li>Ćwicz jedzenie w ruchu: żel/bar co 40–45 min</li>
-            <li>Pierwsze D+ nawet 500–800m wystarczy</li>
+            <li>1x wyjazd górski w tydz. 5 lub 6 — zejście biegiem obowiązkowo</li>
+            <li>Longrun powyżej 2h — karmienie co 40–45 min (żel/bar)</li>
+            <li>Pierwsze D+ min. 500–800m — zejście=trening, nie rekreacja</li>
+            <li>Rotacja butów: 2 pary trail + 1 road od teraz</li>
           </ul>
         </div>
         <div class="info-block">
           <h3>Na co uważać</h3>
           <ul>
-            <li>Nie przyspieszaj tempa — HR priorytetem nad km/h</li>
-            <li>Ból Achillesa / piszczel = red flag, zgłoś od razu</li>
-            <li>Sen 8h minimum w trakcie budowania objętości</li>
+            <li>HR priorytetem nad km/h — spowalniaj na podejściach</li>
+            <li>Ból pachwiny/achillesa/piszczel = red flag, zgłoś od razu</li>
+            <li>Po zejściach: ból quadsów następnego dnia = normalny, oceniaj 48h</li>
             <li>Kreatyna 5g/dzień jeśli toleruje żołądek</li>
           </ul>
         </div>
@@ -1002,7 +1130,7 @@
       <div class="panel-header">
         <div>
           <div class="panel-title gray">DELOAD 1</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Pierwszy roztrenowanie · kwiecień/maj</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Roztrenowanie · kwiecień/maj</div>
         </div>
         <div class="panel-meta">
           <span class="weeks-badge">04.05 – 10.05</span>
@@ -1010,7 +1138,7 @@
         </div>
       </div>
       <div class="highlight-bar gray">
-        <strong>Zasada deloadu:</strong> -30% objętości biegowej. Intensywność i struktura bez zmian. Siłowy normalnie. To nie jest tydzień lenistwa — to tydzień absorpcji adaptacji.
+        <strong>Zasada deloadu:</strong> -30% objętości biegowej. Intensywność i struktura bez zmian. Siłowy normalnie — ekscentryczny zostaje. To nie jest tydzień lenistwa — to tydzień absorpcji adaptacji.
       </div>
       <div class="week-grid">
         <div class="week-card">
@@ -1032,7 +1160,7 @@
           <li>Będzie chciał robić więcej — nie pozwól</li>
           <li>Nogi mogą czuć się ciężkie lub dziwnie lekkie — oba OK</li>
           <li>Ocena subiektywna formy w tym tygodniu jest myląca</li>
-          <li>Prawdziwy efekt deloadu widać w tydz. 8 i 9</li>
+          <li>Prawdziwy efekt deloadu widać w tydz. 9–10</li>
         </ul>
       </div>
     </div>
@@ -1050,7 +1178,7 @@
         </div>
       </div>
       <div class="highlight-bar">
-        <strong>Cel:</strong> Potwierdzenie adaptacji po deloadzie. Pierwszy raz 55 km. Przygotowanie do przejścia na 4 dni biegowe w M2.
+        <strong>Cel:</strong> Potwierdzenie adaptacji po deloadzie. Pierwszy raz 55 km. Przygotowanie do VO2max bloku w M2.1 i 4 dni biegowych.
       </div>
       <div class="week-grid">
         <div class="week-card">
@@ -1071,81 +1199,84 @@
         <ul>
           <li>Środa upper body kończy się tutaj — od tydz. 9 to 4. dzień biegowy</li>
           <li>Siłowy schodzi do 2x od tydz. 12 (deload M2)</li>
-          <li>Longrun 30 km — pierwsze mocniejsze uderzenie, monitoruj nogi po</li>
+          <li>Longrun 30 km — pierwsze mocniejsze uderzenie, monitoruj nogi 48h po</li>
+          <li>M2.1 przynosi VO2max — ciało musi być gotowe, nie zmęczone</li>
         </ul>
       </div>
     </div>
 
-    <!-- MEZO 2.1 -->
+    <!-- MEZO 2.1 — VO2MAX -->
     <div id="panel-m2-1" class="mezo-panel">
       <div class="panel-header">
         <div>
           <div class="panel-title purple">MEZO 2.1</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Cztery dni biegowe · maj</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">VO2max blok + 4 dni biegowe · maj–czerwiec</div>
         </div>
         <div class="panel-meta">
           <span class="weeks-badge">18.05 – 07.06</span>
-          <span class="km-range">55–72 km</span>
+          <span class="km-range">58–72 km</span>
         </div>
       </div>
-      <div class="highlight-bar purple">
-        <strong>Kluczowa zmiana:</strong> Środa staje się 4. dniem biegowym. Upper body odpada. Siłowy 3x zostaje przez ten mezo — redukcja dopiero od deloadu 2.
+      <div class="highlight-bar blue">
+        <strong>Kluczowa zmiana v2:</strong> Środa = 4. dzień biegowy + 1x/tydz. VO2max interwały (czwartek). Blok 3 tygodni — podnosi sufit aerobowy zanim objętość wzrośnie do poziomu gdzie intensywność jest niemożliwa.
       </div>
       <div class="week-grid">
         <div class="week-card">
           <div class="week-card-header purple">18.05 – 24.05 <span class="week-km">58 km</span></div>
           <div class="week-card-body">
-            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (RDL, Nordic, Bulgarian ekscentr.)</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 13 km Z2</span></div>
-            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2 (NOWY)</span></div>
-            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2 (NOWY 4. dzień)</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-vo2"></div><span class="day-content">VO2max: 10x1min @ 5k / 1min odp. (~12km)</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 13 km Z2</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab</span></div>
-            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 22 km Z2</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab / odpoczynek</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 22 km Z2 + żywienie co 40 min</span></div>
           </div>
         </div>
         <div class="week-card">
           <div class="week-card-header purple">25.05 – 31.05 <span class="week-km">65 km</span></div>
           <div class="week-card-body">
-            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 15 km Z2</span></div>
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
-            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-vo2"></div><span class="day-content">VO2max: 5x3min @ 5k / 3min odp. (~13km)</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab</span></div>
-            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 24 km Z2 + góry</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 24 km Z2 + góry + żywienie</span></div>
           </div>
         </div>
         <div class="week-card">
           <div class="week-card-header purple">01.06 – 07.06 <span class="week-km">72 km</span></div>
           <div class="week-card-body">
-            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Rehab + Siła #1</span></div>
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 16 km Z2</span></div>
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
-            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła #2</span></div>
-            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 14 km (2x20 min)</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-vo2"></div><span class="day-content">VO2max: 6x3min @ 5k / 3min odp. (~14km)</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rehab"></div><span class="day-content">Rehab</span></div>
-            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 28 km Z2 + góry</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 28 km Z2 + góry (zejście!)</span></div>
           </div>
         </div>
       </div>
       <div class="section-grid">
         <div class="info-block">
-          <h3>Bieganie</h3>
+          <h3>VO2max — instrukcja</h3>
           <ul>
-            <li>4 dni biegowe — adaptacja w tydz. 9 priorytetem</li>
-            <li>Pierwsze tempo w tydz. 11: 2x20 min w Z3/Z4</li>
-            <li>Wyjazd górski: tydz. 10 lub 11 na longrun</li>
-            <li>Karmienie co 40 min na każdym biegu 1h+</li>
+            <li>Czwartek — nie zmienia się: zawsze dzień po spokojnym środku</li>
+            <li>Rozgrzewka 15 min Z2 obowiązkowo przed interwałami</li>
+            <li>Intensywność: odczuwalne 9/10 — nie sprint, ale blisko</li>
+            <li>Przerwy: marsz lub bardzo wolny trucht — pełen odpoczynek</li>
+            <li>Jeśli ból pachwiny po — zmniejsz do 10x1min lub odpuść sesję</li>
+            <li>Siła B (czw) przechodzi na środę lub piątek w tym mezo</li>
           </ul>
         </div>
         <div class="info-block">
-          <h3>Siłowy (ostatnie 3x)</h3>
+          <h3>Żywienie — start protokołu</h3>
           <ul>
-            <li>Siła #1 pon: full program</li>
-            <li>Siła #2 czw: full program</li>
-            <li>Silny Biegacz: 3. sesja w dowolny dzień</li>
-            <li>Od tydz. 12 (deload) — schodzi do 2x</li>
+            <li>Longrun 22km+ = pierwsze systematyczne karmienie co 40 min</li>
+            <li>Test: 2 żele/h vs 1 żel + bar — sprawdź co lepiej tolerujesz</li>
+            <li>Góry tydz. 10–11: zejście biegiem, D+ min. 800m</li>
+            <li>Karmienie w góry = test żywienia na zmęczeniu i nierównym terenie</li>
           </ul>
         </div>
       </div>
@@ -1156,7 +1287,7 @@
       <div class="panel-header">
         <div>
           <div class="panel-title gray">DELOAD 2</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Siłowy schodzi do 2x · czerwiec</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">VO2max odpada, siłowy schodzi do 2x · czerwiec</div>
         </div>
         <div class="panel-meta">
           <span class="weeks-badge">08.06 – 14.06</span>
@@ -1164,16 +1295,16 @@
         </div>
       </div>
       <div class="highlight-bar gray">
-        <strong>Podwójna zmiana:</strong> -30% bieganie + siłowy 3x→2x. Zostają: RDL, nordic curl, tibialis raises, hip thrust. Odpada: upper body, część objętości siłowej.
+        <strong>Podwójna zmiana:</strong> -30% bieganie + siłowy 3x→2x + VO2max odpada. Zostają: RDL, nordic curl, tibialis raises, hip thrust, Copenhagen. Odpada: upper body, VO2max.
       </div>
       <div class="week-grid">
         <div class="week-card">
           <div class="week-card-header gray">08.06 – 14.06 <span class="week-km">50 km</span></div>
           <div class="week-card-body">
-            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (RDL, nordic, tibialis)</span></div>
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (RDL, Nordic, tibialis, Copenhagen)</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
-            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła B (hip thrust, copenhagen)</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła B (hip thrust, step-down, calf ekscentr.)</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
             <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 16 km łatwy</span></div>
@@ -1187,7 +1318,7 @@
       <div class="panel-header">
         <div>
           <div class="panel-title purple">MEZO 2.2</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Back-to-back start · czerwiec–lipiec</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">B2B start + kije + żywienie · czerwiec–lipiec</div>
         </div>
         <div class="panel-meta">
           <span class="weeks-badge">15.06 – 05.07</span>
@@ -1195,7 +1326,7 @@
         </div>
       </div>
       <div class="highlight-bar purple">
-        <strong>Nowość:</strong> Back-to-back w weekendy — sobota longrun + niedziela recovery run. To jest kluczowy bodziec pod UK140 where nogi biegną po 20h. Siłowy 2x przez cały mezo.
+        <strong>Trzy nowości:</strong> B2B weekendy (SO longrun + ND recovery), kije treningowe od teraz, pełny protokół żywienia na każdym B2B. To jest najważniejszy blok dla przygotowania do UK140.
       </div>
       <div class="week-grid">
         <div class="week-card">
@@ -1206,7 +1337,7 @@
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła B</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 3h Z2 (~20 km)</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 3h Z2 + kije (pierwsze!) + żywienie</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 8 km Z1 (B2B!)</span></div>
           </div>
         </div>
@@ -1215,11 +1346,11 @@
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 16 km Z2</span></div>
-            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 13 km Z2</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła B</span></div>
-            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 14 km</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 3,5h Z2 (góry!)</span></div>
-            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 10 km Z1 (B2B)</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 15 km Z2</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 3,5h Z2 + kije + góry D+800</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 10 km Z1 (B2B!)</span></div>
           </div>
         </div>
         <div class="week-card">
@@ -1227,12 +1358,32 @@
           <div class="week-card-body">
             <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 17 km Z2</span></div>
-            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 15 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-strength"></div><span class="day-content">Siła B</span></div>
-            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 16 km</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 4h Z2 (góry!)</span></div>
-            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 11 km Z1 (B2B)</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 16 km Z2</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 4h Z2 + kije + góry D+1000 (zejście!)</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 12 km Z1 (B2B!)</span></div>
           </div>
+        </div>
+      </div>
+      <div class="section-grid">
+        <div class="info-block">
+          <h3>B2B — co obserwujemy</h3>
+          <ul>
+            <li>Żołądek na zmęczonych nogach — tolerancja żywienia po 3–4h</li>
+            <li>Technika kijów: pchnięcie za siebie, rytm z krokiem</li>
+            <li>Zejścia na końcu soboty — na zmęczeniu (najważniejszy moment)</li>
+            <li>Niedziela recovery = nauka biegania na bitych nogach (kluczowe!)</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Żywienie B2B — protokół</h3>
+          <ul>
+            <li>Sobota longrun: 60–80g węglo/h — test różnych produktów</li>
+            <li>Niedziela recovery: mimo zmęczenia — pełne śniadanie przed</li>
+            <li>Test real food na longrun: banan, bar ryżowy, daktyle</li>
+            <li>Hydratacja: 500ml/h minimum, elektrolity gdy ciepło</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1240,53 +1391,73 @@
     <!-- DELOAD 3 -->
     <div id="panel-d3" class="mezo-panel">
       <div class="panel-header">
-        <div><div class="panel-title gray">DELOAD 3</div><div style="font-size:13px;color:var(--muted);margin-top:6px;">Pre-start DFBG · lipiec</div></div>
-        <div class="panel-meta"><span class="weeks-badge">Tydzień 16</span><span class="km-range">~56 km</span></div>
+        <div>
+          <div class="panel-title gray">DELOAD 3</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Pre-start · lipiec</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">06.07 – 12.07</span>
+          <span class="km-range">~45 km</span>
+        </div>
       </div>
       <div class="highlight-bar gray">
-        <strong>Pre-start taper:</strong> Tydzień 16 to przygotowanie pod DFBG. Ostatni normalny longrun w sobotę, niedziela kompletny odpoczynek. Siłowy 1x lekki w poniedziałek.
+        <strong>Pre-start tydzień:</strong> Zejście -40%. Siłowy 1x lekki. Sprzęt na start gotowy w piątek. Mentalnie: DFBG to test, nie wyścig — informacja, nie wynik.
+      </div>
+      <div class="week-grid">
+        <div class="week-card">
+          <div class="week-card-header gray">06.07 – 12.07 <span class="week-km">45 km</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A lekka (bez Nordic, bez ekscentr.)</span></div>
+            <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek / mobilność</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km + strides x4</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-rest"></div><span class="day-content">Dojazd / rejestracja DFBG</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km lub odpoczynek</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- DFBG TEST START -->
+    <!-- DFBG -->
     <div id="panel-dfbg" class="mezo-panel">
       <div class="panel-header">
         <div>
           <div class="panel-title amber">TEST START</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Dolnośląski Festiwal Biegów Górskich · 13.07 – 26.07.2026</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">DFBG — lipiec</div>
         </div>
         <div class="panel-meta">
           <span class="weeks-badge">13.07 – 26.07</span>
-          <span class="km-range">45 lub 70 km</span>
+          <span class="km-range">45–70 km</span>
         </div>
       </div>
       <div class="highlight-bar amber">
-        <strong>To nie jest wynik — to jest laboratorium.</strong> Interesuje nas jak reaguje organizm na 7–10h wysiłku w terenie górskim, nie miejsce w klasyfikacji.
+        <strong>Cel startu:</strong> Test żywienia w warunkach wyścigowych, techniki kijów pod presją, pacing konserwatywny. Wynik nie ma znaczenia — dane mają znaczenie.
       </div>
       <div class="section-grid">
         <div class="info-block">
-          <h3>Co obserwujemy</h3>
+          <h3>Strategia DFBG</h3>
           <ul>
-            <li>Żołądek — tolerancja żywienia po 5–6h</li>
-            <li>Technika zejść po kilku godzinach zmęczenia</li>
-            <li>Tempo na podejściach vs HR — pacing plan</li>
-            <li>Sprzęt — buty, kije, plecak, latarka</li>
-            <li>Psychologia nocnego segmentu jeśli 70km</li>
+            <li>Pierwsze 50% — żywe tempo, nie ścigaj pola</li>
+            <li>Kije obowiązkowo na podejściach</li>
+            <li>Test protokołu żywienia z UK140 — dokładnie to samo</li>
+            <li>Nocny segment jeśli dystans 70km — latarka przygotowana</li>
+            <li>Analiza danych po: HR vs pace, żywienie, sprzęt</li>
           </ul>
         </div>
         <div class="info-block">
-          <h3>Tydzień 18 po starcie</h3>
+          <h3>Tydzień po starcie</h3>
           <ul>
             <li>Aktywny odpoczynek — nie zero</li>
             <li>2–3x krótkie easy 30–40 min</li>
             <li>Siłowy odpada w tym tygodniu</li>
-            <li>Pełna analiza startu z Cyprianem</li>
+            <li>Pełna analiza startu z trenerem</li>
             <li>Korekta planu M3 jeśli potrzeba</li>
           </ul>
         </div>
       </div>
-      <div class="highlight-bar amber" style="margin-top:16px;">
-        <strong>Wybór dystansu:</strong> 45 km jeśli forma nie jest pewna lub odczuwalne zmęczenie z M2. 70 km jeśli wszystko idzie zgodnie z planem. Decyzja w tydz. 16.
+      <div class="highlight-bar amber">
+        <strong>Wybór dystansu:</strong> 45 km jeśli forma nie jest pewna lub zmęczenie z M2. 70 km jeśli wszystko idzie zgodnie z planem. Decyzja w tydz. 16.
       </div>
     </div>
 
@@ -1303,18 +1474,18 @@
         </div>
       </div>
       <div class="highlight-bar coral">
-        <strong>Wchodzi nocny bieg:</strong> Przynajmniej 1 sesja w ciemności w tym mezo. UK140 start 7:00 rano → po 15h mamy noc. Głowa i nogi muszą to znać.
+        <strong>Trzy priorytety M3.1:</strong> Nocny bieg (min. 1x), zejścia biegiem na każdym wyjeździe górskim, żywienie co 30 min na sesjach 4h+. UK140 start 7:00 → po 15h mamy noc.
       </div>
       <div class="week-grid">
         <div class="week-card">
           <div class="week-card-header coral">27.07 – 02.08 <span class="week-km">82 km</span></div>
           <div class="week-card-body">
-            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (podtrzymanie)</span></div>
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (podtrzymanie — RDL, Nordic, step-down)</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 18 km Z2</span></div>
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 15 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek / rehab</span></div>
-            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 16 km</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 4,5h Z2 (góry)</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 16 km (subprogowy)</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 4,5h Z2 + kije + góry D+1000 (zejście!)</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 10 km Z1 (B2B)</span></div>
           </div>
         </div>
@@ -1325,8 +1496,8 @@
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 19 km Z2</span></div>
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 16 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
-            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">NOCNY BIEG 18 km</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 5h Z2 (góry!)</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">NOCNY BIEG 18 km — znana trasa, latarka testowana</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 5h Z2 + kije + góry D+1200 (zejście priorytet!)</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 12 km Z1 (B2B)</span></div>
           </div>
         </div>
@@ -1338,9 +1509,30 @@
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 17 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 18 km</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 5h Z2 (góry!)</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 5h Z2 + kije + góry D+1200 (zejście!)</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 14 km Z1 (B2B)</span></div>
           </div>
+        </div>
+      </div>
+      <div class="section-grid">
+        <div class="info-block">
+          <h3>Priorytety zejść na górach M3.1</h3>
+          <ul>
+            <li>Zejście = trening, nie powrót do bazy — biegiem, nie chód</li>
+            <li>Ostatnie zejście każdej sesji — na zmęczeniu (najważniejsze)</li>
+            <li>Wzrok 5–10m do przodu, ciało zrelaksowane, nie hamuj</li>
+            <li>D+1200m minimum w tej fazie — liczy się zejście tyle co wejście</li>
+            <li>Ból quadsów 48h po = adaptacja, 72h+ = za dużo</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Żywienie M3.1</h3>
+          <ul>
+            <li>Alarm co 25–30 min na sesji 4h+ — zawsze je, nie czeka na głód</li>
+            <li>Test real food: ryż + sól, ziemniaki, bulion na 4h+</li>
+            <li>Białko: bar proteinowy co 3h na sesjach długich</li>
+            <li>Nocny bieg: karmienie też w nocy — przyzwyczaj się do jedzenia po ciemku</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1348,11 +1540,31 @@
     <!-- DELOAD 4 -->
     <div id="panel-d4" class="mezo-panel">
       <div class="panel-header">
-        <div><div class="panel-title gray">DELOAD 4</div><div style="font-size:13px;color:var(--muted);margin-top:6px;">Przed finalnym blokiem · sierpień</div></div>
-        <div class="panel-meta"><span class="weeks-badge">Tydzień 22</span><span class="km-range">~65 km</span></div>
+        <div>
+          <div class="panel-title gray">DELOAD 4</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Przed finalnym blokiem · sierpień</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">17.08 – 23.08</span>
+          <span class="km-range">~65 km</span>
+        </div>
       </div>
       <div class="highlight-bar gray">
-        <strong>Głębszy deload (-35%):</strong> Przed najcięższym blokiem cyklu. Siłowy 1x podtrzymanie. Pełna absorpcja przed M3.2 gdzie wchodzi 98–105 km/tydz.
+        <strong>Głębszy deload (-35%):</strong> Przed najcięższym blokiem cyklu. Siłowy 1x podtrzymanie (tylko Nordic + step-down). Pełna absorpcja przed M3.2 gdzie wchodzi 98–105 km/tydz.
+      </div>
+      <div class="week-grid">
+        <div class="week-card">
+          <div class="week-card-header gray">17.08 – 23.08 <span class="week-km">65 km</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A lekka (Nordic 2x6, step-down)</span></div>
+            <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 15 km Z2</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 13 km Z2</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 3h Z1/Z2 spokojnie</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 12 km Z1 (B2B)</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1369,18 +1581,18 @@
         </div>
       </div>
       <div class="highlight-bar coral">
-        <strong>Kulminacja przygotowań.</strong> Tygodnie 98–105 km z B2B co weekend i 2x wyjazd górski w tym mezo. Tu się decyduje czy cel to top 10 czy top 20.
+        <strong>Kulminacja przygotowań.</strong> 98–105 km z B2B co weekend, 2x wyjazd górski, 2. nocny bieg. Tu się decyduje czy cel to top 10 czy top 20. Zjazdy biegiem na każdym wyjeździe — to ostatnia szansa na adaptację.
       </div>
       <div class="week-grid">
         <div class="week-card">
           <div class="week-card-header coral">24.08 – 30.08 <span class="week-km">98 km</span></div>
           <div class="week-card-body">
-            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (RDL, nordic, tibialis)</span></div>
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A (RDL, Nordic, step-down, tibialis)</span></div>
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 22 km Z2</span></div>
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 18 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 20 km</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 5,5h GÓRY (D+1200)</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 5,5h GÓRY + kije D+1200 (zejście!)</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 14 km Z1 (B2B)</span></div>
           </div>
         </div>
@@ -1391,8 +1603,8 @@
             <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 22 km Z2</span></div>
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 18 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
-            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">NOCNY BIEG 20 km</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 6h GÓRY (D+1500)</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">NOCNY BIEG 20 km (2. nocna sesja)</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 6h GÓRY + kije D+1500 (zejście!)</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 16 km Z1 (B2B)</span></div>
           </div>
         </div>
@@ -1404,7 +1616,7 @@
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 19 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 21 km</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 6h GÓRY (D+1500)</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 6h GÓRY + kije D+1500 (zejście!)</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 16 km Z1 (B2B)</span></div>
           </div>
         </div>
@@ -1413,19 +1625,21 @@
         <div class="info-block">
           <h3>Priorytety M3.2</h3>
           <ul>
-            <li>D+ priorytetem na longruny — min. D+1000–1500/sesja</li>
-            <li>2. nocny bieg w tydz. 24 (piątek wieczór)</li>
-            <li>Trening żywienia: test żeli/real food na 6h</li>
-            <li>Cały sprzęt race day przetestowany</li>
+            <li>D+ min. 1200–1500m/sesja — zejście biegiem zawsze</li>
+            <li>2. nocny bieg (piątek tydz. 24) — na zmęczeniu po tygodniu</li>
+            <li>Trening żywienia: real food test — ziemniaki/ryż/bulion na 6h</li>
+            <li>Cały sprzęt race day przetestowany (kije, latarka, buty, plecak)</li>
+            <li>Kilian: zejść na zmęczeniu = najważniejszy bodziec tego bloku</li>
           </ul>
         </div>
         <div class="info-block">
           <h3>Red flags — przerwij jeśli</h3>
           <ul>
-            <li>HRV spada &gt;15% przez 3 dni z rzędu</li>
-            <li>Ból ścięgna / piszczel / kolano</li>
-            <li>Sen &lt;6h przez tydzień + wysoki HR</li>
+            <li>HRV spada >15% przez 3 dni z rzędu</li>
+            <li>Ból pachwiny / piszczel / kolano</li>
+            <li>Sen <6h przez tydzień + wysoki HR spoczynkowy</li>
             <li>Brak apetytu + apatia = overtrain</li>
+            <li>Ból quadsów 72h+ po zejściach = za dużo D+, zmniejsz</li>
           </ul>
         </div>
       </div>
@@ -1455,7 +1669,7 @@
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Tempo 14 km (krótkie)</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Ostatni longrun 3h</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Ostatni longrun 3h + kije</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km</span></div>
           </div>
         </div>
@@ -1467,7 +1681,7 @@
             <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
             <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
             <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km + 3x 1km tempo</span></div>
-            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Easy 10 km + D+</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Easy 10 km + D+ krótki</span></div>
             <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Easy 6 km</span></div>
           </div>
         </div>
@@ -1489,19 +1703,22 @@
           <h3>Race week checklist</h3>
           <ul>
             <li>Sprzęt spakowany w czwartek wieczór</li>
-            <li>Żywienie na trasie zaplanowane do CP</li>
+            <li>Żywienie na trasie zaplanowane do każdego CP</li>
             <li>Latarka + baterie zapasowe sprawdzone</li>
+            <li>Kije — złożone, sprawdzone, wiesz gdzie je trzymasz</li>
             <li>Buty pewne — zero nowych rzeczy</li>
-            <li>Dropbag jeśli dozwolony — zaplanowany</li>
+            <li>Imodium w kieszeni kamizelki</li>
+            <li>Dropbag jeśli dozwolony — zaplanowany z real food</li>
           </ul>
         </div>
         <div class="info-block">
-          <h3>Strategia pacing UK140</h3>
+          <h3>Strategia pacing UK140 (Kilian: wyścig zaczyna się w połowie)</h3>
           <ul>
-            <li>Km 0–45: konserwatywnie — tempo ~9:30–10:00/km</li>
-            <li>Km 45–90: utrzymaj — nie doganiaj pola</li>
-            <li>Km 90–115: nocny segment — latarka, jedzenie co 30 min</li>
-            <li>Km 115–144: dawaj ile masz — tu się zdobywa miejsca</li>
+            <li>Km 0–45: konserwatywnie — tempo ~9:30–10:00/km, zejścia ostrożnie</li>
+            <li>Km 45–90: utrzymaj — nie doganiaj pola, żywienie co 25 min</li>
+            <li>Km 90–115: nocny segment — latarka, real food, kije na flat też</li>
+            <li>Km 115–144: teraz możesz dawać — tu zdobywa się miejsca</li>
+            <li>Pierwsze 70 km = rozgrzewka. Wyścig = od km 70.</li>
           </ul>
         </div>
       </div>
@@ -1515,9 +1732,7 @@ function show(id, btn, color) {
   document.querySelectorAll('.mezo-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.mezo-btn').forEach(b => b.classList.remove('active', 'teal', 'purple', 'coral', 'amber', 'gray'));
   document.getElementById('panel-' + id).classList.add('active');
-  if (btn) {
-    btn.classList.add('active', color);
-  }
+  if (btn) { btn.classList.add('active', color); }
 }
 
 const kmData = [
@@ -1526,7 +1741,7 @@ const kmData = [
   {w:7,km:35,c:'gray',d:true},{w:8,km:55,c:'teal'},
   {w:9,km:58,c:'purple'},{w:10,km:65,c:'purple'},{w:11,km:72,c:'purple'},
   {w:12,km:50,c:'gray',d:true},{w:13,km:68,c:'purple'},{w:14,km:75,c:'purple'},{w:15,km:80,c:'purple'},
-  {w:16,km:56,c:'gray',d:true},{w:17,km:45,c:'amber',r:true},{w:18,km:30,c:'gray',r:true},
+  {w:16,km:45,c:'gray',d:true},{w:17,km:45,c:'amber',r:true},{w:18,km:30,c:'gray',r:true},
   {w:19,km:82,c:'coral'},{w:20,km:88,c:'coral'},{w:21,km:95,c:'coral'},
   {w:22,km:65,c:'gray',d:true},{w:23,km:98,c:'coral'},{w:24,km:100,c:'coral'},{w:25,km:105,c:'coral'},
   {w:26,km:65,c:'gray'},{w:27,km:48,c:'gray'},{w:28,km:22,c:'gray',r:true}
@@ -1552,15 +1767,6 @@ kmData.forEach(({w,km,c,d,r}) => {
   lbl.className = 'bar-label';
   lbl.textContent = w % 4 === 0 ? w : '';
   labels.appendChild(lbl);
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('auth') === 'Cyprian2026') {
-    const gate = document.getElementById('pw-gate');
-    if (gate) gate.style.display = 'none';
-  }
 });
 </script>
 </body>
