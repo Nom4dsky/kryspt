@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What the Biggest Strength Training Update in 17 Years Actually Means for You | KRYS PT</title>
+<meta name="description" content="The ACSM published its first major resistance training update since 2009. 137 studies, 30,000+ participants. Here's what it means for your training.">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F2F0EA;
+    --black: #111111;
+    --orange: #E8450A;
+    --gray: #555555;
+    --light-gray: #999999;
+    --rule: #C8C6BF;
+    --white: #ffffff;
+    --max: 720px;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--black);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--light-gray);
+    text-decoration: none;
+  }
+  .logo span { color: var(--orange); }
+  .nav-link {
+    font-size: 13px;
+    color: var(--light-gray);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .nav-link:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 80px 24px 48px;
+  }
+
+  .category {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+
+  h1 span { color: var(--orange); }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--light-gray);
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+
+  /* ARTICLE */
+  .article {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .intro {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--gray);
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 48px;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    margin: 56px 0 20px;
+    line-height: 1.1;
+  }
+
+  p {
+    font-size: 17px;
+    color: var(--gray);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  p strong { color: var(--black); font-weight: 700; }
+
+  .pull-quote {
+    border-left: 3px solid var(--orange);
+    padding: 4px 0 4px 24px;
+    margin: 32px 0;
+  }
+
+  .pull-quote p {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--light-gray);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .highlight-box {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 32px;
+    margin: 32px 0;
+  }
+
+  .highlight-num {
+    font-size: 72px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .highlight-label {
+    font-size: 22px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+
+  .highlight-body {
+    font-size: 15px;
+    color: var(--gray);
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  ul.styled {
+    list-style: none;
+    margin: 20px 0 24px;
+    padding: 0;
+  }
+
+  ul.styled li {
+    font-size: 17px;
+    color: var(--gray);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  ul.styled li::before {
+    content: "-";
+    color: var(--orange);
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .section-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--orange);
+    margin: 56px 0;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--black);
+    color: var(--white);
+    padding: 48px;
+    margin: 56px 0;
+    border-radius: 2px;
+  }
+
+  .callout h3 {
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .callout h3 span { color: var(--orange); }
+
+  .callout p {
+    color: #aaa;
+    margin-bottom: 24px;
+    font-size: 16px;
+  }
+
+  .callout a {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 2px;
+  }
+
+  .callout a:hover { background: #c93a08; }
+
+  /* CITATION */
+  .citation {
+    font-size: 12px;
+    color: var(--light-gray);
+    line-height: 1.7;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 56px;
+  }
+
+  .citation strong { color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer .logo { font-size: 13px; }
+  footer p { font-size: 12px; color: var(--light-gray); }
+
+  @media (max-width: 600px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 48px 20px 32px; }
+    .article { padding: 0 20px 56px; }
+    .callout { padding: 32px 24px; }
+    footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+  <link rel="canonical" href="https://kryspt.com/blog/acsm-resistance-training-2026.html" />
+</head>
+<body>
+
+<nav>
+  <a href="https://kryspt.com" class="logo">KRYS <span>PT</span></a>
+  <a href="https://kryspt.com" class="nav-link">kryspt.com</a>
+</nav>
+
+<div class="hero">
+  <div class="category">Evidence-Based Training &nbsp;·&nbsp; March 2026</div>
+  <h1>What the Biggest Strength Training Update in 17 Years <span>Actually Means for You</span></h1>
+  <div class="meta">
+    <span>Krys</span>
+    <div class="meta-dot"></div>
+    <span>March 2026</span>
+    <div class="meta-dot"></div>
+    <span>8 min read</span>
+  </div>
+</div>
+
+<div class="article">
+
+  <p class="intro">In March 2026, the American College of Sports Medicine published its first major update to resistance training guidelines since 2009. The paper synthesised 137 systematic reviews covering more than 30,000 participants. It is the most comprehensive evidence-based summary of resistance training ever produced. Here is what it actually says.</p>
+
+  <h2>You don't need to lift heavy to build muscle</h2>
+
+  <p>This is probably the most practically useful finding in the entire paper. For strength, load matters significantly. Lifting at <strong>80% or more of your one-rep maximum</strong> consistently produces superior strength gains. But for muscle growth, the evidence is clear: loads ranging from 30% to 100% of your maximum all produce equivalent hypertrophy, as long as the effort is genuinely high.</p>
+
+  <div class="pull-quote">
+    <p>"Muscle hypertrophy was not affected by load - low (30% 1RM) to high (100% 1RM) loads produced equivalent results." &mdash; ACSM 2026</p>
+  </div>
+
+  <p>What this means if you are new to training: you do not need to touch a heavy barbell to build muscle. Resistance bands, lighter dumbbells, bodyweight exercises - all of it works, provided you are pushing yourself close to your limit on each set.</p>
+
+  <p>What this means if you already train: load is a tool for strength, not a requirement for hypertrophy. Programming lighter phases without losing muscle is entirely supported by the evidence.</p>
+
+  <h2>Volume is the main driver of muscle growth</h2>
+
+  <div class="highlight-box">
+    <div class="highlight-num">10</div>
+    <div class="highlight-label">Sets per muscle group per week</div>
+    <div class="highlight-body">This is the threshold at which hypertrophy becomes reliable and meaningful. The dose-response relationship continues beyond that, with diminishing returns appearing around 18 to 20 sets per week.</div>
+  </div>
+
+  <div class="pull-quote">
+    <p>"Muscle hypertrophy was enhanced by higher volumes - 10 or more sets per muscle group per week." &mdash; ACSM 2026</p>
+  </div>
+
+  <p>One set beats zero. Two beats one. Before worrying about anything else, make sure you are hitting enough total weekly sets per muscle group. For most people training two to three times per week, this is very achievable.</p>
+
+  <h2>Training to failure is not necessary</h2>
+
+  <p>The research is unambiguous here. Training to momentary muscular failure does not produce superior strength or hypertrophy outcomes compared to stopping short. The evidence supports stopping <strong>two to three repetitions before failure</strong>, commonly referred to as leaving reps in reserve.</p>
+
+  <div class="pull-quote">
+    <p>"Training to momentary muscle fatigue did not consistently impact strength or hypertrophy outcomes." &mdash; ACSM 2026</p>
+  </div>
+
+  <p>When you stop short of failure, you accumulate less fatigue per set. Less fatigue means you can do more quality sets in a session, and recover faster between sessions. For older adults specifically, the paper flags an additional concern: training to failure may increase vascular stress and injury risk due to form breakdown.</p>
+
+  <p>Finish each set feeling like you could have done two more. That is the sweet spot.</p>
+
+  <h2>What doesn't actually matter</h2>
+
+  <p>The research found no consistent impact on outcomes from the following variables:</p>
+
+  <ul class="styled">
+    <li>Tempo and time under tension</li>
+    <li>Free weights versus machines</li>
+    <li>Rest interval length</li>
+    <li>Set structure, including drop sets, cluster sets and supersets</li>
+    <li>Time of day you train</li>
+  </ul>
+
+  <p>This does not mean these variables are useless. Tempo has value for teaching technique. Machine versus free weight is a preference and safety consideration. But none of these should be the primary focus of programme design. Volume, load, effort and consistency are the drivers. Everything else is detail.</p>
+
+  <h2>The lowering phase is your most underrated tool</h2>
+
+  <p>Of all the variables examined, <strong>eccentric overload</strong> - controlling the lowering phase of each repetition - is the one that consistently added extra hypertrophy beyond standard training.</p>
+
+  <div class="pull-quote">
+    <p>"Muscle hypertrophy was positively affected by contraction type - eccentric overload enhanced hypertrophy." &mdash; ACSM 2026</p>
+  </div>
+
+  <p>Slow, deliberate lowering with a full stretch at the end range of each movement. No additional equipment required. Just better attention to what you are already doing on every rep.</p>
+
+  <h2>Periodization is less important than you think</h2>
+
+  <p>Periodized programmes - block, linear, undulating - were not consistently superior to simple progressive overload when total volume was matched.</p>
+
+  <div class="pull-quote">
+    <p>"Periodization did not consistently impact hypertrophy or strength outcomes." &mdash; ACSM 2026</p>
+  </div>
+
+  <p>What matters is that the training stimulus keeps increasing over time. More weight, more reps, or more sets. The mechanism is progressive overload. The structure around it matters far less than previously thought. For most people, a straightforward progressive overload model is as effective as any complex periodized plan, and significantly easier to stick to long term.</p>
+
+  <h2>Equipment doesn't decide your results</h2>
+
+  <div class="pull-quote">
+    <p>"Elastic band RT and home-based RT produced marked benefits in strength, hypertrophy and physical function." &mdash; ACSM 2026</p>
+  </div>
+
+  <p>Resistance bands, bodyweight training and home-based programmes all produced measurable improvements in strength, muscle size and physical function. Access to a gym is not a prerequisite for meaningful results. What you use does not decide your results. Whether you show up does.</p>
+
+  <h2>How often should you train?</h2>
+
+  <p>The minimum supported by the research is <strong>two sessions per week</strong>, hitting all major muscle groups. Below that, the evidence becomes too thin to draw reliable conclusions.</p>
+
+  <p>Two to three sessions per week is the recommended starting point for most healthy adults. For experienced trainees with specific goals, higher frequency is supported but only provides additional benefit when it allows you to accumulate more total weekly volume without compromising recovery.</p>
+
+  <div class="section-divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>The most meaningful gain in this research comes from a simple shift: moving from no resistance training to any form of resistance training. The specific variables matter far less than that decision.</p>
+
+  <p>If you are new to training, the evidence is on your side. You do not need a perfect programme, expensive equipment or a gym membership. You need a plan you can repeat consistently, with enough effort to challenge your muscles week after week.</p>
+
+  <p>If you already train, this research validates simplicity. Progressive overload, adequate volume, quality reps. Everything else is secondary.</p>
+
+  <div class="callout">
+    <h3>Ready to start? <span>Let's work together.</span></h3>
+    <p>1:1 coaching in Oslo and online. Evidence-based programming built around your goals, your schedule, and your life.</p>
+    <a href="https://kryspt.com/#contact">Get in touch</a>
+  </div>
+
+  <div class="citation">
+    <strong>Source:</strong> Currier BS, D'Souza AC, Singh MAF et al. American College of Sports Medicine Position Stand. Resistance Training Prescription for Muscle Function, Hypertrophy, and Physical Performance in Healthy Adults: An Overview of Reviews. <em>Medicine &amp; Science in Sports &amp; Exercise.</em> 2026;58(4):851&ndash;872.<br><br>
+    Krys is a personal trainer based in Oslo, offering 1:1 and online coaching. <a href="https://kryspt.com" style="color: var(--orange);">kryspt.com</a>
+  </div>
+
+</div>
+
+<footer>
+  <a href="https://kryspt.com" class="logo">KRYS <span>PT</span></a>
+  <p>&copy; 2026 KRYS PT &nbsp;·&nbsp; kryspt.com</p>
+</footer>
+
+</body>
+</html>
