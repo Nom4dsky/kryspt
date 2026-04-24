@@ -343,7 +343,7 @@ const CLIENTS = [
       {
     password: "Maxime2026",
     name: "Maxime",
-    redirect: "clients/maxime.html"
+    redirect: "/clients/maxime.html"
   }
   ,
   {
@@ -489,14 +489,14 @@ const CLIENTS = [
   {
     password: "Cyprian2026",
     name: "Cyprian",
-    redirect: "clients/cyprian.html"
+    redirect: "/clients/cyprian.html"
   }
 
   ,
   {
     password: "SCRIPT",
     name: "Consultation Script",
-    redirect: "clients/consultation-script.html"
+    redirect: "/clients/consultation-script.html"
   }
 ];
 
@@ -506,7 +506,7 @@ function checkPassword() {
   if (client) {
     document.getElementById('login-error').classList.remove('show');
     if (client.redirect) {
-      window.location.href = client.redirect + "?auth=" + client.password;
+      window.location.href = client.redirect;
       return;
     }
     showDashboard(client);
