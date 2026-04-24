@@ -19,7 +19,7 @@
   .nav-right { display: flex; align-items: center; gap: 24px; }
   .nav-link { font-size: 13px; color: var(--light-gray); text-decoration: none; letter-spacing: 0.05em; }
   .nav-link:hover { color: var(--black); }
-  .lang-toggle { display: flex; }
+  .lang-toggle { display: flex; gap: 0; }
   .lang-btn { font-family: "Barlow", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; border: 1px solid var(--rule); background: none; color: var(--light-gray); padding: 5px 10px; cursor: pointer; transition: all 0.15s; }
   .lang-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
   .hero { max-width: var(--max); margin: 0 auto; padding: 80px 24px 48px; }
@@ -72,6 +72,7 @@
 
 <div class="articles">
 
+  <!-- ENGLISH ARTICLES -->
   <a class="article-item lang-en show" href="calorie-macro-calculator.html">
     <div class="article-left">
       <div class="article-tag">Nutrition</div>
@@ -132,9 +133,10 @@
     </div>
   </a>
 
+  <!-- POLISH ARTICLES -->
   <a class="article-item lang-pl" href="kalkulator-kalorii-makro.html">
     <div class="article-left">
-      <div class="article-tag">Odzywanie</div>
+      <div class="article-tag">Odzywianie</div>
       <div class="article-title">Ile Kalorii Naprawde Potrzebujesz?</div>
       <div class="article-excerpt">Oblicz swoje zapotrzebowanie kaloryczne, cele i pelny podzial makroskladnikow. Oparty na nauce, z praktycznymi wskazowkami dotyczacymi jakosci bialka, alkoholu i termogenezy adaptacyjnej.</div>
     </div>
@@ -152,21 +154,21 @@
 </footer>
 
 <script>
-function setLang(lang, btn) {
-  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  document.querySelectorAll('.lang-en, .lang-pl').forEach(function(el) { el.classList.remove('show'); });
-  document.querySelectorAll('.lang-' + lang).forEach(function(el) { el.classList.add('show'); });
-  if (lang === 'pl') {
-    document.getElementById('hero-cat').textContent = 'KRYS PT - Artykuly';
-    document.getElementById('hero-h1').innerHTML = 'Trening, Odzywanie <span>&amp; Wszystko Pomiedzy</span>';
-    document.getElementById('hero-intro').textContent = 'Teksty oparte na nauce o sile, kondycji, redukcji i tym, jak to wszystko dzialac w prawdziwym zyciu.';
-  } else {
-    document.getElementById('hero-cat').textContent = 'KRYS PT - Articles';
-    document.getElementById('hero-h1').innerHTML = 'Training, Nutrition <span>&amp; Everything In Between</span>';
-    document.getElementById('hero-intro').textContent = 'Evidence-based writing on strength, conditioning, fat loss, and how to make it all work in real life.';
+  function setLang(lang, btn) {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.lang-en, .lang-pl').forEach(el => el.classList.remove('show'));
+    document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('show'));
+    if (lang === 'pl') {
+      document.getElementById('hero-cat').textContent = 'KRYS PT - Artykuly';
+      document.getElementById('hero-h1').innerHTML = 'Trening, Odzywiane <span>&amp; Wszystko Pomiedzy</span>';
+      document.getElementById('hero-intro').textContent = 'Teksty oparte na nauce o sile, kondycji, redukcji i tym, jak to wszystko dzialac w prawdziwym zyciu.';
+    } else {
+      document.getElementById('hero-cat').textContent = 'KRYS PT - Articles';
+      document.getElementById('hero-h1').innerHTML = 'Training, Nutrition <span>&amp; Everything In Between</span>';
+      document.getElementById('hero-intro').textContent = 'Evidence-based writing on strength, conditioning, fat loss, and how to make it all work in real life.';
+    }
   }
-}
 </script>
 </body>
 </html>
