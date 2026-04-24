@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Kalorii i Makroskładników - Oparty na Nauce | KRYS PT</title>
+<meta name="description" content="Oblicz swoje dzienne zapotrzebowanie kaloryczne i cele makroskładników. Białko, tłuszcze i węglowodany oparte na aktualnych badaniach. Praktyczne wskazówki w zestawie.">
+<link rel="canonical" href="https://kryspt.com/blog/kalkulator-kalorii-makro.html" />
+<link rel="icon" type="image/png" sizes="64x64" href="../images/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #F2F0EA; --black: #111111; --orange: #E8450A; --gray: #555555; --light-gray: #999999; --rule: #C8C6BF; --white: #ffffff; --max: 720px; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--black); font-family: "Barlow", sans-serif; font-weight: 400; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); }
+  .logo { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; color: var(--light-gray); text-decoration: none; }
+  .logo span { color: var(--orange); }
+  .nav-link { font-size: 13px; color: var(--light-gray); text-decoration: none; letter-spacing: 0.05em; }
+  .nav-link:hover { color: var(--black); }
+  .hero { max-width: var(--max); margin: 0 auto; padding: 80px 24px 48px; }
+  .category { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; }
+  h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.05; text-transform: uppercase; letter-spacing: -0.02em; color: var(--black); margin-bottom: 32px; }
+  h1 span { color: var(--orange); }
+  .meta { display: flex; align-items: center; gap: 24px; font-size: 13px; color: var(--light-gray); padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
+  .meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--rule); }
+  .article { max-width: var(--max); margin: 0 auto; padding: 0 24px 80px; }
+  .intro { font-size: 20px; font-weight: 400; line-height: 1.6; color: var(--gray); padding: 40px 0; border-bottom: 1px solid var(--rule); margin-bottom: 48px; }
+  h2 { font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 20px; line-height: 1.1; }
+  p { font-size: 17px; color: var(--gray); line-height: 1.75; margin-bottom: 20px; }
+  p strong { color: var(--black); font-weight: 700; }
+  .pull-quote { border-left: 3px solid var(--orange); padding: 4px 0 4px 24px; margin: 32px 0; }
+  .pull-quote p { font-size: 15px; font-style: italic; color: var(--light-gray); margin: 0; line-height: 1.6; }
+  .section-divider { width: 40px; height: 2px; background: var(--orange); margin: 56px 0; }
+  ul.styled { list-style: none; margin: 16px 0 24px; padding: 0; }
+  ul.styled li { font-size: 16px; color: var(--gray); padding: 9px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 12px; align-items: flex-start; line-height: 1.5; }
+  ul.styled li::before { content: "-"; color: var(--orange); font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+  .tip-box { background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--orange); padding: 24px 28px; margin: 24px 0; }
+  .tip-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+  .tip-box p { font-size: 15px; margin-bottom: 0; }
+  .calc-wrap { background: var(--white); border: 1px solid var(--rule); padding: 40px; margin: 48px 0; }
+  .calc-title { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field.full { grid-column: 1 / -1; }
+  .calc-field label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-gray); }
+  .calc-field input, .calc-field select { background: var(--bg); border: 1px solid var(--rule); color: var(--black); font-family: "Barlow", sans-serif; font-size: 15px; padding: 10px 14px; outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none; }
+  .calc-field input:focus, .calc-field select:focus { border-color: var(--black); }
+  .calc-btn { width: 100%; background: var(--black); color: var(--white); border: none; font-family: "Barlow", sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
+  .calc-btn:hover { background: var(--orange); }
+  .results { display: none; margin-top: 32px; border-top: 1px solid var(--rule); padding-top: 32px; }
+  .results.show { display: block; }
+  .results-title { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 20px; }
+  .tdee-display { font-size: 64px; font-weight: 900; color: var(--black); line-height: 1; margin-bottom: 4px; }
+  .tdee-label { font-size: 13px; color: var(--light-gray); letter-spacing: 0.05em; margin-bottom: 32px; }
+  .goal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); margin-bottom: 32px; }
+  .goal-card { background: var(--white); padding: 20px 16px; text-align: center; }
+  .goal-card.active { background: var(--black); }
+  .goal-name { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 8px; }
+  .goal-card.active .goal-name { color: rgba(255,255,255,0.5); }
+  .goal-cal { font-size: 28px; font-weight: 900; color: var(--black); line-height: 1; }
+  .goal-card.active .goal-cal { color: var(--white); }
+  .goal-diff { font-size: 11px; color: var(--light-gray); margin-top: 4px; }
+  .goal-card.active .goal-diff { color: rgba(255,255,255,0.4); }
+  .goal-selector { display: flex; gap: 0; margin-bottom: 28px; }
+  .goal-btn { font-family: "Barlow", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--rule); background: var(--bg); color: var(--light-gray); padding: 8px 16px; cursor: pointer; transition: all 0.15s; flex: 1; text-align: center; }
+  .goal-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+  .macro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); margin-bottom: 16px; }
+  .macro-card { background: var(--white); padding: 20px 16px; text-align: center; }
+  .macro-name { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 6px; }
+  .macro-g { font-size: 32px; font-weight: 900; color: var(--black); line-height: 1; }
+  .macro-g span { color: var(--orange); }
+  .macro-cal { font-size: 12px; color: var(--light-gray); margin-top: 4px; }
+  .macro-note { font-size: 13px; color: var(--light-gray); line-height: 1.6; margin-top: 16px; background: var(--bg); padding: 16px 18px; }
+  .callout { background: var(--black); color: var(--white); padding: 48px; margin: 56px 0; }
+  .callout h3 { font-size: 28px; font-weight: 900; text-transform: uppercase; color: var(--white); margin-bottom: 12px; line-height: 1.1; margin-top: 0; }
+  .callout h3 span { color: var(--orange); }
+  .callout p { color: #aaa; margin-bottom: 24px; font-size: 16px; }
+  .callout a { display: inline-block; background: var(--orange); color: var(--white); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 14px 28px; }
+  .callout a:hover { background: #c93a08; }
+  .citation { font-size: 12px; color: var(--light-gray); line-height: 1.9; padding: 32px 0; border-top: 1px solid var(--rule); margin-top: 56px; }
+  .citation strong { color: var(--black); display: block; margin-bottom: 12px; font-size: 13px; }
+  .citation ol { padding-left: 18px; }
+  .citation ol li { margin-bottom: 8px; }
+  footer { border-top: 1px solid var(--rule); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 12px; color: var(--light-gray); }
+  @media (max-width: 600px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 48px 20px 32px; }
+    .article { padding: 0 20px 56px; }
+    .calc-wrap { padding: 24px 20px; }
+    .calc-grid { grid-template-columns: 1fr; }
+    .goal-cards, .macro-grid { grid-template-columns: 1fr; }
+    .callout { padding: 32px 24px; }
+    footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="https://kryspt.com" class="logo">KRYS <span>PT</span></a>
+  <a href="https://kryspt.com" class="nav-link">kryspt.com</a>
+</nav>
+<div style="max-width:720px;margin:0 auto;padding:12px 24px;text-align:right;font-size:12px;font-family:Barlow,sans-serif;"><a href="calorie-macro-calculator.html" style="color:#E8450A;text-decoration:none;letter-spacing:0.08em;">Read in English →</a></div>
+<div class="hero">
+  <div class="category">Odżywianie &nbsp;·&nbsp; Oparte na Nauce</div>
+  <h1>Ile Kalorii <span>Naprawdę Potrzebujesz?</span></h1>
+  <div class="meta">
+    <span>Krys</span><div class="meta-dot"></div>
+    <span>2026</span><div class="meta-dot"></div>
+    <span>7 min czytania</span>
+  </div>
+</div>
+<div class="article">
+  <p class="intro">Większość kalkulatorów kalorii rzuca Ci liczbę i znika. Ten daje Ci kalorie podtrzymujące, cele zależne od celu, pełny podział makroskładników i praktyczne uzasadnienie każdej liczby - żebyś naprawdę wiedział co z tym zrobić.</p>
+
+  <h2>Kalkulator</h2>
+  <p>Wpisz swoje aktualne dane i szczery poziom aktywności. Liczba to punkt startowy, nie wyrok. Każdy kalkulator jest szacunkiem. Twoje prawdziwe TDEE to taki poziom spożycia, przy którym waga pozostaje stabilna przez 2-3 tygodnie regularnego śledzenia.</p>
+
+  <div class="tip-box">
+    <div class="tip-label">Narzędzia do Śledzenia</div>
+    <p>Żeby faktycznie wykorzystać te liczby, musisz śledzić spożycie - przynajmniej przez pierwsze kilka tygodni. <strong>Cronometer</strong> jest najdokładniejszy pod względem mikroelementów i jakości białka. <strong>MyFitnessPal</strong> ma największą bazę produktów i jest łatwiejszy w codziennym użyciu. Oba działają - najlepsza aplikacja to ta, którą faktycznie będziesz otwierał. Śledź przez 2-3 tygodnie żeby poznać swój poziom bazowy, potem często wystarczy sama świadomość bez obsesyjnego logowania.</p>
+  </div>
+
+  <div class="calc-wrap">
+    <div class="calc-title">Kalkulator Kalorii i Makroskładników</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>Wiek</label><input type="number" id="age" placeholder="e.g. 30" min="15" max="80"></div>
+      <div class="calc-field"><label>Płeć</label><select id="sex"><option value="male">Mężczyzna</option><option value="female">Kobieta</option></select></div>
+      <div class="calc-field"><label>Waga (kg)</label><input type="number" id="weight" placeholder="e.g. 80" min="30" max="250"></div>
+      <div class="calc-field"><label>Wzrost (cm)</label><input type="number" id="height" placeholder="e.g. 178" min="100" max="250"></div>
+      <div class="calc-field full"><label>Poziom Aktywności</label>
+        <select id="activity">
+          <option value="1.2">Siedzący tryb życia - praca biurowa, mało lub brak ruchu</option>
+          <option value="1.375">Lekko aktywny - 1-3 treningi/tydzień</option>
+          <option value="1.55" selected>Umiarkowanie aktywny - 3-5 treningów/tydzień</option>
+          <option value="1.725">Bardzo aktywny - ciężkie treningi 6-7 dni/tydzień</option>
+          <option value="1.9">Ekstremalnie aktywny - praca fizyczna + codzienne treningi</option>
+        </select>
+      </div>
+      <div class="calc-field full"><label>% Tkanki Tłuszczowej (opcjonalne - poprawia dokładność)</label><input type="number" id="bodyfat" placeholder="np. 18 (zostaw puste jeśli nie wiesz)" min="5" max="50"></div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Oblicz Moje Kalorie i Makro</button>
+    <div class="results" id="results">
+      <div class="results-title">Twoje Kalorie Podtrzymujące (TDEE)</div>
+      <div class="tdee-display" id="tdee-display">-</div>
+      <div class="tdee-label">kcal / dzień</div>
+      <div class="goal-cards">
+        <div class="goal-card" id="cut-card"><div class="goal-name">Redukcja</div><div class="goal-cal" id="cut-cal">-</div><div class="goal-diff">-400 kcal/day</div></div>
+        <div class="goal-card active" id="maintain-card"><div class="goal-name">Utrzymanie</div><div class="goal-cal" id="maintain-cal">-</div><div class="goal-diff">maintenance</div></div>
+        <div class="goal-card" id="bulk-card"><div class="goal-name">Masa</div><div class="goal-cal" id="bulk-cal">-</div><div class="goal-diff">+250 kcal/day</div></div>
+      </div>
+      <div class="goal-selector">
+        <button class="goal-btn" onclick="setGoal('cut', this)">Redukcja</button>
+        <button class="goal-btn active" onclick="setGoal('maintain', this)">Utrzymanie</button>
+        <button class="goal-btn" onclick="setGoal('bulk', this)">Masa</button>
+      </div>
+      <div class="results-title">Macro Targets</div>
+      <div class="macro-grid">
+        <div class="macro-card"><div class="macro-name">Białko</div><div class="macro-g"><span id="protein-g">-</span>g</div><div class="macro-cal" id="protein-cal">- kcal</div></div>
+        <div class="macro-card"><div class="macro-name">Tłuszcze</div><div class="macro-g"><span id="fat-g">-</span>g</div><div class="macro-cal" id="fat-cal">- kcal</div></div>
+        <div class="macro-card"><div class="macro-name">Węglowodany</div><div class="macro-g"><span id="carb-g">-</span>g</div><div class="macro-cal" id="carb-cal">- kcal</div></div>
+      </div>
+      <p class="macro-note" id="macro-note"></p>
+    </div>
+  </div>
+
+  <h2>Białko - Co Mówią Badania</h2>
+  <p>Kalkulator ustawia białko na <strong>2.2g na kg masy ciała</strong> - górny zakres oparty na dowodach naukowych i zgodny z aktualnymi zaleceniami badawczymi dla osób trenujących regularnie. Minimum wspierane przez badania dla budowy mięśni wynosi około 1.6g/kg, ale wyższy cel daje użyteczny margines i jest szczególnie cenny podczas redukcji, gdy zachowanie mięśni ma kluczowe znaczenie.</p>
+  <p>Całkowite dzienne spożycie białka to najważniejsza zmienna żywieniowa dla mięśni. Rozkład w ciągu dnia ma mniejsze znaczenie niż większość ludzi sądzi - choć podział spożycia na 3-5 posiłków jest praktyczny i rozsądny.</p>
+  <div class="tip-box">
+    <div class="tip-label">Praktyczne Wskazówki - Białko</div>
+    <p>Osiągaj cel przez pełnowartościowe produkty: pierś kurczaka, jaja, jogurt grecki, twaróg, ryby, chuda wołowina. Odżywka białkowa to wygodne uzupełnienie, nie fundament. Celuj w co najmniej 30-40g białka na posiłek by zmaksymalizować odpowiedź syntezy białek mięśniowych. Jeśli masz problem z osiągnięciem celu, przekąska wysokobiałkowa przed snem działa dobrze - kazeina z twarogu lub jogurtu greckiego trawi się wolno i wspiera regenerację nocną.</p>
+  </div>
+
+  <h2>Jakość Białka - Nie Każdy Gram Jest Taki Sam</h2>
+  <p>40g białka z piersi kurczaka i 40g z przetworzonego batona białkowego to nie to samo. <strong>Zawartość leucyny i strawność</strong> to czynniki, które naprawdę decydują o tym jak skutecznie Twoje ciało wykorzystuje to białko do naprawy i wzrostu mięśni. Leucyna to aminokwas wyzwalający syntezę białek mięśniowych - a różne źródła białka zawierają jej bardzo różne ilości.</p>
+  <p>Białka zwierzęce - kurczak, wołowina, ryby, jaja, nabiał - są bogate w leucynę i wysoko strawne. Białka roślinne są zazwyczaj uboższe w leucynę i wymagają większych ilości by wywołać tę samą odpowiedź anaboliczną. Nie oznacza to, że dieta roślinna nie może wspierać wzrostu mięśni - absolutnie może - ale wymaga większej uwagi na całkowite spożycie i różnorodność źródeł. Białko serwatkowe (whey) jest wyjątkowo bogate w leucynę, dlatego pozostaje najlepiej przebadanym suplementem wspierającym mięśnie.</p>
+  <p>Praktyczny wniosek: jeśli osiągasz cel białkowy głównie przez całe białka zwierzęce, prawdopodobnie dostarczasz wystarczająco leucyny. Jeśli jesteś na diecie roślinnej, celuj w górny zakres spożycia białka i priorytetuj soję, edamame, soczewicę i białko grochowe, które mają lepszy profil leucyny niż większość źródeł roślinnych.</p>
+
+  <h2>Tłuszcze - Nieprzekraczalne Minimum</h2>
+  <p>Tłuszcze ustawione są na minimum <strong>25% całkowitych kalorii</strong>. Tłuszcze nie są opcjonalne - są substratem dla testosteronu, estrogenu i innych hormonów steroidowych. Metaanaliza z 2021 roku wykazała statystycznie istotne redukcje całkowitego testosteronu, wolnego testosteronu i DHT na diecie niskotłuszczowej w porównaniu z dietami wyższotłuszczowymi. Systematyczne schodzenie poniżej 20% kalorii z tłuszczu nie jest warte hormonalnych kosztów.</p>
+  <p>Praktyczne minimum oparte na dowodach wynosi około 0.3g na kg masy ciała jako absolutna dolna granica. Kalkulator używa 25% kalorii celowych - zazwyczaj wyższe niż to minimum i bardziej odpowiednie w kontekście treningowym.</p>
+  <div class="tip-box">
+    <div class="tip-label">Praktyczne Wskazówki - Tłuszcze</div>
+    <p>Nie bój się tłuszczu - po prostu go uwzględniaj. Jaja, oliwa z oliwek, awokado, orzechy, tłuste ryby i pełnotłusty nabiał to Twoje główne źródła. Jeśli jesteś na deficycie kalorycznym, priorytetyzuj tłuszcze jednonienasycone i omega-3. Unikaj zbyt agresywnego cięcia tłuszczów podczas redukcji - bardziej zrównoważone jest pierwsze zmniejszenie węglowodanów. Twarde minimum: 40-50g tłuszczu dziennie niezależnie od kalorii.</p>
+  </div>
+
+  <h2>Węglowodany - Elastyczne Makro</h2>
+  <p>Gdy minima białka i tłuszczów są spełnione, węglowodany wypełniają pozostałe kalorie. Nie dlatego, że węglowodany są mniej ważne - są głównym paliwem dla treningu i pracy wysokiej intensywności. Chodzi o to, że białko i tłuszcze mają fizjologiczne minima, które muszą być najpierw uszanowane. Węglowodany to dźwignia, którą regulujesz w górę lub w dół zależnie od objętości treningowej, preferencji i samopoczucia.</p>
+  <div class="tip-box">
+    <div class="tip-label">Praktyczne Wskazówki - Węglowodany</div>
+    <p>Priorytetyzuj węglowodany wokół treningu - przed sesją dla energii, po sesji dla regeneracji i uzupełnienia glikogenu. Owies, ryż, ziemniaki, owoce i chleb to dobre źródła. Jeśli masz problemy z energią podczas sesji, jedz więcej węglowodanów. Jeśli redukcja stanęła i cele białka i tłuszczów są osiągnięte, najpierw zmniejsz węglowodany. Celuj w około 14g błonnika na 1000 kcal spożycia - wpływa na sytość, zdrowie jelit i spójność bilansu energetycznego.</p>
+  </div>
+
+  <h2>Jak Faktycznie Używać Tych Liczb</h2>
+  <p>Śledź spożycie względem tych celów przez dwa do trzech tygodni przed wprowadzeniem jakichkolwiek zmian. Ważyć się codziennie i uśredniać tydzień - dzienne wahania 1-2kg są normalne i nic nie mówią. Liczy się tygodniowy trend.</p>
+  <ul class="styled">
+    <li>Jeśli przybierasz wagę na kalorii podtrzymującej, zmniejsz o 100-150 kcal i ponownie oceń po dwóch tygodniach.</li>
+    <li>Jeśli tracisz wagę na kalorii podtrzymującej, dodaj 100-150 kcal.</li>
+    <li>Dla redukcji: 400 kcal poniżej utrzymania daje około 0.4-0.5kg utraty tłuszczu tygodniowo - zrównoważone i chroniące mięśnie.</li>
+    <li>Dla masy: 250 kcal powyżej utrzymania minimalizuje przyrost tłuszczu wspierając wzrost. Większe nadwyżki nie budują mięśni szybciej u większości ludzi.</li>
+    <li>Nie goniaj za perfekcją codziennie. Trafiaj w tygodniowe sumy. Zły dzień nie niszczy tygodnia. Niekonsekwencja przez tygodnie - tak.</li>
+  </ul>
+
+  <div class="pull-quote">
+    <p>Najczęstszy błąd żywieniowy to nie jedzenie za dużo ani za mało. To niewiedzenie co faktycznie jesz.</p>
+  </div>
+
+  <h2>Dlaczego Postęp Zwalnia - Termogeneza Adaptacyjna</h2>
+  <p>Po 4-6 tygodniach konsekwentnego deficytu kalorycznego Twoje ciało się adaptuje. TDEE spada - nie dlatego, że kalkulator się mylił, ale dlatego, że Twoje ciało się broni. To nazywa się <strong>termogenezą adaptacyjną</strong>. Aktywność pozatreningowa spada, trawienie staje się wydajniejsze, hormony się zmieniają. Efekt: potrzebujesz mniej kalorii niż sugeruje oryginalne obliczenie by kontynuować utratę wagi.</p>
+  <p>To jest normalne i oczekiwane. Nie oznacza, że Twój metabolizm jest uszkodzony. Co robić gdy postęp staje:</p>
+  <ul class="styled">
+    <li><strong>Przerwa dietetyczna:</strong> 1-2 tygodnie na kaloriach podtrzymujących. Hormony częściowo się resetują, adherencja poprawia się i możesz kontynuować z bardziej responsywnym systemem.</li>
+    <li><strong>Zwiększ aktywność:</strong> dodaj 2000-3000 kroków dziennie przed dalszym zmniejszaniem kalorii. Ruch o niskiej intensywności to najbardziej niedoceniane narzędzie redukcji.</li>
+    <li><strong>Zmniejsz kalorie nieznacznie:</strong> spadek o 100-150 kcal tylko po wykluczeniu błędów śledzenia. Nie tnij kalorii agresywnie - przyspiesza to adaptację i utrudnia kolejną fazę.</li>
+    <li><strong>Sprawdź śledzenie:</strong> większość zastojów to nie adaptacja - to niedoszacowane spożycie. Oleje do gotowania, sosy, przekąski i napoje to zwykłe przyczyny.</li>
+  </ul>
+
+  <h2>Alkohol - Ukryta Zmienna</h2>
+  <p>Alkohol zawiera <strong>7 kcal na gram</strong> - więcej niż węglowodany (4 kcal/g) i prawie tyle co tłuszcze (9 kcal/g). Nie pasuje do żadnej kategorii makro i nie ma wartości odżywczej w kontekście składu ciała. Co ważniejsze, alkohol ostro hamuje syntezę białek mięśniowych i upośledza regenerację, szczególnie w 24-48 godzinach po sesji treningowej.</p>
+  <p>Nie oznacza to, że nie możesz pić. Oznacza, że musisz to uwzględniać. Standardowe piwo to około 150 kcal. Kieliszek wina około 120-130 kcal. Mocne alkohole bez mieszanek są niższe, około 60-70 kcal na shot. Śledź to jako dodatkowe źródło kalorii, nie jako węglowodany czy tłuszcze. Jeśli Twoje kalorie są w porządku i pijesz okazjonalnie, wpływ na skład ciała jest do opanowania. Jeśli nie widzisz postępu mimo osiągania celów, alkohol jest jedną z pierwszych zmiennych do szczczerego przejrzenia.</p>
+
+  <h2>Poziom Aktywności - Najsłabsze Ogniwo</h2>
+  <p>Mnożnik aktywności to największe źródło błędu w każdym kalkulatorze TDEE. Większość ludzi przecenia swój poziom. Praca biurowa z czterema sesjami na siłowni tygodniowo to lekka do umiarkowanej aktywności, nie bardzo aktywna. Jeśli masz wątpliwości, wybierz poziom niżej niż czujesz że powinieneś. Zawsze możesz dostosować w górę jeśli waga porusza się w złym kierunku.</p>
+
+  <div class="section-divider"></div>
+
+  <h2>Przykład Obliczenia</h2>
+  <p>Mężczyzna, 30 lat, 80kg, 178cm, umiarkowanie aktywny (4 sesje treningowe tygodniowo, praca biurowa).</p>
+  <p><strong>PPM (podstawowa przemiana materii):</strong> (10 x 80) + (6.25 x 178) - (5 x 30) + 5 = 1 847 kcal</p>
+  <p><strong>TDEE:</strong> 1 847 x 1.55 = 2 863 kcal - zaokrąglamy do 2 850 kcal/dzień na utrzymaniu.</p>
+  <p><strong>Białko:</strong> 80kg x 2.2 = 176g - 704 kcal</p>
+  <p><strong>Tłuszcze:</strong> 25% z 2 850 = 712 kcal = 79g</p>
+  <p><strong>Węglowodany:</strong> 2 850 - 704 - 712 = 1 434 kcal = 358g</p>
+  <p>Dla redukcji przy -400 kcal: 2 450 kcal łącznie. To samo białko. To samo minimum tłuszczów. Węglowodany spadają do około 258g. Deficyt pochodzi prawie całkowicie z redukcji węglowodanów - co chroni hormony, utrzymuje wydajność treningową i sprawia, że plan jest zrównoważony.</p>
+  <p>Po 4 tygodniach, jeśli waga się nie ruszyła, najpierw sprawdź dokładność śledzenia. Jeśli śledzenie jest solidne, zmniejsz węglowodany o kolejne 30-40g (120-160 kcal) i ponownie oceń po dwóch tygodniach.</p>
+
+  <div class="section-divider"></div>
+
+  <h2>Podsumowanie</h2>
+  <p>Kalorie wchodzące kontra wychodzące to realna zasada. Mechanizmy są bardziej złożone - hormony, termogeneza adaptacyjna, dostępność energii - ale fundamentalna zasada jest prawdziwa. Większość ludzi, którzy nie widzą rezultatów, albo je za dużo niż myślą, za mało niż myślą, albo nieregularnie robią jedno i drugie.</p>
+  <p>Kalkulator daje Ci punkt startowy. Konsekwentne śledzenie przez kilka tygodni daje Ci prawdziwe dane. Prawdziwe dane pozwalają podejmować prawdziwe decyzje. To cała gra.</p>
+
+  <div class="callout">
+    <h3>Chcesz pomocy we <span>wdrożeniu tego?</span></h3>
+    <p>Cele żywieniowe są użyteczne tylko z pasującym planem treningowym. Coaching 1:1 w Oslo i online - zbudowany wokół Twoich celów, Twojego harmonogramu i tego co naprawdę działa.</p>
+    <a href="https://kryspt.com/#contact">Napisz do mnie</a>
+  </div>
+
+  <div class="citation">
+    <strong>Źródła</strong>
+    <ol>
+      <li>Norton LE, Wilson GJ. Optimal protein intake to maximize muscle protein synthesis. <em>Agro Food Industry Hi-Tech.</em> 2009;20(2):54-57.</li>
+      <li>Stokes T et al. Recent perspectives regarding the role of dietary protein for the promotion of muscle hypertrophy with resistance exercise training. <em>Nutrients.</em> 2018;10(2):180.</li>
+      <li>Jager R et al. International Society of Sports Nutrition position stand: protein and exercise. <em>J Int Soc Sports Nutr.</em> 2017;14:20.</li>
+      <li>Whittaker J, Wu K. Low-fat diets and testosterone in men: systematic review and meta-analysis of intervention studies. <em>J Steroid Biochem Mol Biol.</em> 2021;210:105878.</li>
+      <li>Mifflin MD et al. A new predictive equation for resting energy expenditure in healthy individuals. <em>Am J Clin Nutr.</em> 1990;51(2):241-247.</li>
+      <li>Katch VL, McArdle WD, Katch FI. <em>Essentials of Exercise Physiology.</em> 4th ed. 2011. (Katch-McArdle formula).</li>
+      <li>Huberman Lab Podcast, August 2024. Evidence-based protein intake recommendations for muscle growth and metabolic health.</li>
+    </ol>
+  </div>
+</div>
+
+<footer>
+  <a href="https://kryspt.com" class="logo">KRYS <span>PT</span></a>
+  <p>&copy; 2026 KRYS PT &nbsp;&middot;&nbsp; kryspt.com</p>
+</footer>
+
+<script>
+  var currentGoal = "maintain";
+  var tdee = 0;
+  var weightKg = 0;
+
+  function calculate() {
+    var age = parseFloat(document.getElementById("age").value);
+    var sex = document.getElementById("sex").value;
+    var weight = parseFloat(document.getElementById("weight").value);
+    var height = parseFloat(document.getElementById("height").value);
+    var activity = parseFloat(document.getElementById("activity").value);
+    var bf = parseFloat(document.getElementById("bodyfat").value);
+
+    if (!age || !weight || !height) { alert("Proszę wypełnić wiek, wagę i wzrost."); return; }
+
+    weightKg = weight;
+    var bmr;
+    if (!isNaN(bf) && bf > 0 && bf < 50) {
+      var lbm = weight * (1 - bf / 100);
+      bmr = 370 + (21.6 * lbm);
+    } else {
+      if (sex === "male") { bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5; }
+      else { bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161; }
+    }
+
+    tdee = Math.round(bmr * activity);
+    document.getElementById("tdee-display").textContent = tdee.toLocaleString();
+    document.getElementById("cut-cal").textContent = (tdee - 400).toLocaleString();
+    document.getElementById("maintain-cal").textContent = tdee.toLocaleString();
+    document.getElementById("bulk-cal").textContent = (tdee + 250).toLocaleString();
+    document.getElementById("results").classList.add("show");
+    updateMacros();
+  }
+
+  function setGoal(goal, btn) {
+    currentGoal = goal;
+    document.querySelectorAll(".goal-btn").forEach(function(b) { b.classList.remove("active"); });
+    document.querySelectorAll(".goal-card").forEach(function(c) { c.classList.remove("active"); });
+    btn.classList.add("active");
+    document.getElementById(goal + "-card").classList.add("active");
+    updateMacros();
+  }
+
+  function updateMacros() {
+    var goalCals = currentGoal === "cut" ? tdee - 400 : currentGoal === "bulk" ? tdee + 250 : tdee;
+    var proteinG = Math.round(weightKg * 2.2);
+    var proteinCal = proteinG * 4;
+    var fatG = Math.max(50, Math.round(goalCals * 0.25 / 9));
+    var fatCal = fatG * 9;
+    var carbCal = goalCals - proteinCal - fatCal;
+    var carbG = Math.round(carbCal / 4);
+
+    document.getElementById("protein-g").textContent = proteinG;
+    document.getElementById("protein-cal").textContent = proteinCal + " kcal";
+    document.getElementById("fat-g").textContent = fatG;
+    document.getElementById("fat-cal").textContent = fatCal + " kcal";
+    document.getElementById("carb-g").textContent = carbG > 0 ? carbG : "-";
+    document.getElementById("carb-cal").textContent = carbCal > 0 ? carbCal + " kcal" : "zwiększ kalorie";
+
+    var goalLabel = currentGoal === "cut" ? "redukcja" : currentGoal === "bulk" ? "masa" : "utrzymanie";
+    var method = document.getElementById("bodyfat").value ? "Katch-McArdle" : "Mifflin-St Jeor";
+    document.getElementById("macro-note").textContent = goalCals.toLocaleString() + " kcal/dzień dla " + goalLabel + ". BMR via " + method + ". Protein at 2.2g/kg. Fat at 25% of goal calories (min 50g). Carbs fill the remainder. Adjust based on how your weight and performance respond over 2-3 weeks.";
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calorie &amp; Macro Calculator — Evidence-Based | KRYS PT</title>
+<meta name="description" content="Calculate your daily calorie needs and macro targets. Protein, fat and carb targets backed by current research. Practical tips included.">
+<link rel="canonical" href="https://kryspt.com/blog/calorie-macro-calculator.html" />
+<link rel="icon" type="image/png" sizes="64x64" href="../images/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #F2F0EA; --black: #111111; --orange: #E8450A; --gray: #555555; --light-gray: #999999; --rule: #C8C6BF; --white: #ffffff; --max: 720px; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--black); font-family: "Barlow", sans-serif; font-weight: 400; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); }
+  .logo { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; color: var(--light-gray); text-decoration: none; }
+  .logo span { color: var(--orange); }
+  .nav-link { font-size: 13px; color: var(--light-gray); text-decoration: none; letter-spacing: 0.05em; }
+  .nav-link:hover { color: var(--black); }
+  .hero { max-width: var(--max); margin: 0 auto; padding: 80px 24px 48px; }
+  .category { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; }
+  h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.05; text-transform: uppercase; letter-spacing: -0.02em; color: var(--black); margin-bottom: 32px; }
+  h1 span { color: var(--orange); }
+  .meta { display: flex; align-items: center; gap: 24px; font-size: 13px; color: var(--light-gray); padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
+  .meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--rule); }
+  .article { max-width: var(--max); margin: 0 auto; padding: 0 24px 80px; }
+  .intro { font-size: 20px; font-weight: 400; line-height: 1.6; color: var(--gray); padding: 40px 0; border-bottom: 1px solid var(--rule); margin-bottom: 48px; }
+  h2 { font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 20px; line-height: 1.1; }
+  p { font-size: 17px; color: var(--gray); line-height: 1.75; margin-bottom: 20px; }
+  p strong { color: var(--black); font-weight: 700; }
+  .pull-quote { border-left: 3px solid var(--orange); padding: 4px 0 4px 24px; margin: 32px 0; }
+  .pull-quote p { font-size: 15px; font-style: italic; color: var(--light-gray); margin: 0; line-height: 1.6; }
+  .section-divider { width: 40px; height: 2px; background: var(--orange); margin: 56px 0; }
+  ul.styled { list-style: none; margin: 16px 0 24px; padding: 0; }
+  ul.styled li { font-size: 16px; color: var(--gray); padding: 9px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 12px; align-items: flex-start; line-height: 1.5; }
+  ul.styled li::before { content: "-"; color: var(--orange); font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+  .tip-box { background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--orange); padding: 24px 28px; margin: 24px 0; }
+  .tip-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+  .tip-box p { font-size: 15px; margin-bottom: 0; }
+  .calc-wrap { background: var(--white); border: 1px solid var(--rule); padding: 40px; margin: 48px 0; }
+  .calc-title { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field.full { grid-column: 1 / -1; }
+  .calc-field label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-gray); }
+  .calc-field input, .calc-field select { background: var(--bg); border: 1px solid var(--rule); color: var(--black); font-family: "Barlow", sans-serif; font-size: 15px; padding: 10px 14px; outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none; }
+  .calc-field input:focus, .calc-field select:focus { border-color: var(--black); }
+  .calc-btn { width: 100%; background: var(--black); color: var(--white); border: none; font-family: "Barlow", sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
+  .calc-btn:hover { background: var(--orange); }
+  .results { display: none; margin-top: 32px; border-top: 1px solid var(--rule); padding-top: 32px; }
+  .results.show { display: block; }
+  .results-title { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 20px; }
+  .tdee-display { font-size: 64px; font-weight: 900; color: var(--black); line-height: 1; margin-bottom: 4px; }
+  .tdee-label { font-size: 13px; color: var(--light-gray); letter-spacing: 0.05em; margin-bottom: 32px; }
+  .goal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); margin-bottom: 32px; }
+  .goal-card { background: var(--white); padding: 20px 16px; text-align: center; }
+  .goal-card.active { background: var(--black); }
+  .goal-name { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 8px; }
+  .goal-card.active .goal-name { color: rgba(255,255,255,0.5); }
+  .goal-cal { font-size: 28px; font-weight: 900; color: var(--black); line-height: 1; }
+  .goal-card.active .goal-cal { color: var(--white); }
+  .goal-diff { font-size: 11px; color: var(--light-gray); margin-top: 4px; }
+  .goal-card.active .goal-diff { color: rgba(255,255,255,0.4); }
+  .goal-selector { display: flex; gap: 0; margin-bottom: 28px; }
+  .goal-btn { font-family: "Barlow", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--rule); background: var(--bg); color: var(--light-gray); padding: 8px 16px; cursor: pointer; transition: all 0.15s; flex: 1; text-align: center; }
+  .goal-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+  .macro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); margin-bottom: 16px; }
+  .macro-card { background: var(--white); padding: 20px 16px; text-align: center; }
+  .macro-name { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 6px; }
+  .macro-g { font-size: 32px; font-weight: 900; color: var(--black); line-height: 1; }
+  .macro-g span { color: var(--orange); }
+  .macro-cal { font-size: 12px; color: var(--light-gray); margin-top: 4px; }
+  .macro-note { font-size: 13px; color: var(--light-gray); line-height: 1.6; margin-top: 16px; background: var(--bg); padding: 16px 18px; }
+  .callout { background: var(--black); color: var(--white); padding: 48px; margin: 56px 0; }
+  .callout h3 { font-size: 28px; font-weight: 900; text-transform: uppercase; color: var(--white); margin-bottom: 12px; line-height: 1.1; margin-top: 0; }
+  .callout h3 span { color: var(--orange); }
+  .callout p { color: #aaa; margin-bottom: 24px; font-size: 16px; }
+  .callout a { display: inline-block; background: var(--orange); color: var(--white); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 14px 28px; }
+  .callout a:hover { background: #c93a08; }
+  .citation { font-size: 12px; color: var(--light-gray); line-height: 1.9; padding: 32px 0; border-top: 1px solid var(--rule); margin-top: 56px; }
+  .citation strong { color: var(--black); display: block; margin-bottom: 12px; font-size: 13px; }
+  .citation ol { padding-left: 18px; }
+  .citation ol li { margin-bottom: 8px; }
+  footer { border-top: 1px solid var(--rule); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 12px; color: var(--light-gray); }
+  @media (max-width: 600px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 48px 20px 32px; }
+    .article { padding: 0 20px 56px; }
+    .calc-wrap { padding: 24px 20px; }
+    .calc-grid { grid-template-columns: 1fr; }
+    .goal-cards, .macro-grid { grid-template-columns: 1fr; }
+    .callout { padding: 32px 24px; }
+    footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="https://kryspt.com" class="logo">KRYS <span>PT</span></a>
+  <a href="https://kryspt.com" class="nav-link">kryspt.com</a>
+</nav>
+<div style="max-width:720px;margin:0 auto;padding:12px 24px;text-align:right;font-size:12px;font-family:Barlow,sans-serif;"><a href="kalkulator-kalorii-makro.html" style="color:#E8450A;text-decoration:none;letter-spacing:0.08em;">Czytaj po polsku →</a></div>
+<div class="hero">
+  <div class="category">Nutrition &nbsp;·&nbsp; Evidence-Based</div>
+  <h1>How Many Calories Do You <span>Actually Need?</span></h1>
+  <div class="meta">
+    <span>Krys</span><div class="meta-dot"></div>
+    <span>2026</span><div class="meta-dot"></div>
+    <span>7 min read</span>
+  </div>
+</div>
+<div class="article">
+  <p class="intro">Most calorie calculators throw a number at you and disappear. This one gives you your maintenance calories, your goal-specific targets, a full macro breakdown, and the practical reasoning behind each number - so you actually know what to do with it.</p>
+
+  <h2>The Calculator</h2>
+  <p>Enter your current stats and an honest activity level. The number is a starting point, not gospel. Every calculator is an estimate. Your real TDEE is whatever intake produces stable bodyweight over 2-3 weeks of consistent tracking.</p>
+
+  <div class="tip-box">
+    <div class="tip-label">Tracking Tools</div>
+    <p>To actually use these numbers you need to track your intake, at least for the first few weeks. <strong>Cronometer</strong> is the most accurate for micronutrients and protein quality. <strong>MyFitnessPal</strong> has the largest food database and is easier to use daily. Either works - the best app is the one you will actually open. Track for 2-3 weeks to understand your baseline, then you can often maintain awareness without obsessive logging.</p>
+  </div>
+
+  <div class="calc-wrap">
+    <div class="calc-title">Calorie &amp; Macro Calculator</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>Age</label><input type="number" id="age" placeholder="e.g. 30" min="15" max="80"></div>
+      <div class="calc-field"><label>Sex</label><select id="sex"><option value="male">Male</option><option value="female">Female</option></select></div>
+      <div class="calc-field"><label>Weight (kg)</label><input type="number" id="weight" placeholder="e.g. 80" min="30" max="250"></div>
+      <div class="calc-field"><label>Height (cm)</label><input type="number" id="height" placeholder="e.g. 178" min="100" max="250"></div>
+      <div class="calc-field full"><label>Activity Level</label>
+        <select id="activity">
+          <option value="1.2">Sedentary - desk job, little or no exercise</option>
+          <option value="1.375">Lightly active - 1-3 workouts/week</option>
+          <option value="1.55" selected>Moderately active - 3-5 workouts/week</option>
+          <option value="1.725">Very active - hard training 6-7 days/week</option>
+          <option value="1.9">Extremely active - physical job + daily training</option>
+        </select>
+      </div>
+      <div class="calc-field full"><label>Body Fat % (optional - improves accuracy)</label><input type="number" id="bodyfat" placeholder="e.g. 18 (leave blank if unsure)" min="5" max="50"></div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Calculate My Calories &amp; Macros</button>
+    <div class="results" id="results">
+      <div class="results-title">Your Maintenance Calories (TDEE)</div>
+      <div class="tdee-display" id="tdee-display">-</div>
+      <div class="tdee-label">kcal / day</div>
+      <div class="goal-cards">
+        <div class="goal-card" id="cut-card"><div class="goal-name">Fat Loss</div><div class="goal-cal" id="cut-cal">-</div><div class="goal-diff">-400 kcal/day</div></div>
+        <div class="goal-card active" id="maintain-card"><div class="goal-name">Maintain</div><div class="goal-cal" id="maintain-cal">-</div><div class="goal-diff">maintenance</div></div>
+        <div class="goal-card" id="bulk-card"><div class="goal-name">Muscle Gain</div><div class="goal-cal" id="bulk-cal">-</div><div class="goal-diff">+250 kcal/day</div></div>
+      </div>
+      <div class="goal-selector">
+        <button class="goal-btn" onclick="setGoal('cut', this)">Fat Loss</button>
+        <button class="goal-btn active" onclick="setGoal('maintain', this)">Maintain</button>
+        <button class="goal-btn" onclick="setGoal('bulk', this)">Muscle Gain</button>
+      </div>
+      <div class="results-title">Macro Targets</div>
+      <div class="macro-grid">
+        <div class="macro-card"><div class="macro-name">Protein</div><div class="macro-g"><span id="protein-g">-</span>g</div><div class="macro-cal" id="protein-cal">- kcal</div></div>
+        <div class="macro-card"><div class="macro-name">Fat</div><div class="macro-g"><span id="fat-g">-</span>g</div><div class="macro-cal" id="fat-cal">- kcal</div></div>
+        <div class="macro-card"><div class="macro-name">Carbs</div><div class="macro-g"><span id="carb-g">-</span>g</div><div class="macro-cal" id="carb-cal">- kcal</div></div>
+      </div>
+      <p class="macro-note" id="macro-note"></p>
+    </div>
+  </div>
+
+  <h2>Protein - what the research actually says</h2>
+  <p>The calculator sets protein at <strong>2.2g per kg of bodyweight</strong> - the upper end of evidence-based ranges and consistent with current research recommendations for people who train regularly. The minimum supported for muscle-building is around 1.6g/kg, but the higher target provides a useful margin and is especially valuable during fat loss phases when muscle preservation matters most.</p>
+  <p>Total daily protein intake is the single biggest nutritional variable for muscle. Distribution across the day matters less than most people think - though splitting intake across 3-5 meals is practical and reasonable.</p>
+  <div class="tip-box">
+    <div class="tip-label">Practical Tips - Protein</div>
+    <p>Hit your target through whole foods first: chicken breast, eggs, Greek yogurt, cottage cheese, fish, lean beef. Protein powder is a convenient top-up, not a foundation. Aim for at least 30-40g of protein per meal to maximise the muscle protein synthesis response. If you struggle to hit your target, a high-protein snack before bed works well - casein from cottage cheese or Greek yogurt digests slowly and supports overnight recovery.</p>
+  </div>
+
+  <h2>Protein quality - not all grams are equal</h2>
+  <p>40g of protein from chicken breast and 40g from a processed protein bar are not the same. <strong>Leucine content and digestibility</strong> are what actually determine how effectively your body uses that protein for muscle repair and growth. Leucine is the amino acid that triggers muscle protein synthesis - and different protein sources contain it in very different amounts.</p>
+  <p>Animal proteins - chicken, beef, fish, eggs, dairy - are high in leucine and highly digestible. Plant proteins are generally lower in leucine and require larger quantities to produce the same anabolic response. This does not mean plant-based eating cannot support muscle growth - it absolutely can - but it requires more attention to total intake and source variety. Whey protein is exceptionally high in leucine, which is why it remains the most well-researched supplement for muscle support.</p>
+  <p>Practical implication: if you hit your protein target primarily through whole animal proteins, you are likely getting enough leucine. If you are plant-based, aim for the higher end of the protein range and prioritise soy, edamame, lentils, and pea protein which have better leucine profiles than most plant sources.</p>
+
+  <h2>Fat - the non-negotiable floor</h2>
+  <p>Fat is set at a minimum of <strong>25% of total calories</strong>. Fat is not optional - it is the substrate for testosterone, estrogen and other steroid hormones. A 2021 meta-analysis found statistically significant reductions in total testosterone, free testosterone and DHT on low-fat diets compared to higher-fat diets. Going below 20% of calories from fat consistently is not worth the hormonal cost.</p>
+  <p>The evidence-based practical minimum sits at around 0.3g per kg of bodyweight as an absolute floor. The calculator uses 25% of goal calories - typically higher than that floor and more appropriate for a training context.</p>
+  <div class="tip-box">
+    <div class="tip-label">Practical Tips - Fat</div>
+    <p>Don't fear fat - just account for it. Eggs, olive oil, avocado, nuts, fatty fish and full-fat dairy are your primary sources. If you are in a caloric deficit, prioritise monounsaturated and omega-3 fats. Avoid dropping fat too aggressively during a cut - it is more sustainable to reduce carbs first. Hard minimum: 40-50g of fat per day regardless of calories.</p>
+  </div>
+
+  <h2>Carbohydrates - the flexible macro</h2>
+  <p>Once protein and fat floors are met, carbohydrates fill the remaining calories. This is not because carbs are less important - they are the primary fuel for training and high-intensity work. It is because protein and fat have physiological minimums that must be respected first. Carbs are the lever you adjust up or down based on training volume, preferences and how you feel.</p>
+  <div class="tip-box">
+    <div class="tip-label">Practical Tips - Carbs</div>
+    <p>Prioritise carbs around training - pre-session for fuel, post-session for recovery and glycogen replenishment. Oats, rice, potatoes, fruit and bread are all fine sources. If you are struggling with energy during sessions, eat more carbs. If fat loss has stalled and protein and fat targets are met, reduce carbs first. Aim for roughly 14g of fibre per 1,000 kcal of intake - it affects satiety, gut health, and energy balance consistency.</p>
+  </div>
+
+  <h2>How to actually use these numbers</h2>
+  <p>Track your intake against these targets for two to three weeks before making any adjustments. Weigh yourself daily and average the week - daily fluctuations of 1-2kg are normal and tell you nothing. The weekly trend is what matters.</p>
+  <ul class="styled">
+    <li>If you are gaining weight on your maintenance number, reduce by 100-150 kcal and reassess after two weeks.</li>
+    <li>If you are losing weight on your maintenance number, add 100-150 kcal.</li>
+    <li>For fat loss: 400 kcal below maintenance produces roughly 0.4-0.5kg of fat loss per week - sustainable and muscle-preserving.</li>
+    <li>For muscle gain: 250 kcal above maintenance minimises fat gain while supporting growth. Bigger surpluses do not build muscle faster for most people.</li>
+    <li>Do not chase perfection daily. Hit your weekly totals. A bad day does not ruin a week. Inconsistency over weeks does.</li>
+  </ul>
+
+  <div class="pull-quote">
+    <p>The most common nutrition mistake is not eating too much or too little. It is not knowing what you are actually eating in the first place.</p>
+  </div>
+
+  <h2>Why progress stalls - adaptive thermogenesis</h2>
+  <p>After 4-6 weeks of consistent caloric restriction your body adapts. Your TDEE drops - not because the calculator was wrong, but because your body is defending itself. This is called <strong>adaptive thermogenesis</strong>. Non-exercise activity drops, digestion becomes more efficient, and hormones shift. The result: you need fewer calories than your original calculation suggests to continue losing weight.</p>
+  <p>This is normal and expected. It does not mean your metabolism is broken. What to do when progress stalls:</p>
+  <ul class="styled">
+    <li><strong>Diet break:</strong> 1-2 weeks at maintenance calories. Hormones partially reset, adherence improves, and you can continue with a more responsive system.</li>
+    <li><strong>Increase activity:</strong> add 2,000-3,000 steps per day before reducing calories further. Low-intensity movement is the most underused fat loss tool.</li>
+    <li><strong>Reduce calories slightly:</strong> drop by 100-150 kcal only after ruling out tracking errors. Do not slash calories aggressively - it accelerates the adaptation and makes the next phase harder.</li>
+    <li><strong>Reassess your tracking:</strong> most stalls are not adaptation - they are underreported intake. Cooking oils, sauces, nibbles, and drinks are the usual culprits.</li>
+  </ul>
+
+  <h2>Alcohol - the hidden variable</h2>
+  <p>Alcohol contains <strong>7 kcal per gram</strong> - more than carbohydrates (4 kcal/g) and almost as much as fat (9 kcal/g). It does not fit into any macro category and has no nutritional value in the context of body composition. More importantly, alcohol acutely suppresses muscle protein synthesis and impairs recovery, particularly in the 24-48 hours after a training session.</p>
+  <p>This does not mean you cannot drink. It means you need to account for it. A standard beer is roughly 150 kcal. A glass of wine is around 120-130 kcal. Spirits without mixers are lower, around 60-70 kcal per shot. Track it as an additional calorie source, not as a carb or fat. If your calories are in order and you drink occasionally, the impact on body composition is manageable. If you are not seeing progress despite hitting your targets, alcohol is one of the first variables to review honestly.</p>
+
+  <h2>Activity level - the weakest link</h2>
+  <p>The activity multiplier is the biggest source of error in any TDEE calculator. Most people overestimate. A desk job with four gym sessions per week is lightly-to-moderately active, not very active. If in doubt, go one level lower than feels right. You can always adjust upward if the scale is moving in the wrong direction.</p>
+
+  <div class="section-divider"></div>
+
+  <h2>A worked example</h2>
+  <p>Male, 30 years old, 80kg, 178cm, moderately active (4 training sessions per week, desk job).</p>
+  <p><strong>BMR:</strong> (10 x 80) + (6.25 x 178) - (5 x 30) + 5 = 1,847 kcal</p>
+  <p><strong>TDEE:</strong> 1,847 x 1.55 = 2,863 kcal - round to 2,850 kcal/day at maintenance.</p>
+  <p><strong>Protein:</strong> 80kg x 2.2 = 176g - 704 kcal</p>
+  <p><strong>Fat:</strong> 25% of 2,850 = 712 kcal = 79g</p>
+  <p><strong>Carbs:</strong> 2,850 - 704 - 712 = 1,434 kcal = 358g</p>
+  <p>For fat loss at -400 kcal: 2,450 kcal total. Same protein. Same fat minimum. Carbs drop to around 258g. The deficit comes almost entirely from carbohydrate reduction - which protects hormones, maintains training performance, and keeps the plan sustainable.</p>
+  <p>After 4 weeks, if weight has not moved, check tracking accuracy first. If tracking is solid, drop carbs by another 30-40g (120-160 kcal) and reassess after two more weeks.</p>
+
+  <div class="section-divider"></div>
+
+  <h2>The bottom line</h2>
+  <p>Calories in versus calories out is real. The mechanisms are more complex - hormones, adaptive thermogenesis, energy availability - but the fundamental principle holds. Most people who are not seeing results are either eating more than they think, less than they think, or inconsistently doing both.</p>
+  <p>A calculator gives you a starting point. Consistent tracking for a few weeks gives you real data. Real data lets you make real decisions. That is the whole game.</p>
+
+  <div class="callout">
+    <h3>Want help putting this <span>into practice?</span></h3>
+    <p>Nutrition targets are only useful with a training plan to match them. 1:1 coaching in Oslo and online - built around your goals, your schedule, and what actually works.</p>
+    <a href="https://kryspt.com/#contact">Get in touch</a>
+  </div>
+
+  <div class="citation">
+    <strong>References</strong>
+    <ol>
+      <li>Norton LE, Wilson GJ. Optimal protein intake to maximize muscle protein synthesis. <em>Agro Food Industry Hi-Tech.</em> 2009;20(2):54-57.</li>
+      <li>Stokes T et al. Recent perspectives regarding the role of dietary protein for the promotion of muscle hypertrophy with resistance exercise training. <em>Nutrients.</em> 2018;10(2):180.</li>
+      <li>Jager R et al. International Society of Sports Nutrition position stand: protein and exercise. <em>J Int Soc Sports Nutr.</em> 2017;14:20.</li>
+      <li>Whittaker J, Wu K. Low-fat diets and testosterone in men: systematic review and meta-analysis of intervention studies. <em>J Steroid Biochem Mol Biol.</em> 2021;210:105878.</li>
+      <li>Mifflin MD et al. A new predictive equation for resting energy expenditure in healthy individuals. <em>Am J Clin Nutr.</em> 1990;51(2):241-247.</li>
+      <li>Katch VL, McArdle WD, Katch FI. <em>Essentials of Exercise Physiology.</em> 4th ed. 2011. (Katch-McArdle formula).</li>
+      <li>Huberman Lab Podcast, August 2024. Evidence-based protein intake recommendations for muscle growth and metabolic health.</li>
+    </ol>
+  </div>
+</div>
+
+<footer>
+  <a href="https://kryspt.com" class="logo">KRYS <span>PT</span></a>
+  <p>&copy; 2026 KRYS PT &nbsp;&middot;&nbsp; kryspt.com</p>
+</footer>
+
+<script>
+  var currentGoal = "maintain";
+  var tdee = 0;
+  var weightKg = 0;
+
+  function calculate() {
+    var age = parseFloat(document.getElementById("age").value);
+    var sex = document.getElementById("sex").value;
+    var weight = parseFloat(document.getElementById("weight").value);
+    var height = parseFloat(document.getElementById("height").value);
+    var activity = parseFloat(document.getElementById("activity").value);
+    var bf = parseFloat(document.getElementById("bodyfat").value);
+
+    if (!age || !weight || !height) { alert("Please fill in age, weight and height."); return; }
+
+    weightKg = weight;
+    var bmr;
+    if (!isNaN(bf) && bf > 0 && bf < 50) {
+      var lbm = weight * (1 - bf / 100);
+      bmr = 370 + (21.6 * lbm);
+    } else {
+      if (sex === "male") { bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5; }
+      else { bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161; }
+    }
+
+    tdee = Math.round(bmr * activity);
+    document.getElementById("tdee-display").textContent = tdee.toLocaleString();
+    document.getElementById("cut-cal").textContent = (tdee - 400).toLocaleString();
+    document.getElementById("maintain-cal").textContent = tdee.toLocaleString();
+    document.getElementById("bulk-cal").textContent = (tdee + 250).toLocaleString();
+    document.getElementById("results").classList.add("show");
+    updateMacros();
+  }
+
+  function setGoal(goal, btn) {
+    currentGoal = goal;
+    document.querySelectorAll(".goal-btn").forEach(function(b) { b.classList.remove("active"); });
+    document.querySelectorAll(".goal-card").forEach(function(c) { c.classList.remove("active"); });
+    btn.classList.add("active");
+    document.getElementById(goal + "-card").classList.add("active");
+    updateMacros();
+  }
+
+  function updateMacros() {
+    var goalCals = currentGoal === "cut" ? tdee - 400 : currentGoal === "bulk" ? tdee + 250 : tdee;
+    var proteinG = Math.round(weightKg * 2.2);
+    var proteinCal = proteinG * 4;
+    var fatG = Math.max(50, Math.round(goalCals * 0.25 / 9));
+    var fatCal = fatG * 9;
+    var carbCal = goalCals - proteinCal - fatCal;
+    var carbG = Math.round(carbCal / 4);
+
+    document.getElementById("protein-g").textContent = proteinG;
+    document.getElementById("protein-cal").textContent = proteinCal + " kcal";
+    document.getElementById("fat-g").textContent = fatG;
+    document.getElementById("fat-cal").textContent = fatCal + " kcal";
+    document.getElementById("carb-g").textContent = carbG > 0 ? carbG : "-";
+    document.getElementById("carb-cal").textContent = carbCal > 0 ? carbCal + " kcal" : "increase calories";
+
+    var goalLabel = currentGoal === "cut" ? "fat loss" : currentGoal === "bulk" ? "muscle gain" : "maintenance";
+    var method = document.getElementById("bodyfat").value ? "Katch-McArdle" : "Mifflin-St Jeor";
+    document.getElementById("macro-note").textContent = goalCals.toLocaleString() + " kcal/day for " + goalLabel + ". BMR via " + method + ". Protein at 2.2g/kg. Fat at 25% of goal calories (min 50g). Carbs fill the remainder. Adjust based on how your weight and performance respond over 2-3 weeks.";
+  }
+</script>
+</body>
+</html>
