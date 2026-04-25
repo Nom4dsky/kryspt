@@ -133,8 +133,41 @@
     .pw-box button:hover { background: #222; }
     .pw-error { font-size: 10px; color: #aaa; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
   </style>
+
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+    .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
+    .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #fff; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .pw-box .pw-sub { font-size: 11px; color: #555; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+    .pw-box input { display: block; width: 260px; background: #1a1a1a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
+    .pw-box input:focus { border-color: #0a0a0a; }
+    .pw-box button { width: 260px; background: #0a0a0a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
+    .pw-box button:hover { background: #222; }
+    .pw-error { font-size: 10px; color: #aaa; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
+  </style>
 </head>
 <body>
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">MAXIME</div>
+    <div class="pw-sub">Training Block · KRYS.PT</div>
+    <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">ENTER →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+  function checkPw() {
+    var v = document.getElementById('pw-input').value.trim();
+    if (v === 'Maxime2026') {
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+</script>
 <div id="pw-gate">
   <div class="pw-box">
     <div class="pw-title">MAXIME</div>
@@ -753,6 +786,15 @@
     document.getElementById('w' + n).classList.add('active');
     document.querySelectorAll('.tab-btn')[n - 1].classList.add('active');
   }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'Maxime2026') {
+    var gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>
