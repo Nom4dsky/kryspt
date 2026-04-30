@@ -691,3 +691,51 @@ footer {
   footer { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
   .foot-social { gap: 1rem; }
 }
+
+/* ── HERO CTA LINK ── */
+.hero-cta-link { display:inline-block; margin-top:1rem; font-size:0.8rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--orange); text-decoration:none; border-bottom:1px solid var(--orange); padding-bottom:2px; transition:opacity 0.2s; }
+.hero-cta-link:hover { opacity:0.7; }
+.hero-cta-link:visited { color:var(--orange); }
+
+/* ── SERVICES 3-COL ── */
+.services-grid--three { grid-template-columns: repeat(3,1fr); }
+.svc-delivery { font-size:0.72rem; color:#5C5752; margin:0.8rem 0 0.6rem; font-style:italic; }
+.svc-note { font-size:0.72rem; color:#5C5752; line-height:1.6; margin:0.6rem 0; background:rgba(0,0,0,0.03); padding:0.7rem 0.9rem; border-left:2px solid var(--orange); }
+.svc-testimonial { margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--rule); }
+.svc-t-quote { font-size:0.75rem; font-style:italic; color:#5C5752; line-height:1.6; margin-bottom:0.4rem; }
+.svc-t-author { font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#999; }
+.svc-t-badge { background:var(--orange); color:#fff; font-size:0.6rem; padding:2px 7px; margin-left:6px; font-weight:700; }
+
+/* ── PRICING ── */
+#pricing { padding:5rem 5vw; }
+.pricing-top { margin-bottom:3rem; }
+.pricing-top p { font-size:0.88rem; color:var(--silver); margin-top:0.6rem; }
+.pricing-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; max-width:780px; }
+.pricing-card { background:#2a2724; padding:2.4rem 2rem; position:relative; }
+.pricing-card--featured { background:var(--orange); }
+.pricing-badge { font-size:0.58rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:0.5rem; }
+.pricing-label { font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:0.8rem; }
+.pricing-card--featured .pricing-label { color:rgba(255,255,255,0.8); }
+.pricing-amount { font-family:var(--f); font-size:3.2rem; font-weight:800; color:#fff; line-height:1; }
+.pricing-currency { font-size:1.4rem; font-weight:600; }
+.pricing-period { font-size:0.7rem; color:rgba(255,255,255,0.5); margin:0.4rem 0 1.4rem; }
+.pricing-card--featured .pricing-period { color:rgba(255,255,255,0.7); }
+.pricing-features { list-style:none; margin-bottom:1.8rem; }
+.pricing-features li { font-size:0.78rem; color:rgba(255,255,255,0.7); padding:0.45rem 0; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; gap:0.6rem; }
+.pricing-card--featured .pricing-features li { color:rgba(255,255,255,0.9); border-bottom-color:rgba(255,255,255,0.15); }
+.pricing-features li::before { content:'→'; color:rgba(255,255,255,0.4); flex-shrink:0; }
+.pricing-card--featured .pricing-features li::before { color:rgba(255,255,255,0.7); }
+.pricing-cta { display:inline-block; background:#fff; color:var(--black); font-family:var(--f); font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; padding:0.75rem 1.6rem; text-decoration:none; transition:opacity 0.2s; }
+.pricing-cta:visited { color:var(--black); }
+.pricing-cta--featured:visited { color:#fff; }
+.pricing-cta:hover { opacity:0.85; }
+.pricing-cta--featured { background:var(--black); color:#fff; }
+.pricing-availability { font-size:0.75rem; color:var(--silver); margin-top:1.8rem; max-width:600px; line-height:1.7; }
+
+/* ── CONTACT SUB ── */
+.contact-sub { font-size:0.82rem; color:var(--silver); line-height:1.7; margin-bottom:1.4rem; max-width:440px; }
+
+@media(max-width:900px) {
+  .services-grid--three { grid-template-columns:1fr; }
+  .pricing-grid { grid-template-columns:1fr; max-width:420px; }
+}
