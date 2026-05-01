@@ -725,16 +725,16 @@ footer {
     <img src="images/profile.png" alt="Krys - Personal Trainer Oslo" class="hero-portrait reveal">
     <div class="hero-stat-row reveal d1">
       <div class="hero-stat">
-        <div class="hero-stat-num">EN</div>
-        <div class="hero-stat-label" data-en="Language" data-pl="Język">Language</div>
+        <div class="hero-stat-num">40+</div>
+        <div class="hero-stat-label" data-en="Clients Coached" data-pl="Klientów">Clients Coached</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">PL</div>
-        <div class="hero-stat-label" data-en="Language" data-pl="Język">Language</div>
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label" data-en="Years Coaching" data-pl="Lata coachingu">Years Coaching</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">Oslo</div>
-        <div class="hero-stat-label" data-en="+ Online" data-pl="+ Online">+ Online</div>
+        <div class="hero-stat-num">EN+PL</div>
+        <div class="hero-stat-label" data-en="Oslo + Online" data-pl="Oslo + Online">Oslo + Online</div>
       </div>
     </div>
   </div>
@@ -1178,7 +1178,7 @@ function setLang(lang, btn) {
 
 // Init language
 document.addEventListener('DOMContentLoaded', () => {
-
+  const btn = document.querySelector('.lang-btn.' + (currentLang === 'pl' ? '' : 'active'));
   const btns = document.querySelectorAll('.lang-btn');
   btns.forEach(b => b.classList.remove('active'));
   if (currentLang === 'pl') {
@@ -1193,11 +1193,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) { el.classList.add('visible'); }
-    else { obs.observe(el); }
-  });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 });
 
 // Contact form
