@@ -7,9 +7,11 @@
 <meta name="description" content="Personal trainer in Oslo and online. Strength, fat loss and conditioning. Coaching in English and Polish.">
 <link rel="canonical" href="https://kryspt.com/" />
 <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+<link rel="shortcut icon" href="images/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500;1,600&family=Poppins:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 /* ─── TOKENS ─── */
@@ -21,9 +23,9 @@
   --accent: #c96442;
   --accent2:#7a3a1f;
   --white:  #fff;
-  --f-display: 'Anton', sans-serif;
+  --f-display: 'Oswald', sans-serif;
   --f-serif:   'Cormorant Garamond', Georgia, serif;
-  --f-body:    'Inter', sans-serif;
+  --f-body:    'Poppins', sans-serif;
   --f-mono:    'JetBrains Mono', monospace;
 }
 
@@ -127,7 +129,7 @@ nav {
   font-family: var(--f-display);
   font-size: clamp(52px, 7vw, 100px);
   line-height: 0.95;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 32px;
@@ -206,7 +208,7 @@ nav {
 .hero-stat-num {
   font-family: var(--f-display);
   font-size: 32px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   color: var(--accent);
   line-height: 1;
   margin-bottom: 4px;
@@ -253,7 +255,7 @@ section { padding: 96px 48px; }
 .for-whom-headline {
   font-family: var(--f-display);
   font-size: clamp(40px, 5vw, 72px);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--bone);
   line-height: 1;
@@ -284,7 +286,7 @@ section { padding: 96px 48px; }
 .about-headline {
   font-family: var(--f-display);
   font-size: clamp(40px, 5vw, 68px);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1;
   margin-bottom: 48px;
@@ -333,7 +335,7 @@ section { padding: 96px 48px; }
 .services-headline {
   font-family: var(--f-display);
   font-size: clamp(40px, 5vw, 72px);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1;
   margin-bottom: 16px;
@@ -345,7 +347,7 @@ section { padding: 96px 48px; }
   line-height: 1.7;
   margin-top: 16px;
 }
-.svc-card { background: var(--bone); padding: 48px 40px; }
+.svc-card { background: var(--bone); padding: 48px 40px; display:flex; flex-direction:column; }
 .svc-num {
   font-family: var(--f-mono);
   font-size: 10px;
@@ -356,14 +358,14 @@ section { padding: 96px 48px; }
 .svc-title {
   font-family: var(--f-display);
   font-size: 32px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1.1;
   margin-bottom: 20px;
 }
 .svc-divider { width: 32px; height: 2px; background: var(--accent); margin-bottom: 20px; }
 .svc-body { font-size: 16px; color: rgba(21,18,14,0.65); line-height: 1.75; margin-bottom: 24px; }
-.svc-link {
+.svc-link { margin-top:auto; 
   font-family: var(--f-mono);
   font-size: 10px;
   letter-spacing: 0.18em;
@@ -384,7 +386,7 @@ section { padding: 96px 48px; }
 .pricing-headline {
   font-family: var(--f-display);
   font-size: clamp(40px, 5vw, 72px);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--bone);
   line-height: 1;
@@ -406,7 +408,7 @@ section { padding: 96px 48px; }
 .pricing-name {
   font-family: var(--f-display);
   font-size: 28px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--bone);
   margin-bottom: 32px;
@@ -451,7 +453,7 @@ section { padding: 96px 48px; }
 .testimonials-headline {
   font-family: var(--f-display);
   font-size: clamp(40px, 5vw, 72px);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1;
   margin-bottom: 64px;
@@ -482,7 +484,7 @@ section { padding: 96px 48px; }
 .faq-headline {
   font-family: var(--f-display);
   font-size: clamp(40px, 5vw, 72px);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1;
   margin-bottom: 64px;
@@ -507,7 +509,7 @@ section { padding: 96px 48px; }
 .contact-headline {
   font-family: var(--f-display);
   font-size: clamp(52px, 7vw, 100px);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--bone);
   line-height: 0.95;
@@ -848,13 +850,7 @@ footer {
         <span class="lang-en active">Most clients say the same thing after a few months - that they feel better. Stronger. Trousers fit differently, stairs don&rsquo;t drain them, the day is easier. That kind of change doesn&rsquo;t make magazine covers. It tends to stick around, though.</span>
         <span class="lang-pl">Większość klientów mówi po kilku miesiącach to samo - że czują się lepiej. Silniejsi. Spodnie leżą inaczej, schody nie męczą, dzień jest łatwiejszy. Taka zmiana nie trafia na okładki magazynów. Zostaje za to na dłużej.</span>
       </p>
-      <div class="about-creds reveal">
-        <span class="cred" data-en="Personal Trainer · Level 3" data-pl="Trener Personalny · Level 3">Personal Trainer · Level 3</span>
-        <span class="cred" data-en="HYROX Certified" data-pl="HYROX Certified">HYROX Certified</span>
-        <span class="cred" data-en="Kettlebell Instructor" data-pl="Instruktor Kettlebell">Kettlebell Instructor</span>
-        <span class="cred" data-en="SATS Sandvika · Oslo" data-pl="SATS Sandvika · Oslo">SATS Sandvika · Oslo</span>
       </div>
-    </div>
   </div>
 </section>
 
@@ -871,7 +867,7 @@ footer {
       <span class="lang-pl">Nie ma znaczenia czy jesteś w Oslo, czy po drugiej stronie ekranu. Podejście jest takie samo - plan dopasowany do ciebie, regularny kontakt i ktoś, kto pilnuje żeby to działało.</span>
     </p>
   </div>
-  <div class="section-grid-2" style="gap:2px;background:rgba(21,18,14,0.1);">
+  <div class="section-grid-2" style="gap:2px;background:rgba(21,18,14,0.1);align-items:stretch;">
     <div class="svc-card reveal">
       <div class="svc-num">01</div>
       <h3 class="svc-title" data-en="Personal Training" data-pl="Trening Personalny">Personal Training</h3>
@@ -1032,6 +1028,54 @@ footer {
   </div>
 </section>
 
+<!-- ─── BLOG ─── -->
+<section id="blog" style="background:var(--bone);">
+  <div class="eyebrow" data-en="From the blog" data-pl="Z bloga">From the blog</div>
+  <h2 class="testimonials-headline" style="margin-bottom:48px;">
+    <span class="lang-en active">Training &amp; nutrition,<em>explained properly.</em></span>
+    <span class="lang-pl">Trening i odżywianie,<em>wytłumaczone porządnie.</em></span>
+  </h2>
+  <div class="section-grid-3" style="background:rgba(21,18,14,0.08);margin-bottom:32px;">
+    <a href="/blog/calorie-macro-calculator.html" class="tcard reveal" style="text-decoration:none;display:block;">
+      <div style="height:180px;background:url('images/blog-img-calories.jpg') center/cover;margin:-48px -40px 32px;"></div>
+      <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Nutrition</div>
+      <div style="font-family:var(--f-display);font-size:22px;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink);margin-bottom:10px;line-height:1.1;">
+        <span class="lang-en active">How Many Calories Do You Actually Need?</span>
+        <span class="lang-pl">Ile kalorii naprawdę potrzebujesz?</span>
+      </div>
+      <div style="font-size:13px;color:rgba(21,18,14,0.55);line-height:1.6;">
+        <span class="lang-en active">Calculator + evidence-based breakdown of protein, fat and carbs.</span>
+        <span class="lang-pl">Kalkulator + podział makroskładników oparty na nauce.</span>
+      </div>
+    </a>
+    <a href="/blog/acsm-resistance-training-2026.html" class="tcard reveal d1" style="text-decoration:none;display:block;">
+      <div style="height:180px;background:url('images/blog-img-acsm.jpg') center/cover;margin:-48px -40px 32px;"></div>
+      <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Training</div>
+      <div style="font-family:var(--f-display);font-size:22px;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink);margin-bottom:10px;line-height:1.1;">
+        <span class="lang-en active">The Biggest Strength Training Update in 17 Years</span>
+        <span class="lang-pl">Największa aktualizacja wytycznych siłowych od 17 lat</span>
+      </div>
+      <div style="font-size:13px;color:rgba(21,18,14,0.55);line-height:1.6;">
+        <span class="lang-en active">137 studies. 30,000+ participants. What it actually means.</span>
+        <span class="lang-pl">137 badań. Ponad 30 000 uczestników. Co to naprawdę oznacza.</span>
+      </div>
+    </a>
+    <a href="/blog/why-you-are-not-losing-weight.html" class="tcard reveal d2" style="text-decoration:none;display:block;">
+      <div style="height:180px;background:url('images/blog-img-weightloss.jpg') center/cover;margin:-48px -40px 32px;"></div>
+      <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Nutrition</div>
+      <div style="font-family:var(--f-display);font-size:22px;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink);margin-bottom:10px;line-height:1.1;">
+        <span class="lang-en active">Why You Are Not Losing Weight</span>
+        <span class="lang-pl">Dlaczego nie chudniesz</span>
+      </div>
+      <div style="font-size:13px;color:rgba(21,18,14,0.55);line-height:1.6;">
+        <span class="lang-en active">And what to actually do about it.</span>
+        <span class="lang-pl">I co z tym zrobić.</span>
+      </div>
+    </a>
+  </div>
+  <a href="/blog" style="font-family:var(--f-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px;" data-en="All articles →" data-pl="Wszystkie artykuły →">All articles →</a>
+</section>
+
 <!-- ─── CONTACT ─── -->
 <section id="contact">
   <div class="section-grid-2">
@@ -1046,10 +1090,6 @@ footer {
         <span class="lang-pl">Umów się na bezpłatną 30-minutową konsultację. Porozmawiamy o tym, gdzie jesteś i dokąd chcesz dotrzeć. Bez zobowiązań, bez sprzedawania na siłę. Wypełnij formularz albo napisz na WhatsApp - odpowiem w ciągu kilku godzin.</span>
       </p>
       <div class="contact-alt">
-        <div class="contact-info-block">
-          <div class="contact-info-label" data-en="Email" data-pl="Email">Email</div>
-          <div class="contact-info-value"><a href="mailto:contact@kryspt.com">contact@kryspt.com</a></div>
-        </div>
         <div class="contact-info-block">
           <div class="contact-info-label" data-en="Location" data-pl="Lokalizacja">Location</div>
           <div class="contact-info-value">SATS Sandvika Panorama, Oslo</div>
