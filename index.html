@@ -1178,7 +1178,7 @@ function setLang(lang, btn) {
 
 // Init language
 document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.lang-btn.' + (currentLang === 'pl' ? '' : 'active'));
+
   const btns = document.querySelectorAll('.lang-btn');
   btns.forEach(b => b.classList.remove('active'));
   if (currentLang === 'pl') {
@@ -1193,7 +1193,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) { el.classList.add('visible'); }
+    else { obs.observe(el); }
+  });
 });
 
 // Contact form
