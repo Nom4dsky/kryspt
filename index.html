@@ -714,7 +714,7 @@ footer {
     </p>
     <p class="hero-body">
       <span class="lang-en active">I help you find an approach that fits your life - and actually works.</span>
-      <span class="lang-pl">Pomagam ci znaleźć podejście, które pasuje do twojego życia - i które faktycznie działa.</span>
+      <span class="lang-pl">Pomogę Ci znaleźć podejście, które pasuje do Twojego życia - i które faktycznie działa.</span>
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary" data-en="Book free consult" data-pl="Umów bezpłatną konsultację">Book free consult</a>
@@ -827,42 +827,7 @@ footer {
         <span class="lang-en active">Przemyslaw<em>Krys</em></span>
         <span class="lang-pl">Przemyslaw<em>Krys</em></span>
       </h2>
-      <div class="about-carousel reveal" style="margin-top:24px;max-width:400px;position:relative;overflow:hidden;">
-        <div class="about-carousel-track" style="display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);">
-          <img src="images/about-deadlift.jpg" alt="Krys deadlifting"      style="width:100%;flex-shrink:0;filter:sepia(0.1) contrast(1.05);object-fit:cover;aspect-ratio:3/4;">
-          <img src="images/about-ohp.jpg"      alt="Krys overhead press"   style="width:100%;flex-shrink:0;filter:sepia(0.1) contrast(1.05);object-fit:cover;aspect-ratio:3/4;">
-          <img src="images/about-squat.jpg"    alt="Krys squatting"        style="width:100%;flex-shrink:0;filter:sepia(0.1) contrast(1.05);object-fit:cover;aspect-ratio:3/4;">
-        </div>
-        <div class="about-carousel-dots" style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;">
-          <span class="acdot active" data-i="0"></span>
-          <span class="acdot" data-i="1"></span>
-          <span class="acdot" data-i="2"></span>
-        </div>
-        <button class="ac-prev" aria-label="Previous">&#8592;</button>
-        <button class="ac-next" aria-label="Next">&#8594;</button>
-      </div>
-
-      <style>
-        .about-carousel { cursor: grab; user-select: none; }
-        .about-carousel:active { cursor: grabbing; }
-        .acdot {
-          width: 6px; height: 6px; border-radius: 50%;
-          background: rgba(240,236,226,0.4); display: block;
-          cursor: pointer; transition: background 0.3s;
-        }
-        .acdot.active { background: var(--accent); }
-        .ac-prev, .ac-next {
-          position: absolute; top: 50%; transform: translateY(-50%);
-          background: rgba(21,18,14,0.5); color: var(--bone);
-          border: none; width: 36px; height: 36px;
-          display: flex; align-items: center; justify-content: center;
-          cursor: pointer; font-size: 16px;
-          transition: background 0.2s; backdrop-filter: blur(4px);
-        }
-        .ac-prev { left: 10px; }
-        .ac-next { right: 10px; }
-        .ac-prev:hover, .ac-next:hover { background: var(--accent); }
-      </style>
+      <img src="images/profile.png" alt="Krys" style="width:100%;max-width:400px;filter:sepia(0.1) contrast(1.05);margin-top:24px;" class="reveal">
     </div>
     <div>
       <div class="about-pull reveal">
@@ -1257,37 +1222,6 @@ document.getElementById('contact-form')?.addEventListener('submit', async e => {
     btn.disabled = false;
   }
 });
-
-// About carousel
-(function () {
-  const carousel = document.querySelector('.about-carousel');
-  if (!carousel) return;
-  const track = carousel.querySelector('.about-carousel-track');
-  const dots  = carousel.querySelectorAll('.acdot');
-  const imgs  = carousel.querySelectorAll('img');
-  let current = 0, autoTimer, startX = 0, isDragging = false;
-
-  function goTo(i) {
-    current = (i + imgs.length) % imgs.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
-  }
-
-  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
-  carousel.querySelector('.ac-prev').addEventListener('click', () => { goTo(current - 1); resetTimer(); });
-  carousel.querySelector('.ac-next').addEventListener('click', () => { goTo(current + 1); resetTimer(); });
-
-  carousel.addEventListener('pointerdown', e => { startX = e.clientX; isDragging = true; });
-  carousel.addEventListener('pointerup',   e => {
-    if (!isDragging) return;
-    const diff = startX - e.clientX;
-    if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); resetTimer(); }
-    isDragging = false;
-  });
-
-  function resetTimer() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 4000); }
-  resetTimer();
-})();
 </script>
 
 </body>
