@@ -628,41 +628,8 @@
     .overview-grid { grid-template-columns: 1fr; }
   }
 </style>
-
-  <meta name="robots" content="noindex, nofollow">
-  <style>
-    #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #111110; display: flex; align-items: center; justify-content: center; }
-    .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
-    .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #f5f2ec; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .pw-box .pw-sub { font-size: 11px; color: #666; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 32px; }
-    .pw-box input { display: block; width: 260px; background: #1a1a18; border: 1px solid #333; color: #f5f2ec; font-family: 'DM Mono', monospace; font-size: 14px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
-    .pw-box input:focus { border-color: #c8960a; }
-    .pw-box button { width: 260px; background: #c8960a; border: none; color: #111; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
-    .pw-box button:hover { background: #e0a80c; }
-    .pw-error { font-size: 10px; color: #c8960a; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
-  </style>
 </head>
 <body>
-<div id="pw-gate">
-  <div class="pw-box">
-    <div class="pw-title">CYPRIAN</div>
-    <div class="pw-sub">UK140 · Plan Treningowy 2026</div>
-    <input type="password" id="pw-input" placeholder="KOD DOSTĘPU" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
-    <button onclick="checkPw()">WEJDŹ →</button>
-    <div class="pw-error" id="pw-error"></div>
-  </div>
-</div>
-<script>
-  function checkPw() {
-    const v = document.getElementById('pw-input').value.trim();
-    if (v === 'Cyprian2026') {
-      document.getElementById('pw-gate').style.display = 'none';
-    } else {
-      document.getElementById('pw-error').textContent = 'Nieprawidłowy kod.';
-      document.getElementById('pw-input').value = '';
-    }
-  }
-</script>
 
 <header>
   <div class="header-left">
@@ -756,6 +723,33 @@
       <div class="phase-header gray">M4 · Tapering</div>
       <button class="mezo-btn gray" data-panel="taper" onclick="show('taper', this, 'gray')">
         Tapering <span class="weeks">14.09 – 04.10</span>
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="phase-header teal" style="margin-top:8px;">Siłowy pod ultra</div>
+      <button class="mezo-btn teal" data-panel="sila-f1" onclick="show('sila-f1', this, 'teal')">
+        Faza 1 — 3x/tydz. <span class="weeks">23.03–17.05</span>
+      </button>
+      <button class="mezo-btn purple" data-panel="sila-f2" onclick="show('sila-f2', this, 'purple')">
+        Faza 2 — 2x/tydz. <span class="weeks">18.05–26.07</span>
+      </button>
+      <button class="mezo-btn coral" data-panel="sila-f3" onclick="show('sila-f3', this, 'coral')">
+        Faza 3 — 1x/tydz. <span class="weeks">27.07–13.09</span>
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="phase-header amber" style="margin-top:8px;">Protokoły dodatkowe</div>
+      <button class="mezo-btn amber" data-panel="proto-nutrition" onclick="show('proto-nutrition', this, 'amber')">
+        Żywienie + gut training <span class="weeks">od F2</span>
+      </button>
+      <button class="mezo-btn amber" data-panel="proto-sleep" onclick="show('proto-sleep', this, 'amber')">
+        Sleep banking <span class="weeks">pre-race</span>
+      </button>
+      <button class="mezo-btn amber" data-panel="proto-poles" onclick="show('proto-poles', this, 'amber')">
+        Kije — technika <span class="weeks">od F2</span>
+      </button>
+      <button class="mezo-btn amber" data-panel="proto-mental" onclick="show('proto-mental', this, 'amber')">
+        Strategia mentalna <span class="weeks">race day</span>
       </button>
     </div>
   </nav>
@@ -1240,11 +1234,34 @@
     <!-- DELOAD 3 -->
     <div id="panel-d3" class="mezo-panel">
       <div class="panel-header">
-        <div><div class="panel-title gray">DELOAD 3</div><div style="font-size:13px;color:var(--muted);margin-top:6px;">Pre-start DFBG · lipiec</div></div>
-        <div class="panel-meta"><span class="weeks-badge">Tydzień 16</span><span class="km-range">~56 km</span></div>
+        <div><div class="panel-title gray">DELOAD 3</div><div style="font-size:13px;color:var(--muted);margin-top:6px;">Pre-start DFBG · 06.07 – 12.07.2026</div></div>
+        <div class="panel-meta"><span class="weeks-badge">06.07 – 12.07</span><span class="km-range">~56 km</span></div>
       </div>
       <div class="highlight-bar gray">
-        <strong>Pre-start taper:</strong> Tydzień 16 to przygotowanie pod DFBG. Ostatni normalny longrun w sobotę, niedziela kompletny odpoczynek. Siłowy 1x lekki w poniedziałek.
+        <strong>Pre-start taper:</strong> -30% objętości, siłowy 1x lekki w poniedziałek. Sobota ostatni normalny longrun, niedziela odpoczynek. Wchodzi na DFBG świeży — nie zmęczony.
+      </div>
+      <div class="week-grid">
+        <div class="week-card">
+          <div class="week-card-header gray">06.07 – 12.07 <span class="week-km">56 km</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A — lekka (RDL, nordic, tibialis)</span></div>
+            <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 10 km Z2</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek / rehab</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2 + 4x strides</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 2,5h Z2 (ostatni przed startem)</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-rest"></div><span class="day-content">Kompletny odpoczynek</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="info-block" style="margin-top:16px;">
+        <h3>Przygotowanie do DFBG</h3>
+        <ul>
+          <li>Sprzęt sprawdzony i spakowany przed piątkiem</li>
+          <li>Żywienie zaplanowane — żele, real food, elektrolity</li>
+          <li>Buty przetestowane — zero nowych rzeczy na starcie</li>
+          <li>Decyzja 45 vs 70 km podjęta najpóźniej w piątek</li>
+        </ul>
       </div>
     </div>
 
@@ -1252,7 +1269,7 @@
     <div id="panel-dfbg" class="mezo-panel">
       <div class="panel-header">
         <div>
-          <div class="panel-title amber">TEST START</div>
+          <div class="panel-title amber">TEST START — DFBG</div>
           <div style="font-size:13px;color:var(--muted);margin-top:6px;">Dolnośląski Festiwal Biegów Górskich · 13.07 – 26.07.2026</div>
         </div>
         <div class="panel-meta">
@@ -1263,30 +1280,56 @@
       <div class="highlight-bar amber">
         <strong>To nie jest wynik — to jest laboratorium.</strong> Interesuje nas jak reaguje organizm na 7–10h wysiłku w terenie górskim, nie miejsce w klasyfikacji.
       </div>
-      <div class="section-grid">
+      <div class="week-grid">
+        <div class="week-card">
+          <div class="week-card-header amber">13.07 – 19.07 · RACE WEEK <span class="week-km">start!</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km Z2</span></div>
+            <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 6 km + strides</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek / dojazd</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Rejestracja / brief / odpoczynek</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-rest"></div><span class="day-content">Easy 3 km nogi + odpoczynek</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-race"></div><span class="day-content">START — DFBG 45 lub 70 km</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek / powrót</span></div>
+          </div>
+        </div>
+        <div class="week-card">
+          <div class="week-card-header gray">20.07 – 26.07 · POST-RACE <span class="week-km">~25 km</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-rest"></div><span class="day-content">Kompletny odpoczynek</span></div>
+            <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-rest"></div><span class="day-content">Kompletny odpoczynek</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km Z1 jeśli nogi OK</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek / rehab</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 8 km Z1</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-run"></div><span class="day-content">Easy 9 km Z1</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="section-grid" style="margin-top:16px;">
         <div class="info-block">
-          <h3>Co obserwujemy</h3>
+          <h3>Co obserwujemy na starcie</h3>
           <ul>
             <li>Żołądek — tolerancja żywienia po 5–6h</li>
-            <li>Technika zejść po kilku godzinach zmęczenia</li>
-            <li>Tempo na podejściach vs HR — pacing plan</li>
+            <li>Technika zejść po zmęczeniu</li>
+            <li>Tempo na podejściach vs HR</li>
             <li>Sprzęt — buty, kije, plecak, latarka</li>
-            <li>Psychologia nocnego segmentu jeśli 70km</li>
+            <li>Psychologia nocnego segmentu (70km)</li>
           </ul>
         </div>
         <div class="info-block">
-          <h3>Tydzień 18 po starcie</h3>
+          <h3>Tydzień po starcie</h3>
           <ul>
-            <li>Aktywny odpoczynek — nie zero</li>
-            <li>2–3x krótkie easy 30–40 min</li>
             <li>Siłowy odpada w tym tygodniu</li>
+            <li>Tylko Z1 — nie Z2</li>
             <li>Pełna analiza startu z Cyprianem</li>
             <li>Korekta planu M3 jeśli potrzeba</li>
+            <li>PN–WT minimum 2 dni pełnego odpoczynku</li>
           </ul>
         </div>
       </div>
       <div class="highlight-bar amber" style="margin-top:16px;">
-        <strong>Wybór dystansu:</strong> 45 km jeśli forma nie jest pewna lub odczuwalne zmęczenie z M2. 70 km jeśli wszystko idzie zgodnie z planem. Decyzja w tydz. 16.
+        <strong>Wybór dystansu:</strong> 45 km jeśli forma nie jest pewna lub odczuwalne zmęczenie z M2. 70 km jeśli wszystko idzie zgodnie z planem. Decyzja najpóźniej w tydz. 16.
       </div>
     </div>
 
@@ -1348,11 +1391,35 @@
     <!-- DELOAD 4 -->
     <div id="panel-d4" class="mezo-panel">
       <div class="panel-header">
-        <div><div class="panel-title gray">DELOAD 4</div><div style="font-size:13px;color:var(--muted);margin-top:6px;">Przed finalnym blokiem · sierpień</div></div>
-        <div class="panel-meta"><span class="weeks-badge">Tydzień 22</span><span class="km-range">~65 km</span></div>
+        <div><div class="panel-title gray">DELOAD 4</div><div style="font-size:13px;color:var(--muted);margin-top:6px;">Przed finalnym blokiem · 17.08 – 23.08.2026</div></div>
+        <div class="panel-meta"><span class="weeks-badge">17.08 – 23.08</span><span class="km-range">~65 km</span></div>
       </div>
       <div class="highlight-bar gray">
         <strong>Głębszy deload (-35%):</strong> Przed najcięższym blokiem cyklu. Siłowy 1x podtrzymanie. Pełna absorpcja przed M3.2 gdzie wchodzi 98–105 km/tydz.
+      </div>
+      <div class="week-grid">
+        <div class="week-card">
+          <div class="week-card-header gray">17.08 – 23.08 <span class="week-km">65 km</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">PN</span><div class="day-dot dot-strength"></div><span class="day-content">Siła A — podtrzymanie (RDL, nordic, tibialis)</span></div>
+            <div class="day-row"><span class="day-label">WT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
+            <div class="day-row"><span class="day-label">ŚR</span><div class="day-dot dot-run"></div><span class="day-content">Easy 12 km Z2</span></div>
+            <div class="day-row"><span class="day-label">CZ</span><div class="day-dot dot-rest"></div><span class="day-content">Odpoczynek</span></div>
+            <div class="day-row"><span class="day-label">PT</span><div class="day-dot dot-run"></div><span class="day-content">Easy 14 km Z2</span></div>
+            <div class="day-row"><span class="day-label">SO</span><div class="day-dot dot-longrun"></div><span class="day-content">Longrun 3h Z2 (łatwy — nie góry)</span></div>
+            <div class="day-row"><span class="day-label">ND</span><div class="day-dot dot-run"></div><span class="day-content">Recovery 10 km Z1</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="info-block" style="margin-top:16px;">
+        <h3>Klucz do tego deloadu</h3>
+        <ul>
+          <li>-35% objętości — głębszy niż poprzednie deloady</li>
+          <li>Longrun w sobotę na płaskim — nie szukaj D+</li>
+          <li>Siłowy 1x — lekkie obciążenia, pełny ROM</li>
+          <li>Jeśli HRV lub samopoczucie złe → możesz zejść do 55 km</li>
+          <li>Od tygodnia 23 zaczyna się najcięższy blok całego cyklu</li>
+        </ul>
       </div>
     </div>
 
@@ -1504,6 +1571,474 @@
             <li>Km 115–144: dawaj ile masz — tu się zdobywa miejsca</li>
           </ul>
         </div>
+      </div>
+    </div>
+
+
+    <!-- SIŁA FAZA 1 -->
+    <div id="panel-sila-f1" class="mezo-panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title teal">SIŁOWY — FAZA 1</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Baza siłowa · 23.03 – 17.05.2026</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">Tygodnie 1–8</span>
+          <span class="km-range">3x / tydz.</span>
+        </div>
+      </div>
+      <div class="highlight-bar">
+        <strong>Cel fazy:</strong> Zbudować fundament siłowy specyficzny pod ultra — posterior chain, stabilizacja jednonożna, tibialis, core anty-rotacyjny. Technika priorytetem, progresja obciążenia co 2 tygodnie.
+      </div>
+      <div class="week-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="week-card">
+          <div class="week-card-header teal">Sesja A — Posterior chain <span class="week-km">PN</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">roz.</span><span class="day-content" style="color:var(--muted);font-size:11px;">Elephant walk 2x10m · TRX rollout 2x8 · DB isometric lunge hold 2x30s</span></div>
+            <div class="day-row"><span class="day-label">1</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Barbell RDL</strong> — 4x6 @70–75% | tempo 3-1-1</span></div>
+            <div class="day-row"><span class="day-label">2</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>B-stance landmine RDL</strong> — 3x8/str.</span></div>
+            <div class="day-row"><span class="day-label">3</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Single leg hip thrust BB</strong> — 3x10/str.</span></div>
+            <div class="day-row"><span class="day-label">4</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Nordic curl — ekscentryczna</strong> — 3x6 (5s w dół)</span></div>
+            <div class="day-row"><span class="day-label">5</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Copenhagen plank</strong> — 3x25s/str.</span></div>
+            <div class="day-row"><span class="day-label">6</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Tibialis raise KB</strong> — 3x15/str.</span></div>
+            <div class="day-row"><span class="day-label">7</span><div class="day-dot dot-rehab"></div><span class="day-content"><strong>Dead hang</strong> — 3x40s</span></div>
+          </div>
+        </div>
+        <div class="week-card">
+          <div class="week-card-header teal">Sesja B — Quad + unilateral <span class="week-km">ŚR</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">roz.</span><span class="day-content" style="color:var(--muted);font-size:11px;">Low ceiling jumps 2x10 · Banded MB rotations 2x12 · MB slam 2x8</span></div>
+            <div class="day-row"><span class="day-label">1</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>FF elevated split squat DB</strong> — 4x8/str. @RPE 7–8</span></div>
+            <div class="day-row"><span class="day-label">2</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>DB reverse lunge</strong> — 3x10/str.</span></div>
+            <div class="day-row"><span class="day-label">3</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Weighted deficit push-up</strong> — 3x8–10</span></div>
+            <div class="day-row"><span class="day-label">4</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Gorilla row z rotacją</strong> — 3x10/str.</span></div>
+            <div class="day-row"><span class="day-label">5</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Pallof press</strong> — 3x12/str.</span></div>
+            <div class="day-row"><span class="day-label">6</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Single leg calf raise</strong> — 3x15/str.</span></div>
+            <div class="day-row"><span class="day-label">7</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Farmer's carry</strong> — 3x30m ciężkie</span></div>
+          </div>
+        </div>
+        <div class="week-card">
+          <div class="week-card-header teal">Sesja C — Core + stabilizacja <span class="week-km">CZ</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">roz.</span><span class="day-content" style="color:var(--muted);font-size:11px;">Single leg side pogo 2x20 · Side-to-side hop 2x15/str.</span></div>
+            <div class="day-row"><span class="day-label">1</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>TrA bracing</strong> — 3x10 oddechów</span></div>
+            <div class="day-row"><span class="day-label">2</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Dead bug</strong> — 3x8/str. powolny</span></div>
+            <div class="day-row"><span class="day-label">3</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Side plank z uniesieniem nogi</strong> — 3x20s/str.</span></div>
+            <div class="day-row"><span class="day-label">4</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Adductor ball squeeze</strong> — 3x15</span></div>
+            <div class="day-row"><span class="day-label">5</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Side lying hip adduction</strong> — 3x15/str.</span></div>
+            <div class="day-row"><span class="day-label">6</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Weighted pull-up</strong> — 3x5 @RPE 7</span></div>
+            <div class="day-row"><span class="day-label">7</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>KB hip flexion</strong> — 3x12/str.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="section-grid" style="margin-top:16px;">
+        <div class="info-block">
+          <h3>Progresja F1</h3>
+          <ul>
+            <li>Tydz. 1–2: technika, RPE 6–7</li>
+            <li>Tydz. 3–4: +5% RDL i split squat</li>
+            <li>Tydz. 5–6: nordic 4 serie, hip thrust ciężej</li>
+            <li>Tydz. 7 (deload): -30% objętości</li>
+            <li>Tydz. 8: ciężary z tydz. 6</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Dlaczego te ćwiczenia</h3>
+          <ul>
+            <li>RDL + nordic — hamstring = hamulec na zjazdy UK140</li>
+            <li>Split squat — siła jednonożna = każdy krok w górach</li>
+            <li>Tibialis — ochrona piszczel przy wzroście km</li>
+            <li>Copenhagen — stabilizacja miednicy po 100km</li>
+            <li>Core anty-rotacyjny — forma biegu przy zmęczeniu</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIŁA FAZA 2 -->
+    <div id="panel-sila-f2" class="mezo-panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title purple">SIŁOWY — FAZA 2</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Podtrzymanie + plyo · 18.05 – 26.07.2026</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">Tygodnie 9–18</span>
+          <span class="km-range">2x / tydz.</span>
+        </div>
+      </div>
+      <div class="highlight-bar purple">
+        <strong>Cel fazy:</strong> Zachować siłę z F1 przy rosnącym kilometrażu. Wchodzi hip airplane i podstawowe plyo. Sesja C odpada — środa to 4. dzień biegowy. Hölmich kontynuowany codziennie rano.
+      </div>
+
+      <div class="info-block" style="margin-bottom:16px;border-left:3px solid #f0c240;border-radius:0 4px 4px 0;">
+        <h3>Hölmich protocol — codziennie rano (niezależnie od sesji siłowej)</h3>
+        <ul>
+          <li><strong>Adductor squeeze z piłką</strong> — 3x20 | izometryczny, mocny zacisk</li>
+          <li><strong>Side lying hip adduction</strong> — 3x15/str. | powolna ekscentryczna</li>
+          <li><strong>Sit-up z addukcją</strong> — 3x10 | piłka między kolanami</li>
+          <li><strong>Oblique crunch</strong> — 3x10/str.</li>
+          <li><strong>TrA bracing</strong> — 3x10 oddechów | aktywacja głębokiego core</li>
+          <li style="color:var(--muted);font-size:12px;">Łączny czas: ~12–15 min | jeśli ból pachwiny wzrasta → cofnij intensywność</li>
+        </ul>
+      </div>
+
+      <div class="week-grid" style="grid-template-columns:repeat(2,1fr);">
+        <div class="week-card">
+          <div class="week-card-header purple">Sesja A — Posterior chain + hip airplane <span class="week-km">PN</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">roz.</span><span class="day-content" style="color:var(--muted);font-size:11px;">Elephant walk 2x10m · TRX rollout 2x8 · Single leg pogo 2x15/str.</span></div>
+            <div class="day-row"><span class="day-label">1</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Barbell RDL</strong> — 3x5 @75–80% | ciężej niż F1</span></div>
+            <div class="day-row"><span class="day-label">2</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Hip airplane</strong> — 3x10/str. | powolna kontrola rotacji biodra</span></div>
+            <div class="day-row"><span class="day-label">3</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Single leg hip thrust BB</strong> — 3x8/str.</span></div>
+            <div class="day-row"><span class="day-label">4</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Nordic curl</strong> — 3x5 pełna ekscentryczna 5s</span></div>
+            <div class="day-row"><span class="day-label">5</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Copenhagen plank</strong> — 3x30s/str.</span></div>
+            <div class="day-row"><span class="day-label">6</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Tibialis raise KB obciążony</strong> — 3x15/str.</span></div>
+            <div class="day-row"><span class="day-label">7</span><div class="day-dot dot-rehab"></div><span class="day-content"><strong>Dead hang</strong> — 2x45s</span></div>
+          </div>
+        </div>
+        <div class="week-card">
+          <div class="week-card-header purple">Sesja B — Quad + plyo + core <span class="week-km">CZ</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">roz.</span><span class="day-content" style="color:var(--muted);font-size:11px;">DB isometric lunge hold 2x30s · Banded MB rotations 2x12</span></div>
+            <div class="day-row"><span class="day-label">1</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>FF elevated split squat DB</strong> — 3x8/str. @RPE 8</span></div>
+            <div class="day-row"><span class="day-label">2</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Box step-down single leg</strong> — 3x8/str. | kontrolowana 4s zejście</span></div>
+            <div class="day-row"><span class="day-label">3</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Single leg hop with stick landing</strong> — 3x6/str. | 3s hold przy lądowaniu</span></div>
+            <div class="day-row"><span class="day-label">4</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>B-stance landmine RDL</strong> — 3x8/str.</span></div>
+            <div class="day-row"><span class="day-label">5</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Dead bug</strong> — 3x8/str.</span></div>
+            <div class="day-row"><span class="day-label">6</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Pallof press</strong> — 3x12/str.</span></div>
+            <div class="day-row"><span class="day-label">7</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Single leg calf raise obciążony</strong> — 3x12/str.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-grid" style="margin-top:16px;">
+        <div class="info-block">
+          <h3>Progresja F2</h3>
+          <ul>
+            <li>Tydz. 9–11: hip airplane wchodzi od razu | plyo 3 serie</li>
+            <li>Tydz. 12 (deload): -30% siłowy | Hölmich zostaje</li>
+            <li>Tydz. 13–15: hop → consecutive hops 2x6/str.</li>
+            <li>Tydz. 16 (pre-DFBG): tylko Sesja A lekko, plyo odpada</li>
+            <li>Tydz. 18 (post-DFBG): siłowy odpada, Hölmich zostaje</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Dlaczego hip airplane i plyo</h3>
+          <ul>
+            <li>Hip airplane — stabilizacja rotacyjna biodra przy każdym kroku w górach</li>
+            <li>Step-down — uczy ekscentrycznej kontroli quad na zejściach</li>
+            <li>Stick landing — reactive strength + propriocepcja na nierównym terenie</li>
+            <li>Hölmich codziennie — pachwina musi tolerować 70km DFBG i UK140</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIŁA FAZA 3 -->
+    <div id="panel-sila-f3" class="mezo-panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title coral">SIŁOWY — FAZA 3</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Podtrzymanie minimum + reactive plyo · 27.07 – 13.09.2026</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">Tygodnie 19–25</span>
+          <span class="km-range">1x / tydz.</span>
+        </div>
+      </div>
+      <div class="highlight-bar coral">
+        <strong>Cel fazy:</strong> Nie stracić siły z F1+F2. Wchodzi zaawansowane plyo pod zejścia UK140. Jedna sesja tygodniowo — max 50 min. Hölmich kontynuowany codziennie. Bieganie priorytet absolutny.
+      </div>
+
+      <div class="info-block" style="margin-bottom:16px;border-left:3px solid #f0c240;border-radius:0 4px 4px 0;">
+        <h3>Hölmich protocol — kontynuacja codziennie rano</h3>
+        <ul>
+          <li><strong>Adductor squeeze z piłką</strong> — 3x20</li>
+          <li><strong>Side lying hip adduction</strong> — 3x15/str.</li>
+          <li><strong>Sit-up z addukcją</strong> — 3x10</li>
+          <li><strong>TrA bracing</strong> — 3x10 oddechów</li>
+          <li style="color:var(--muted);font-size:12px;">~10 min rano | przy 98–105 km/tydz. pachwina jest pod maksymalnym stresem</li>
+        </ul>
+      </div>
+
+      <div class="week-grid" style="grid-template-columns:1fr;">
+        <div class="week-card">
+          <div class="week-card-header coral">Sesja jedyna — Posterior chain + plyo + tibialis <span class="week-km">PN</span></div>
+          <div class="week-card-body">
+            <div class="day-row"><span class="day-label">roz.</span><span class="day-content" style="color:var(--muted);font-size:11px;">Elephant walk 2x10m · Hip airplane 2x8/str. · Single leg pogo 2x15/str.</span></div>
+            <div class="day-row"><span class="day-label">1</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Barbell RDL</strong> — 3x4 @80% | mocno ale nie max</span></div>
+            <div class="day-row"><span class="day-label">2</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Nordic curl</strong> — 3x5 ekscentryczna 5s w dół</span></div>
+            <div class="day-row"><span class="day-label">3</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Downhill bounding</strong> — 3x20m lekkie zbocze | reactive, nie sprint</span></div>
+            <div class="day-row"><span class="day-label">4</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Consecutive hurdle hops SL</strong> — 3x5/str. | minimalne czasy kontaktu</span></div>
+            <div class="day-row"><span class="day-label">5</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Single leg hip thrust BB</strong> — 3x8/str.</span></div>
+            <div class="day-row"><span class="day-label">6</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Tibialis raise KB obciążony</strong> — 3x15/str.</span></div>
+            <div class="day-row"><span class="day-label">7</span><div class="day-dot dot-strength"></div><span class="day-content"><strong>Copenhagen plank</strong> — 3x30s/str.</span></div>
+            <div class="day-row"><span class="day-label">8</span><div class="day-dot dot-rehab"></div><span class="day-content"><strong>Single leg calf raise obciążony</strong> — 2x15/str.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-grid" style="margin-top:16px;">
+        <div class="info-block">
+          <h3>Zasady F3</h3>
+          <ul>
+            <li>Zawsze poniedziałek — najdalej od B2B weekendu</li>
+            <li>Max 50 minut — nie przeciągaj</li>
+            <li>B2B zniszczyło nogi → przesuń na wtorek rano</li>
+            <li>Tydz. 22 (deload): siłowy odpada — Hölmich zostaje</li>
+            <li>Tydz. 23–25: pełna sesja @RPE 7 | plyo zostaje</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Dlaczego downhill bounding</h3>
+          <ul>
+            <li>UK140 ma D- 5484m — nogi muszą umieć absorbować zbieganie</li>
+            <li>Bounding uczy reaktywnej siły przy lądowaniu — mniej micro-urazów mięśni</li>
+            <li>Consecutive hops — krótki czas kontaktu = szybsze zejścia przy zmęczeniu</li>
+            <li>Hip airplane w rozgrzewce — miednica stabilna nawet po 20h biegu</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight-bar coral" style="margin-top:16px;">
+        <strong>Taper (tydz. 26–28):</strong> Tydz. 26 — pełna sesja @RPE 6, plyo zostaje. Tydz. 27 — tylko tibialis + calf raise + 2x downhill strides. Race week — zero siłowego, Hölmich 5 min rano do środy.
+      </div>
+    </div>
+    <!-- ŻYWIENIE -->
+    <div id="panel-proto-nutrition" class="mezo-panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title amber">ŻYWIENIE + GUT TRAINING</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Progresja od Fazy 2 → race day</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">od 18.05.2026</span>
+          <span class="km-range">60–90g CHO/h</span>
+        </div>
+      </div>
+      <div class="highlight-bar amber">
+        <strong>Kluczowy fakt:</strong> Największa przyczyna DNF w ultra to nie nogi — to żołądek. 65–82% zawodników ma objawy GI. Trening żołądka przez 4+ tygodnie redukuje je o 44–49%. Źródło: <a href="https://bornonthetrail.substack.com/p/can-you-train-your-gut-ultra-marathon-nutrition-strategy" style="color:var(--teal);">Born on the Trail / badanie Cox et al.</a>
+      </div>
+
+      <div class="section-grid" style="margin-top:16px;">
+        <div class="info-block">
+          <h3>Progresja gut training (od tydz. 9)</h3>
+          <ul>
+            <li><strong>Tydz. 9–11:</strong> 30g CHO/h na każdym biegu 1h+ — żel co 40 min</li>
+            <li><strong>Tydz. 12–15:</strong> 45–60g CHO/h — żel + napój izotoniczny</li>
+            <li><strong>Tydz. 16–18:</strong> 60–75g CHO/h — testuj real food (banan, daktyle, ryż)</li>
+            <li><strong>Tydz. 19–22:</strong> 75–90g CHO/h — longruny 4-5h jako pełna symulacja</li>
+            <li><strong>Tydz. 23–25:</strong> 80–90g CHO/h + testuj nocne jedzenie (tydz. 24)</li>
+            <li><strong>Race day:</strong> tylko sprawdzone produkty — zero nowości</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Skład żywienia</h3>
+          <ul>
+            <li><strong>Ratio glukozy do fruktozy: 2:1</strong> — dwa różne transportery jelitowe, wyższy pułap absorpcji. Źródło: <a href="https://marathonhandbook.com/ultramarathon-nutrition/" style="color:var(--teal);">Marathon Handbook</a></li>
+            <li><strong>Żele:</strong> produkt z glukozą + fruktozą (Maurten, Spring, SIS Beta Fuel)</li>
+            <li><strong>Real food:</strong> ryż z solą, daktyle, banany, kanapki na późnych km</li>
+            <li><strong>Elektrolity:</strong> 500–800mg sodu/h przy wysiłku 8h+ (ryzyko hiponatremii)</li>
+            <li><strong>Płyny:</strong> 400–600ml/h — nie za dużo, nie za mało</li>
+            <li><strong>Carb loading:</strong> 24–36h przed startem 10–12g CHO/kg BW. Źródło: <a href="https://nduranz.com/blogs/blogs/ultra-trail-nutrition" style="color:var(--teal);">Nduranz</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-block" style="margin-top:16px;">
+        <h3>Plan żywienia race day UK140 — podział na sektory</h3>
+        <ul>
+          <li><strong>Km 0–45 (0–5h):</strong> 60–70g CHO/h | żele co 30–35 min | woda + elektrolity | unikaj przejadania się na podejściach</li>
+          <li><strong>Km 45–90 (5–10h):</strong> 70–80g CHO/h | wprowadź real food (banany, sandwicze na punktach) | kofeina od km 60 jeśli potrzeba (100mg co 3h)</li>
+          <li><strong>Km 90–115 (10–15h, NOC):</strong> 60–70g CHO/h | żołądek może odmówić — przejdź na płynne kalorie | ciepły bulion na punktach | latarka sprawdzona</li>
+          <li><strong>Km 115–144 (15–20h+):</strong> jedz co możesz | cola, bulion, żele | minimum 40g CHO/h żeby nie spaść z nóg</li>
+        </ul>
+      </div>
+
+      <div class="highlight-bar amber" style="margin-top:16px;">
+        <strong>Pełne badania:</strong> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8197833/" style="color:var(--teal);">Systematic review — CHO intake ultra trail (PubMed)</a> · <a href="https://usecadence.com/blogs/science/ultramarathon-nutrition-guide" style="color:var(--teal);">Ultramarathon Nutrition Guide (Cadence)</a> · <a href="https://freetrail.com/gut-check-unlocking-ultra-performance/" style="color:var(--teal);">Gut Check — Freetrail</a>
+      </div>
+    </div>
+
+    <!-- SLEEP BANKING -->
+    <div id="panel-proto-sleep" class="mezo-panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title amber">SLEEP BANKING</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Strategia snu przed UK140</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">tydz. 26–28</span>
+          <span class="km-range">9–10h / noc</span>
+        </div>
+      </div>
+      <div class="highlight-bar amber">
+        <strong>Kluczowy fakt:</strong> UK140 start 7:00 → po 15-16h wchodzi noc. Niedobór snu daje 2–4% spadek wydolności aerobowej, ale znacznie większy spadek funkcji kognitywnych — czyli techniki i decyzji na nocnym odcinku. Źródło: <a href="https://trainright.com/overnight-ultrarunning-slaying-sleep-monster/" style="color:var(--teal);">Jason Koop / TrainRight</a>
+      </div>
+
+      <div class="section-grid" style="margin-top:16px;">
+        <div class="info-block">
+          <h3>Protokół sleep banking (2 tygodnie przed)</h3>
+          <ul>
+            <li><strong>Tydz. 27 (21–27.09):</strong> 9h w łóżku każdej nocy — nie negocjuj</li>
+            <li><strong>Tydz. 28 (28.09–04.10):</strong> 9–10h w łóżku, w miarę możliwości drzemki 20 min</li>
+            <li><strong>Środa-czwartek przed startem:</strong> kłaść się o 21:00 nawet jeśli nie śpisz</li>
+            <li><strong>Noc przed startem:</strong> nie panikuj jeśli nie możesz spać — to normalne i nie zniszczy wyścigu jeśli masz bankowany sen</li>
+            <li>Źródło: <a href="https://www.trainingpeaks.com/blog/should-you-bank-sleep-for-ultramarathon/" style="color:var(--teal);">TrainingPeaks — Sleep Banking</a></li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Strategia nocna na trasie UK140</h3>
+          <ul>
+            <li><strong>Kofeina:</strong> zacznij od km 60–70, 100mg co 2–3h — max 400mg łącznie</li>
+            <li><strong>Światło:</strong> latarka z szerokim snopem — przetestowana na nocnym treningu</li>
+            <li><strong>Temp ciała:</strong> noc = zimno, miej dodatkową warstwę dostępną od km 90</li>
+            <li><strong>Jeśli czujesz sen na trasie:</strong> 10-20 min power nap na punkcie kontrolnym jest lepszy niż bieganie w półśnie po technicznym terenie</li>
+            <li>Źródło: <a href="https://trailrunningmovement.com/training/mini-guide-for-sleep-management-in-ultra-trail-races/" style="color:var(--teal);">Trail Running Movement — Sleep Management</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-block" style="margin-top:16px;">
+        <h3>Dlaczego NIE trenować w stanie niedoboru snu</h3>
+        <ul>
+          <li>Badania pokazują że celowe bieganie bez snu jako "przygotowanie" NIE poprawia wyników na wyścigu</li>
+          <li>Koszty: wyższe ryzyko kontuzji, wolniejsza regeneracja, gorsza adaptacja do treningu</li>
+          <li>Zamiast tego: nocne biegi (już w planie w F3) dają ekspozycję psychologiczną BEZ deprywacji snu</li>
+          <li>Źródło: <a href="https://www.trailrunnermag.com/training/200-mile-sleep-strategies/" style="color:var(--teal);">Trail Runner Magazine — Sleep Strategies</a></li>
+        </ul>
+      </div>
+
+      <div class="highlight-bar amber" style="margin-top:16px;">
+        <strong>Badanie naukowe:</strong> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11001838/" style="color:var(--teal);">Sleep patterns in 1154 ultramarathon finishers (PubMed 2024)</a>
+      </div>
+    </div>
+
+    <!-- KIJE -->
+    <div id="panel-proto-poles" class="mezo-panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title amber">KIJE — TECHNIKA I TRENING</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Od Fazy 2 na wszystkie wyjazdy górskie</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">od 18.05.2026</span>
+          <span class="km-range">D+ 5484m</span>
+        </div>
+      </div>
+      <div class="highlight-bar amber">
+        <strong>Kluczowy fakt:</strong> Kije przenoszą 15–20% ciężaru ciała z nóg na ręce i plecy na podejściach — realne oszczędzanie quad na płaskie i zjazdy. Przy D+ 5484m na UK140 to jest jedna z najważniejszych decyzji sprzętowych. Źródło: <a href="https://trainright.com/science-trekking-poles-trail-running-ultrarunning/" style="color:var(--teal);">Jason Koop — Science of Poles</a>
+      </div>
+
+      <div class="section-grid" style="margin-top:16px;">
+        <div class="info-block">
+          <h3>Kiedy używać kijów (UK140)</h3>
+          <ul>
+            <li><strong>Podejścia powyżej ~10% nachylenia:</strong> zawsze kije — technika naprzemiennego lub podwójnego pchnięcia</li>
+            <li><strong>Zjazdy techniczne:</strong> kije przed krokiem — amortyzacja kolan i kolan, balance na śliskim</li>
+            <li><strong>Płaskie po km 90+:</strong> kije mogą pomagać przy zmęczeniu — dodają stride length</li>
+            <li><strong>Pakowanie kijów:</strong> ćwicz szybkie składanie i wkładanie do plecaka — na krótkich płaskich odcinkach to może kosztować czas</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>4 techniki (Jason Koop)</h3>
+          <ul>
+            <li><strong>Naprzemienna na łagodnych podejściach:</strong> prawy kij + lewa noga jednocześnie</li>
+            <li><strong>Podwójna na stromych:</strong> oba kije razem przed krokiem — maksymalny transfer mocy</li>
+            <li><strong>Bieganie z kijami na płaskim:</strong> zaawansowane — kij ląduje przy stopie, koordynacja skrzyżowana</li>
+            <li><strong>Hamowanie na zjazdach:</strong> oba kije przed sobą, miękkie lądowanie przez ramiona</li>
+            <li>Źródło: <a href="https://trainright.com/4-running-pole-techniques-trail-and-ultrarunners-should-master/" style="color:var(--teal);">Jason Koop — 4 Pole Techniques</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-block" style="margin-top:16px;">
+        <h3>Plan wdrożenia kijów w trening</h3>
+        <ul>
+          <li><strong>Tydz. 9–11 (F2 start):</strong> kije na każdym wyjeździe górskim — 100% czasu podejść z kijami</li>
+          <li><strong>Tydz. 13–15:</strong> ćwicz szybkie pakowanie na płaskich odcinkach longrunu</li>
+          <li><strong>DFBG 70km:</strong> kije obowiązkowo — to jest test dla kijów tak samo jak dla nóg</li>
+          <li><strong>F3 longruny:</strong> wszystkie wyjazdy górskie z kijami, identyczny setup co race day</li>
+          <li><strong>Race day:</strong> zero nowego sprzętu — te same kije co przez ostatnie 3 miesiące</li>
+        </ul>
+      </div>
+
+      <div class="highlight-bar amber" style="margin-top:16px;">
+        <strong>Więcej:</strong> <a href="https://ultrarunning.com/featured/maximizing-your-pole-position/" style="color:var(--teal);">Ultra Running Magazine — Pole Position</a> · <a href="https://journey2ultra.com.au/running-with-poles/" style="color:var(--teal);">Journey2Ultra — badanie European J. Applied Physiology</a>
+      </div>
+    </div>
+
+    <!-- STRATEGIA MENTALNA -->
+    <div id="panel-proto-mental" class="mezo-panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title amber">STRATEGIA MENTALNA</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;">Dark moments · crisis management · DNF prevention</div>
+        </div>
+        <div class="panel-meta">
+          <span class="weeks-badge">UK140</span>
+          <span class="km-range">42% DNF rate</span>
+        </div>
+      </div>
+      <div class="highlight-bar amber">
+        <strong>Kluczowy fakt:</strong> Większość DNF w ultra nie pochodzi z ograniczeń mięśniowych — to błędy żywieniowe lub nieefektywne zarządzanie kryzysem mentalnym. 42% pola nie dobiegło do mety UK140 2025. Cyprian z profilu wytrzymałościowego ma przewagę — ale musi wiedzieć co zrobić kiedy będzie najgorzej.
+      </div>
+
+      <div class="section-grid" style="margin-top:16px;">
+        <div class="info-block">
+          <h3>Segmentacja — najważniejsza technika</h3>
+          <ul>
+            <li><strong>Nie myśl "144km"</strong> — myśl "następny punkt kontrolny"</li>
+            <li>UK140 ma 3 aid stations — podziel bieg na 4 odcinki i zarządzaj każdym osobno</li>
+            <li>Na każdym odcinku miej plan: co zjesz, ile wypijesz, jaki cel czasowy</li>
+            <li>Przy naprawdę złym momencie: "dobiec do tego drzewa" — mikrocel działa</li>
+            <li>Źródło: <a href="https://www.correrjuntos.com/blog/en/first-ultra-trail-guide" style="color:var(--teal);">CorrerJuntos — First Ultra Trail Guide</a></li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Złe momenty mijają — zawsze</h3>
+          <ul>
+            <li>Naukowy fakt: niskie punkty w ultra to przejściowe doliny — jeśli jesz, pijesz i idziesz do przodu, wrócisz do siebie</li>
+            <li>Beth Pascall (zwyciężczyni Western States): myśli o rzuceniu w każdym wyścigu — pytanie brzmi jak będziesz się czuł za 3 dni jeśli rzucisz</li>
+            <li>Źródło: <a href="https://www.13valleysultra.com/blog/13-valleys-ultra-8-mental-strategies-to-get-you-through-an-ultra/" style="color:var(--teal);">Beth Pascall — 8 Mental Strategies</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-block" style="margin-top:16px;">
+        <h3>Przygotuj to PRZED startem — nie improwizuj</h3>
+        <ul>
+          <li><strong>"Dlaczego biegę UK140"</strong> — napisz 3–5 zdań i zapamiętaj. Przy km 100 w nocy będziesz ich potrzebował</li>
+          <li><strong>Plan na złe żołądkowe momenty:</strong> przejdź na bulion i płynne kalorie, zwolnij, nie rzucaj</li>
+          <li><strong>Plan na ból:</strong> gdzie boli, czy to kontuzja czy normalne zmęczenie — znaj różnicę. Kontuzja = stop, zmęczenie = idź dalej</li>
+          <li><strong>Mantra:</strong> jedno zdanie powtarzane w rytm kroków. Trenuj to na nocnych biegach w F3</li>
+          <li><strong>Nocny moment depresji:</strong> normalny między 2:00–5:00 rano — spodziewaj się go, miej zaplanowane jedzenie i muzykę/podcast przez słuchawkę</li>
+        </ul>
+      </div>
+
+      <div class="section-grid" style="margin-top:16px;">
+        <div class="info-block">
+          <h3>Pacing — mentalny aspekt</h3>
+          <ul>
+            <li>Pierwsze 45km: biegasz wolniej niż możesz — to jest właściwe</li>
+            <li>Widzisz że inni odchodzą — nie gonisz. Twoja wyścig zaczyna się po km 90</li>
+            <li>Przy 42% DNF rate: każdy km 80+ to jedno miejsce do przodu</li>
+            <li>Źródło: <a href="https://uphillathlete.com/trail-running/ultra-mindset-lessons-ultrarunners/" style="color:var(--teal);">Uphill Athlete — Ultra Mindset</a></li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Kiedy WOLNO rzucić</h3>
+          <ul>
+            <li>Kontuzja z ryzykiem długoterminowego uszkodzenia</li>
+            <li>Hipotermia — nie możesz się rozgrzać</li>
+            <li>Dezorientacja lub halucynacje (rzadkie przy 140km ale możliwe przy 20h+)</li>
+            <li>Wszystko inne to powód żeby iść dalej wolniej</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-bar amber" style="margin-top:16px;">
+        <strong>Więcej:</strong> <a href="https://distanceathletics.com/mental-training-for-ultra-runners-3-tips/" style="color:var(--teal);">Distance Athletics — Mental Training</a> · <a href="https://www.trailrunwestmidlands.co.uk/blog/mental-preparation-for-trail-and-ultra-running-conquer-challenges-with-self-talk-and-self-belief" style="color:var(--teal);">Trail Run West Midlands — Self-talk</a>
       </div>
     </div>
 
