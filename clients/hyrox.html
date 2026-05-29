@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRYS — Hyrox 16-Week Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#1C1B18;color:#F4F3EF;font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;}
+  
+  #pw-gate{position:fixed;inset:0;z-index:9999;background:#1C1B18;display:flex;align-items:center;justify-content:center;}
+  .pw-box{text-align:center;font-family:'DM Mono',monospace;}
+  .pw-title{font-family:'DM Sans',sans-serif;font-size:32px;font-weight:600;color:#F4F3EF;letter-spacing:-0.5px;margin-bottom:4px;}
+  .pw-sub{font-size:10px;color:#9C9A94;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:32px;}
+  .pw-box input{display:block;width:260px;background:#2A2924;border:1px solid #3A3830;color:#F4F3EF;font-family:'DM Mono',monospace;font-size:13px;padding:12px 16px;outline:none;margin:0 auto 12px;text-align:center;letter-spacing:0.1em;border-radius:4px;}
+  .pw-box input:focus{border-color:#185FA5;}
+  .pw-box button{width:260px;background:#185FA5;border:none;color:#fff;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:12px;cursor:pointer;border-radius:4px;}
+  .pw-box button:hover{background:#1A6EC0;}
+  .pw-error{font-size:10px;color:#9C9A94;letter-spacing:0.1em;margin-top:10px;height:14px;}
+
+  #main{display:none;width:100%;max-width:600px;}
+  .page-title{font-size:28px;font-weight:600;letter-spacing:-0.5px;margin-bottom:4px;}
+  .page-title em{font-style:normal;color:#185FA5;}
+  .page-sub{font-size:10px;color:#9C9A94;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:40px;}
+  
+  .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .choice-card{background:#2A2924;border:1px solid #3A3830;border-radius:8px;padding:28px 24px;text-decoration:none;color:#F4F3EF;transition:border-color 0.2s,background 0.2s;cursor:pointer;}
+  .choice-card:hover{border-color:#185FA5;background:#2F2E28;}
+  .choice-num{font-family:'DM Mono',monospace;font-size:10px;color:#185FA5;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;}
+  .choice-name{font-size:18px;font-weight:600;letter-spacing:-0.3px;margin-bottom:8px;}
+  .choice-desc{font-size:12px;color:#9C9A94;line-height:1.6;}
+  .choice-tag{display:inline-block;margin-top:16px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;background:#185FA5;color:#fff;}
+
+  @media(max-width:500px){.choice-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">KRYS / 16-WEEK</div>
+    <div class="pw-sub">Hyrox Pro Plan · KRYS.PT</div>
+    <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">ENTER →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<div id="main">
+  <div class="page-title">KRYS <em>/</em> 16-WEEK</div>
+  <div class="page-sub">Jun 1 – Sep 25, 2026 · Pro Men · Oslo</div>
+  <div class="choice-grid">
+    <a href="krys_oslo_16week_plan.html" class="choice-card">
+      <div class="choice-num">Option 01</div>
+      <div class="choice-name">Double Session</div>
+      <div class="choice-desc">Full plan with AM + PM splits where applicable. Higher training volume. For days when you can get two sessions in.</div>
+      <span class="choice-tag">Full Volume →</span>
+    </a>
+    <a href="krys_oslo_16week_plan_v2.html" class="choice-card">
+      <div class="choice-num">Option 02</div>
+      <div class="choice-name">Single Session</div>
+      <div class="choice-desc">One session per day + 50 min Z2 cycle commute. Realistic for work days and busier weeks.</div>
+      <span class="choice-tag">Single Session →</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  function checkPw() {
+    var v = document.getElementById('pw-input').value.trim();
+    if (v === 'Hyrox2026') {
+      document.getElementById('pw-gate').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+      sessionStorage.setItem('hyrox_auth', '1');
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+  if (sessionStorage.getItem('hyrox_auth') === '1') {
+    document.getElementById('pw-gate').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+  }
+</script>
+</body>
+</html>

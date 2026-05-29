@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krys — Oslo 2026 · 16-Week Hyrox Pro Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F3EF;--bg2:#FFF;--bg3:#EDECE8;--border:rgba(0,0,0,.07);--border2:rgba(0,0,0,.13);
+  --text:#1C1B18;--text2:#5A5952;--text3:#9C9A94;
+  --run-bg:#B5D4F4;--run-b:#85B7EB;--run-t:#042C53;--run-a:#185FA5;
+  --thr-bg:#FAECE7;--thr-b:#F0997B;--thr-t:#712B13;--thr-a:#C04E28;
+  --str-bg:#EEEDFE;--str-b:#AFA9EC;--str-t:#3C3489;--str-a:#5E56CC;
+  --ustr-bg:#E2E0FB;--ustr-b:#AFA9EC;--ustr-t:#26215C;--ustr-a:#4A44A8;
+  --erg-bg:#E1F5EE;--erg-b:#5DCAA5;--erg-t:#085041;--erg-a:#0F6E56;
+  --hyrox-bg:#FFF0D6;--hyrox-b:#F0B830;--hyrox-t:#4A2E00;--hyrox-a:#C08000;
+  --tt-bg:#EAF3DE;--tt-b:#97C459;--tt-t:#27500A;--tt-a:#3E7A10;
+  --dl-bg:#D3D1C7;--dl-b:#B4B2A9;--dl-t:#444441;--dl-a:#666460;
+  --easy-bg:#E8F4F8;--easy-b:#8ABFCC;--easy-t:#0E3D4A;--easy-a:#1A6578;
+  --long-bg:#C8DCFA;--long-b:#6898E0;--long-t:#0A1E48;--long-a:#1440A0;
+  --wed-bg:#FDE8F5;--wed-b:#E8A0D0;--wed-t:#6B1040;--wed-a:#A82060;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;}
+header{background:var(--bg2);border-bottom:1px solid var(--border);padding:22px 28px 18px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.mono{font-family:'DM Mono',monospace;}
+h1{font-size:30px;font-weight:600;letter-spacing:-.5px;}
+h1 em{font-style:normal;color:var(--run-a);}
+.header-sub{font-size:10px;color:var(--text3);margin-top:4px;letter-spacing:.05em;text-transform:uppercase;}
+.hstats{display:flex;gap:18px;}
+.hstat-v{font-family:'DM Mono',monospace;font-size:17px;font-weight:500;}
+.hstat-l{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;}
+.leg-bar{display:flex;flex-wrap:wrap;gap:5px 14px;padding:8px 28px;background:var(--bg2);border-bottom:1px solid var(--border);}
+.leg{display:flex;align-items:center;gap:3px;font-size:9.5px;color:var(--text3);}
+.leg-sq{width:9px;height:9px;border-radius:2px;}
+.abbr{padding:6px 28px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:3px 14px;}
+.abbr span{font-size:9.5px;color:var(--text3);}
+.abbr b{color:var(--text2);}
+.hint{padding:8px 28px 0;font-size:9.5px;color:var(--text3);display:flex;align-items:center;gap:5px;}
+.hint-dot{width:6px;height:6px;border-radius:50%;background:var(--run-a);animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.cal-wrap{padding:8px 28px 24px;overflow-x:auto;}
+table{width:100%;border-collapse:separate;border-spacing:3px;min-width:1020px;}
+thead th{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding:3px 4px 7px;text-align:center;}
+thead th:first-child{text-align:left;width:68px;}
+thead th:last-child{width:34px;}
+.phase-row td{padding:14px 3px 3px;}
+.ph-lbl{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:4px;display:inline-block;}
+.gate-row td{padding:2px 3px;}
+.gate{border-radius:7px;padding:8px 13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--tt-bg);border:1px solid var(--tt-b);}
+.gate.wed{background:var(--wed-bg);border-color:var(--wed-b);}
+.gate-title{font-size:10px;font-weight:600;color:var(--tt-t);text-transform:uppercase;letter-spacing:.06em;}
+.gate.wed .gate-title{color:var(--wed-t);}
+.gate-desc{font-size:9.5px;color:var(--text3);margin-top:1px;}
+.gate-targets{display:flex;gap:13px;}
+.gtv{font-family:'DM Mono',monospace;font-size:15px;font-weight:500;color:var(--tt-a);}
+.gtl{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;}
+.wk-cell{padding:2px 4px 2px 0;vertical-align:top;}
+.wk-n{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--text2);}
+.wk-d{font-size:8.5px;color:var(--text3);margin-top:2px;line-height:1.3;}
+.wk-v{display:inline-block;font-size:8.5px;font-weight:500;padding:1px 5px;border-radius:3px;margin-top:3px;border:1px solid;}
+td.s-td{vertical-align:top;cursor:pointer;}
+.card{border-radius:6px;overflow:hidden;min-height:84px;height:100%;border:1px solid transparent;transition:transform .1s,box-shadow .1s;position:relative;}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.12);}
+.card:hover .exp{opacity:1;}
+.exp{position:absolute;top:4px;right:5px;font-size:7px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;opacity:0;transition:opacity .15s;}
+.sl{padding:4px 6px;}
+.sl+.sl{border-top:1px solid rgba(0,0,0,.08);}
+.sl-lbl{font-size:7px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;opacity:.5;}
+.sl-t{font-size:9.5px;font-weight:500;line-height:1.2;margin-top:1px;}
+.sl-d{font-size:8px;line-height:1.3;margin-top:1px;opacity:.7;}
+.off-td{vertical-align:top;}
+.off-box{background:#EBEBEB;border-radius:6px;border:1px solid #DCDCDC;min-height:84px;display:flex;align-items:center;justify-content:center;}
+.off-lbl{font-size:8px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#C5C3BE;}
+.race-box{background:var(--hyrox-bg);border:1px solid var(--hyrox-b);border-radius:6px;min-height:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;}
+
+/* MODAL */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.32);backdrop-filter:blur(3px);z-index:100;align-items:center;justify-content:center;padding:20px;}
+.modal-backdrop.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;width:100%;max-width:540px;max-height:88vh;overflow-y:auto;animation:su .18s ease;box-shadow:0 20px 60px rgba(0,0,0,.18);}
+@keyframes su{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-hdr{padding:15px 20px 11px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:1;}
+.m-wk{font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:3px;}
+.m-day{font-size:22px;font-weight:600;color:var(--text);}
+.m-sub{font-size:10px;color:var(--text3);margin-top:2px;}
+.m-close{background:none;border:none;color:var(--text3);font-size:20px;cursor:pointer;}
+.m-body{padding:15px 20px;}
+.m-slot{border-radius:8px;padding:11px 13px;margin-bottom:9px;border:1px solid;}
+.m-slot-hdr{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.m-icon{font-size:16px;line-height:1;}
+.m-tag{font-size:8px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.6;}
+.m-title{font-size:13px;font-weight:500;margin-top:1px;}
+.m-loc{display:inline-block;font-size:8px;font-weight:600;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;background:rgba(0,0,0,.07);margin-top:5px;}
+.m-pacing{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;}
+.pace-stat{flex:1;min-width:75px;padding:6px 8px;background:rgba(0,0,0,.05);border-radius:5px;text-align:center;}
+.pace-v{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;line-height:1;}
+.pace-l{font-size:8px;opacity:.55;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+.m-exs{margin-top:7px;display:flex;flex-direction:column;gap:3px;}
+.ex-row{display:flex;gap:8px;padding:5px 8px;background:rgba(0,0,0,.04);border-radius:4px;}
+.ex-n{font-size:11px;font-weight:500;flex:1;}
+.ex-d{font-size:10px;opacity:.6;text-align:right;}
+.m-note{margin-top:7px;padding:8px 10px;background:rgba(0,0,0,.03);border-left:2px solid rgba(0,0,0,.13);border-radius:0 4px 4px 0;font-size:10.5px;color:var(--text2);line-height:1.6;}
+
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:11px 28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;margin-top:20px;}
+
+  #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #1C1B18; display: flex; align-items: center; justify-content: center; }
+  .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
+  .pw-title { font-family: 'DM Sans', sans-serif; font-size: 32px; font-weight: 600; color: #F4F3EF; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .pw-sub { font-size: 10px; color: #9C9A94; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+  .pw-box input { display: block; width: 260px; background: #2A2924; border: 1px solid #3A3830; color: #F4F3EF; font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; border-radius: 4px; }
+  .pw-box input:focus { border-color: #185FA5; }
+  .pw-box button { width: 260px; background: #185FA5; border: none; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; border-radius: 4px; }
+  .pw-box button:hover { background: #1A6EC0; }
+  .pw-error { font-size: 10px; color: #9C9A94; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
+</style>
+</head>
+<body>
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">KRYS / 16-WEEK</div>
+    <div class="pw-sub">Hyrox Pro Plan · KRYS.PT</div>
+    <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">ENTER →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+  function checkPw() {
+    var v = document.getElementById('pw-input').value.trim();
+    if (v === 'Hyrox2026') {
+      document.getElementById('pw-gate').style.display = 'none';
+      sessionStorage.setItem('hyrox_auth', '1');
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+  if (sessionStorage.getItem('hyrox_auth') === '1') {
+    document.addEventListener('DOMContentLoaded', function() {
+      var g = document.getElementById('pw-gate');
+      if (g) g.style.display = 'none';
+    });
+  }
+</script>
+
+<header>
+  <div>
+    <div class="mono" style="font-size:10px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;">Hyrox Pro Sub-60 · Oslo 2026</div>
+    <h1>KRYS <em>/</em> 16-WEEK PLAN</h1>
+    <div class="header-sub">Jun 1 – Sep 25 · Pro Men 09:40 · Sources: PST Workouts for Hyrox · WOD Science · joed.fitness</div>
+  </div>
+  <div class="hstats">
+    <div><div class="hstat-v">16</div><div class="hstat-l">Weeks</div></div>
+    <div><div class="hstat-v">4</div><div class="hstat-l">Mesocycles</div></div>
+    <div><div class="hstat-v">sub-60</div><div class="hstat-l">Target</div></div>
+    <div><div class="hstat-v">202kg</div><div class="hstat-l">Pro Sled</div></div>
+  </div>
+</header>
+<div class="leg-bar">
+  <div class="leg"><div class="leg-sq" style="background:var(--thr-bg);border:.5px solid var(--thr-b);"></div>Threshold run</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--run-bg);border:.5px solid var(--run-b);"></div>Zone 2 run</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--long-bg);border:.5px solid var(--long-b);"></div>Long run</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--str-bg);border:.5px solid var(--str-b);"></div>Lower strength</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--ustr-bg);border:.5px solid var(--ustr-b);"></div>Upper strength</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--erg-bg);border:.5px solid var(--erg-b);"></div>Row / Erg HIIT</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--easy-bg);border:.5px solid var(--easy-b);"></div>Easy / Recovery</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--hyrox-bg);border:.5px solid var(--hyrox-b);"></div>Hyrox session (PST)</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--tt-bg);border:.5px solid var(--tt-b);"></div>Time trial / Race sim</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--dl-bg);border:.5px solid var(--dl-b);"></div>Deload / Taper</div>
+  <div class="leg"><div class="leg-sq" style="background:var(--wed-bg);border:.5px solid var(--wed-b);"></div>Wedding / Poland</div>
+</div>
+<div class="abbr">
+  <span><b>SP</b> Sled Push 202kg</span><span><b>SPL</b> Sled Pull 153kg</span><span><b>BBJ</b> Burpee Broad Jump</span>
+  <span><b>Lg</b> Lunges 30kg</span><span><b>WB</b> Wall Balls 9kg</span><span><b>FC</b> Farmers Carry 2×32kg</span>
+  <span><b>RST</b> Repeated Sprint Training</span><span><b>vLT2</b> Velocity at lactate threshold 2</span>
+  <span><b>MAS</b> Maximal Aerobic Speed</span><span><b>FTP</b> Functional Threshold Power (erg)</span>
+</div>
+<div class="hint" style="justify-content:space-between;padding-right:0;flex-wrap:wrap;gap:8px;"><div style="display:flex;align-items:center;gap:5px;"><div class="hint-dot"></div>Click any session for full workout prescription and coaching notes</div><button onclick="document.getElementById('refCard').style.display='flex'" style="font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;background:var(--bg2);border:1px solid var(--border2);border-radius:5px;padding:4px 11px;color:var(--text2);cursor:pointer;transition:background .15s;" onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background='var(--bg2)'">Zones & Paces Reference →</button></div>
+<div class="cal-wrap">
+<table>
+<thead><tr>
+  <th style="text-align:left;">Week</th>
+  <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+  <th style="width:34px;">Sun</th>
+</tr></thead>
+<tbody id="tb"></tbody>
+</table>
+</div>
+
+<div class="modal-backdrop" id="mb" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div><div class="m-wk" id="mWk"></div><div class="m-day" id="mDay"></div><div class="m-sub" id="mSub"></div></div>
+      <button class="m-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="m-body" id="mBody"></div>
+  </div>
+</div>
+
+<footer>
+  <span>Krys · Hyrox Pro Men · Oslo Sep 25 2026 · 09:40</span>
+  <span>PST Workouts for Hyrox · WOD Science · joed.fitness</span>
+</footer>
+
+<script>
+const TC={
+  run:{bg:'var(--run-bg)',b:'var(--run-b)',t:'var(--run-t)',a:'var(--run-a)'},
+  long:{bg:'var(--long-bg)',b:'var(--long-b)',t:'var(--long-t)',a:'var(--long-a)'},
+  thr:{bg:'var(--thr-bg)',b:'var(--thr-b)',t:'var(--thr-t)',a:'var(--thr-a)'},
+  str:{bg:'var(--str-bg)',b:'var(--str-b)',t:'var(--str-t)',a:'var(--str-a)'},
+  ustr:{bg:'var(--ustr-bg)',b:'var(--ustr-b)',t:'var(--ustr-t)',a:'var(--ustr-a)'},
+  erg:{bg:'var(--erg-bg)',b:'var(--erg-b)',t:'var(--erg-t)',a:'var(--erg-a)'},
+  hyrox:{bg:'var(--hyrox-bg)',b:'var(--hyrox-b)',t:'var(--hyrox-t)',a:'var(--hyrox-a)'},
+  tt:{bg:'var(--tt-bg)',b:'var(--tt-b)',t:'var(--tt-t)',a:'var(--tt-a)'},
+  dl:{bg:'var(--dl-bg)',b:'var(--dl-b)',t:'var(--dl-t)',a:'var(--dl-a)'},
+  easy:{bg:'var(--easy-bg)',b:'var(--easy-b)',t:'var(--easy-t)',a:'var(--easy-a)'},
+  wed:{bg:'var(--wed-bg)',b:'var(--wed-b)',t:'var(--wed-t)',a:'var(--wed-a)'},
+};
+function c(t){return TC[t]||TC.dl;}
+
+const PHASES={
+  1:['Mesocycle 1 — Aerobic Base + Strength Foundation','#E6F1FB','#185FA5','Jun 1–28'],
+  2:['Mesocycle 2 — Threshold + Station Development','#EEEDFE','#5E56CC','Jun 29–Jul 26'],
+  3:['Mesocycle 3 — Race-Specific Conditioning','#E1F5EE','#0F6E56','Jul 27–Aug 16'],
+  4:['Poland + Wedding 💍','#FDE8F5','#A82060','Aug 17–23'],
+  5:['Mesocycle 4 — Peak + Race Prep','#FAEEDA','#9A6010','Aug 24–Sep 13'],
+  6:['Taper → Oslo Sep 25 🏁','#EAF3DE','#3E7A10','Sep 14–25'],
+};
+
+const W=[
+  // ── MESO 1 ──────────────────────────────────────────────
+  {n:1,d:'Jun 1–7',ph:1,dl:false,v:'~52km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Treadmill · AM',ti:'Threshold Broken 3×(8+4+2min)',loc:'Treadmill',
+       ex:[['Warm-up','15min easy'],['8min @95–100% vLT2 (4:45–4:52/km)','2min rest'],['4min @100–105% vLT2 (4:38–4:45/km)','2min rest'],['2min @110% vLT2 (~4:22/km)','4min rest — repeat 3 blocks'],['Cool-down','10min easy']],
+       pa:[['~4:48–4:52','/km threshold'],['~4:40','/km overspeed'],['162–173','HR bpm']],
+       note:'Running Workout 1 from PST. 3 blocks of broken threshold — the speed surge at the end teaches the body to clear lactate and return to threshold pace. If any block falls apart, reduce overspeed pace first, not the threshold section.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Strength + Air Bike RST 1',loc:'Gym',
+       ex:[['Back Squat','3×5 @ 120kg'],['Bench Press','3×5 @ 82kg'],['Deadlift','3×5 @ 130kg'],['Pull-ups','3×5 BW'],['Air Bike RST 1','10×10s all-out / 50s easy']],
+       pa:[['75%','strength load'],['Max power','air bike sprints']],
+       note:'PST Meso 1 Day 1. Strength first, RST after. RST is phosphocreatine dominant — brutal 10s, fully recoverable in 50s. Do not extend the sprint time.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 32min',loc:'Outside',
+       ex:[['Easy run','32 min continuous']],pa:[['5:40–6:10','/km'],['140–150','HR bpm'],['Zone 2','conversational']],
+       note:'Flush from Monday. Completely easy. Zone 2 compliance is more important than any pace target.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 20min',loc:'Gym',
+       ex:[['Easy row','20min Z1-Z2']],pa:[['2:05–2:15','/500m'],['Easy','feel only']],
+       note:'Active recovery. Not a training session.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Polarized Threshold Mix — 44min',loc:'Outside',
+       ex:[['Warm-up','10min easy'],['3 rounds:','6min @4:48–4:55/km (vLT2) (4:48–4:55/km) + 3min easy + 2min fast'],['Cool-down','10min easy']],
+       pa:[['4:48–4:55','/km vLT2'],['4:20–4:35','/km fast burst'],['~44min','total']],
+       note:'Running Workout 7. Alternating tempo — the fast finish in each block teaches pace changes critical for Hyrox where every km out of a station needs to be faster than metabolic state suggests.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'Row HIIT 1 — 30/30 Power Aerobic',loc:'Gym',
+       ex:[['Warm-up','5min easy'],['12 Rounds:','30s @1:44–1:50/500m (105–120% FTP) (~1:44–1:50/500m) / 30s easy'],['Cool-down','5min']],
+       pa:[['~1:44–1:50','/500m hard'],['105–120%','FTP'],['12','rounds']],
+       note:'PST Row HIIT 1. Krys FTP ~1:51.5/500m from 7:26 2k row. Hard target 1:44–1:50/500m. Done after quality AM run — deliberately fatigued.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 28min',loc:'Outside',
+       ex:[['Easy jog','20min'],['4×20s strides','walk back recovery']],pa:[['6:00–6:20','/km easy'],['80%','stride effort']],
+       note:'Strides prime neuromuscular system for Saturday without accumulating fatigue. Controlled acceleration, not sprinting.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Strength + Station Intro',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 80kg'],['OHP','3×5 @ 55kg'],['Nordics','2×4 slow'],['Dips','3×5 @ +15kg'],['Pull-ups','3×5 BW'],['Sandbag Lunges','3×20m @ 30kg — technique'],['Farmers Carry','2×60m @ 2×32kg']],
+       pa:[['75%','str load'],['Technique','station focus — no intensity']],
+       note:'PST Meso 1 Day 5. Lunges and FC are technique only — no conditioning targets yet.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 1 — 8 Rounds Row + Stations',loc:'Gym',
+       ex:[['8 Rounds:','500m ROW @4:48–4:55/km (threshold) (~1:51–1:55/500m)'],['Rounds 1 & 5:','20 Burpee Broad Jump'],['Rounds 2 & 6:','100m KB Farmers Carry'],['Rounds 3 & 7:','50 Wall Balls @9kg'],['Rounds 4 & 8:','500m SkiErg (~3:50–4:00/500m)']],
+       pa:[['~1:53–1:55','/500m row'],['8','rounds total'],['Threshold','station effort']],
+       note:'PST HYROX 1. Each station done twice. First round: controlled form focus. Second round: can push harder. Row at threshold between stations mimics running into a station. Note all times — this is the baseline.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 62min',loc:'Outside',
+       ex:[['Easy long run','62 min continuous']],pa:[['5:30–6:10','/km'],['140–154','HR bpm'],['Zone 2','aerobic base']],
+       note:'Primary aerobic volume session. Longest run of the week. Zone 2 throughout. Finishing this run well sets up recovery for Monday threshold.'},
+     pm:null},
+  ]},
+  {n:2,d:'Jun 8–14',ph:1,dl:false,v:'~56km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Treadmill · AM',ti:'Over-Under LT 4×8min',loc:'Treadmill',
+       ex:[['Warm-up','15min easy'],['4 rounds of 8min:','2min @4:35–4:42/km (vLT2+5%) (4:35–4:42/km) + 2min @5:02–5:10/km (vLT2–5%) (×2)'],['3min rest','between rounds'],['Cool-down','10min']],
+       pa:[['4:43–4:47','/km over phase'],['4:50–4:55','/km under phase'],['3min','rest between rounds']],
+       note:'Running Workout 11 — Over-Under LT. Critical for Hyrox — the race constantly oscillates above and below threshold. 4 rounds of 8min with internal variation. Set GPS pace alerts at ±5s if available.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Strength + Air Bike RST 2',loc:'Gym',
+       ex:[['Back Squat','3×5 @ 123kg'],['Bench Press','3×5 @ 84kg'],['Deadlift','3×5 @ 133kg'],['Pull-ups','3×5 BW'],['Air Bike RST 2','Sprint+Aerobic: 15–20× (8s all-out / 30s easy)']],
+       pa:[['78%','str load'],['All-out','8s sprint — power drops rep to rep, normal']],
+       note:'Air Bike RST 2. More reps than RST 1. Power drops rep to rep — expected. Aerobic recovery between sprints is the stimulus.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 35min',loc:'Outside',
+       ex:[['Easy run','35 min']],pa:[['5:35–6:05','/km'],['140–150','HR bpm']],note:'Flush day. Easy throughout.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 20min',loc:'Gym',
+       ex:[['Easy row','20min Z2']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Tempo Surge Run — 40min',loc:'Outside',
+       ex:[['40min continuous:','every 5min do 45s @4:48–4:55/km (vLT2) + 15s fast'],['~7–8 surges','total across the run']],
+       pa:[['4:50–5:00','/km base'],['4:35–4:45','/km surge'],['40min','continuous total']],
+       note:'Running Workout 5. Teaches pace control and recovery — essential for Hyrox where you need to surge out of slow stations. Maintain base tempo between surges.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'Row HIIT 2 — 15×45/15',loc:'Gym',
+       ex:[['15 rounds:','45s @1:42–1:48/500m (110–125% FTP) (~1:42–1:48/500m) / 15s easy']],
+       pa:[['~1:42–1:48','/500m hard'],['15','rounds — high density']],
+       note:'PST Row HIIT 2. 15s recovery is very short. Hold consistent splits — if drop >5s in final rounds, reduce target pace.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 28min',loc:'Outside',
+       ex:[['Easy jog','20min'],['4×20s strides','walk recovery']],pa:[['6:00–6:20','/km']],note:'Friday primer. Same structure every week.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Strength + Lunges + FC',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 82kg'],['OHP','3×5 @ 57kg'],['Nordics','2×4'],['Dips','3×5 @ +17kg'],['Pull-ups','3×5 BW'],['Sandbag Lunges','3×30m @ 30kg — timed'],['FC','2×80m @ 2×32kg']],
+       pa:[['77%','str load'],['Time','all lunge sets — start the data trail']],
+       note:'Lunges to 30m — time every set. This is the data trail. FC to 80m — note posture in final 20m.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 2 — Race Simulation Fragmented',loc:'Gym',
+       ex:[['3 Blocks, 12–15min each:',''],['Block 1:','1km RUN + 1000m SkiErg + 100 WB @9kg'],['Block 2:','1km RUN + 50m Sled Push @152kg + 50m Sled Pull @103kg'],['Block 3:','1km RUN + 100m Lunges @30kg + 80m BBJ'],['3min active rest','walk between blocks']],
+       pa:[['Race start+','target pace'],['3','blocks total'],['Note','time per block']],
+       note:'PST HYROX 2. 3 distinct energy demands of Hyrox in one session. Note time for each block — compare across weeks. Active rest = walk only between blocks.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 66min',loc:'Outside',
+       ex:[['Easy long run','66 min']],pa:[['5:30–6:05','/km'],['140–154','HR bpm']],note:'4 minutes longer than week 1.'},
+     pm:null},
+  ]},
+  {n:3,d:'Jun 15–21',ph:1,dl:false,v:'~59km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Treadmill · AM',ti:'Lactate Shuttling — 36min',loc:'Treadmill',
+       ex:[['Warm-up','12min easy'],['36min @4:48–4:55/km (vLT2) (4:48–4:55/km)–5% (5:02–5:10/km):','every 4min do 20s acceleration'],['~8 accelerations','across 36min'],['Cool-down','10min']],
+       pa:[['4:55–5:05','/km base'],['4:25–4:35','/km acceleration'],['36min','sustained']],
+       note:'Running Workout 6. 36min just below threshold with embedded accelerations — direct carryover to Hyrox running out of high-intensity stations.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Strength + Air Bike RST 3',loc:'Gym',
+       ex:[['Back Squat','3×5 @ 126kg'],['Bench Press','3×5 @ 86kg'],['Deadlift','3×5 @ 136kg'],['Pull-ups','3×5 BW'],['Air Bike RST 3 — One-Minute Ladder','6 Rounds: 10s+50s → 15s+45s → 20s+40s']],
+       pa:[['79%','str load'],['All-out','each sprint duration']],
+       note:'RST 3 — One-Minute Ladder. Sprint duration increases within each round across 6 rounds.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 38min',loc:'Outside',
+       ex:[['Easy run','38 min']],pa:[['5:35–6:00','/km'],['140–150','HR bpm']],note:'Easy flush.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 22min',loc:'Gym',
+       ex:[['Easy row','22min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Over-Under LT 4×8min — outside',loc:'Outside',
+       ex:[['Warm-up','12min easy'],['4 rounds of 8min:','2min @4:35–4:42/km (vLT2+5%) (4:35–4:42/km) + 2min @5:02–5:10/km (vLT2–5%) (×2)'],['3min rest','between rounds'],['Cool-down','10min']],
+       pa:[['4:43–4:47','/km over'],['4:52–4:57','/km under']],
+       note:'Second Over-Under of the block, now outside. Same physiological stress. Use GPS pace alerts if available.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'Row HIIT 3 — 30/15 ×10 ×3 @1:38–1:44/500m (130% FTP) (~1:38–1:44/500m)',loc:'Gym',
+       ex:[['3 series:','10–13× (30s @1:38–1:44/500m (130% FTP) (~1:38–1:44/500m) / 15s rest)'],['3min rest','between series']],
+       pa:[['~1:38–1:44','/500m hard'],['130%','FTP — severe domain'],['3','series']],
+       note:'PST Row HIIT 3. 130% FTP = severe domain, above VO2max. Hardest erg of Meso 1. If splits drop >7s, shorten to 8 reps.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 30min',loc:'Outside',
+       ex:[['Easy jog','22min'],['5×20s strides','walk recovery — extra stride']],pa:[['6:00–6:20','/km'],['5 strides','peak week prime']],
+       note:'One extra stride this week — peak load week before deload. Prime well for Hyrox 4 tomorrow.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Strength + BBJ + Station Peak',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 84kg'],['OHP','3×5 @ 57kg'],['Nordics','2×4'],['Dips','3×5 @ +18kg'],['Pull-ups','3×5 BW'],['Sandbag Lunges','2×50m @ 30kg — timed'],['BBJ','3×30m — timed (first time)'],['FC','1×150m @ 2×32kg']],
+       pa:[['79%','str load'],['Timed','BBJ and lunges — baseline data']],
+       note:'Peak Friday of Meso 1. BBJ enters Friday PM — time all sets for baseline.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 4 — Burpees Pre-Exhaust Run',loc:'Gym',
+       ex:[['1000m RUN','@5:30–6:10/km (easy) (5:30–6:10/km)'],['4 Rounds:','20 BBJ → 1000m RUN @4:48–4:55/km (threshold) (4:48–4:55/km)+5–10%'],['Finish:','20 BBJ → 1000m RUN @5:30–6:10/km (easy) (5:30–6:10/km)'],['Total:','6km running + 100 BBJ']],
+       pa:[['4:45–4:55','/km threshold+10%'],['20 BBJ','per round — find sustainable pace'],['HR','should settle 6–10bpm within 200m of each run']],
+       note:'PST HYROX 4 — Burpees Pre-Exhaust Run. First proper compromised running session. Find a BBJ pace that allows HR to settle within first 200m of each run. If it won\'t settle, BBJ tempo is too fast.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 71min',loc:'Outside',
+       ex:[['Easy long run','71 min']],pa:[['5:30–6:00','/km'],['140–154','HR bpm']],
+       note:'Peak long run of Meso 1. Deload follows — run it well and then properly rest.'},
+     pm:null},
+  ]},
+  {n:4,d:'Jun 22–28',ph:1,dl:true,v:'~28km',days:[
+    {day:'Mon',int:'DELOAD',
+     am:{t:'dl',i:'😴',tag:'Outside · AM',ti:'Easy Run — 25min',loc:'Outside',
+       ex:[['Very easy jog','25 min']],pa:[['6:00–6:30','/km'],['<140','HR bpm']],
+       note:'Deload week. Volume drops 40%. Adaptations from weeks 1–3 happen this week. Do not fill the extra space.'},
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Light Lower Strength',loc:'Gym',
+       ex:[['Back Squat','3×5 @ 90kg (60%)'],['Deadlift','3×5 @ 96kg'],['Sled Push','2×20m @ 152kg — feel only']],
+       pa:[['60%','all lifts']],note:'Pattern maintenance only. No intensity.'}},
+    {day:'Tue',int:'TEST',
+     am:{t:'tt',i:'🏁',tag:'Treadmill · AM',ti:'5k Time Trial — DIAGNOSTIC',loc:'Treadmill',
+       ex:[['Warm-up','15min + 4×30s strides'],['5k all-out','record every km split'],['Cool-down','10min walk']],
+       pa:[['<20:30','target'],['21:07','current PB'],['4:06','/km target']],
+       note:'Meso 1 diagnostic. Result sets vLT2 for Meso 2. Sub-20:30: threshold drops 3s/km for Meso 2. 20:30–21:00: hold current paces. Over 21:00: review zone 2 compliance — likely running easy days too fast.'},
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Easy Ski + Light Row',loc:'Gym',
+       ex:[['SkiErg','3×3min easy'],['Row','15min easy']],pa:[['Easy','post-TT flush']],note:'Light movement only.'}},
+    {day:'Wed',int:'DELOAD',
+     am:{t:'dl',i:'😴',tag:'Outside · AM',ti:'Easy Run — 30min',loc:'Outside',
+       ex:[['Easy jog','30 min']],pa:[['6:00+','/km'],['<145','HR bpm']],note:'Post-TT flush.'},
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Light Upper Strength',loc:'Gym',
+       ex:[['OHP','3×5 @ 60%'],['Pull-ups','3×4 BW'],['Easy row','20min']],pa:[['60%','maintenance']],note:'Maintenance.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'DELOAD',
+     am:{t:'dl',i:'😴',tag:'Outside · AM',ti:'Easy Shakeout — 20min',loc:'Outside',
+       ex:[['Easy shakeout','20 min']],pa:[['6:30+','/km']],note:'Optional.'},
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Light Station Review',loc:'Gym',
+       ex:[['BBJ','2×20m easy'],['Lunges','2×20m easy'],['WB','2×20 easy']],pa:[['Easy','no targets']],note:'Pattern maintenance.'}},
+    {day:'Sat',int:'DELOAD',am:null,
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Easy Hyrox Preview',loc:'Gym',
+       ex:[['500m ski','easy technique'],['20 WB','easy'],['25m sled','152kg feel']],pa:[['Easy','no targets']],note:'Technique only. No effort.'}},
+    {day:'Sun',int:'DELOAD',
+     am:{t:'dl',i:'😴',tag:'Outside · AM',ti:'Easy Run — 40min',loc:'Outside',
+       ex:[['Easy run','40 min']],pa:[['6:00–6:20','/km'],['<145','HR bpm']],
+       note:'End of Meso 1. Legs should feel noticeably fresher. Meso 2 begins Monday.'},
+     pm:null},
+  ]},
+  // ── MESO 2 ──────────────────────────────────────────────
+  {n:5,d:'Jun 29–Jul 5',ph:2,dl:false,v:'~56km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Treadmill · AM',ti:'VO2max 5×5min',loc:'Treadmill',
+       ex:[['Warm-up','15min easy'],['5×5min @4:28–4:38/km (90–95% MAS) (4:28–4:38/km)','3min rest'],['Cool-down','10min']],
+       pa:[['~4:28–4:38','/km — near 5k pace'],['90–95%','MAS — very hard'],['3min','full rest']],
+       note:'Running Workout 2 — VO2max 5×5. One of the best-documented VO2max protocols. 5 minutes accumulates significant time near VO2max. These will feel very hard — that is correct. Do not reduce pace to make them feel easier.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Str + RST 4 + Sleds 172kg',loc:'Gym',
+       ex:[['Back Squat','3×5 @ 128kg'],['Deadlift','3×5 @ 138kg'],['Pull-ups','3×5 BW'],['Sled Push','4×25m @ 172kg — intermediate Pro'],['Sled Pull','4×25m @ 123kg'],['BBJ','3×40m — timed'],['Air Bike RST 4','E2MOM 30min: 6s sprint every 2min']],
+       pa:[['80%','str load'],['172/123kg','sleds — step toward Pro']],
+       note:'Sleds step to 172/123kg — intermediate toward full Pro (202/153kg). Distances back to 25m for weight adjustment. RST 4: E2MOM 6s sprint every 2min for 30min — minimal metabolic stress, maximum power.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 36min',loc:'Outside',
+       ex:[['Easy run','36 min']],pa:[['5:30–6:00','/km'],['140–150','HR bpm']],note:'Flush after VO2max Monday.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 22min',loc:'Gym',
+       ex:[['Easy row','22min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Easy 3:1 + Fast Finish — 35min',loc:'Outside',
+       ex:[['4 blocks of 8min:','6min @5:30–6:10/km (easy) (5:30–6:10/km) + 2min @4:20–4:35/km (fast) (~4:20–4:35/km) (~4:14/km (100% MAS))'],['After 4 blocks:','3min @3:33–3:45/km (very hard) (~3:50/km (110% MAS))']],
+       pa:[['5:10–5:25','/km easy'],['4:20–4:30','/km fast'],['4:05–4:15','/km hard finish']],
+       note:'Running Workout 15. 3:1 ratio maintains aerobic dominance. The 3min very hard finish is the main VO2max stimulus — do not skip it.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'Row HIIT 4 — Power Start + Sustain',loc:'Gym',
+       ex:[['8 Rounds:','10s @max effort (~1:38–1:42/500m) / 50s @1:51–1:55/500m (100% FTP) (~1:51–1:55/500m) / 60s rest']],
+       pa:[['Max power','10s start'],['~1:51–1:55','/500m sustain'],['8','rounds']],
+       note:'PST Row HIIT 4. 10s max start + 50s @FTP. Mirrors running into a Hyrox station then pushing the sled. Sustain target is around Krys FTP pace (1:51–1:55/500m).'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 30min',loc:'Outside',
+       ex:[['Easy jog','22min'],['5×20s strides','walk recovery']],pa:[['6:00–6:20','/km'],['5 strides','prime']],
+       note:'Strides before Hyrox 5 — most running-specific Hyrox session so far.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str + Sled Complex + 60m Lunges',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 86kg'],['OHP','3×5 @ 58kg'],['Dips','3×5 @ +20kg'],['Pull-ups','3×5 BW'],['BB ISO Runner Push','3× (25m light sled + 4 broad jumps)'],['Sandbag Lunges','1×60m @ 30kg — timed'],['FC','2×100m @ 2×32kg']],
+       pa:[['80%','str load'],['60m','lunges — target <2:25 (= sub-3:50 race pace)']],
+       note:'PST Meso 2 Day 5. BB ISO Runner Push + sled complex. First 60m lunge — target <2:25 maps to sub-3:50 race pace for full 100m.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 5 — Descending Engine Ladder',loc:'Gym',
+       ex:[['1000m RUN','@4:48–4:55/km (threshold)'],['800m SkiErg (~3:50–4:00/500m)','@4:48–4:55/km (threshold)'],['800m RUN','@4:48–4:55/km (threshold)'],['600m Row (~1:51–1:55/500m)','@4:48–4:55/km (threshold)'],['600m RUN','@4:48–4:55/km (threshold)'],['400m SkiErg (~3:50/500m)','@4:20–4:35/km (fast) (~4:20–4:35/km)'],['400m RUN','@4:20–4:35/km (fast) (~4:20–4:35/km)'],['200m Row (@max effort (~1:38–1:42/500m)','@max effort (~1:38–1:42/500m)'],['EMOM 10min:','15 WB @9kg every minute (150 WB total)']],
+       pa:[['4:45–4:55','/km threshold run'],['~3:50–4:00','/500m ski threshold'],['EMOM 10min','15 WB every minute — 150 total']],
+       note:'PST HYROX 5. Distances decrease as effort increases — tolerance to escalating intensity. EMOM WB finisher immediately after ladder. Note all ski and row splits — Krys\'s strongest area.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 72min',loc:'Outside',
+       ex:[['Easy long run','72 min']],pa:[['5:25–5:55','/km'],['140–154','HR bpm']],note:'First Sunday long run of Meso 2.'},
+     pm:null},
+  ]},
+  {n:6,d:'Jul 6–12',ph:2,dl:false,v:'~60km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Treadmill · AM',ti:'2:1 High-Intensity Fartlek — 33min',loc:'Treadmill',
+       ex:[['33min continuous:','2min @5:30–6:10/km (easy) (5:30–6:10/km) (~5:10–5:30/km (75% LT2)) + 1min @3:33–3:45/km (very hard) (~3:33–3:40/km (135% LT2))'],['~11 cycles','no rest — continuous']],
+       pa:[['5:10–5:30','/km easy phase'],['4:00–4:10','/km hard phase'],['Continuous','33min — no stops']],
+       note:'Running Workout 13. Total time >90% VO2max should exceed 12min — powerful VO2max stimulus. Hardest continuous running session of the block. Do not stop between intervals.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Str + Tabata Bike + Sleds 172kg 30m',loc:'Gym',
+       ex:[['Back Squat','3×5 @ 128kg'],['Deadlift','3×5 @ 140kg'],['Pull-ups','3×5 BW'],['Sled Push','4×30m @ 172kg'],['Sled Pull','4×30m @ 123kg'],['BBJ','3×40m — timed'],['Air Bike Tabata','8×20s all-out / 10s easy — 4min total']],
+       pa:[['80%','str load'],['172/123kg','30m']],
+       note:'Sleds to 30m at 172kg. Air Bike Tabata — 4min total, extreme density. BBJ at 40m consistently — compare to week 3.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 38min',loc:'Outside',
+       ex:[['Easy run','38 min']],pa:[['5:25–5:55','/km'],['140–150','HR bpm']],
+       note:'After Monday Fartlek — absolutely necessary easy. HR will be elevated.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 22min',loc:'Gym',
+       ex:[['Easy row','22min']],pa:[['2:05–2:15','/500m']],note:'Recovery row.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Critical Speed Intervals 5×6min',loc:'Outside',
+       ex:[['Warm-up','12min easy'],['5×6min @4:35–4:45/km (95–100% CS) (4:35–4:45/km)','2min rest'],['Cool-down','10min']],
+       pa:[['4:35–4:45','/km — near 5k race pace'],['2min','rest'],['5 reps','total']],
+       note:'Running Workout 10. Critical Speed = velocity at which aerobic energy supply equals demand. Key for predicting performance in 30–60min events like Hyrox. Longer reps, slightly lower intensity than VO2max intervals.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'Row HIIT 5 — Adapt or Die Trying',loc:'Gym',
+       ex:[['3×1000m @1:42–1:48/500m (110–120% FTP)','3–4min rest'],['Progressive:','start @108% → middle @115% → last 200m @120%']],
+       pa:[['~1:42–1:48','/500m hard'],['Progressive','intensity each rep']],
+       note:'PST Row HIIT 5. Three 1000m pieces at very high FTP. Progressive format mirrors Hyrox race strategy.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 30min',loc:'Outside',
+       ex:[['Easy jog','22min'],['5×20s strides','walk recovery']],pa:[['6:00–6:20','/km']],note:'Prime for Hyrox 6.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str + 80m Lunges + Sled Complex',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 88kg'],['OHP','3×5 @ 58kg'],['Dips','3×5 @ +22kg'],['Pull-ups','3×5 BW'],['Sled ISO Push + Sprint','3× (25m light sled + 20m sprint)'],['Sandbag Lunges','1×80m @ 30kg — timed'],['FC','1×150m @ 2×32kg']],
+       pa:[['82%','str load'],['80m','lunges — first long set, target <3:00']],
+       note:'First 80m lunge — target <3:00 maps to sub-3:35 race time. FC at 150m exceeds race distance.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 6 — Wall Ball Density Builder',loc:'Gym',
+       ex:[['6 Rounds:','500m RUN @4:48–4:55/km (threshold) (4:48–4:55/km)–5%'],['Each round:','25 WB @9kg + 20 Air Squats + 25 WB @9kg'],['300 WB total','across 6 rounds + 3km running']],
+       pa:[['5:00–5:10','/km run'],['Unbroken','all WB sets target'],['300','total wall balls']],
+       note:'PST HYROX 6. 300 total wall balls + 3km running. High-rep WB volume under aerobic load. If breaking on sets, take deliberate 2-second pause rather than dropping the ball.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 76min',loc:'Outside',
+       ex:[['Easy long run','76 min']],pa:[['5:25–5:55','/km'],['140–154','HR bpm']],note:'4min longer than week 5.'},
+     pm:null},
+  ]},
+  {n:7,d:'Jul 13–19',ph:2,dl:false,v:'~63km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Treadmill · AM',ti:'VO2max 5×5min — FASTER',loc:'Treadmill',
+       ex:[['Warm-up','15min easy'],['5×5min @4:28–4:38/km (90–95% MAS) (4:28–4:38/km)','3min rest'],['Cool-down','10min']],
+       pa:[['4:25–4:35','/km — faster than week 5'],['90–95%','MAS'],['3min','rest']],
+       note:'Second VO2max 5×5 — faster than week 5 from week 4 TT recalibration. Peak quality running session of Meso 2.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Str + RST 6 + FULL PRO SLEDS 202/153kg',loc:'Gym',
+       ex:[['Back Squat','3×5 @ 131kg'],['Deadlift','3×5 @ 142kg'],['Pull-ups','3×5 BW'],['Sled Push','4×25m @ 202kg — ⬅ FULL PRO LOAD'],['Sled Pull','4×25m @ 153kg — ⬅ FULL PRO LOAD'],['BBJ','3×50m — timed'],['Air Bike RST 6 — Reverse Tabata','8×10s all-out / 20s easy']],
+       pa:[['82%','str load'],['202/153kg','FIRST TIME at full Pro load']],
+       note:'FIRST SESSION AT FULL PRO LOAD. 202kg push / 153kg pull — 50kg more than Open. Distances back to 25m. Chin tucked, hips low, short powerful steps. Do not rush the first set.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 40min',loc:'Outside',
+       ex:[['Easy run','40 min']],pa:[['5:25–5:55','/km'],['140–150','HR bpm']],note:'Easy after VO2max Monday.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 24min',loc:'Gym',
+       ex:[['Easy row','24min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Long Progressive Run — 60min',loc:'Outside',
+       ex:[['20min @5:30–6:10/km (easy) (5:30–6:10/km)','zone 2'],['20min @5:05–5:25/km (steady)','between Z2 and LT2'],['20min @5:02–5:10/km (vLT2–5%) (5:02–5:10/km)','controlled push to finish']],
+       pa:[['5:40–6:00','/km easy'],['5:10–5:25','/km steady'],['4:55–5:05','/km LT2-5%']],
+       note:'Running Workout 12 — Long Progressive. 60min cut-down. Develops ability to increase intensity across sustained duration — exactly what final 3km of Hyrox running demands.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'10×45s/45s SkiErg + Row @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski)',loc:'Gym',
+       ex:[['1000m ski warm-up','easy'],['10×45s @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski) / 45s easy','SkiErg'],['10×45s @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski) / 45s easy','Row'],['1000m row cool-down','easy']],
+       pa:[['~3:20–3:35','/500m ski hard'],['~1:38–1:44','/500m row hard'],['140%','FTP — severe domain']],
+       note:'PST Meso 3 Day 2 template. Both ski and row at 140% FTP back-to-back. Note split difference — gap should close over training.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 30min',loc:'Outside',
+       ex:[['Easy jog','22min'],['5×20s strides','walk recovery']],pa:[['6:00–6:20','/km']],
+       note:'Prime before Hyrox 7 — Broken Race Stimulus.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str + 100m Lunges + 10×45s Ergs',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 90kg'],['OHP','3×5 @ 60kg'],['Dips','3×5 @ +24kg'],['Pull-ups','3×5 BW'],['10×45s/45s Ski+Row @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski)','10min total'],['Sandbag Lunges','1×100m @ 30kg — RACE DISTANCE — timed'],['FC','1×200m @ 2×32kg — race distance']],
+       pa:[['84%','str load'],['100m','FIRST race distance lunges — target <3:50'],['200m','FIRST race distance FC']],
+       note:'First full race-distance sessions. 100m lunges target <3:50. 200m FC — posture in final 60m defines race-day carry.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 7 — Broken Race Stimulus',loc:'Gym',
+       ex:[['1km RUN',''],['500m SkiErg (~3:50–4:00/500m)',''],['1km RUN',''],['25m Sled Push','@ 202kg Pro'],['1km RUN',''],['25m Sled Pull','@ 153kg Pro'],['1km RUN',''],['50m Walking Lunge','@ 30kg'],['1km RUN',''],['40 Burpee Broad Jump',''],['1km RUN',''],['50 Wall Balls','@ 9kg']],
+       pa:[['6 runs + 6 stations','all stations unbroken'],['Race pace','station effort'],['~38–42min','estimated total']],
+       note:'PST HYROX 7 — Broken Race Stimulus. Full race sequence at half station volumes. All stations unbroken. Note transitions — acceleration after each station saves 30–60s race day.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 80min',loc:'Outside',
+       ex:[['Easy long run','80 min']],pa:[['5:20–5:50','/km'],['140–154','HR bpm']],
+       note:'Peak long run of Meso 2. Deload follows — run it well then recover properly.'},
+     pm:null},
+  ]},
+  {n:8,d:'Jul 20–26',ph:2,dl:true,v:'~26km',days:[
+    {day:'Mon',int:'DELOAD',
+     am:{t:'dl',i:'😴',tag:'Outside · AM',ti:'Easy Run — 25min',loc:'Outside',
+       ex:[['Easy jog','25 min']],pa:[['6:00–6:30','/km'],['<140','HR bpm']],note:'Meso 2 deload. Two TTs this week — protect legs.'},
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Light Lower Strength',loc:'Gym',
+       ex:[['Back Squat','3×5 @ 96kg (60%)'],['Deadlift','3×5 @ 96kg'],['Sled Push','2×20m @ 152kg easy']],pa:[['60%','all lifts']],note:'Maintenance.'}},
+    {day:'Tue',int:'TEST',
+     am:{t:'tt',i:'🏁',tag:'Treadmill · AM',ti:'5k Time Trial — GATE 1',loc:'Treadmill',
+       ex:[['Warm-up','15min + 4×30s strides'],['5k all-out','record every km split'],['Cool-down','10min walk']],
+       pa:[['<20:00','gate target'],['4:00','/km target']],
+       note:'Must hit sub-20:00. Compare km split profile to week 4 TT. Result recalibrates Meso 3 paces.'},
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Easy Ski + Light Movement',loc:'Gym',
+       ex:[['SkiErg','3×3min easy'],['Row','15min easy']],pa:[['Easy','post-TT flush']],note:'Light movement only.'}},
+    {day:'Wed',int:'DELOAD',
+     am:{t:'dl',i:'😴',tag:'Outside · AM',ti:'Easy Run — 35min',loc:'Outside',
+       ex:[['Easy jog','35 min']],pa:[['6:00+','/km']],note:'Between TTs.'},
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Light Upper Strength',loc:'Gym',
+       ex:[['OHP','3×5 @ 60%'],['Pull-ups','3×4 BW'],['Row','20min easy']],pa:[['60%','maintenance']],note:'Maintenance.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'DELOAD',
+     am:{t:'dl',i:'😴',tag:'Outside · AM',ti:'Easy Shakeout — 20min',loc:'Outside',
+       ex:[['Easy shakeout','20 min']],pa:[['6:30+','/km']],note:'Light before Sunday 10k.'},
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Light Station Review',loc:'Gym',
+       ex:[['BBJ','2×20m easy'],['WB','2×20 easy'],['Lunges','2×20m easy']],pa:[['Easy','no targets']],note:'Patterns fresh.'}},
+    {day:'Sat',int:'DELOAD',am:null,
+     pm:{t:'dl',i:'😴',tag:'Gym · PM',ti:'Easy Hyrox Review',loc:'Gym',
+       ex:[['500m ski','easy technique'],['20 WB','easy'],['25m sled','152kg feel']],pa:[['Easy','no targets']],note:'Technique only.'}},
+    {day:'Sun',int:'TEST',
+     am:{t:'tt',i:'🏁',tag:'Outside · AM',ti:'10k Time Trial — PHASE EXIT GATE',loc:'Outside',
+       ex:[['Warm-up','12min easy'],['10k all-out','record every km split'],['Cool-down','10min walk']],
+       pa:[['<43:00','gate target'],['4:18','/km target'],['4:41','/km current']],
+       note:'Most important test so far. Sub-43:00 confirms aerobic drop-off is being fixed. If 10k still 45:00+ with sub-20:00 5k, zone 2 volume increases in Meso 3.'},
+     pm:null},
+  ]},
+  // ── MESO 3 ──────────────────────────────────────────────
+  {n:9,d:'Jul 27–Aug 2',ph:3,dl:false,v:'~58km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Outside · AM',ti:'Norwegian 4×4 @4:28–4:38/km (90% MAS) (4:28–4:35/km)',loc:'Outside',
+       ex:[['Warm-up','15min easy'],['4×4min @4:28–4:38/km (90% MAS) (4:28–4:35/km)','3min @5:00–5:15/km (70% MAS) between'],['Cool-down','12min easy']],
+       pa:[['4:28–4:38','/km — 90% MAS'],['5:00–5:15','/km recovery'],['4min on / 3min off','']],
+       note:'Norwegian 4×4 — best-evidenced VO2max protocol in endurance sport. 4min at 90% MAS. Recovery at 70% MAS keeps aerobic system active. Meso 3 running quality steps up substantially.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'BB Walking Lunges + Full Pro Sleds + RST',loc:'Gym',
+       ex:[['BB Walking Lunges','3×12 @ heavy — PST Meso 3'],['Hip Thrust','3×5'],['Sled Push','4×25m @ 202kg'],['Sled Pull','4×25m @ 153kg'],['BBJ','2×60m — timed'],['Air Bike RST 2','Sprint+Aerobic: 15× (8s / 30s easy)']],
+       pa:[['202/153kg','full Pro sleds'],['Heavy','BB walking lunges — race-specific pattern']],
+       note:'PST Meso 3 shifts to BB Walking Lunges — more race-specific loading than back squat. BBJ at 60m — nearing full 80m race distance.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 38min',loc:'Outside',
+       ex:[['Easy run','38 min']],pa:[['5:20–5:50','/km'],['140–150','HR bpm']],note:'After Norwegian 4×4 — genuinely easy.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 24min',loc:'Gym',
+       ex:[['Easy row','24min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'2:1 Fartlek — 36min (harder)',loc:'Outside',
+       ex:[['36min continuous:','2min @5:30–6:10/km (easy) (5:30–6:10/km) / 1min @3:33–3:45/km (very hard) (~3:33–3:40/km (135% LT2))'],['~12 cycles','no rest']],
+       pa:[['5:10–5:30','/km easy'],['4:00–4:10','/km hard'],['36min','continuous — 3min longer than Meso 2']],
+       note:'Running Workout 13 — 3min longer than Meso 2. Total time >90% VO2max should exceed 12min. Do not reduce hard phase pace to feel more comfortable.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'10×45s/45s SkiErg @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski)',loc:'Gym',
+       ex:[['1000m ski warm-up','easy'],['10×45s @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski) / 45s easy','SkiErg only'],['Compare splits','to week 7 ski performance']],
+       pa:[['~3:20–3:35','/500m hard'],['Isolated ski','test specific improvement']],
+       note:'SkiErg only this week — isolated test of ski improvement vs week 7.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 30min',loc:'Outside',
+       ex:[['Easy jog','22min'],['5×20s strides','walk recovery']],pa:[['6:00–6:20','/km']],
+       note:'Prime before Hyrox 8 — Sled Cluster Grinder.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str + COMPROMISED RUNNING INTRO',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 92kg'],['OHP','3×5 @ 60kg'],['Dips','3×5 @ +26kg'],['Pull-ups','3×5 BW'],['COMPROMISED RUNNING:','4× (50 WB @9kg → 400m @3:54–4:00/km (race pace) (3:54–4:00/km))'],['Rest','3min between sets']],
+       pa:[['86%','str load'],['50 WB → 400m','@3:54–4:00/km (Oslo race pace) (3:54–4:00/km) — COMPROMISED RUNNING ENTERS']],
+       note:'COMPROMISED RUNNING ENTERS THE PLAN. 4 sets: 50 WB into 400m at race pace. The 400m should feel terrible at first — that is the point. Note how quickly HR settles within each run.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 8 — Sled Cluster Grinder',loc:'Gym',
+       ex:[['8 Clusters:','25m Sled Push @202kg + 25m Sled Pull @153kg + 400m RUN'],['60–90s rest','between clusters'],['Total:','200m Pro sleds + 3.2km running']],
+       pa:[['202/153kg','full Pro — 8 clusters'],['Track','every 400m run split'],['60–90s','rest between']],
+       note:'PST HYROX 8. Best session for accumulating leg fatigue simulation. 400m splits should not drop >10–15s cluster to cluster.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 74min',loc:'Outside',
+       ex:[['Easy long run','74 min']],pa:[['5:20–5:50','/km'],['140–154','HR bpm']],note:'First long run of Meso 3 — intentional ramp from deload.'},
+     pm:null},
+  ]},
+  {n:10,d:'Aug 3–9',ph:3,dl:false,v:'~61km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Outside · AM',ti:'5×1km @RPE 8–9 (threshold+10%)',loc:'Outside',
+       ex:[['Warm-up','15min easy'],['5×1km @RPE 8–9','90s rest'],['Cool-down','12min']],
+       pa:[['4:20–4:35','/km — very fast'],['90s','deliberately short rest'],['5 reps','total']],
+       note:'PST Meso 3 Day 4. 90s rest forces pace maintenance under residual fatigue — directly replicates runs 3–7 in a race.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'BB Lunges + Sleds 202kg + 80m BBJ',loc:'Gym',
+       ex:[['BB Walking Lunges','3×12 @ heavy'],['Hip Thrust','3×5'],['Sled Push','4×30m @ 202kg'],['Sled Pull','4×30m @ 153kg'],['BBJ','1×80m — FULL RACE DISTANCE — timed'],['Air Bike RST 4','E2MOM 30min: 6s sprint']],
+       pa:[['202/153kg','sleds 30m'],['80m','BBJ — FULL RACE DISTANCE — target <3:00']],
+       note:'First full 80m BBJ — race distance. Target <3:00. If last 20m slows dramatically, BBJ pace is too fast at the start. Consistent jump length throughout matters more than speed.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 40min',loc:'Outside',
+       ex:[['Easy run','40 min']],pa:[['5:20–5:50','/km'],['140–150','HR bpm']],note:'Recovery after high-intensity Monday.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 26min',loc:'Gym',
+       ex:[['Easy row','26min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Over-Under LT 4×8min — sharper paces',loc:'Outside',
+       ex:[['Warm-up','12min easy'],['4 rounds of 8min:','2min @4:35–4:42/km (vLT2+5%) (4:35–4:42/km) + 2min @5:02–5:10/km (vLT2–5%) (×2)'],['3min rest','between rounds'],['Cool-down','10min']],
+       pa:[['4:38–4:43','/km over — faster than Meso 1'],['4:48–4:53','/km under']],
+       note:'Third Over-Under LT. Paces faster than Meso 1 based on improved fitness from week 8 TT.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'Row HIIT 3 — 30/15×10×3 (higher standard)',loc:'Gym',
+       ex:[['3 series:','10–13× (30s @1:38–1:44/500m (130% FTP) (~1:38–1:44/500m) / 15s rest)'],['3min rest','between series']],
+       pa:[['~1:38–1:44','/500m — same or faster than week 3'],['130%','FTP']],
+       note:'Row HIIT 3 repeat. Goal: same or faster splits with better repeatability. 8 weeks of erg training should show here.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 30min',loc:'Outside',
+       ex:[['Easy jog','22min'],['5×20s strides','walk recovery']],pa:[['6:00–6:20','/km']],
+       note:'Strides before lunge-heavy Hyrox 10 tomorrow.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str + Compromised Running 6×600m',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 94kg'],['OHP','3×5 @ 60kg'],['Pull-ups','3×5 BW'],['COMPROMISED RUNNING:','6× (50 WB @9kg → 600m @3:54–4:00/km (race pace) (3:54–4:00/km))'],['Rest','2.5min between — reduced from week 9']],
+       pa:[['50 WB → 600m','@3:54–4:00/km (Oslo race pace) (3:54–4:00/km)'],['6 sets','vs 4 last week — more volume'],['2.5min','rest reduced']],
+       note:'Compromised running progresses — 6 sets vs 4, 600m vs 400m, rest reduced. If pace drops below 4:10/km on last 2 reps, reduce to 5 sets.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 10 — High-Tension Lunge Flow',loc:'Gym',
+       ex:[['3 Rounds:','1000m SkiErg @4:48–4:55/km (threshold) (~3:50–4:00/500m)'],['','20 Walking Lunges @30kg sandbag'],['','20 Reverse Lunges @30kg sandbag'],['','20 Step-ups @30kg sandbag'],['','1000m RUN @4:48–4:55/km (threshold) (4:48–4:55/km)'],['Total:','3000m ski + 180 lunge reps + 3km running']],
+       pa:[['3:50–4:00','/500m ski threshold'],['4:45–4:55','/km threshold run'],['3','rounds']],
+       note:'PST HYROX 10. Anterior chain metabolite accumulation is extreme by round 3. Ski and run at threshold — these are the quality targets. Lunge variations at controlled pace.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 78min',loc:'Outside',
+       ex:[['Easy long run','78 min']],pa:[['5:20–5:50','/km'],['140–154','HR bpm']],note:'Building toward week 11 peak.'},
+     pm:null},
+  ]},
+  {n:11,d:'Aug 10–16',ph:3,dl:false,v:'~62km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Outside · AM',ti:'Norwegian 4×4 — PEAK VERSION',loc:'Outside',
+       ex:[['Warm-up','15min easy'],['4×4min @4:28–4:38/km (90% MAS) (4:28–4:35/km) — peak effort','3min @5:00–5:15/km (70% MAS)'],['Cool-down','12min']],
+       pa:[['4:25–4:33','/km — faster than week 9'],['5:00–5:15','/km recovery']],
+       note:'Peak Norwegian 4×4 of the entire plan. Faster paces than week 9 based on accumulated fitness. Final major quality run before wedding break. Give it everything — a full week of rest follows.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Str PEAK + Pro Sleds + Full Race Station Distances',loc:'Gym',
+       ex:[['BB Walking Lunges','3×12 @ peak load'],['Hip Thrust','3×5'],['Sled Push','6×25m @ 202kg — 150m TOTAL'],['Sled Pull','6×25m @ 153kg — 150m TOTAL'],['BBJ','1×80m timed'],['Sandbag Lunges','1×100m @ 30kg — RACE DISTANCE — TIMED'],['FC','1×200m @ 2×32kg']],
+       pa:[['202/153kg','6 sets — peak sled volume'],['100m','lunges — race distance — target <3:50'],['80m','BBJ — race distance']],
+       note:'PEAK MONDAY SESSION of the entire plan. Full race distances on all stations. 6 sled sets = 150m push + 150m pull at full Pro load. This session directly shows race readiness. 100m lunge target <3:50 is the gate to Meso 4.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 42min',loc:'Outside',
+       ex:[['Easy run','42 min']],pa:[['5:20–5:50','/km'],['140–150','HR bpm']],note:'Easy recovery. Longest Tuesday easy run of the plan.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 26min',loc:'Gym',
+       ex:[['Easy row','26min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Up & Down Tempo — 65min',loc:'Outside',
+       ex:[['20min @5:30–6:10/km (easy) (5:30–6:10/km)/steady','Z2 to Z3'],['10min @4:48–4:55/km (vLT2)','threshold'],['5min @4:35–4:42/km (vLT2+5%) (4:35–4:42/km)','over-threshold'],['10min @4:48–4:55/km (vLT2)','back to threshold'],['20min @5:30–6:10/km (easy) (5:30–6:10/km)','cool-down']],
+       pa:[['5:05–5:25','/km steady'],['4:45–4:55','/km threshold'],['4:38–4:45','/km over-threshold']],
+       note:'Running Workout 14 — Up & Down Tempo. Pyramid of intensity. Going back to threshold after the overshoot teaches continuation under hard surge — race-specific.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'10×45s/45s Row + Ski @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski) — PEAK ERG',loc:'Gym',
+       ex:[['10×45s @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski) / 45s easy','Row'],['10×45s @1:35–1:42/500m (140% FTP) (~1:38–1:44/500m row / ~3:20–3:35/500m ski) / 45s easy','SkiErg'],['Compare splits','to week 7 — 4 weeks of erg training']],
+       pa:[['~1:38–1:44','/500m row hard'],['~3:20–3:35','/500m ski hard'],['140%','FTP both ergs']],
+       note:'Peak erg session of the plan — both ergs at 140% FTP in the same session. Compare to week 7 where this was introduced. Improvement should be visible. Last major erg session before wedding break.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 32min',loc:'Outside',
+       ex:[['Easy jog','24min'],['5×20s strides','walk recovery']],pa:[['6:00–6:20','/km']],
+       note:'Final Friday before wedding break. Prime for Hyrox 11 — full race distance stations.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str + Compromised Running PEAK 6×800m',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 96kg'],['OHP','3×5 @ 60kg'],['Pull-ups','3×5 BW'],['COMPROMISED RUNNING PEAK:','6× (50 WB @9kg → 800m @3:54–4:00/km (race pace) (3:54–4:00/km))'],['Rest','2min between'],['FC','1×200m @ 2×32kg — time it']],
+       pa:[['50 WB → 800m','@3:54–4:00/km (Oslo race pace) (3:54–4:00/km)'],['6×800m','= 4.8km compromised running total'],['2min','rest']],
+       note:'PEAK compromised running session. 4.8km total compromised running. The 800m is long enough to demand proper pacing out of wall balls. Last 2 sets will be very hard. Do not skip them.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 11 — Station Priority — FULL DISTANCES',loc:'Gym',
+       ex:[['SkiErg','1500m SkiErg @3:54–4:00/km (race pace) (~3:40–3:50/500m) (3:54–4:00/km) — above race distance'],['Sled Push','50m @ 202kg'],['Sled Pull','50m @ 153kg'],['Walking Lunges','100m @ 30kg'],['Burpee Broad Jump','80m'],['Wall Balls','100 reps @ 9kg'],['3×800m RUN','active recovery between stations']],
+       pa:[['Full race distances','all 6 stations'],['1500m ski','50% above race distance'],['3×800m','active recovery runs']],
+       note:'PST HYROX 11 — Station Priority. Full race distances on all stations. 1500m SkiErg (~3:50–4:00/500m) exceeds race distance. The 3×800m runs are active recovery between stations — not time targets. Most demanding Hyrox session of the plan. Note every station time — compare to race targets. PRE-WEDDING PEAK SESSION.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 82min — FINAL PEAK',loc:'Outside',
+       ex:[['Easy long run','82 min — longest run of the entire plan']],pa:[['5:20–5:50','/km'],['140–154','HR bpm']],
+       note:'Final long run before wedding break. 82min — aerobic peak of the plan. After this, the fitness is built. Everything that follows is sharpening.'},
+     pm:null},
+  ]},
+  // ── WEDDING WEEK ────────────────────────────────────────
+  {n:12,d:'Aug 17–23',ph:4,dl:true,v:'💍 Wedding',wedding:true,days:[
+    {day:'Mon',int:'OPTIONAL',
+     am:{t:'wed',i:'🇵🇱',tag:'Poland · Optional',ti:'Easy Run — 25min if feeling good',loc:'Outside',
+       ex:[['Easy jog','20–25 min — no targets'],['No structure','feel only']],pa:[['Easy','feel only']],
+       note:'Poland trip. No structured training. Easy run is fine if feeling good. Do not force it — body needs to absorb 11 weeks of training load. Rest is the stimulus this week.'},
+     pm:{t:'wed',i:'💍',tag:'Optional',ti:'Mobility / Walk',loc:'Anywhere',
+       ex:[['Hip flexors','10min'],['Easy walk','if desired']],pa:[['Rest','primary goal']],note:'No training.'}},
+    {day:'Tue',int:'OPTIONAL',
+     am:{t:'wed',i:'🇵🇱',tag:'Poland · Optional',ti:'Easy Run — 25min',loc:'Outside',
+       ex:[['Easy run','25min — optional']],pa:[['Easy','feel only']],note:'Optional easy run. No targets.'},
+     pm:{t:'wed',i:'💍',tag:'Off',ti:'Rest',loc:'',ex:[['Complete rest','or light walk']],pa:[],note:'Rest.'}},
+    {day:'Wed',int:'OPTIONAL',
+     am:{t:'wed',i:'🇵🇱',tag:'Poland · Optional',ti:'Easy Run — 30min',loc:'Outside',
+       ex:[['Easy run','30min — optional']],pa:[['Easy','feel only']],note:'Optional.'},
+     pm:{t:'wed',i:'💍',tag:'Off',ti:'Rest',loc:'',ex:[['Rest','']],pa:[],note:'Rest.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'OPTIONAL',
+     am:{t:'wed',i:'🇵🇱',tag:'Pre-Wedding',ti:'Easy Walk or Shakeout',loc:'Outside',
+       ex:[['Easy walk or jog','20min — calm before wedding']],pa:[['Very easy','']],note:'Pre-wedding shakeout if desired. Keep very short.'},
+     pm:{t:'wed',i:'💒',tag:'Off',ti:'Wedding Preparation',loc:'',ex:[['Rest and prepare','']],pa:[],note:'Wedding preparation. No training.'}},
+    {day:'Sat',int:'WEDDING',
+     am:{t:'wed',i:'💒',tag:'WEDDING DAY 🎉',ti:'WESELE — Aug 22',loc:'Poland',
+       ex:[['WEDDING DAY','Enjoy every moment'],['No HR monitor','needed today 🎊']],pa:[['Dance','all night 💃']],
+       note:'Wedding day. Zero training thoughts. Celebrate fully. The fitness is built — one day of joy does not affect Oslo preparation.'},
+     pm:{t:'wed',i:'💒',tag:'WESELE',ti:'Wedding Reception',loc:'Poland',
+       ex:[['Celebrate','with family and friends']],pa:[],note:'Enjoy the wedding.'}},
+    {day:'Sun',int:'REST',
+     am:{t:'wed',i:'💍',tag:'Post-Wedding',ti:'Recovery — Easy Walk',loc:'Poland',
+       ex:[['Easy walk','if feeling OK — no running'],['Hydrate well','after wedding night']],pa:[['Rest','primary']],
+       note:'Post-wedding recovery. No running today. Mesocycle 4 begins Monday Aug 24.'},
+     pm:null},
+  ]},
+  // ── MESO 4 ──────────────────────────────────────────────
+  {n:13,d:'Aug 24–30',ph:5,dl:false,v:'~55km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Treadmill · AM',ti:'Return to Threshold — 3×10min',loc:'Treadmill',
+       ex:[['Warm-up','15min easy'],['3×10min @4:48–4:55/km (vLT2)','2min rest — conservative return'],['Cool-down','12min']],
+       pa:[['4:45–4:55','/km — conservative return paces'],['3×10min','30 total threshold minutes']],
+       note:'Return to training after wedding break. Do NOT try to replicate week 11 on day 1 back. 3×10min at threshold is a controlled re-entry. Full sharpness returns by day 3–4. Do not panic.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Str (Reduced) + Pro Sleds',loc:'Gym',
+       ex:[['BB Walking Lunges','3×8 @ moderate — reduced load'],['Sled Push','4×25m @ 202kg — maintained'],['Sled Pull','4×25m @ 153kg — maintained'],['BBJ','2×40m — conservative'],['Air Bike RST 2','10× (8s / 30s easy)']],
+       pa:[['~75%','str load — conservative return'],['202/153kg','sled loads maintained']],
+       note:'Sled Pro loads maintained. Strength volume reduced — fewer reps, lower loads. Priority: re-establish training rhythm, not peak sessions.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 35min',loc:'Outside',
+       ex:[['Easy run','35 min']],pa:[['5:20–5:55','/km'],['140–150','HR bpm']],
+       note:'First run back after wedding break. Might feel slightly off — normal. Do not read into it.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 22min',loc:'Gym',
+       ex:[['Easy row','22min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Easy 3:1 + Fast Finish — 35min',loc:'Outside',
+       ex:[['4 blocks of 8min:','6min @5:30–6:10/km (easy) (5:30–6:10/km) + 2min @4:20–4:35/km (fast) (~4:20–4:35/km)'],['After 4 blocks:','3min @3:33–3:45/km (very hard)']],
+       pa:[['5:10–5:25','/km easy'],['4:20–4:30','/km fast'],['4:05–4:15','/km hard finish']],
+       note:'Running Workout 15 — conservative return. More conservative than Meso 3. This is about restoring sharpness not surpassing it. Expect paces to feel slightly harder, recovering fully by week 14.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'Row HIIT 2 — 15×45/15 (return)',loc:'Gym',
+       ex:[['15 rounds:','45s @1:42–1:48/500m (110–125% FTP) (~1:42–1:48/500m) / 15s easy']],
+       pa:[['~1:42–1:48','/500m — expect slightly worse than Meso 2 initially'],['Aerobic','adaptations return fast — normal by Friday']],
+       note:'Return erg session. Expect slightly worse splits than Meso 2 in first session — that is normal. Aerobic adaptations return quickly. Should feel close to normal by Friday.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 30min',loc:'Outside',
+       ex:[['Easy jog','22min'],['5×20s strides','walk recovery']],pa:[['6:00–6:20','/km']],
+       note:'Strides especially important this week — after the break, fast-twitch patterns need priming.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str + Station Work (conservative)',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 88kg'],['OHP','3×5 @ 58kg'],['Pull-ups','3×5 BW'],['Sandbag Lunges','1×80m @ 30kg — timed'],['Compromised running:','4× (50 WB → 600m @3:54–4:00/km (race pace) (3:54–4:00/km))'],['FC','1×150m']],
+       pa:[['80%','str load'],['Conservative','station return — 4 sets vs 6'],['600m','vs 800m last block']],
+       note:'Compromised running returns at reduced volume — 4 sets vs 6, 600m vs 800m. First 2 sets will feel rusty. By set 3 it should feel familiar.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 12 — Threshold Broken Runs',loc:'Gym',
+       ex:[['4 Rounds:','800m RUN @4:48–4:55/km (threshold) (4:48–4:55/km) + 200m RUN @4:20–4:35/km (fast) (~4:20–4:35/km)'],['After each block:','15 Wall Balls @9kg'],['Total:','4km threshold + 1km fast + 60 WB']],
+       pa:[['4:45–4:55','/km threshold'],['4:15–4:25','/km fast 200m'],['15 WB','after each block']],
+       note:'PST HYROX 12 — Threshold Broken Runs. WB after each run block — reverse compromised stimulus. Running first then station teaches tolerance to fluctuating lactate. Essential Hyrox skill.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 64min',loc:'Outside',
+       ex:[['Easy long run','64 min']],pa:[['5:20–5:50','/km'],['140–154','HR bpm']],
+       note:'First long run after wedding break — shorter than week 11 intentionally. Aerobic fitness is still there; this re-establishes the habit.'},
+     pm:null},
+  ]},
+  {n:14,d:'Aug 31–Sep 6',ph:5,dl:false,v:'~60km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Outside · AM',ti:'5×1km @Oslo Race Pace',loc:'Outside',
+       ex:[['Warm-up','15min easy'],['5×1km @3:54–4:00/km (Oslo race pace) (3:54–4:05/km)','90s rest'],['Cool-down','12min']],
+       pa:[['3:54–4:05','/km — Oslo race run pace'],['90s','short rest — race-like'],['5 reps','total']],
+       note:'Race pace 1km intervals with 90s rest. 90s is deliberately short — forces pace maintenance under residual fatigue. Directly replicates runs 3–7 in a race. If pace holds across all 5 reps, sub-60 is within reach.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'BB Lunges + Pro Sleds + Full Race Station Circuit',loc:'Gym',
+       ex:[['BB Walking Lunges','3×12 @ heavy'],['Sled Push','4×30m @ 202kg'],['Sled Pull','4×30m @ 153kg'],['BBJ','1×80m timed'],['Sandbag Lunges','1×100m @ 30kg — timed'],['Air Bike RST 4','E2MOM 30min: 6s sprint']],
+       pa:[['202/153kg','sleds 30m'],['100m','lunges — compare to week 11'],['80m','BBJ']],
+       note:'Full station circuit at race distances. 100m lunges timed — should be close to or better than week 11. This session demonstrates readiness.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 40min',loc:'Outside',
+       ex:[['Easy run','40 min']],pa:[['5:20–5:50','/km'],['140–150','HR bpm']],note:'Flush from Monday race pace intervals.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 24min',loc:'Gym',
+       ex:[['Easy row','24min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'HARD-ISH',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Speed Endurance 10×30/15',loc:'Outside',
+       ex:[['Warm-up','12min easy'],['10× (30s @120–130% vLT2 (4:00–4:12/km) / 15s jog)',''],['Can extend to 13 reps','if feeling strong'],['Cool-down','10min']],
+       pa:[['~4:00–4:12','/km — 120–130% vLT2'],['15s jog','active rest'],['10–13','reps']],
+       note:'Running Workout 3. Short high-intensity intervals — develops speed endurance that makes race pace feel more comfortable. Can also be done on the erg if needed.'},
+     pm:{t:'erg',i:'🚣',tag:'Gym · PM',ti:'Row HIIT 5 — Adapt or Die (peak version)',loc:'Gym',
+       ex:[['3×1000m @1:42–1:48/500m (110–120% FTP)','3–4min rest'],['Progressive:','start @108% → middle @115% → last 200m @120%']],
+       pa:[['~1:42–1:48','/500m — aiming for improvements vs week 6'],['Progressive','each rep harder than last']],
+       note:'Row HIIT 5 repeat. Progressive format — last 200m of each rep at 120% FTP is the peak stimulus. Compare to week 6.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 32min',loc:'Outside',
+       ex:[['Easy jog','24min'],['6×20s strides','walk recovery — one extra']],pa:[['6:00–6:20','/km'],['6 strides','peak prime before race sim']],
+       note:'One extra stride — priming for the full race simulation tomorrow. Saturday is the biggest session of Meso 4.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str + Compromised Running PEAK + Race Sim Prep',loc:'Gym',
+       ex:[['Hip Thrust','3×5 @ 98kg'],['OHP','3×5 @ 60kg'],['Pull-ups','3×5 BW'],['COMPROMISED RUNNING:','6× (50 WB @9kg → 800m @3:54–4:00/km (race pace) (3:54–4:00/km))'],['Rest','2min between'],['Review','all station race targets for tomorrow\'s sim']],
+       pa:[['50 WB → 800m','@3:54–4:00/km (Oslo race pace) (3:54–4:00/km)'],['6 sets','peak volume'],['Review','race target splits mentally']],
+       note:'Peak compromised running. Review every station target before tomorrow\'s race simulation. Go into Saturday knowing exactly what splits to aim for.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 13 — Decreasing Run, Increasing Load',loc:'Gym',
+       ex:[['1000m RUN',''],['80m Lunges @ SB 10kg',''],['800m RUN',''],['80m Lunges @ SB 20kg',''],['600m RUN',''],['80m Lunges @ SB 30kg','— Pro race weight'],['400m RUN',''],['80m Lunges @ SB 40kg','— above race weight']],
+       pa:[['Runs decrease','1000→800→600→400m'],['Load increases','10→20→30→40kg'],['~30–35min','estimated total']],
+       note:'PST HYROX 13. Runs get shorter as sandbag weight increases. 40kg is above race weight — deliberate overload. The psychological challenge of heavier load on more fatigued legs is excellent race prep.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 70min',loc:'Outside',
+       ex:[['Easy long run','70 min']],pa:[['5:20–5:50','/km'],['140–154','HR bpm']],note:'Long run building back toward 75min in week 15.'},
+     pm:null},
+  ]},
+  {n:15,d:'Sep 7–13',ph:5,dl:false,v:'~58km',days:[
+    {day:'Mon',int:'HARD',
+     am:{t:'thr',i:'⚡',tag:'Outside · AM',ti:'Race Pace 1km Intervals — PEAK 6 reps',loc:'Outside',
+       ex:[['Warm-up','15min easy'],['6×1km @3:54–4:00/km (Oslo race pace) (3:54–4:00/km)','60s rest — very short'],['Cool-down','12min']],
+       pa:[['3:54–4:00','/km — Oslo target pace'],['60s','race-like recovery'],['6 reps','peak volume at race pace']],
+       note:'Peak race pace session. 6×1km at Oslo target with 60s rest. If holdable across all 6 reps, sub-60 is within reach. If not consistently held, 63–65min is the realistic Oslo target. This is the honest final read.'},
+     pm:{t:'str',i:'🏋️',tag:'Gym · PM',ti:'Lower Str (Maintenance 2×5) + Pro Sleds + Stations',loc:'Gym',
+       ex:[['BB Lunges or Squat','2×5 @ 80% — maintenance'],['Sled Push','4×25m @ 202kg'],['Sled Pull','4×25m @ 153kg'],['Sandbag Lunges','1×100m timed — final benchmark'],['BBJ','1×60m timed']],
+       pa:[['80%','str — maintenance'],['100m','lunges — FINAL PRE-OSLO BENCHMARK']],
+       note:'Strength shifts to maintenance — 2 sets of 5. 100m lunges timed here are the final benchmark before Oslo. Compare to race target of sub-3:35.'}},
+    {day:'Tue',int:'EASY',
+     am:{t:'run',i:'🏃',tag:'Outside · AM',ti:'Zone 2 Run — 36min',loc:'Outside',
+       ex:[['Easy run','36 min']],pa:[['5:20–5:50','/km'],['140–150','HR bpm']],note:'Easy flush before the big Wednesday race sim.'},
+     pm:{t:'easy',i:'🚣',tag:'Gym · PM',ti:'Easy Row — 22min',loc:'Gym',
+       ex:[['Easy row','22min']],pa:[['2:05–2:15','/500m']],note:'Active recovery.'}},
+    {day:'Wed',int:'RACE SIM',
+     am:{t:'tt',i:'🏁',tag:'FULL RACE SIMULATION',ti:'FULL RACE SIM — 8 Runs + 8 Stations',loc:'Gym / Track',
+       ex:[['8×1km RUN','@3:54–4:00/km (Oslo race pace) (3:54–4:00/km) target race pace'],['8 stations in order:','SkiErg 1000m → SP 50m @202kg → SPL 50m @153kg → BBJ 80m → Row 1000m → FC 200m → Lunges 100m @30kg → WB 100 @9kg'],['Time everything:','every km split + every station separately'],['THIS IS','your Oslo dress rehearsal']],
+       pa:[['3:54–4:00','/km — race pace runs'],['Full Pro weights','all stations'],['~58–63min','target total — add 2–4min for race day adrenaline']],
+       note:'THE RACE SIMULATION. First and only full race sim of the program. Race day adrenaline, crowd, and fresh legs typically add 2–4 minutes above the sim. Time every km and every station. Note where pace drops. Note which stations feel worse than expected. This data shapes the final 10 days.'},
+     pm:{t:'easy',i:'😴',tag:'Rest · PM',ti:'Full PM Rest after Race Sim',loc:'',
+       ex:[['Complete rest','after race sim — no PM session']],pa:[],note:'Eat, rest, recover. No PM session after the race simulation.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'MEDIUM',
+     am:{t:'easy',i:'🏃',tag:'Outside · AM',ti:'Easy Run + Strides — 28min',loc:'Outside',
+       ex:[['Easy jog','20min'],['5×20s strides','walk recovery']],pa:[['6:00–6:20','/km']],note:'Light prime before final Hyrox session.'},
+     pm:{t:'ustr',i:'💪',tag:'Gym · PM',ti:'Upper Str (Maintenance) + Compromised Running Reduced',loc:'Gym',
+       ex:[['Hip Thrust','2×5 @ 80% — maintenance'],['OHP','2×5 @ maintenance'],['Pull-ups','2×5 BW'],['Compromised running:','4× (30 WB @9kg → 400m @3:54–4:00/km (race pace) (3:54–4:00/km))'],['Rest','2.5min between']],
+       pa:[['Maintenance','str — taper begins'],['30 WB → 400m','reduced vs weeks 11/14'],['4 sets','taper volume']],
+       note:'Taper enters — compromised running reduced to 4 sets, 30 WB, 400m. Sharpness stays; volume comes down.'}},
+    {day:'Sat',int:'HARD',am:null,
+     pm:{t:'hyrox',i:'🏁',tag:'Gym · PM',ti:'HYROX 14 — Row-Run Ratio',loc:'Gym',
+       ex:[['4 Rounds:','2000m Row @5:05–5:25/km (steady) (~1:55–2:00/500m) (~1:55–2:00/500m)'],['','1200m RUN @4:48–4:55/km (threshold) (4:48–4:55/km)'],['','50 Wall Balls @9kg'],['Total:','8km rowing + 4.8km running + 200 WB']],
+       pa:[['~7:30–8:00','2000m row — steady not race'],['4:45–4:55','/km threshold run'],['50 WB','unbroken target each round']],
+       note:'PST HYROX 14. 4 rounds of 2km row + 1.2km run + 50 WB. Row at steady (not threshold) to sustain 4 rounds. 200 total wall balls. Improves economy during prolonged sustained effort.'}},
+    {day:'Sun',int:'LONG',
+     am:{t:'long',i:'🏃',tag:'Outside · AM',ti:'Long Zone 2 Run — 72min — FINAL LONG RUN',loc:'Outside',
+       ex:[['Easy long run','72 min — last long run before Oslo']],pa:[['5:25–5:55','/km'],['140–154','HR bpm']],
+       note:'FINAL LONG RUN of the training block. After this, taper begins and sessions shorten every day toward Oslo. Run it well — this is the last aerobic deposit before the race.'},
+     pm:null},
+  ]},
+  // ── TAPER ───────────────────────────────────────────────
+  {n:16,d:'Sep 14–25',ph:6,dl:true,taper:true,v:'Race Week 🏁',days:[
+    {day:'Mon',int:'TAPER',
+     am:{t:'dl',i:'🏁',tag:'Outside · AM',ti:'Easy Run — 25min',loc:'Outside',
+       ex:[['Easy jog','25 min']],pa:[['6:00–6:20','/km'],['<140','HR bpm']],
+       note:'Taper begins. Volume drops 40%. Intensity maintained on quality sessions. Do not add sessions out of taper anxiety.'},
+     pm:{t:'dl',i:'🏁',tag:'Gym · PM',ti:'Light Gym — Maintenance',loc:'Gym',
+       ex:[['Squat or Lunges','2×3 @ 70%'],['Sled Push','2×20m @ 202kg — feel'],['Pull-ups','2×4 BW']],pa:[['70%','very light']],
+       note:'Light maintenance. Keep motor patterns active without accumulating fatigue.'}},
+    {day:'Tue',int:'TAPER',
+     am:{t:'dl',i:'🏁',tag:'Outside · AM',ti:'Easy Run + Strides — 25min',loc:'Outside',
+       ex:[['Easy jog','17min'],['4×30s strides','slightly longer to feel sharp']],pa:[['6:00–6:20','/km easy']],
+       note:'Strides keep neuromuscular system sharp during taper. 4 strides — don\'t add more.'},
+     pm:{t:'dl',i:'🏁',tag:'Gym · PM',ti:'Light Upper + Easy Row',loc:'Gym',
+       ex:[['OHP','2×3 @ 70%'],['Pull-ups','2×4 BW'],['Easy row','15min — feel']],pa:[['Light','taper maintenance']],note:'Short and light.'}},
+    {day:'Wed',int:'RACE PRIME',
+     am:{t:'hyrox',i:'🏁',tag:'Gym · AM',ti:'HYROX 15 — Race Day Prime',loc:'Gym',
+       ex:[['3 Blocks:',''],['Each block:','800m RUN @3:54–4:00/km (race pace) (3:54–4:00/km) + 400m Ski @3:54–4:00/km (race pace) (~3:40–3:50/500m) (~3:40–3:50/500m) (3:54–4:00/km) + 200m RUN @4:20–4:35/km (fast) (~4:20–4:35/km) + 2min rest'],['3 blocks total',''],['Finish:','40 Burpee Broad Jump']],
+       pa:[['3:54–4:00','/km runs'],['Race pace','ski'],['40 BBJ','controlled — pattern activation']],
+       note:'PST HYROX 15 — Race Day Prime. Prescribed for use 5 days before race start. Short, sharp, specific. Primes race pace neuromuscular patterns without accumulating fatigue. Last quality session before Oslo.'},
+     pm:{t:'dl',i:'😴',tag:'Rest',ti:'Full Rest',loc:'',ex:[['Rest','no PM session']],pa:[],note:'Rest after Race Day Prime.'}},
+    {day:'Thu',int:'OFF',am:null,pm:null},
+    {day:'Fri',int:'TAPER',
+     am:{t:'dl',i:'🏁',tag:'Outside · AM',ti:'Easy Run — 20min + Strides',loc:'Outside / Oslo',
+       ex:[['Easy jog','20 min'],['4×20s strides','at end']],pa:[['6:00–6:20','/km'],['Very easy','nervous energy low']],
+       note:'Sep 18 — 1 week to race. May be travelling to Oslo. Easy run wherever you are. The fitness is there — trust it.'},
+     pm:{t:'dl',i:'🏁',tag:'Optional',ti:'Light Station Feel',loc:'Oslo gym if available',
+       ex:[['20 WB','@9kg — feel the weight'],['25m sled @202kg','one set — feel only'],['No effort','just pattern activation']],pa:[['Pattern','activation only']],
+       note:'Optional. One feel set on sleds and wall balls. One set. Not training.'}},
+    {day:'Sat',int:'TAPER',
+     am:{t:'dl',i:'🏁',tag:'Oslo · AM',ti:'Easy Strides — 15min',loc:'Oslo',
+       ex:[['Easy jog','10min'],['4×20s strides','walk recovery']],pa:[['Very easy','short']],note:'Sep 19 — 6 days to race. Short easy movement. Strides keep legs awake.'},
+     pm:{t:'dl',i:'😴',tag:'Rest',ti:'Full Rest',loc:'',ex:[['Rest','completely']],pa:[],note:'Rest.'}},
+    {day:'Sun',int:'RACE EVE',
+     am:{t:'dl',i:'🏁',tag:'Oslo · Race Eve',ti:'Race Eve — Walk + Venue + Carb Load',loc:'Oslo',
+       ex:[['Easy walk','20–30min — explore venue if possible'],['3–4 strides','on race floor if allowed'],['Race kit','laid out and checked'],['Dinner tonight:','120–140g carbs — pasta, rice, bread']],pa:[['Walk only','no running'],['Carb load','big dinner tonight']],
+       note:'Sep 24 — eve of race. Walk the course. Visit the sled area, wall ball area. Visualise each station. Eat a large carb-heavy dinner. Lay out all gear. Set multiple alarms. Go to bed early.'},
+     pm:null},
+  ]},
+];
+
+// RENDER
+function buildCal(){
+  const tb=document.getElementById('tb');
+  let currentPhase=0;
+  W.forEach((wk,wi)=>{
+    if(wk.ph!==currentPhase){
+      currentPhase=wk.ph;
+      const ph=PHASES[currentPhase];
+      const phRow=document.createElement('tr');
+      phRow.className='phase-row';
+      const phTd=document.createElement('td');
+      phTd.colSpan=8;
+      phTd.innerHTML='<span class="ph-lbl" style="background:'+ph[1]+';color:'+ph[2]+';">'+ph[0]+'</span><span style="font-size:9px;color:var(--text3);margin-left:8px;">'+ph[3]+'</span>';
+      phRow.appendChild(phTd);
+      tb.appendChild(phRow);
+    }
+    // Gate banners
+    if(wk.n===4){
+      const r=document.createElement('tr');r.className='gate-row';
+      const t=document.createElement('td');t.colSpan=8;
+      t.innerHTML='<div class="gate"><div>🎯</div><div><div class="gate-title">Mesocycle 1 Diagnostic — Week 4 Tuesday</div><div class="gate-desc">5k TT result sets vLT2 for all Meso 2 threshold prescriptions</div></div><div class="gate-targets"><div><div class="gtv">&lt;20:30</div><div class="gtl">5k target</div></div></div></div>';
+      r.appendChild(t);tb.appendChild(r);
+    }
+    if(wk.n===8){
+      const r=document.createElement('tr');r.className='gate-row';
+      const t=document.createElement('td');t.colSpan=8;
+      t.innerHTML='<div class="gate"><div>🏁</div><div><div class="gate-title">Mesocycle 2 Exit Gates — Week 8 (5k Tuesday + 10k Sunday)</div><div class="gate-desc">Must hit both to proceed to Meso 3 as planned</div></div><div class="gate-targets"><div><div class="gtv">&lt;20:00</div><div class="gtl">5k · Tue</div></div><div><div class="gtv">&lt;43:00</div><div class="gtl">10k · Sun</div></div></div></div>';
+      r.appendChild(t);tb.appendChild(r);
+    }
+    if(wk.wedding){
+      const r=document.createElement('tr');r.className='gate-row';
+      const t=document.createElement('td');t.colSpan=8;
+      t.innerHTML='<div class="gate wed"><div>💒</div><div><div class="gate-title">Poland + Wedding — Aug 22 (Saturday)</div><div class="gate-desc">No structured training. Easy runs optional. Absorb 11 weeks of accumulated fitness. Celebrate fully.</div></div></div>';
+      r.appendChild(t);tb.appendChild(r);
+    }
+    if(wk.taper){
+      const r=document.createElement('tr');r.className='gate-row';
+      const t=document.createElement('td');t.colSpan=8;
+      t.innerHTML='<div class="gate"><div>🏁</div><div><div class="gate-title">Race Week Taper — Sep 14–25 · Volume −40% · Intensity maintained</div><div class="gate-desc">Hyrox 15 Race Day Prime on Wed Sep 16 · Oslo Pro Men 09:40 Sep 25</div></div><div class="gate-targets"><div><div class="gtv">Sep 16</div><div class="gtl">Hyrox 15</div></div><div><div class="gtv">Sep 25</div><div class="gtl">RACE DAY</div></div></div></div>';
+      r.appendChild(t);tb.appendChild(r);
+    }
+    // Week row
+    const row=document.createElement('tr');
+    const dl=wk.dl||false;
+    const isWed=wk.wedding||false;
+    const volBg=isWed?'var(--wed-bg)':dl?'var(--dl-bg)':'var(--run-bg)';
+    const volT=isWed?'var(--wed-a)':dl?'var(--dl-a)':'var(--run-a)';
+    const volB=isWed?'var(--wed-b)':dl?'var(--dl-b)':'var(--run-b)';
+    const wkTd=document.createElement('td');
+    wkTd.className='wk-cell';
+    wkTd.innerHTML='<div class="wk-n">W'+wk.n+'</div><div class="wk-d">'+wk.d+'</div><span class="wk-v" style="background:'+volBg+';color:'+volT+';border-color:'+volB+';">'+wk.v+'</span>';
+    row.appendChild(wkTd);
+    wk.days.forEach((day,di)=>{
+      const am=day.am,pm=day.pm;
+      if(day.int==='OFF'&&!am&&!pm){
+        const td=document.createElement('td');td.className='off-td';
+        td.innerHTML='<div class="off-box"><span class="off-lbl">OFF</span></div>';
+        row.appendChild(td);return;
+      }
+      const amc=am?c(am.t):c('dl');
+      const pmc=pm?c(pm.t):null;
+      const td=document.createElement('td');td.className='s-td';
+      td.onclick=()=>openModal(wi,di);
+      let html='<div class="card" style="background:'+amc.bg+';border-color:'+amc.b+';">';
+      html+='<span class="exp" style="color:'+amc.a+';">Details →</span>';
+      html+='<div class="sl" style="color:'+amc.t+';">';
+      html+='<div class="sl-lbl">'+(am?am.tag:'AM')+'</div>';
+      html+='<div class="sl-t">'+(am?am.ti:'—')+'</div>';
+      html+='<div class="sl-d">'+(am&&am.ex[0]?am.ex[0][1]:'')+'</div>';
+      html+='</div>';
+      if(pm){
+        html+='<div class="sl" style="background:'+pmc.bg+';color:'+pmc.t+';border-top:1px solid rgba(0,0,0,.08);">';
+        html+='<div class="sl-lbl">'+pm.tag+'</div>';
+        html+='<div class="sl-t">'+pm.ti+'</div>';
+        html+='<div class="sl-d">'+(pm.ex[0]?pm.ex[0][1]:'')+'</div>';
+        html+='</div>';
+      }
+      html+='</div>';
+      td.innerHTML=html;
+      row.appendChild(td);
+    });
+    // Sun
+    const sunTd=document.createElement('td');sunTd.className='off-td';
+    if(wk.n===16){
+      sunTd.innerHTML='<div class="race-box"><span style="font-size:14px;">🏁</span><span style="font-size:7.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--hyrox-t);">Race Day</span><span style="font-size:7.5px;color:var(--hyrox-a);">Sep 25 · 09:40</span></div>';
+    } else {
+      sunTd.innerHTML='<div class="off-box"><span class="off-lbl">OFF</span></div>';
+    }
+    row.appendChild(sunTd);
+    tb.appendChild(row);
+  });
+}
+
+function openModal(wi,di){
+  const wk=W[wi],day=wk.days[di];
+  document.getElementById('mWk').textContent='Week '+wk.n+' · '+wk.d;
+  document.getElementById('mDay').textContent=day.day.toUpperCase();
+  document.getElementById('mSub').textContent=day.int;
+  const body=document.getElementById('mBody');
+  body.innerHTML='';
+  [{slot:day.am,label:'AM Session'},{slot:day.pm,label:'PM Session'}].forEach(({slot,label})=>{
+    if(!slot){
+      if(label==='PM Session'){
+        const d=document.createElement('div');
+        d.style.cssText='padding:8px 12px;background:var(--bg3);border-radius:7px;margin-bottom:7px;color:var(--text3);font-size:11px;';
+        d.textContent='PM — Rest';
+        body.appendChild(d);
+      }
+      return;
+    }
+    const col=c(slot.t);
+    const ms=document.createElement('div');
+    ms.className='m-slot';
+    ms.style.cssText='background:'+col.bg+';border-color:'+col.b+';';
+    const pa=slot.pa&&slot.pa.length?'<div class="m-pacing">'+slot.pa.map(p=>'<div class="pace-stat"><div class="pace-v" style="color:'+col.a+';">'+p[0]+'</div><div class="pace-l" style="color:'+col.t+';">'+p[1]+'</div></div>').join('')+'</div>':'';
+    const ex=slot.ex.map(e=>'<div class="ex-row"><div class="ex-n" style="color:'+col.t+';">'+e[0]+'</div><div class="ex-d" style="color:'+col.t+';">'+e[1]+'</div></div>').join('');
+    ms.innerHTML='<div class="m-slot-hdr"><div class="m-icon">'+(slot.i||'📋')+'</div><div><div class="m-tag" style="color:'+col.t+';">'+label+' · '+slot.tag+'</div><div class="m-title" style="color:'+col.t+';">'+slot.ti+'</div></div></div>'+(slot.loc?'<div class="m-loc" style="color:'+col.t+';">'+slot.loc+'</div>':'')+pa+'<div class="m-exs">'+ex+'</div>'+(slot.note?'<div class="m-note">'+slot.note+'</div>':'');
+    body.appendChild(ms);
+  });
+  document.getElementById('mb').classList.add('open');
+}
+function closeModal(e){if(!e||e.target===document.getElementById('mb'))document.getElementById('mb').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+buildCal();
+</script>
+
+<div id="refCard" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.32);backdrop-filter:blur(3px);z-index:200;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)this.style.display='none';">
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:12px;width:100%;max-width:580px;max-height:88vh;overflow-y:auto;animation:su .18s ease;box-shadow:0 20px 60px rgba(0,0,0,.18);">
+    <div style="padding:15px 20px 11px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:1;">
+      <div>
+        <div style="font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:3px;">Intensity Reference</div>
+        <div style="font-size:20px;font-weight:600;color:var(--text);">Zones, Thresholds & Paces</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px;">Based on Garmin data: LTHR 171, Max HR 195, Resting 61. Updates after each TT.</div>
+      </div>
+      <button onclick="document.getElementById('refCard').style.display='none'" style="background:none;border:none;color:var(--text3);font-size:20px;cursor:pointer;line-height:1;">&times;</button>
+    </div>
+    <div style="padding:15px 20px;">
+
+      <!-- ZONES TABLE -->
+      <div style="font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;">Running zones — current estimates</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:18px;">
+
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--run-bg);border:1px solid var(--run-b);border-radius:7px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--run-a);flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:500;color:var(--run-t);">Zone 2 / Easy — below VT1</div>
+            <div style="font-size:10px;color:var(--run-t);opacity:.75;margin-top:1px;">Conversational. Fat oxidation. Mitochondrial density. Cardiac output adaptations.</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--run-a);">5:20–6:10/km</div>
+            <div style="font-size:9px;color:var(--run-t);opacity:.65;">HR 140–154</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#FFF5E8;border:1px solid #EBC870;border-radius:7px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#D4900A;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:500;color:#5A3500;">VT1 — First ventilatory / lactate threshold</div>
+            <div style="font-size:10px;color:#5A3500;opacity:.75;margin-top:1px;">Breathing noticeably increases. Top of zone 2. Lactate begins accumulating above resting. Sustainable for hours.</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:#D4900A;">~5:00–5:20/km</div>
+            <div style="font-size:9px;color:#5A3500;opacity:.65;">HR 156–161 (Z3)</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--thr-bg);border:1px solid var(--thr-b);border-radius:7px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--thr-a);flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:500;color:var(--thr-t);">vLT2 — Threshold (second lactate threshold)</div>
+            <div style="font-size:10px;color:var(--thr-t);opacity:.75;margin-top:1px;">Lactate accumulates faster than cleared. Sustainable 20–60min. The anchor for all threshold prescriptions in this plan.</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--thr-a);">~4:48–4:55/km</div>
+            <div style="font-size:9px;color:var(--thr-t);opacity:.65;">HR 162–173 (Z4)</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#EDFAF4;border:1px solid #5DCAA5;border-radius:7px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#0F6E56;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:500;color:#085041;">Critical Speed</div>
+            <div style="font-size:10px;color:#085041;opacity:.75;margin-top:1px;">Theoretical speed sustainable without lactate accumulation. Between vLT2 and MAS. Key for Hyrox event duration (60min+).</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:#0F6E56;">~4:35–4:45/km</div>
+            <div style="font-size:9px;color:#085041;opacity:.65;">HR 174–185 (low Z5)</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#EEEDFE;border:1px solid #AFA9EC;border-radius:7px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#5E56CC;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:500;color:#3C3489;">MAS — Maximal Aerobic Speed</div>
+            <div style="font-size:10px;color:#3C3489;opacity:.75;margin-top:1px;">Lowest speed where VO2max is reached. VO2max intervals at 90–95% MAS. 100% MAS ≈ 5k race pace. Raises the aerobic ceiling.</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:#5E56CC;">~4:05–4:15/km</div>
+            <div style="font-size:9px;color:#3C3489;opacity:.65;">HR 185–195 (high Z5)</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#FDE8F5;border:1px solid #E8A0D0;border-radius:7px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#A82060;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:500;color:#6B1040;">5k Race Pace (100% MAS)</div>
+            <div style="font-size:10px;color:#6B1040;opacity:.75;margin-top:1px;">Current 5k PB. All-out effort. Recalibrates entire zone model after each TT.</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:#A82060;">4:14/km</div>
+            <div style="font-size:9px;color:#6B1040;opacity:.65;">21:07 PB</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTENSITY MODIFIERS -->
+      <div style="font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;">Intensity modifiers used in session prescriptions</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px;">
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:6px;">
+          <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--text);">vLT2 − 5%</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:2px;">~5:02–5:10/km · just below threshold · sustained lactate shuttling</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:6px;">
+          <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--text);">vLT2 (threshold)</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:2px;">~4:48–4:55/km · classic threshold intervals · LT2 stimulus</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:6px;">
+          <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--text);">vLT2 + 5%</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:2px;">~4:35–4:42/km · over-threshold · Over-Under hard phase</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:6px;">
+          <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--text);">90–95% MAS</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:2px;">~4:18–4:38/km · VO2max intervals · Norwegian 4×4, 5×5min</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:6px;">
+          <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--text);">100–110% MAS</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:2px;">~3:50–4:14/km · 5k pace and faster · Fartlek hard phase</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--bg3);border-radius:6px;">
+          <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--text);">~135% vLT2</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:2px;">~3:33–3:40/km · Fartlek very hard phase · 2:1 protocol</div>
+        </div>
+      </div>
+
+      <!-- ERG FTP -->
+      <div style="font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;">Erg FTP reference (from 7:26 2k row)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:18px;">
+        <div style="padding:8px 10px;background:var(--erg-bg);border:1px solid var(--erg-b);border-radius:6px;text-align:center;">
+          <div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--erg-a);">1:51–1:55</div>
+          <div style="font-size:9px;color:var(--erg-t);margin-top:2px;">~100% FTP<br>threshold row</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--erg-bg);border:1px solid var(--erg-b);border-radius:6px;text-align:center;">
+          <div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--erg-a);">1:42–1:48</div>
+          <div style="font-size:9px;color:var(--erg-t);margin-top:2px;">~110–130% FTP<br>HIIT intervals</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--erg-bg);border:1px solid var(--erg-b);border-radius:6px;text-align:center;">
+          <div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--erg-a);">1:38–1:44</div>
+          <div style="font-size:9px;color:var(--erg-t);margin-top:2px;">~130–140% FTP<br>severe domain</div>
+        </div>
+      </div>
+
+      <!-- HOW THEY SHIFT -->
+      <div style="padding:10px 12px;background:rgba(0,0,0,.03);border-left:2px solid rgba(0,0,0,.13);border-radius:0 5px 5px 0;font-size:10.5px;color:var(--text2);line-height:1.6;">
+        <strong style="color:var(--text);">How these numbers shift:</strong> Every time trial recalibrates the entire model. If 5k drops from 21:07 to 20:00, vLT2 moves ~5s/km faster and MAS moves proportionally. The plan is built around this — the week 4 TT and week 8 TT are the two most important sessions because they update every subsequent prescription. When in doubt, run by HR rather than pace if conditions are unusual.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
