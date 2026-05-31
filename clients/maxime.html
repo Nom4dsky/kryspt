@@ -2,37 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maxime — PPL Block</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <meta name="robots" content="noindex, nofollow">
-  <style>
-    #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
-    .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
-    .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #fff; letter-spacing: 0.08em; margin-bottom: 4px; }
-    .pw-box .pw-sub { font-size: 11px; color: #555; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
-    .pw-box input { display: block; width: 260px; background: #1a1a1a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
-    .pw-box button { width: 260px; background: #0a0a0a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
-    .pw-box button:hover { background: #222; }
-    .pw-error { font-size: 10px; color: #aaa; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
-  </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxime — Athletic Block</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #fff; --surface: #f6f6f6; --surface2: #ececec; --border: #e0e0e0; --text: #0a0a0a; --muted: #aaa; --label: #666; }
+  :root {
+    --bg: #fff;
+    --surface: #f6f6f6;
+    --surface2: #ececec;
+    --border: #e0e0e0;
+    --text: #0a0a0a;
+    --muted: #aaa;
+    --label: #666;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.5; }
+
   header { padding: 52px 48px 36px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
   .header-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 88px); letter-spacing: 2px; line-height: 0.9; }
   .header-left p { margin-top: 14px; color: var(--label); font-size: 12px; font-weight: 300; letter-spacing: 2.5px; text-transform: uppercase; }
-  .header-right { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--label); line-height: 2; text-align: right; }
+  .header-right { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--label); line-height: 1.8; text-align: right; }
+
   .tabs-wrap { padding: 0 48px; border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; scrollbar-width: none; }
   .tabs-wrap::-webkit-scrollbar { display: none; }
-  .tab-btn { padding: 16px 24px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; margin-bottom: -1px; }
+  .tab-btn { padding: 16px 22px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; margin-bottom: -1px; }
   .tab-btn:hover { color: var(--label); }
   .tab-btn.active { color: #000; border-bottom-color: #000; font-weight: 600; }
+
   main { padding: 0 48px 80px; }
   .week-panel { display: none; }
   .week-panel.active { display: block; animation: fadeIn 0.2s ease both; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
   .week-header { padding: 40px 0 32px; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; border-bottom: 2px solid #000; margin-bottom: 40px; }
   .week-title { font-family: 'Bebas Neue', sans-serif; font-size: 52px; letter-spacing: 2px; }
   .week-phase { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 4px; }
@@ -41,47 +43,56 @@
   .phase-over { background: #222; color: #fff; border: 1px solid #000; }
   .phase-del { background: #fff; color: #999; border: 1px solid #ddd; }
   .week-note { font-size: 12px; color: var(--label); font-style: italic; margin-left: auto; }
+
   .week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 48px; }
   .wday { border: 1px solid var(--border); border-radius: 8px; padding: 12px 8px; text-align: center; background: var(--surface); }
   .wday-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
   .wday-label { font-size: 11px; font-weight: 600; line-height: 1.3; color: #000; }
   .wday-sub { font-size: 10px; color: var(--label); margin-top: 3px; }
   .wday-pt { border-color: #000; border-width: 2px; }
-  .wday-push { border-color: #888; }
-  .wday-pull { border-color: #666; }
+  .wday-upper { border-color: #888; }
+  .wday-lower { border-color: #555; }
   .wday-thai { border-color: #444; background: #f0f0f0; }
   .wday-rest .wday-label { color: var(--muted); font-weight: 400; }
+
   .day-divider { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
   .day-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
   .session-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 32px; }
   .session-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .session-head-pt { background: #000; }
   .session-head-pt .session-day, .session-head-pt .session-name, .session-head-pt .session-duration { color: #fff; }
-  .session-head-push { background: var(--surface2); }
-  .session-head-pull { background: var(--surface); }
+  .session-head-upper { background: var(--surface2); }
+  .session-head-lower { background: var(--surface); }
   .session-head-thai { background: #222; }
-  .session-head-thai .session-day, .session-head-thai .session-name, .session-head-thai .session-duration { color: #fff; }
+  .session-head-thai .session-day, .session-head-thai .session-name { color: #fff; }
   .session-day { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; color: var(--muted); }
   .session-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; }
   .session-duration { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
   .session-body { padding: 16px 20px; }
-  .block-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; margin-top: 16px; display: flex; align-items: center; gap: 8px; }
+
+  .block-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; margin-top: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .block-label:first-child { margin-top: 0; }
   .block-rest { color: var(--label); font-size: 9px; }
+
   .ex-row { display: flex; align-items: center; padding: 10px 14px; background: var(--surface); border-radius: 7px; margin-bottom: 3px; gap: 10px; }
-  .ex-id { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); width: 20px; flex-shrink: 0; }
+  .ex-id { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); width: 22px; flex-shrink: 0; }
   .ex-name { font-weight: 500; font-size: 13px; flex: 1; }
   .ex-note { font-size: 11px; color: var(--label); font-style: italic; font-weight: 400; }
   .ex-sets { font-family: 'DM Mono', monospace; font-size: 12px; color: #000; font-weight: 600; white-space: nowrap; }
   .ex-rir { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 4px; margin-left: 8px; white-space: nowrap; }
   .ex-rest { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--label); margin-left: 6px; white-space: nowrap; }
+
   .rir-high { background: #f0f0f0; color: #555; border: 1px solid #ddd; }
   .rir-mid { background: #e0e0e0; color: #222; border: 1px solid #ccc; }
   .rir-low { background: #222; color: #fff; border: 1px solid #000; }
   .rir-del { background: #fff; color: #aaa; border: 1px solid #e0e0e0; }
   .rir-none { background: #f8f8f8; color: #aaa; border: 1px solid #eee; }
+
   .session-note { font-size: 11px; color: var(--label); font-style: italic; margin-top: 12px; }
+
   footer { border-top: 1px solid var(--border); padding: 20px 48px; color: var(--muted); font-size: 11px; letter-spacing: 1px; display: flex; justify-content: space-between; }
+
   @media (max-width: 780px) {
     header { flex-direction: column; padding: 32px 20px 24px; }
     .tabs-wrap { padding: 0 20px; }
@@ -89,13 +100,22 @@
     footer { padding: 20px; flex-direction: column; gap: 6px; }
     .week-strip { grid-template-columns: repeat(4, 1fr); }
   }
+
+  #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+  .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
+  .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #fff; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .pw-box .pw-sub { font-size: 11px; color: #555; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+  .pw-box input { display: block; width: 260px; background: #1a1a1a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
+  .pw-box button { width: 260px; background: #0a0a0a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
+  .pw-box button:hover { background: #222; }
+  .pw-error { font-size: 10px; color: #aaa; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
 </style>
 </head>
 <body>
 <div id="pw-gate">
   <div class="pw-box">
     <div class="pw-title">MAXIME</div>
-    <div class="pw-sub">PPL Block · KRYS.PT</div>
+    <div class="pw-sub">Athletic Block · KRYS.PT</div>
     <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
     <button onclick="checkPw()">ENTER →</button>
     <div class="pw-error" id="pw-error"></div>
@@ -113,18 +133,19 @@
   }
 </script>
 
+
 <header>
   <div class="header-left">
-    <h1>MAXIME<br>PPL<br>BLOCK</h1>
-    <p>4-Week Wave · Push · Pull · Legs · Thai Boxing</p>
+    <h1>MAXIME<br>ATHLETIC<br>BLOCK</h1>
+    <p>4-Week Wave · Strength · Conditioning · Thai Boxing</p>
   </div>
   <div class="header-right">
-    Mon · Legs with PT<br>
-    Tue · Push solo<br>
-    Wed · Rest<br>
+    Mon · Upper solo<br>
+    Tue · Rest<br>
+    Wed · PT — FBW<br>
     Thu · Thai boxing<br>
     Fri · Rest<br>
-    Sat · Pull solo<br>
+    Sat · Lower solo<br>
     Sun · Rest
   </div>
 </header>
@@ -143,79 +164,92 @@
   <div class="week-header">
     <div class="week-title">Week 1</div>
     <div class="week-phase phase-acc">Accumulation</div>
-    <div class="week-note">Top of rep range · build work capacity · find the weights</div>
+    <div class="week-note">Top of rep range · build work capacity · find the weights · PT Training B</div>
   </div>
+
   <div class="week-strip">
-    <div class="wday wday-pt"><div class="wday-name">Mon</div><div class="wday-label">Legs</div><div class="wday-sub">with PT</div></div>
-    <div class="wday wday-push"><div class="wday-name">Tue</div><div class="wday-label">Push</div><div class="wday-sub">solo</div></div>
-    <div class="wday wday-rest"><div class="wday-name">Wed</div><div class="wday-label">Rest</div></div>
-    <div class="wday wday-thai"><div class="wday-name">Thu</div><div class="wday-label">Thai</div><div class="wday-sub">boxing</div></div>
+    <div class="wday wday-upper"><div class="wday-name">Mon</div><div class="wday-label">Upper</div><div class="wday-sub">solo</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Tue</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-pt"><div class="wday-name">Wed</div><div class="wday-label">PT</div><div class="wday-sub">Training B</div></div>
+    <div class="wday wday-thai"><div class="wday-name">Thu</div><div class="wday-label">Thai</div></div>
     <div class="wday wday-rest"><div class="wday-name">Fri</div><div class="wday-label">Rest</div></div>
-    <div class="wday wday-pull"><div class="wday-name">Sat</div><div class="wday-label">Pull</div><div class="wday-sub">solo</div></div>
+    <div class="wday wday-lower"><div class="wday-name">Sat</div><div class="wday-label">Lower</div><div class="wday-sub">solo</div></div>
     <div class="wday wday-rest"><div class="wday-name">Sun</div><div class="wday-label">Rest</div></div>
   </div>
-  <div class="day-divider">Monday — Legs with PT · 55 min</div>
+
+  <!-- MON UPPER -->
+  <div class="day-divider">Monday — Upper Solo · 50–60 min</div>
   <div class="session-card">
-    <div class="session-head session-head-pt">
-      <div><div class="session-day">Monday</div><div class="session-name">Legs — with PT</div></div>
-      <div class="session-duration">55 min</div>
-    </div>
-    <div class="session-body">
-      <div class="block-label">Main lift <span class="block-rest">· 2–3 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Back squat</span><span class="ex-sets">4 × 10</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">2–3 min</span></div>
-      <div class="block-label">Hinge <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Romanian deadlift</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Unilateral <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Bulgarian split squat</span><span class="ex-sets">3 × 10 each</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Core <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Week 1 — conservative loads. Use this session to find the right starting weights. Squat depth and BSS positioning are the priority.</p>
-    </div>
-  </div>
-  <div class="day-divider">Tuesday — Push · Solo</div>
-  <div class="session-card">
-    <div class="session-head session-head-push">
-      <div><div class="session-day">Tuesday</div><div class="session-name">Push — Solo</div></div>
+    <div class="session-head session-head-upper">
+      <div><div class="session-day">Monday</div><div class="session-name">Upper — Solo</div></div>
       <div class="session-duration">50–60 min</div>
     </div>
     <div class="session-body">
-      <div class="block-label">Horizontal push <span class="block-rest">· straight sets · 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">DB flat press</span><span class="ex-sets">4 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">DB incline press</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Vertical push <span class="block-rest">· straight sets · 90 sec between sets</span></div>
+      <div class="block-label">Main lifts <span class="block-rest">· straight sets · 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">DB flat press</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Secondary <span class="block-rest">· straight sets · 90 sec</span></div>
       <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Isolation <span class="block-rest">· straight sets · 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Poliquin fly <span class="ex-note">light load, cue external rotation</span></span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Straight sets — complete all sets of A before B. Week 1 is about finding the right loads.</p>
+      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Isolation <span class="block-rest">· straight sets · 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">G</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
+      <div class="block-label">Core <span class="block-rest">· 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">H</span><span class="ex-name">Hanging knee raise</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
     </div>
   </div>
+
+  <!-- WED PT -->
+  <div class="day-divider">Wednesday — PT · Training B · 55 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-pt">
+      <div><div class="session-day">Wednesday</div><div class="session-name">PT — Training B</div></div>
+      <div class="session-duration">55 min</div>
+    </div>
+    <div class="session-body">
+      <div class="block-label">Vertical pull — main <span class="block-rest">· straight sets · 2 min</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Negative pull-up <span class="ex-note">slow max time descent</span></span><span class="ex-sets">3 × 4</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Main lift — hinge <span class="block-rest">· straight sets · 2 min</span></div>
+      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Trap bar deadlift</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Superset — push + rear delt <span class="block-rest">· 60 sec → C2 · 90 sec → C1</span></div>
+      <div class="ex-row"><span class="ex-id">C1</span><span class="ex-name">Landmine half-kneeling press</span><span class="ex-sets">3 × 10 each</span><span class="ex-rir rir-high">RIR 3–4</span></div>
+      <div class="ex-row"><span class="ex-id">C2</span><span class="ex-name">DB rear delt fly</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-high">RIR 3–4</span></div>
+      <div class="block-label">Power finisher <span class="block-rest">· 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Sled push <span class="ex-note">moderate load</span></span><span class="ex-sets">3 × 20 m</span><span class="ex-rir rir-none">RPE 7</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Mobility + core — finisher <span class="block-rest">· 60 sec → F2 · 60 sec → F1</span></div>
+      <div class="ex-row"><span class="ex-id">F1</span><span class="ex-name">KB single-arm Sots press <span class="ex-note">shoulder mobility focus</span></span><span class="ex-sets">3 × 8 each</span><span class="ex-rir rir-none">RIR —</span></div>
+      <div class="ex-row"><span class="ex-id">F2</span><span class="ex-name">KB windmill</span><span class="ex-sets">3 × 6 each</span><span class="ex-rir rir-none">RIR —</span></div>
+    </div>
+  </div>
+
+  <!-- THU -->
   <div class="day-divider">Thursday — Thai Boxing</div>
   <div class="session-card">
     <div class="session-head session-head-thai">
       <div><div class="session-day">Thursday</div><div class="session-name">Thai Boxing</div></div>
     </div>
-    <div class="session-body"></div>
   </div>
-  <div class="day-divider">Saturday — Pull · Solo</div>
+
+  <!-- SAT LOWER -->
+  <div class="day-divider">Saturday — Lower Solo · 50–60 min</div>
   <div class="session-card">
-    <div class="session-head session-head-pull">
-      <div><div class="session-day">Saturday</div><div class="session-name">Pull — Solo</div></div>
+    <div class="session-head session-head-lower">
+      <div><div class="session-day">Saturday</div><div class="session-name">Lower — Solo</div></div>
       <div class="session-duration">50–60 min</div>
     </div>
     <div class="session-body">
-      <div class="block-label">Vertical pull — main <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Negative chin-up <span class="ex-note">slow max time descent · full control</span></span><span class="ex-sets">4 × 3</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Horizontal pull <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">4 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Vertical pull — volume <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Isolation <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">DB pullover</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Face pull <span class="ex-note">rope · external rotation cue</span></span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Negative chin-ups — step up, slow controlled descent, take as long as possible. Quality over quantity.</p>
+      <div class="block-label">Main lift <span class="block-rest">· straight sets · 2 min</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Back squat</span><span class="ex-sets">4 × 10</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Superset — hinge + hamstring <span class="block-rest">· 60 sec → B2 · 90 sec → B1</span></div>
+      <div class="ex-row"><span class="ex-id">B1</span><span class="ex-name">Romanian deadlift</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-high">RIR 3–4</span></div>
+      <div class="ex-row"><span class="ex-id">B2</span><span class="ex-name">Leg curl</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span></div>
+      <div class="block-label">Unilateral + glute <span class="block-rest">· straight sets · 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Bulgarian split squat</span><span class="ex-sets">3 × 10 each</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Hip thrust</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Finisher <span class="block-rest">· 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Calf raise</span><span class="ex-sets">3 × 20</span><span class="ex-rir rir-high">RIR 3–4</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
     </div>
   </div>
 </div>
@@ -225,79 +259,89 @@
   <div class="week-header">
     <div class="week-title">Week 2</div>
     <div class="week-phase phase-int">Intensification</div>
-    <div class="week-note">Mid rep range · increase load vs week 1</div>
+    <div class="week-note">Mid rep range · increase load · PT Training C</div>
   </div>
+
   <div class="week-strip">
-    <div class="wday wday-pt"><div class="wday-name">Mon</div><div class="wday-label">Legs</div><div class="wday-sub">with PT</div></div>
-    <div class="wday wday-push"><div class="wday-name">Tue</div><div class="wday-label">Push</div><div class="wday-sub">solo</div></div>
-    <div class="wday wday-rest"><div class="wday-name">Wed</div><div class="wday-label">Rest</div></div>
-    <div class="wday wday-thai"><div class="wday-name">Thu</div><div class="wday-label">Thai</div><div class="wday-sub">boxing</div></div>
+    <div class="wday wday-upper"><div class="wday-name">Mon</div><div class="wday-label">Upper</div><div class="wday-sub">solo</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Tue</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-pt"><div class="wday-name">Wed</div><div class="wday-label">PT</div><div class="wday-sub">Training C</div></div>
+    <div class="wday wday-thai"><div class="wday-name">Thu</div><div class="wday-label">Thai</div></div>
     <div class="wday wday-rest"><div class="wday-name">Fri</div><div class="wday-label">Rest</div></div>
-    <div class="wday wday-pull"><div class="wday-name">Sat</div><div class="wday-label">Pull</div><div class="wday-sub">solo</div></div>
+    <div class="wday wday-lower"><div class="wday-name">Sat</div><div class="wday-label">Lower</div><div class="wday-sub">solo</div></div>
     <div class="wday wday-rest"><div class="wday-name">Sun</div><div class="wday-label">Rest</div></div>
   </div>
-  <div class="day-divider">Monday — Legs with PT · 55 min</div>
+
+  <div class="day-divider">Monday — Upper Solo · 50–60 min</div>
   <div class="session-card">
-    <div class="session-head session-head-pt">
-      <div><div class="session-day">Monday</div><div class="session-name">Legs — with PT</div></div>
-      <div class="session-duration">55 min</div>
-    </div>
-    <div class="session-body">
-      <div class="block-label">Main lift <span class="block-rest">· 2–3 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Back squat <span class="ex-note">add load vs wk1</span></span><span class="ex-sets">4 × 8</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">2–3 min</span></div>
-      <div class="block-label">Hinge <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Romanian deadlift <span class="ex-note">add load vs wk1</span></span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Unilateral <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Bulgarian split squat <span class="ex-note">add load vs wk1</span></span><span class="ex-sets">3 × 8 each</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Core <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Reps drop, load goes up. Squat depth stays consistent — don't chase weight at the cost of depth.</p>
-    </div>
-  </div>
-  <div class="day-divider">Tuesday — Push · Solo</div>
-  <div class="session-card">
-    <div class="session-head session-head-push">
-      <div><div class="session-day">Tuesday</div><div class="session-name">Push — Solo</div></div>
+    <div class="session-head session-head-upper">
+      <div><div class="session-day">Monday</div><div class="session-name">Upper — Solo</div></div>
       <div class="session-duration">50–60 min</div>
     </div>
     <div class="session-body">
-      <div class="block-label">Horizontal push <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">DB flat press</span><span class="ex-sets">4 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">DB incline press</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Vertical push <span class="block-rest">· 90 sec between sets</span></div>
+      <div class="block-label">Main lifts <span class="block-rest">· straight sets · 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">DB flat press</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Secondary <span class="block-rest">· straight sets · 90 sec</span></div>
       <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Isolation <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Poliquin fly</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Load increases vs week 1. If a weight felt easy last week add 2.5 kg.</p>
+      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Isolation <span class="block-rest">· straight sets · 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">G</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
+      <div class="block-label">Core <span class="block-rest">· 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">H</span><span class="ex-name">Hanging knee raise</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
     </div>
   </div>
+
+  <div class="day-divider">Wednesday — PT · Training C · 55 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-pt">
+      <div><div class="session-day">Wednesday</div><div class="session-name">PT — Training C</div></div>
+      <div class="session-duration">55 min</div>
+    </div>
+    <div class="session-body">
+      <div class="block-label">Vertical pull — main <span class="block-rest">· straight sets · 2 min</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Negative pull-up <span class="ex-note">slow max time descent</span></span><span class="ex-sets">3 × 4</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Superset 1 — strength <span class="block-rest">· 90–120 sec between supersets</span></div>
+      <div class="ex-row"><span class="ex-id">B1</span><span class="ex-name">Trap bar deadlift</span><span class="ex-sets">3 × 6</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+      <div class="ex-row"><span class="ex-id">B2</span><span class="ex-name">DB floor press <span class="ex-note">or tall kneeling landmine press</span></span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+      <div class="block-label">Superset — push + rear delt <span class="block-rest">· 60 sec → C2 · 90 sec → C1</span></div>
+      <div class="ex-row"><span class="ex-id">C1</span><span class="ex-name">Single-arm DB row <span class="ex-note">slow eccentric</span></span><span class="ex-sets">3 × 10 each</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+      <div class="ex-row"><span class="ex-id">C2</span><span class="ex-name">DB rear delt fly</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+      <div class="block-label">Power finisher <span class="block-rest">· 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Sled push <span class="ex-note">all-out</span></span><span class="ex-sets">3 × 25 m</span><span class="ex-rir rir-none">RPE 9</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Mobility + core — finisher <span class="block-rest">· 60 sec → F2 · 60 sec → F1</span></div>
+      <div class="ex-row"><span class="ex-id">F1</span><span class="ex-name">KB single-arm Sots press <span class="ex-note">shoulder mobility focus</span></span><span class="ex-sets">3 × 8 each</span><span class="ex-rir rir-none">RIR —</span></div>
+      <div class="ex-row"><span class="ex-id">F2</span><span class="ex-name">KB windmill</span><span class="ex-sets">3 × 6 each</span><span class="ex-rir rir-none">RIR —</span></div>
+    </div>
+  </div>
+
   <div class="day-divider">Thursday — Thai Boxing</div>
   <div class="session-card">
     <div class="session-head session-head-thai">
       <div><div class="session-day">Thursday</div><div class="session-name">Thai Boxing</div></div>
     </div>
-    <div class="session-body"></div>
   </div>
-  <div class="day-divider">Saturday — Pull · Solo</div>
+
+  <div class="day-divider">Saturday — Lower Solo · 50–60 min</div>
   <div class="session-card">
-    <div class="session-head session-head-pull">
-      <div><div class="session-day">Saturday</div><div class="session-name">Pull — Solo</div></div>
+    <div class="session-head session-head-lower">
+      <div><div class="session-day">Saturday</div><div class="session-name">Lower — Solo</div></div>
       <div class="session-duration">50–60 min</div>
     </div>
     <div class="session-body">
-      <div class="block-label">Vertical pull — main <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Negative chin-up <span class="ex-note">slow max time descent · aim for 4 clean reps</span></span><span class="ex-sets">4 × 4</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Horizontal pull <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">4 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Vertical pull — volume <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Isolation <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">DB pullover</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Face pull</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Negative chin-ups — add one rep vs week 1. Still 5 sec descent on every rep.</p>
+      <div class="block-label">Main lift <span class="block-rest">· straight sets · 2 min</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Back squat</span><span class="ex-sets">4 × 8</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Superset — hinge + hamstring <span class="block-rest">· 60 sec → B2 · 90 sec → B1</span></div>
+      <div class="ex-row"><span class="ex-id">B1</span><span class="ex-name">Romanian deadlift</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+      <div class="ex-row"><span class="ex-id">B2</span><span class="ex-name">Leg curl</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+      <div class="block-label">Unilateral + glute <span class="block-rest">· straight sets · 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Bulgarian split squat</span><span class="ex-sets">3 × 8 each</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Hip thrust</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Finisher <span class="block-rest">· 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Calf raise</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
     </div>
   </div>
 </div>
@@ -307,79 +351,88 @@
   <div class="week-header">
     <div class="week-title">Week 3</div>
     <div class="week-phase phase-over">Overreach</div>
-    <div class="week-note">Bottom of rep range · heaviest loads of the block · push intensity</div>
+    <div class="week-note">Bottom of rep range · heaviest loads · PT Training B</div>
   </div>
+
   <div class="week-strip">
-    <div class="wday wday-pt"><div class="wday-name">Mon</div><div class="wday-label">Legs</div><div class="wday-sub">with PT</div></div>
-    <div class="wday wday-push"><div class="wday-name">Tue</div><div class="wday-label">Push</div><div class="wday-sub">solo</div></div>
-    <div class="wday wday-rest"><div class="wday-name">Wed</div><div class="wday-label">Rest</div></div>
-    <div class="wday wday-thai"><div class="wday-name">Thu</div><div class="wday-label">Thai</div><div class="wday-sub">boxing</div></div>
+    <div class="wday wday-upper"><div class="wday-name">Mon</div><div class="wday-label">Upper</div><div class="wday-sub">solo</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Tue</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-pt"><div class="wday-name">Wed</div><div class="wday-label">PT</div><div class="wday-sub">Training B</div></div>
+    <div class="wday wday-thai"><div class="wday-name">Thu</div><div class="wday-label">Thai</div></div>
     <div class="wday wday-rest"><div class="wday-name">Fri</div><div class="wday-label">Rest</div></div>
-    <div class="wday wday-pull"><div class="wday-name">Sat</div><div class="wday-label">Pull</div><div class="wday-sub">solo</div></div>
+    <div class="wday wday-lower"><div class="wday-name">Sat</div><div class="wday-label">Lower</div><div class="wday-sub">solo</div></div>
     <div class="wday wday-rest"><div class="wday-name">Sun</div><div class="wday-label">Rest</div></div>
   </div>
-  <div class="day-divider">Monday — Legs with PT · 55 min</div>
+
+  <div class="day-divider">Monday — Upper Solo · 50–60 min</div>
   <div class="session-card">
-    <div class="session-head session-head-pt">
-      <div><div class="session-day">Monday</div><div class="session-name">Legs — with PT</div></div>
-      <div class="session-duration">55 min</div>
-    </div>
-    <div class="session-body">
-      <div class="block-label">Main lift <span class="block-rest">· 2–3 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Back squat <span class="ex-note">heaviest of the block</span></span><span class="ex-sets">4 × 6</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">2–3 min</span></div>
-      <div class="block-label">Hinge <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Romanian deadlift <span class="ex-note">heaviest of the block</span></span><span class="ex-sets">3 × 6</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Unilateral <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Bulgarian split squat <span class="ex-note">heaviest of the block</span></span><span class="ex-sets">3 × 6 each</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Core <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Peak week — highest loads of the block. Depth and bracing on squat non-negotiable. Deload follows.</p>
-    </div>
-  </div>
-  <div class="day-divider">Tuesday — Push · Solo</div>
-  <div class="session-card">
-    <div class="session-head session-head-push">
-      <div><div class="session-day">Tuesday</div><div class="session-name">Push — Solo</div></div>
+    <div class="session-head session-head-upper">
+      <div><div class="session-day">Monday</div><div class="session-name">Upper — Solo</div></div>
       <div class="session-duration">50–60 min</div>
     </div>
     <div class="session-body">
-      <div class="block-label">Horizontal push <span class="block-rest">· 90 sec between sets</span></div>
+      <div class="block-label">Main lifts <span class="block-rest">· straight sets · 90 sec</span></div>
       <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">DB flat press</span><span class="ex-sets">4 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">DB incline press</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Vertical push <span class="block-rest">· 90 sec between sets</span></div>
+      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">4 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Secondary <span class="block-rest">· straight sets · 90 sec</span></div>
       <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Isolation <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Poliquin fly</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Heaviest push session of the block. Keep form — no half reps to chase load.</p>
+      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Isolation <span class="block-rest">· straight sets · 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">G</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
+      <div class="block-label">Core <span class="block-rest">· 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">H</span><span class="ex-name">Hanging knee raise</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
     </div>
   </div>
+
+  <div class="day-divider">Wednesday — PT · Training B · 55 min · Peak</div>
+  <div class="session-card">
+    <div class="session-head session-head-pt">
+      <div><div class="session-day">Wednesday</div><div class="session-name">PT — Training B · Peak</div></div>
+      <div class="session-duration">55 min</div>
+    </div>
+    <div class="session-body">
+      <div class="block-label">Vertical pull — main <span class="block-rest">· straight sets · 2 min</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Negative pull-up <span class="ex-note">slow max time descent · 4–5 reps</span></span><span class="ex-sets">3 × 4–5</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Main lift — hinge <span class="block-rest">· straight sets · 2–3 min</span></div>
+      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Trap bar deadlift <span class="ex-note">heaviest of the block</span></span><span class="ex-sets">4 × 6</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">2–3 min</span></div>
+      <div class="block-label">Superset — push + rear delt <span class="block-rest">· 60 sec → C2 · 90 sec → C1</span></div>
+      <div class="ex-row"><span class="ex-id">C1</span><span class="ex-name">Landmine half-kneeling press</span><span class="ex-sets">3 × 8 each</span><span class="ex-rir rir-low">RIR 1–2</span></div>
+      <div class="ex-row"><span class="ex-id">C2</span><span class="ex-name">DB rear delt fly</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-low">RIR 1–2</span></div>
+      <div class="block-label">Power finisher <span class="block-rest">· 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Sled push <span class="ex-note">heavy load</span></span><span class="ex-sets">3 × 20 m</span><span class="ex-rir rir-none">RPE 8</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Mobility + core — finisher <span class="block-rest">· 60 sec → F2 · 60 sec → F1</span></div>
+      <div class="ex-row"><span class="ex-id">F1</span><span class="ex-name">KB single-arm Sots press</span><span class="ex-sets">3 × 8 each</span><span class="ex-rir rir-none">RIR —</span></div>
+      <div class="ex-row"><span class="ex-id">F2</span><span class="ex-name">KB windmill</span><span class="ex-sets">3 × 6 each</span><span class="ex-rir rir-none">RIR —</span></div>
+    </div>
+  </div>
+
   <div class="day-divider">Thursday — Thai Boxing</div>
   <div class="session-card">
     <div class="session-head session-head-thai">
       <div><div class="session-day">Thursday</div><div class="session-name">Thai Boxing</div></div>
     </div>
-    <div class="session-body"></div>
   </div>
-  <div class="day-divider">Saturday — Pull · Solo</div>
+
+  <div class="day-divider">Saturday — Lower Solo · 50–60 min</div>
   <div class="session-card">
-    <div class="session-head session-head-pull">
-      <div><div class="session-day">Saturday</div><div class="session-name">Pull — Solo</div></div>
+    <div class="session-head session-head-lower">
+      <div><div class="session-day">Saturday</div><div class="session-name">Lower — Solo</div></div>
       <div class="session-duration">50–60 min</div>
     </div>
     <div class="session-body">
-      <div class="block-label">Vertical pull — main <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Negative chin-up <span class="ex-note">slow max time descent · maximum control</span></span><span class="ex-sets">4 × 4–5</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Horizontal pull <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">4 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Vertical pull — volume <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Isolation <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">DB pullover</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Face pull</span><span class="ex-sets">3 × 10</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Max time descent — as slow as possible. Heaviest loads on all other exercises.</p>
+      <div class="block-label">Main lift <span class="block-rest">· straight sets · 2–3 min</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Back squat</span><span class="ex-sets">4 × 6</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">2–3 min</span></div>
+      <div class="block-label">Superset — hinge + hamstring <span class="block-rest">· 60 sec → B2 · 90 sec → B1</span></div>
+      <div class="ex-row"><span class="ex-id">B1</span><span class="ex-name">Romanian deadlift</span><span class="ex-sets">3 × 6</span><span class="ex-rir rir-low">RIR 1–2</span></div>
+      <div class="ex-row"><span class="ex-id">B2</span><span class="ex-name">Leg curl</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span></div>
+      <div class="block-label">Unilateral + glute <span class="block-rest">· straight sets · 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Bulgarian split squat</span><span class="ex-sets">3 × 6 each</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Hip thrust</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Finisher <span class="block-rest">· 60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Calf raise</span><span class="ex-sets">3 × 15</span><span class="ex-rir rir-low">RIR 1–2</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
     </div>
   </div>
 </div>
@@ -389,79 +442,83 @@
   <div class="week-header">
     <div class="week-title">Week 4</div>
     <div class="week-phase phase-del">Deload</div>
-    <div class="week-note">−40% volume · week 2 loads · absorb the block · come back fresh</div>
+    <div class="week-note">−40% volume · wk2 loads · absorb the block · come back fresh</div>
   </div>
+
   <div class="week-strip">
-    <div class="wday wday-pt"><div class="wday-name">Mon</div><div class="wday-label">Legs</div><div class="wday-sub">with PT</div></div>
-    <div class="wday wday-push"><div class="wday-name">Tue</div><div class="wday-label">Push</div><div class="wday-sub">solo</div></div>
-    <div class="wday wday-rest"><div class="wday-name">Wed</div><div class="wday-label">Rest</div></div>
-    <div class="wday wday-thai"><div class="wday-name">Thu</div><div class="wday-label">Thai</div><div class="wday-sub">boxing</div></div>
+    <div class="wday wday-upper"><div class="wday-name">Mon</div><div class="wday-label">Upper</div><div class="wday-sub">deload</div></div>
+    <div class="wday wday-rest"><div class="wday-name">Tue</div><div class="wday-label">Rest</div></div>
+    <div class="wday wday-pt"><div class="wday-name">Wed</div><div class="wday-label">PT</div><div class="wday-sub">deload</div></div>
+    <div class="wday wday-thai"><div class="wday-name">Thu</div><div class="wday-label">Thai</div></div>
     <div class="wday wday-rest"><div class="wday-name">Fri</div><div class="wday-label">Rest</div></div>
-    <div class="wday wday-pull"><div class="wday-name">Sat</div><div class="wday-label">Pull</div><div class="wday-sub">solo</div></div>
+    <div class="wday wday-lower"><div class="wday-name">Sat</div><div class="wday-label">Lower</div><div class="wday-sub">deload</div></div>
     <div class="wday wday-rest"><div class="wday-name">Sun</div><div class="wday-label">Rest</div></div>
   </div>
-  <div class="day-divider">Monday — Legs with PT · 55 min</div>
+
+  <div class="day-divider">Monday — Upper Deload · 40 min</div>
   <div class="session-card">
-    <div class="session-head session-head-pt">
-      <div><div class="session-day">Monday</div><div class="session-name">Legs — with PT</div></div>
-      <div class="session-duration">55 min</div>
-    </div>
-    <div class="session-body">
-      <div class="block-label">Main lift <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Back squat <span class="ex-note">wk2 load</span></span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Hinge <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Romanian deadlift <span class="ex-note">wk2 load</span></span><span class="ex-sets">2 × 8</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Unilateral <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Bulgarian split squat <span class="ex-note">wk2 load</span></span><span class="ex-sets">2 × 8 each</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Core <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">Deload — use extra time to review squat technique and note starting weights for next block. Should feel easy.</p>
-    </div>
-  </div>
-  <div class="day-divider">Tuesday — Push · Solo</div>
-  <div class="session-card">
-    <div class="session-head session-head-push">
-      <div><div class="session-day">Tuesday</div><div class="session-name">Push — Solo</div></div>
+    <div class="session-head session-head-upper">
+      <div><div class="session-day">Monday</div><div class="session-name">Upper — Deload</div></div>
       <div class="session-duration">40 min</div>
     </div>
     <div class="session-body">
-      <div class="block-label">Horizontal push <span class="block-rest">· 90 sec between sets</span></div>
+      <div class="block-label">2 sets only · wk2 loads · 90 sec</div>
       <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">DB flat press</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">DB incline press</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Vertical push <span class="block-rest">· 90 sec between sets</span></div>
+      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
       <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Isolation <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Poliquin fly</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">2 sets only. Same loads as week 2. Finish early — that's the point. Next block starts Monday heavier.</p>
+      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">G</span><span class="ex-name">Triceps pushdown</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">H</span><span class="ex-name">Hanging knee raise</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
     </div>
   </div>
+
+  <div class="day-divider">Wednesday — PT Deload · 45 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-pt">
+      <div><div class="session-day">Wednesday</div><div class="session-name">PT — Deload</div></div>
+      <div class="session-duration">45 min</div>
+    </div>
+    <div class="session-body">
+      <div class="block-label">Vertical pull — main <span class="block-rest">· 2 min</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Negative pull-up <span class="ex-note">3 reps · quality only</span></span><span class="ex-sets">2 × 3</span><span class="ex-rir rir-del">RIR —</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Hinge <span class="block-rest">· 2 min · wk2 load</span></div>
+      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Trap bar deadlift</span><span class="ex-sets">2 × 6</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Superset — push + rear delt <span class="block-rest">· 60 sec → C2 · 90 sec → C1</span></div>
+      <div class="ex-row"><span class="ex-id">C1</span><span class="ex-name">Landmine half-kneeling press</span><span class="ex-sets">2 × 10 each</span><span class="ex-rir rir-del">RIR 4+</span></div>
+      <div class="ex-row"><span class="ex-id">C2</span><span class="ex-name">DB rear delt fly</span><span class="ex-sets">2 × 15</span><span class="ex-rir rir-del">RIR 4+</span></div>
+      <div class="block-label">Power <span class="block-rest">· easy · 90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Sled push <span class="ex-note">light load</span></span><span class="ex-sets">2 × 20 m</span><span class="ex-rir rir-none">RPE 5</span><span class="ex-rest">90 sec</span></div>
+      <div class="block-label">Mobility + core — finisher <span class="block-rest">· 60 sec → F2 · 60 sec → F1</span></div>
+      <div class="ex-row"><span class="ex-id">F1</span><span class="ex-name">KB single-arm Sots press</span><span class="ex-sets">2 × 8 each</span><span class="ex-rir rir-del">RIR —</span></div>
+      <div class="ex-row"><span class="ex-id">F2</span><span class="ex-name">KB windmill</span><span class="ex-sets">2 × 6 each</span><span class="ex-rir rir-del">RIR —</span></div>
+    </div>
+  </div>
+
   <div class="day-divider">Thursday — Thai Boxing</div>
   <div class="session-card">
     <div class="session-head session-head-thai">
       <div><div class="session-day">Thursday</div><div class="session-name">Thai Boxing</div></div>
     </div>
-    <div class="session-body"></div>
   </div>
-  <div class="day-divider">Saturday — Pull · Solo</div>
+
+  <div class="day-divider">Saturday — Lower Deload · 40 min</div>
   <div class="session-card">
-    <div class="session-head session-head-pull">
-      <div><div class="session-day">Saturday</div><div class="session-name">Pull — Solo</div></div>
+    <div class="session-head session-head-lower">
+      <div><div class="session-day">Saturday</div><div class="session-name">Lower — Deload</div></div>
       <div class="session-duration">40 min</div>
     </div>
     <div class="session-body">
-      <div class="block-label">Vertical pull — main <span class="block-rest">· 2 min between sets</span></div>
-      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Negative chin-up <span class="ex-note">slow max time descent · 3 clean reps only</span></span><span class="ex-sets">3 × 3</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">2 min</span></div>
-      <div class="block-label">Horizontal pull <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Chest-supported row</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Vertical pull — volume <span class="block-rest">· 90 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
-      <div class="block-label">Isolation <span class="block-rest">· 60 sec between sets</span></div>
-      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">DB pullover</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">DB biceps curl</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
-      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Face pull</span><span class="ex-sets">2 × 12</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
-      <p class="session-note">2 sets only. Negative chin-ups drop to 3 reps — quality over quantity. Next block aim to increase reps.</p>
+      <div class="block-label">Main lift · wk2 load <span class="block-rest">· 2 min</span></div>
+      <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Back squat</span><span class="ex-sets">3 × 8</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">2 min</span></div>
+      <div class="block-label">Straight sets · wk2 loads · 90 sec</div>
+      <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Romanian deadlift</span><span class="ex-sets">2 × 8</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Leg curl</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Bulgarian split squat</span><span class="ex-sets">2 × 8 each</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Hip thrust</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">90 sec</span></div>
+      <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Calf raise</span><span class="ex-sets">2 × 15</span><span class="ex-rir rir-del">RIR 4+</span><span class="ex-rest">60 sec</span></div>
+      <div class="ex-row"><span class="ex-id">G</span><span class="ex-name">Ab wheel rollout</span><span class="ex-sets">2 × 10</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">60 sec</span></div>
     </div>
   </div>
 </div>
@@ -469,8 +526,8 @@
 </main>
 
 <footer>
-  <span>Maxime · PPL Block · 4 Weeks</span>
-  <span>Mon Legs PT · Tue Push · Thu Thai Boxing · Sat Pull</span>
+  <span>Maxime · Athletic Block · 4 Weeks</span>
+  <span>Mon Upper · Wed PT · Thu Thai · Sat Lower</span>
 </footer>
 
 <script>
