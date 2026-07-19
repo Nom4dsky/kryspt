@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxime — V2 Athletic Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #fff; --surface: #f6f6f6; --surface2: #ececec; --border: #e0e0e0; --text: #0a0a0a; --muted: #aaa; --label: #666; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.5; }
+
+  #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+  .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
+  .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #fff; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .pw-box .pw-sub { font-size: 11px; color: #555; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+  .pw-box input { display: block; width: 260px; background: #1a1a1a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
+  .pw-box button { width: 260px; background: #0a0a0a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
+  .pw-box button:hover { background: #222; }
+  .pw-error { font-size: 10px; color: #aaa; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
+
+  header { padding: 52px 48px 36px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .header-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 88px); letter-spacing: 2px; line-height: 0.9; }
+  .header-left p { margin-top: 14px; color: var(--label); font-size: 12px; font-weight: 300; letter-spacing: 2.5px; text-transform: uppercase; }
+  .header-right { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--label); line-height: 2; text-align: right; }
+
+  main { padding: 0 48px 80px; }
+
+  .day-divider { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 12px; margin: 40px 0 16px; }
+  .day-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .session-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 32px; }
+  .session-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .session-head-upper { background: var(--surface2); }
+  .session-head-pt { background: #000; }
+  .session-head-pt .session-day, .session-head-pt .session-name, .session-head-pt .session-duration { color: #fff; }
+  .session-head-thai { background: #222; }
+  .session-head-thai .session-day, .session-head-thai .session-name { color: #fff; }
+  .session-head-recovery { background: var(--surface); }
+  .session-head-lower { background: #1a1a1a; }
+  .session-head-lower .session-day, .session-head-lower .session-name, .session-head-lower .session-duration { color: #fff; }
+
+  .session-day { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; color: var(--muted); }
+  .session-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; }
+  .session-duration { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  .session-head-pt .session-day { color: rgba(255,255,255,0.5); }
+  .session-head-lower .session-day { color: rgba(255,255,255,0.5); }
+  .session-head-thai .session-day { color: rgba(255,255,255,0.5); }
+
+  .session-body { padding: 16px 20px; }
+
+  .block-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; margin-top: 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .block-label:first-child { margin-top: 0; }
+  .block-rest { color: var(--label); font-size: 9px; }
+
+  .ex-row { display: flex; align-items: center; padding: 10px 14px; background: var(--surface); border-radius: 7px; margin-bottom: 3px; gap: 10px; flex-wrap: wrap; }
+  .ex-id { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); width: 24px; flex-shrink: 0; }
+  .ex-name { font-weight: 500; font-size: 13px; flex: 1; min-width: 160px; }
+  .ex-note { font-size: 11px; color: var(--label); font-style: italic; font-weight: 400; }
+  .ex-sets { font-family: 'DM Mono', monospace; font-size: 12px; color: #000; font-weight: 600; white-space: nowrap; }
+  .ex-rir { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 4px; margin-left: 8px; white-space: nowrap; }
+  .ex-rest { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--label); margin-left: 6px; white-space: nowrap; }
+
+  .rir-high { background: #f0f0f0; color: #555; border: 1px solid #ddd; }
+  .rir-mid { background: #e0e0e0; color: #222; border: 1px solid #ccc; }
+  .rir-low { background: #222; color: #fff; border: 1px solid #000; }
+  .rir-none { background: #f8f8f8; color: #aaa; border: 1px solid #eee; }
+
+  .warmup-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px; margin-bottom: 4px; }
+  .warmup-list li { font-size: 12px; color: var(--label); padding: 6px 10px; background: var(--surface); border-radius: 5px; display: flex; align-items: center; gap: 8px; }
+  .warmup-num { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); width: 16px; }
+
+  .emom-block { background: var(--surface); border-radius: 8px; padding: 14px 16px; margin-bottom: 4px; }
+  .emom-title { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .emom-row { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .emom-row:last-child { border-bottom: none; }
+  .emom-min { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); width: 60px; flex-shrink: 0; }
+  .emom-ex { flex: 1; }
+  .emom-note { font-size: 11px; color: var(--label); font-style: italic; }
+
+  .session-note { font-size: 11px; color: var(--label); font-style: italic; margin-top: 12px; padding: 10px 14px; background: #fffbf5; border-left: 3px solid #e0d8c8; border-radius: 0 5px 5px 0; }
+
+  footer { border-top: 1px solid var(--border); padding: 20px 48px; color: var(--muted); font-size: 11px; letter-spacing: 1px; display: flex; justify-content: space-between; }
+
+  @media (max-width: 780px) {
+    header { flex-direction: column; padding: 32px 20px 24px; }
+    main { padding: 0 20px 60px; }
+    footer { padding: 20px; flex-direction: column; gap: 6px; }
+    .warmup-list { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">MAXIME</div>
+    <div class="pw-sub">V2 Athletic Plan · KRYS.PT</div>
+    <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">ENTER →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+  function checkPw() {
+    var v = document.getElementById('pw-input').value.trim();
+    if (v === 'Maxime2026') {
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+</script>
+
+<header>
+  <div class="header-left">
+    <h1>MAXIME<br>V2</h1>
+    <p>Athletic Plan · Upper · PT · Thai · Recovery · Legs</p>
+  </div>
+  <div class="header-right">
+    Mon · Upper + Core · Solo<br>
+    Wed · PT Session<br>
+    Thu · Thai Boxing<br>
+    Fri · KB Recovery EMOM<br>
+    Sat · Athletic Legs · Solo
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════ MONDAY ══════════ -->
+<div class="day-divider">Monday — Upper + Core · Solo · 60 min</div>
+<div class="session-card">
+  <div class="session-head session-head-upper">
+    <div><div class="session-day">Monday</div><div class="session-name">Upper + Core — Solo</div></div>
+    <div class="session-duration">60 min</div>
+  </div>
+  <div class="session-body">
+    <div class="block-label">Warm-up · 1 × 10 each</div>
+    <ul class="warmup-list">
+      <li><span class="warmup-num">1</span>Neck rolls</li>
+      <li><span class="warmup-num">2</span>Thoracic wall rotation</li>
+      <li><span class="warmup-num">3</span>Cat camel</li>
+      <li><span class="warmup-num">4</span>Thread the needle</li>
+      <li><span class="warmup-num">5</span>World's greatest stretch</li>
+      <li><span class="warmup-num">6</span>Arm CARs</li>
+    </ul>
+
+    <div class="block-label">Straight sets <span class="block-rest">· 90 sec rest</span></div>
+    <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Lat pulldown</span><span class="ex-sets">4 × 8–10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+    <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">DB shoulder press</span><span class="ex-sets">4 × 8–10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+    <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">DB bench press</span><span class="ex-sets">4 × 8–10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+    <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Pec dec</span><span class="ex-sets">2 × 12–15</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+
+    <div class="block-label">Superset — shoulders <span class="block-rest">· 2 sets · 60 sec → E2 · 60 sec → E1</span></div>
+    <div class="ex-row"><span class="ex-id">E1</span><span class="ex-name">Cable lateral raise</span><span class="ex-sets">2 × 12–15</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+    <div class="ex-row"><span class="ex-id">E2</span><span class="ex-name">Cable rear delt fly</span><span class="ex-sets">2 × 12–15</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+
+    <div class="block-label">Superset — triceps <span class="block-rest">· 2 sets · 60 sec → F2 · 60 sec → F1</span></div>
+    <div class="ex-row"><span class="ex-id">F1</span><span class="ex-name">Triceps cable pushdown</span><span class="ex-sets">2 × 10–12</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+    <div class="ex-row"><span class="ex-id">F2</span><span class="ex-name">Overhead cable triceps extension</span><span class="ex-sets">2 × 10–12</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+
+    <div class="block-label">Forearms <span class="block-rest">· straight sets · 45 sec</span></div>
+    <div class="ex-row"><span class="ex-id">G</span><span class="ex-name">Reverse curl</span><span class="ex-sets">3 × 12</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">45 sec</span></div>
+
+    <div class="block-label">Core finisher <span class="block-rest">· 3 sets</span></div>
+    <div class="ex-row"><span class="ex-id">H</span><span class="ex-name">Dragon flag progression <span class="ex-note">max quality reps</span></span><span class="ex-sets">3 × max</span><span class="ex-rir rir-none">RIR —</span></div>
+    <p class="session-note">Dragon flag: Wk 1–2 tuck · Wk 3–4 single leg · Block 2+ full. Never grind — stop one rep before form breaks.</p>
+  </div>
+</div>
+
+<!-- ══════════ WEDNESDAY ══════════ -->
+<div class="day-divider">Wednesday — PT Session · 55 min</div>
+<div class="session-card">
+  <div class="session-head session-head-pt">
+    <div><div class="session-day">Wednesday</div><div class="session-name">PT Session</div></div>
+    <div class="session-duration">55 min</div>
+  </div>
+  <div class="session-body">
+    <div class="block-label">Warm-up · 1 × 10 each</div>
+    <ul class="warmup-list">
+      <li><span class="warmup-num">1</span>90/90 hip switch</li>
+      <li><span class="warmup-num">2</span>Cat camel</li>
+      <li><span class="warmup-num">3</span>Groiners</li>
+      <li><span class="warmup-num">4</span>World's greatest stretch</li>
+      <li><span class="warmup-num">5</span>Thoracic wall rotation</li>
+      <li><span class="warmup-num">6</span>Scapular pull-up hang</li>
+    </ul>
+
+    <div class="block-label">Superset A <span class="block-rest">· 60 sec → A2 · 90 sec → A1</span></div>
+    <div class="ex-row"><span class="ex-id">A1</span><span class="ex-name">Pendlay row <span class="ex-note">reset each rep · explosive · flat back</span></span><span class="ex-sets">4 × 5</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+    <div class="ex-row"><span class="ex-id">A2</span><span class="ex-name">Box jump <span class="ex-note">full reset · max intent · soft landing</span></span><span class="ex-sets">4 × 4</span><span class="ex-rir rir-none">RIR —</span></div>
+
+    <div class="block-label">Straight sets <span class="block-rest">· 2–3 min rest</span></div>
+    <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">Trap bar deadlift <span class="ex-note">brace · hinge · drive</span></span><span class="ex-sets">4 × 5</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">2–3 min</span></div>
+
+    <div class="block-label">Superset C <span class="block-rest">· 60 sec → C2 · 90 sec → C1</span></div>
+    <div class="ex-row"><span class="ex-id">C1</span><span class="ex-name">Landmine rotational press <span class="ex-note">hip drive · punch mechanics</span></span><span class="ex-sets">3 × 6 each</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+    <div class="ex-row"><span class="ex-id">C2</span><span class="ex-name">Band supported dips <span class="ex-note">controlled descent</span></span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-mid">RIR 2–3</span></div>
+
+    <div class="block-label">EMOM 10 min <span class="block-rest">· Z4–5</span></div>
+    <div class="emom-block">
+      <div class="emom-title">Every minute on the minute · 10 rounds</div>
+      <div class="emom-row"><span class="emom-min">Odd min</span><span class="emom-ex">KB swing × 15 <span class="emom-note">max hip snap · not a squat</span></span></div>
+      <div class="emom-row"><span class="emom-min">Even min</span><span class="emom-ex">KB goblet thruster × 10 <span class="emom-note">drive through legs · full press at top</span></span></div>
+    </div>
+
+    <div class="block-label">Finisher</div>
+    <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">KB farmer carry <span class="ex-note">heavy · grip · posture · breathe</span></span><span class="ex-sets">3 × 40 m</span><span class="ex-rir rir-none">—</span><span class="ex-rest">90 sec</span></div>
+  </div>
+</div>
+
+<!-- ══════════ THURSDAY ══════════ -->
+<div class="day-divider">Thursday — Thai Boxing</div>
+<div class="session-card">
+  <div class="session-head session-head-thai">
+    <div><div class="session-day">Thursday</div><div class="session-name">Thai Boxing</div></div>
+  </div>
+  <div class="session-body"></div>
+</div>
+
+<!-- ══════════ FRIDAY ══════════ -->
+<div class="day-divider">Friday — KB Recovery EMOM · Solo · 30 min</div>
+<div class="session-card">
+  <div class="session-head session-head-recovery">
+    <div><div class="session-day">Friday</div><div class="session-name">KB Recovery EMOM — Solo</div></div>
+    <div class="session-duration">30 min</div>
+  </div>
+  <div class="session-body">
+    <div class="block-label">6 movements × 5 rounds <span class="block-rest">· RPE 4–5 · conversational pace</span></div>
+    <div class="emom-block">
+      <div class="emom-title">Every minute on the minute · 30 rounds</div>
+      <div class="emom-row"><span class="emom-min">Min 1</span><span class="emom-ex">KB swing × 10 <span class="emom-note">full hinge · float at top</span></span></div>
+      <div class="emom-row"><span class="emom-min">Min 2</span><span class="emom-ex">Goblet squat × 10 <span class="emom-note">slow · pause at bottom</span></span></div>
+      <div class="emom-row"><span class="emom-min">Min 3</span><span class="emom-ex">KB clean and press × 3 each side <span class="emom-note">smooth · link the clean</span></span></div>
+      <div class="emom-row"><span class="emom-min">Min 4</span><span class="emom-ex">KB halo × 5 each direction <span class="emom-note">tall posture</span></span></div>
+      <div class="emom-row"><span class="emom-min">Min 5</span><span class="emom-ex">KB Sots press × 5 each side <span class="emom-note">light · mobility focus</span></span></div>
+      <div class="emom-row"><span class="emom-min">Min 6</span><span class="emom-ex">KB windmill × 4 each side <span class="emom-note">slow · reach · feel the stretch</span></span></div>
+    </div>
+    <p class="session-note">If elbow is sore — swap Min 3 for KB row.</p>
+  </div>
+</div>
+
+<!-- ══════════ SATURDAY ══════════ -->
+<div class="day-divider">Saturday — Athletic Legs · Solo · 60 min</div>
+<div class="session-card">
+  <div class="session-head session-head-lower">
+    <div><div class="session-day">Saturday</div><div class="session-name">Athletic Legs — Solo</div></div>
+    <div class="session-duration">60 min</div>
+  </div>
+  <div class="session-body">
+    <div class="block-label">Warm-up · 1 × 10 each</div>
+    <ul class="warmup-list">
+      <li><span class="warmup-num">1</span>Leg swing forward/back</li>
+      <li><span class="warmup-num">2</span>Hip circle</li>
+      <li><span class="warmup-num">3</span>90/90 hip switch</li>
+      <li><span class="warmup-num">4</span>Glute bridge</li>
+      <li><span class="warmup-num">5</span>Groiners</li>
+      <li><span class="warmup-num">6</span>World's greatest stretch</li>
+    </ul>
+
+    <div class="block-label">Power primer <span class="block-rest">· 90 sec rest</span></div>
+    <div class="ex-row"><span class="ex-id">A</span><span class="ex-name">Box jump or broad jump <span class="ex-note">full reset · max intent</span></span><span class="ex-sets">4 × 4</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">90 sec</span></div>
+    <div class="ex-row"><span class="ex-id">B</span><span class="ex-name">KB swing <span class="ex-note">explosive hinge · not a squat</span></span><span class="ex-sets">4 × 15</span><span class="ex-rir rir-none">RIR —</span><span class="ex-rest">90 sec</span></div>
+
+    <div class="block-label">Strength <span class="block-rest">· straight sets · 2–3 min rest</span></div>
+    <div class="ex-row"><span class="ex-id">C</span><span class="ex-name">Back squat</span><span class="ex-sets">4 × 6–8</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">2–3 min</span></div>
+
+    <div class="block-label">Unilateral + posterior <span class="block-rest">· straight sets · 3 sets · 90 sec</span></div>
+    <div class="ex-row"><span class="ex-id">D</span><span class="ex-name">Step-up <span class="ex-note">drive through heel</span></span><span class="ex-sets">3 × 8–10 each</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+    <div class="ex-row"><span class="ex-id">E</span><span class="ex-name">Snatch grip RDL <span class="ex-note">wide grip · control descent</span></span><span class="ex-sets">3 × 8–10</span><span class="ex-rir rir-mid">RIR 2–3</span><span class="ex-rest">90 sec</span></div>
+
+    <div class="block-label">Sled finisher <span class="block-rest">· 90 sec rest</span></div>
+    <div class="ex-row"><span class="ex-id">F</span><span class="ex-name">Sled push <span class="ex-note">heavy · low position · drive</span></span><span class="ex-sets">4 × 20 m</span><span class="ex-rir rir-none">—</span><span class="ex-rest">90 sec</span></div>
+    <div class="ex-row"><span class="ex-id">G</span><span class="ex-name">Sled drag backwards <span class="ex-note">hamstring + glute focus</span></span><span class="ex-sets">3 × 20 m</span><span class="ex-rir rir-none">—</span><span class="ex-rest">90 sec</span></div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>Maxime · V2 Athletic Plan</span>
+  <span>Mon Upper · Wed PT · Thu Thai · Fri Recovery · Sat Legs</span>
+</footer>
+
+</body>
+</html>
