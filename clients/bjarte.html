@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bjarte — Training Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #fff; --surface: #f6f6f6; --surface2: #ececec; --border: #e0e0e0; --text: #0a0a0a; --muted: #aaa; --label: #666; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.5; }
+
+  #pw-gate { position: fixed; inset: 0; z-index: 9999; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+  .pw-box { text-align: center; font-family: 'DM Mono', monospace; }
+  .pw-box .pw-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: #fff; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .pw-box .pw-sub { font-size: 11px; color: #555; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+  .pw-box input { display: block; width: 260px; background: #1a1a1a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 13px; padding: 12px 16px; outline: none; margin: 0 auto 12px; text-align: center; letter-spacing: 0.1em; }
+  .pw-box button { width: 260px; background: #0a0a0a; border: 1px solid #333; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px; cursor: pointer; }
+  .pw-box button:hover { background: #222; }
+  .pw-error { font-size: 10px; color: #aaa; letter-spacing: 0.1em; margin-top: 10px; height: 14px; }
+
+  header { padding: 52px 48px 36px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .header-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 88px); letter-spacing: 2px; line-height: 0.9; }
+  .header-left p { margin-top: 14px; color: var(--label); font-size: 12px; font-weight: 300; letter-spacing: 2.5px; text-transform: uppercase; }
+  .header-right { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--label); line-height: 2; text-align: right; }
+
+  .tabs-wrap { padding: 0 48px; border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; scrollbar-width: none; }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 16px 24px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; margin-bottom: -1px; }
+  .tab-btn:hover { color: var(--label); }
+  .tab-btn.active { color: #000; border-bottom-color: #000; font-weight: 600; }
+
+  main { padding: 0 48px 80px; }
+  .session-panel { display: none; }
+  .session-panel.active { display: block; animation: fadeIn 0.2s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  .session-header { padding: 40px 0 32px; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; border-bottom: 2px solid #000; margin-bottom: 40px; }
+  .session-title { font-family: 'Bebas Neue', sans-serif; font-size: 52px; letter-spacing: 2px; }
+  .session-badge { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 4px; }
+  .badge-a { background: #1a1a1a; color: #fff; border: 1px solid #000; }
+  .badge-b { background: #f0f0f0; color: #333; border: 1px solid #ccc; }
+  .session-note-head { font-size: 12px; color: var(--label); font-style: italic; margin-left: auto; }
+
+  .day-divider { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 12px; margin: 32px 0 16px; }
+  .day-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .day-divider:first-of-type { margin-top: 0; }
+
+  .session-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+  .session-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .session-head-dark { background: #000; }
+  .session-head-dark .s-day, .session-head-dark .s-name, .session-head-dark .s-dur { color: #fff; }
+  .session-head-dark .s-day { color: rgba(255,255,255,0.45); }
+  .session-head-mid { background: var(--surface2); }
+  .session-head-light { background: var(--surface); }
+  .s-day { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; color: var(--muted); }
+  .s-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
+  .s-dur { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  .session-body { padding: 16px 20px; }
+
+  .block-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; margin-top: 20px; display: flex; align-items: center; gap: 8px; }
+  .block-label:first-child { margin-top: 0; }
+  .block-sub { color: var(--label); font-size: 9px; }
+
+  .ex-row { display: flex; align-items: center; padding: 10px 14px; background: var(--surface); border-radius: 7px; margin-bottom: 3px; gap: 10px; flex-wrap: wrap; }
+  .ex-id { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); width: 24px; flex-shrink: 0; }
+  .ex-name { font-weight: 500; font-size: 13px; flex: 1; min-width: 140px; }
+  .ex-note { font-size: 11px; color: var(--label); font-style: italic; font-weight: 400; }
+  .ex-sets { font-family: 'DM Mono', monospace; font-size: 12px; color: #000; font-weight: 600; white-space: nowrap; }
+  .ex-kg { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--label); margin-left: 6px; white-space: nowrap; }
+  .ex-rest { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--label); margin-left: 6px; white-space: nowrap; }
+  .ex-link { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; border: 1px solid var(--border); border-radius: 3px; padding: 2px 7px; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .ex-link:hover { color: #000; border-color: #000; }
+
+  .warmup-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px; }
+  .warmup-list li { font-size: 12px; color: var(--label); padding: 6px 10px; background: var(--surface); border-radius: 5px; display: flex; align-items: center; gap: 8px; }
+  .warmup-num { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); width: 16px; flex-shrink: 0; }
+  .warmup-note { font-size: 10px; color: var(--muted); font-style: italic; }
+
+  .session-note { font-size: 11px; color: var(--label); font-style: italic; margin-top: 12px; padding: 10px 14px; background: #fffbf5; border-left: 3px solid #e0d8c8; border-radius: 0 5px 5px 0; }
+
+  footer { border-top: 1px solid var(--border); padding: 20px 48px; color: var(--muted); font-size: 11px; letter-spacing: 1px; display: flex; justify-content: space-between; }
+
+  @media (max-width: 780px) {
+    header { flex-direction: column; padding: 32px 20px 24px; }
+    .tabs-wrap { padding: 0 20px; }
+    main { padding: 0 20px 60px; }
+    footer { padding: 20px; flex-direction: column; gap: 6px; }
+    .warmup-list { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">BJARTE</div>
+    <div class="pw-sub">Training Plan · KRYS.PT</div>
+    <input type="password" id="pw-input" placeholder="ACCESS CODE" autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">ENTER →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+  function checkPw() {
+    var v = document.getElementById('pw-input').value.trim();
+    if (v === 'Bjarte2026') {
+      document.getElementById('pw-gate').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect code.';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+</script>
+
+<header>
+  <div class="header-left">
+    <h1>BJARTE</h1>
+    <p>Training Plan · Two-Session Rotation · KRYS PT</p>
+  </div>
+  <div class="header-right">
+    Session A · Strength Day<br>
+    Session B · Power &amp; Pull Day<br>
+    Twice weekly · rest day between
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <button class="tab-btn active" onclick="sw('a')">Session A — Strength</button>
+  <button class="tab-btn" onclick="sw('b')">Session B — Power &amp; Pull</button>
+</div>
+
+<main>
+
+<!-- ══════════ SESSION A ══════════ -->
+<div class="session-panel active" id="sa">
+  <div class="session-header">
+    <div class="session-title">Session A</div>
+    <div class="session-badge badge-a">Strength Day</div>
+    <div class="session-note-head">Trap bar main lift · landmine accessories</div>
+  </div>
+
+  <!-- WARM-UP -->
+  <div class="day-divider">Warm-Up · 5 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-light">
+      <div><div class="s-name">Cardio Warm-Up</div></div>
+      <div class="s-dur">5 min</div>
+    </div>
+    <div class="session-body">
+      <p style="font-size:13px;color:var(--label);font-style:italic;">Easy pace on the bike or rower. Just get the blood moving.</p>
+    </div>
+  </div>
+
+  <!-- MOBILITY -->
+  <div class="day-divider">Mobility · 5–10 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-light">
+      <div><div class="s-name">Mobility</div></div>
+      <div class="s-dur">5–10 min</div>
+    </div>
+    <div class="session-body">
+      <div class="ex-row">
+        <span class="ex-id">1</span>
+        <span class="ex-name">Thread the needle <span class="ex-note">rotate through upper back · reach fully under</span></span>
+        <span class="ex-sets">6 / side</span>
+        <span class="ex-kg">BW</span>
+        <a href="https://www.youtube.com/results?search_query=Thread+the+needle+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">2</span>
+        <span class="ex-name">90/90 hip switches <span class="ex-note">slow and controlled · chest tall</span></span>
+        <span class="ex-sets">8 / side</span>
+        <span class="ex-kg">BW</span>
+        <a href="https://www.youtube.com/results?search_query=90/90+hip+switches+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">3</span>
+        <span class="ex-name">Wall slides <span class="ex-note">keep low back flat against wall</span></span>
+        <span class="ex-sets">2 × 10</span>
+        <span class="ex-kg">BW</span>
+        <a href="https://www.youtube.com/results?search_query=Wall+slides+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- POWER -->
+  <div class="day-divider">Power · 5–10 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-mid">
+      <div><div class="s-name">Power Primer</div></div>
+      <div class="s-dur">5–10 min</div>
+    </div>
+    <div class="session-body">
+      <div class="ex-row">
+        <span class="ex-id">A</span>
+        <span class="ex-name">Box jumps <span class="ex-note">land soft · full reset between reps</span></span>
+        <span class="ex-sets">4 × 3</span>
+        <span class="ex-kg">BW</span>
+        <a href="https://www.youtube.com/results?search_query=Box+jumps+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">B</span>
+        <span class="ex-name">Medicine ball slams <span class="ex-note">full effort · controlled catch</span></span>
+        <span class="ex-sets">3 × 6</span>
+        <span class="ex-kg">6–8 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Medicine+ball+slams+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN LIFT -->
+  <div class="day-divider">Main Lift</div>
+  <div class="session-card">
+    <div class="session-head session-head-dark">
+      <div><div class="s-day">Main Lift</div><div class="s-name">Trap Bar Deadlift</div></div>
+      <div class="s-dur">4 × 6</div>
+    </div>
+    <div class="session-body">
+      <div class="ex-row">
+        <span class="ex-id">—</span>
+        <span class="ex-name">Trap bar deadlift <span class="ex-note">last few reps should feel hard but controlled</span></span>
+        <span class="ex-sets">4 × 6</span>
+        <span class="ex-kg">82–87 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Trap+bar+deadlift+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCESSORIES -->
+  <div class="day-divider">Accessories</div>
+  <div class="session-card">
+    <div class="session-head session-head-mid">
+      <div><div class="s-name">Accessory Work</div></div>
+    </div>
+    <div class="session-body">
+      <div class="ex-row">
+        <span class="ex-id">C</span>
+        <span class="ex-name">Half-kneeling landmine press <span class="ex-note">progress from bar + 10 kg</span></span>
+        <span class="ex-sets">3 × 8 / side</span>
+        <span class="ex-kg">10–12.5 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Half-kneeling+landmine+press+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">D</span>
+        <span class="ex-name">Gorilla rows <span class="ex-note">hold weight · alternate sides each rep</span></span>
+        <span class="ex-sets">3 × 15–20</span>
+        <span class="ex-kg">2 × 20 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Gorilla+rows+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">E</span>
+        <span class="ex-name">Landmine curtsy lunges <span class="ex-note">progress to +10 kg if controlled</span></span>
+        <span class="ex-sets">3 × 8 / side</span>
+        <span class="ex-kg">10–12.5 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Landmine+curtsy+lunges+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SESSION B ══════════ -->
+<div class="session-panel" id="sb">
+  <div class="session-header">
+    <div class="session-title">Session B</div>
+    <div class="session-badge badge-b">Power &amp; Pull Day</div>
+    <div class="session-note-head">Zercher main lift · landmine accessories</div>
+  </div>
+
+  <!-- WARM-UP -->
+  <div class="day-divider">Warm-Up · 5 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-light">
+      <div><div class="s-name">Cardio Warm-Up</div></div>
+      <div class="s-dur">5 min</div>
+    </div>
+    <div class="session-body">
+      <p style="font-size:13px;color:var(--label);font-style:italic;">Easy pace on the rower or bike.</p>
+    </div>
+  </div>
+
+  <!-- MOBILITY -->
+  <div class="day-divider">Mobility · 5–10 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-light">
+      <div><div class="s-name">Mobility</div></div>
+      <div class="s-dur">5–10 min</div>
+    </div>
+    <div class="session-body">
+      <div class="ex-row">
+        <span class="ex-id">1</span>
+        <span class="ex-name">Quadruped T-spine rotations <span class="ex-note">rotate through upper back · not the hips</span></span>
+        <span class="ex-sets">8 / side</span>
+        <span class="ex-kg">BW</span>
+        <a href="https://www.youtube.com/results?search_query=Quadruped+T-spine+rotations+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">2</span>
+        <span class="ex-name">Hip flexor rock and reach <span class="ex-note">controlled · full range</span></span>
+        <span class="ex-sets">8 / side</span>
+        <span class="ex-kg">BW</span>
+        <a href="https://www.youtube.com/results?search_query=Hip+flexor+rock+and+reach+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">3</span>
+        <span class="ex-name">Arm circles — large, controlled <span class="ex-note">full range · shoulders relaxed</span></span>
+        <span class="ex-sets">2 × 10 each</span>
+        <span class="ex-kg">BW</span>
+        <a href="https://www.youtube.com/results?search_query=Arm+circles+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- POWER -->
+  <div class="day-divider">Power · 5–10 min</div>
+  <div class="session-card">
+    <div class="session-head session-head-mid">
+      <div><div class="s-name">Power Primer</div></div>
+      <div class="s-dur">5–10 min</div>
+    </div>
+    <div class="session-body">
+      <div class="ex-row">
+        <span class="ex-id">A</span>
+        <span class="ex-name">Rotational medicine ball throws <span class="ex-note">full rotation · drive from hips</span></span>
+        <span class="ex-sets">3 × 5 / side</span>
+        <span class="ex-kg">4–6 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Rotational+medicine+ball+throws+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">B</span>
+        <span class="ex-name">Kettlebell swings <span class="ex-note">hip hinge · not a squat</span></span>
+        <span class="ex-sets">3 × 12</span>
+        <span class="ex-kg">16–20 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Kettlebell+swings+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN LIFT -->
+  <div class="day-divider">Main Lift</div>
+  <div class="session-card">
+    <div class="session-head session-head-dark">
+      <div><div class="s-day">Main Lift</div><div class="s-name">Barbell Zercher Lift</div></div>
+      <div class="s-dur">4 × 5</div>
+    </div>
+    <div class="session-body">
+      <div class="ex-row">
+        <span class="ex-id">—</span>
+        <span class="ex-name">Barbell Zercher lift <span class="ex-note">reintroducing · start light · build each set</span></span>
+        <span class="ex-sets">4 × 5</span>
+        <span class="ex-kg">20–30 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Barbell+Zercher+lift+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCESSORIES -->
+  <div class="day-divider">Accessories</div>
+  <div class="session-card">
+    <div class="session-head session-head-mid">
+      <div><div class="s-name">Accessory Work</div></div>
+    </div>
+    <div class="session-body">
+      <div class="ex-row">
+        <span class="ex-id">C</span>
+        <span class="ex-name">Single-arm landmine press <span class="ex-note">progress from 10 kg</span></span>
+        <span class="ex-sets">3 × 8 / side</span>
+        <span class="ex-kg">10–12.5 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Single-arm+landmine+press+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">D</span>
+        <span class="ex-name">Landmine meadow rows <span class="ex-note">progress from 10 kg if smooth</span></span>
+        <span class="ex-sets">3 × 10</span>
+        <span class="ex-kg">10–15 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Landmine+meadow+rows+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">E</span>
+        <span class="ex-name">Landmine curtsy reverse lunges <span class="ex-note">progress from 10 kg</span></span>
+        <span class="ex-sets">3 × 8 / side</span>
+        <span class="ex-kg">10–12.5 kg</span>
+        <a href="https://www.youtube.com/results?search_query=Landmine+curtsy+reverse+lunges+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+      <div class="ex-row">
+        <span class="ex-id">F</span>
+        <span class="ex-name">Ring rows ±45° <span class="ex-note">steepen angle to progress difficulty</span></span>
+        <span class="ex-sets">3 × 12</span>
+        <span class="ex-kg">BW</span>
+        <a href="https://www.youtube.com/results?search_query=Ring+rows+exercise+form" target="_blank" class="ex-link">▶ Watch</a>
+      </div>
+    </div>
+  </div>
+  <p class="session-note">Let me know how these feel and we'll adjust from there. — Krys</p>
+</div>
+
+</main>
+
+<footer>
+  <span>Bjarte · Training Plan · KRYS PT · Przemysław Kryś</span>
+  <span>Session A — Strength · Session B — Power &amp; Pull</span>
+</footer>
+
+<script>
+  function sw(id) {
+    document.querySelectorAll('.session-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('s' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
