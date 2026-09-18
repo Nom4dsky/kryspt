@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxime — Hybrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f2f0eb;
+    color: #111;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 32px 20px 80px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  #pw-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #f2f0eb;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pw-box { text-align: center; }
+  .pw-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 52px;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pw-sub {
+    font-size: 11px; color: #aaa;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .pw-box input {
+    display: block; width: 260px;
+    background: #fff; border: 1.5px solid #ccc;
+    color: #111; font-family: 'Barlow', sans-serif;
+    font-size: 14px; padding: 12px 16px; outline: none;
+    margin: 0 auto 10px; text-align: center;
+    border-radius: 3px;
+  }
+  .pw-box input:focus { border-color: #111; }
+  .pw-box button {
+    width: 260px; background: #111; border: none;
+    color: #f2f0eb; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 12px; cursor: pointer;
+    border-radius: 3px;
+  }
+  .pw-err { font-size: 11px; color: #aaa; margin-top: 10px; height: 16px; }
+
+  .page-nav {
+    display: flex; gap: 6px;
+    margin-bottom: 40px; flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 13px;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 8px 14px; background: none;
+    border: 1.5px solid #ccc; border-radius: 3px;
+    cursor: pointer; color: #888;
+    transition: all .15s;
+  }
+  .nav-btn.active {
+    background: #111; border-color: #111; color: #f2f0eb;
+  }
+
+  .session { display: none; }
+  .session.active { display: block; }
+
+  .session-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 34px;
+    letter-spacing: -0.5px; line-height: 1;
+    margin-bottom: 28px; text-transform: uppercase;
+  }
+
+  .pre-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: #bbb; margin-bottom: 8px;
+  }
+
+  .block-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: #999; margin-bottom: 8px;
+  }
+
+  .block { margin-bottom: 20px; }
+
+  .ex {
+    margin-bottom: 2px; display: flex;
+    align-items: center; flex-wrap: wrap; gap: 4px;
+  }
+
+  .ex-name { font-weight: 500; font-size: 15px; color: #111; }
+
+  .ex-tag { font-size: 13px; color: #888; font-weight: 400; }
+
+  .method-tag {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    background: #111; color: #f2f0eb;
+    padding: 2px 5px; border-radius: 2px;
+  }
+
+  .method-note {
+    font-size: 12px; color: #999;
+    margin-top: 2px; font-style: italic;
+  }
+
+  .rest {
+    font-size: 12px; color: #bbb; margin-top: 4px;
+  }
+
+  .divider {
+    border: none; border-top: 1px solid #d8d5cf; margin: 24px 0;
+  }
+
+  .wu-list { list-style: none; counter-reset: wu; }
+
+  .wu-list li {
+    counter-increment: wu;
+    font-size: 14px; color: #555;
+    padding: 5px 0; border-bottom: 1px solid #e5e2dc;
+    display: flex; gap: 10px; align-items: baseline;
+  }
+
+  .wu-list li::before {
+    content: counter(wu);
+    font-size: 10px; color: #bbb;
+    font-weight: 700; min-width: 14px;
+  }
+
+  .footer {
+    margin-top: 56px; font-size: 10px;
+    color: #bbb; letter-spacing: 1px; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-title">Maxime</div>
+    <div class="pw-sub">Hybrid Protocol · KRYS PT</div>
+    <input type="password" id="pw" placeholder="access code" autocomplete="off" onkeydown="if(event.key==='Enter')chk()">
+    <button onclick="chk()">Enter</button>
+    <div class="pw-err" id="pe"></div>
+  </div>
+</div>
+<script>function chk(){var v=document.getElementById('pw').value.trim();if(v==='Maxime2026'){document.getElementById('pw-gate').style.display='none';}else{document.getElementById('pe').textContent='Incorrect code.';document.getElementById('pw').value='';}}</script>
+
+<div class="page-nav">
+  <button class="nav-btn active" onclick="show('wed', this)">FBW — PT</button>
+  <button class="nav-btn" onclick="show('sat', this)">FBW — Solo</button>
+  <button class="nav-btn" onclick="show('mon', this)">Z2 + Mobility</button>
+</div>
+
+<!-- ══ FBW PT ══ -->
+<div class="session active" id="wed">
+  <div class="session-title">FBW — PT</div>
+
+  <div class="pre-label">VMO Pre-Session</div>
+  <div class="block">
+    <div class="ex"><span class="ex-name">Foam roll VMO</span><span class="ex-tag">60 sec each side</span></div>
+    <div class="ex"><span class="ex-name">Terminal knee extension</span><span class="ex-tag">15 reps each side · band</span></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="pre-label">Warm-Up · 1 × 10 each</div>
+  <div class="block">
+    <ul class="wu-list">
+      <li>90/90 hip switch</li>
+      <li>Cat camel</li>
+      <li>Groiners</li>
+      <li>World's greatest stretch</li>
+      <li>Floor angel slides</li>
+      <li>KB pullover on med ball · light</li>
+      <li>Dowel butcher's block — 60 sec</li>
+      <li>Scapular pull-up hang</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <div class="block">
+    <div class="block-label">Pull</div>
+    <div class="ex"><span class="ex-name">Band-assisted pull-up</span><span class="ex-tag">3 × 3–5 · thick band · dead hang start</span></div>
+    <div class="rest">Rest 2:00</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Strength</div>
+    <div class="ex"><span class="ex-name">Zercher lift</span><span class="ex-tag">4 × 4</span><span class="method-tag">Cluster</span></div>
+    <div class="method-note">4 reps · 15 sec · 4 reps · 15 sec · 4 reps = 1 set</div>
+    <div class="rest">Rest 2:30–3:00</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Pull</div>
+    <div class="ex"><span class="ex-name">Seal row</span><span class="ex-tag">3 × 8–10 · RIR 2–3</span></div>
+    <div class="rest">Rest 1:30</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Overhead</div>
+    <div class="ex"><span class="ex-name">OHP</span><span class="ex-tag">2 × 5 · ramp · light</span></div>
+    <div class="ex"><span class="ex-name">Z-press</span><span class="ex-tag">3 × 8 · RIR 2–3</span></div>
+    <div class="rest">Rest 1:30</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Lower</div>
+    <div class="ex"><span class="ex-name">Bulgarian split squat</span><span class="ex-tag">3 × 8 each · RIR 2–3</span><span class="method-tag">1.5 rep</span></div>
+    <div class="method-note">full rep + half rep = 1</div>
+    <div class="rest">Rest 1:30</div>
+  </div>
+
+  <div class="block">
+    <div class="ex"><span class="ex-name">Copenhagen adduction</span><span class="ex-tag">3 × 8 each</span></div>
+    <div class="rest">Rest 1:00</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="block">
+    <div class="block-label">Conditioning Block</div>
+    <div class="ex"><span class="ex-name" style="color:#aaa;">Rotating — prescribed separately</span></div>
+  </div>
+</div>
+
+<!-- ══ FBW SOLO ══ -->
+<div class="session" id="sat">
+  <div class="session-title">FBW — Solo</div>
+
+  <div class="pre-label">VMO Pre-Session</div>
+  <div class="block">
+    <div class="ex"><span class="ex-name">Foam roll VMO</span><span class="ex-tag">60 sec each side</span></div>
+    <div class="ex"><span class="ex-name">Terminal knee extension</span><span class="ex-tag">15 reps each side · band</span></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="pre-label">Warm-Up · 1 × 10 each</div>
+  <div class="block">
+    <ul class="wu-list">
+      <li>Neck rolls</li>
+      <li>Thoracic wall rotation</li>
+      <li>Cat camel</li>
+      <li>Thread the needle</li>
+      <li>World's greatest stretch</li>
+      <li>Dowel butcher's block — 60 sec</li>
+      <li>Arm CARs</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <div class="block">
+    <div class="block-label">Lower</div>
+    <div class="ex"><span class="ex-name">Leg press</span><span class="ex-tag">4 × 8–10</span><span class="method-tag">Drop set</span></div>
+    <div class="method-note">last set only · drop 20–25% · continue to failure</div>
+    <div class="rest">Rest 2:00</div>
+  </div>
+
+  <div class="block">
+    <div class="ex"><span class="ex-name">Leg curl</span><span class="ex-tag">3 × 10–12</span><span class="method-tag">Drop set</span></div>
+    <div class="method-note">last set only · drop 20% · slow eccentric on drop</div>
+    <div class="rest">Rest 1:30</div>
+  </div>
+
+  <div class="block">
+    <div class="ex"><span class="ex-name">Machine hip adduction</span><span class="ex-tag">3 × 15</span></div>
+    <div class="rest">Rest 1:00</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="block">
+    <div class="block-label">Upper</div>
+    <div class="ex"><span class="ex-name">Incline DB press</span><span class="ex-tag">4 × 8–10 · RIR 2–3</span></div>
+    <div class="rest">Rest 1:30</div>
+  </div>
+
+  <div class="block">
+    <div class="ex"><span class="ex-name">Arnold press</span><span class="ex-tag">3 × 10–12 · RIR 2–3</span></div>
+    <div class="rest">Rest 1:30</div>
+  </div>
+
+  <div class="block">
+    <div class="ex"><span class="ex-name">Cable lateral raise</span><span class="ex-tag">3 × 10–12</span><span class="method-tag">Myo-reps</span></div>
+    <div class="ex"><span class="ex-name">Cable rear delt fly</span><span class="ex-tag">3 × 10–12</span><span class="method-tag">Myo-reps</span></div>
+    <div class="method-note">activate to RIR 1 · 5 breaths · 3–5 reps × 3–4 mini sets</div>
+    <div class="rest">Rest 1:00 between exercises</div>
+  </div>
+
+  <div class="block">
+    <div class="ex"><span class="ex-name">Overhead cable extension</span><span class="ex-tag">rope · 3 × 10–12</span><span class="method-tag">Myo-reps</span></div>
+    <div class="method-note">activate to RIR 1 · 5 breaths · 3–5 reps × 3–4 mini sets</div>
+    <div class="rest">Rest 1:00</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="block">
+    <div class="block-label">Core</div>
+    <div class="ex"><span class="ex-name">Ab wheel rollout</span><span class="ex-tag">3 × 8–10</span></div>
+    <div class="rest">Rest 1:00</div>
+  </div>
+</div>
+
+<!-- ══ Z2 ══ -->
+<div class="session" id="mon">
+  <div class="session-title">Z2 + Mobility</div>
+
+  <div class="block">
+    <div class="block-label">Zone 2 Run</div>
+    <div class="ex"><span class="ex-name">Easy run</span><span class="ex-tag">30–40 min · HR max 140 bpm</span></div>
+    <div class="method-note">walk when HR climbs · conversational pace throughout</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="pre-label">Mobility + Shoulder Prep</div>
+  <div class="block">
+    <ul class="wu-list">
+      <li>Quadruped T-spine rotation × 8 each side</li>
+      <li>Floor angel slides × 10</li>
+      <li>KB pullover on med ball × 10 · light</li>
+      <li>Dowel butcher's block — 60 sec</li>
+      <li>Arm circle × 10 each direction</li>
+      <li>90/90 hip switch × 8 each side</li>
+      <li>Reverse lunge with posterior reach × 6 each side</li>
+      <li>KB windmill × 4 each side · light</li>
+      <li>Terminal knee extension with band × 15 each side</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <div class="block">
+    <div class="block-label">Golfer's Elbow</div>
+    <div class="ex"><span class="ex-name">Isometric wrist flexion hold</span><span class="ex-tag">3 × 30–45 sec</span></div>
+    <div class="ex"><span class="ex-name">Pronation / supination with DB</span><span class="ex-tag">3 × 15 each direction</span></div>
+    <div class="method-note">forearm supported · light load · slow and controlled</div>
+  </div>
+</div>
+
+<div class="footer">KRYS PT · Maxime Hybrid</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.session').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
