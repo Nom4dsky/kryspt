@@ -187,34 +187,29 @@
     position: fixed; inset: 0; z-index: 9999;
     background: #f5f2ec;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', -apple-system, sans-serif;
   }
-  #gate-box {
-    text-align: center;
-  }
+  #gate-box { text-align: center; }
   #gate-box h2 {
-    font-size: 13px; font-weight: 600; letter-spacing: 2px;
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
     text-transform: uppercase; color: #aaa; margin-bottom: 24px;
   }
   #gate-box input {
-    display: block; width: 220px; margin: 0 auto 12px;
+    display: block; width: 220px; margin: 0 auto 10px;
     padding: 10px 14px; border: 1.5px solid #ddd;
-    border-radius: 4px; font-family: 'DM Sans', sans-serif;
-    font-size: 15px; background: #fff; color: #111;
-    outline: none;
+    border-radius: 4px; font-family: inherit;
+    font-size: 15px; background: #fff; color: #111; outline: none;
   }
   #gate-box input:focus { border-color: #c8960a; }
   #gate-box button {
     width: 220px; padding: 10px 0;
     background: #111; color: #f5f2ec;
     border: none; border-radius: 4px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px;
-    font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-    cursor: pointer;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; font-family: inherit;
   }
-  #gate-error {
-    margin-top: 10px; font-size: 12px; color: #d85a30; display: none;
-  }
+  #gate-error { margin-top: 10px; font-size: 12px; color: #d85a30; display: none; }
 </style>
 </head>
 <body>
@@ -275,7 +270,7 @@ function checkGate(){
     <div class="panel-sub">Zrównoważony model na top 5-10 (~20:15) - szybsza I połowa, chroniona końcówka</div>
 
     <div class="bar">
-      <strong>Zasada nadrzędna:</strong> Pierwsze 45km to najcięższa, górska część. Kto tu przepali, nie dobiegnie. HR sufit 150, marsz wszystkich stromych podejść. Twój wyścig o pozycje zaczyna się po 88km.
+      <strong>Zasada nadrzędna:</strong> Pierwsze 45km to najcięższa, górska część (PK1 Karkonoska ma +1245m D+ na samych 20km). Kto tu przepali, nie dobiegnie. HR sufit 150, marsz wszystkich stromych podejść. Twój wyścig o pozycje zaczyna się po 90km.
     </div>
 
     <div class="card">
@@ -284,7 +279,7 @@ function checkGate(){
         <li><strong>0-45km GÓRSKA (najcięższa):</strong> ostry wspin do 1500m w 12km, grzbiet Karkonoszy, zejście do 780m. D+ zbiera się najszybciej. Kontrola, marsz podejść.</li>
         <li><strong>45-76km ZJAZDOWA:</strong> długie opadanie do 390m (najniższy punkt). Odrabiaj czas, ale oszczędzaj quady - jeszcze 80km.</li>
         <li><strong>76-115km FALOWANIE:</strong> pagórki 390-640m, nocny grind. Jedz regularnie, tempo naturalnie spada.</li>
-        <li><strong>115-142km DRUGI MASYW (pułapka):</strong> wspin +450m do 1050m po 115km w nogach. Tu wielu się łamie. Potem 16km zjazd do mety.</li>
+        <li><strong>115-142km DRUGI MASYW (pułapka):</strong> podejście Górzyniec-Zwalisko +632m do 1000m po 115km w nogach, w nocy. Tu wielu się łamie. Potem 16km zjazd (-370m) do mety.</li>
       </ul>
     </div>
 
@@ -292,23 +287,23 @@ function checkGate(){
       <h3>Splity docelowe - checkpoint by checkpoint</h3>
       <table>
         <thead>
-          <tr><th>Punkt</th><th>Km</th><th>Wys.</th><th>Zegar</th><th>Tempo sektora</th></tr>
+          <tr><th>Punkt</th><th>Km</th><th>Wys.</th><th>D+ sektor</th><th>Zegar</th><th>Tempo sektora</th></tr>
         </thead>
         <tbody>
-          <tr><td>Start</td><td>0</td><td>620m</td><td>07:00</td><td>-</td></tr>
-          <tr><td>Przeł. Karkonoska</td><td>20</td><td>1150m</td><td>09:38</td><td>7:54/km</td></tr>
-          <tr><td>Kapracz</td><td>32</td><td>800m</td><td>11:11</td><td>7:47/km</td></tr>
-          <tr><td>Przeł. Kowarska</td><td>43</td><td>780m</td><td>12:35</td><td>7:35/km</td></tr>
-          <tr><td>Szwajcarka</td><td>62</td><td>510m</td><td>14:46</td><td>6:54/km zjazd</td></tr>
-          <tr><td>Chatka Niedźwiadka</td><td>76</td><td>390m</td><td>16:38</td><td>8:00/km</td></tr>
-          <tr class="hl"><td>Góra Szybowcowa</td><td>88</td><td>640m</td><td>18:40</td><td>10:11/km noc+wspin</td></tr>
-          <tr><td>Goduszyn</td><td>101</td><td>460m</td><td>20:41</td><td>9:18/km</td></tr>
-          <tr><td>Górzyniec</td><td>115</td><td>590m</td><td>22:56</td><td>9:35/km</td></tr>
-          <tr class="hl"><td>Rozdr. pod Zwaliskiem</td><td>126</td><td>1040m</td><td>00:51 +1d</td><td>10:30/km PUŁAPKA</td></tr>
-          <tr class="hl"><td><strong>META</strong></td><td>142</td><td>620m</td><td><strong>03:15 +1d</strong></td><td>9:00/km</td></tr>
+          <tr><td>Start</td><td>0</td><td>635m</td><td>-</td><td>07:00</td><td>-</td></tr>
+          <tr><td>PK1 Przeł. Karkonoska</td><td>20</td><td>1170m</td><td>+1245m</td><td>09:38</td><td>7:54/km</td></tr>
+          <tr><td>PK2 Karpacz</td><td>32</td><td>810m</td><td>+380m</td><td>11:11</td><td>7:45/km</td></tr>
+          <tr><td>PK3 Przeł. Kowarska</td><td>43</td><td>870m</td><td>+561m</td><td>12:35</td><td>7:38/km</td></tr>
+          <tr><td>PK4 Szwajcarka</td><td>62</td><td>505m</td><td>+570m</td><td>14:46</td><td>6:53/km zjazd</td></tr>
+          <tr><td>PK5 Chatka Niedźwiadka</td><td>76</td><td>380m</td><td>+384m</td><td>16:38</td><td>8:00/km</td></tr>
+          <tr><td>PK6 Jeżów Sudecki</td><td>90</td><td>480m</td><td>+536m</td><td>18:40</td><td>8:43/km noc</td></tr>
+          <tr><td>PK7 Goduszyn</td><td>101</td><td>480m</td><td>+374m</td><td>20:41</td><td>11:00/km</td></tr>
+          <tr><td>PK8 Górzyniec</td><td>115</td><td>600m</td><td>+519m</td><td>22:56</td><td>9:39/km</td></tr>
+          <tr class="hl"><td>PK9 Rozdr. pod Zwaliskiem</td><td>126</td><td>1000m</td><td>+632m</td><td>00:51 +1d</td><td>10:27/km PUŁAPKA</td></tr>
+          <tr class="hl"><td><strong>META</strong></td><td>142</td><td>635m</td><td>+371m</td><td><strong>03:15 +1d</strong></td><td>9:00/km</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:10px;font-size:12px;color:var(--muted);">Meta ~03:15 następnego dnia = 20h15 biegu. Noc od Chatki Niedźwiadka (76km, ~16:40).</p>
+      <p style="margin-top:10px;font-size:12px;color:var(--muted);">D+ łącznie 5572m (z GPX, zgodne z oficjalnym ~5480m). Meta ~03:15 następnego dnia = 20h15 biegu. Noc od Chatki Niedźwiadka (76km, ~16:40). Limity: PK1 4h, PK4 12h, PK7 20h, PK9 27h, META 30h - masz komfortowy zapas na każdym.</p>
     </div>
 
     <div class="grid2">
@@ -317,8 +312,8 @@ function checkGate(){
         <ul>
           <li>Pierwsze 45km: HR sufit 152, marsz stromych ale tempo trochę wyżej niż na finisz</li>
           <li>45-76km zjazd (6:54/km): odrabiaj agresywniej, ale nie niszcz quadów</li>
-          <li>Po 88km tempo spada do 9-10 min/km - trzymaj mniej niż typowy spadek</li>
-          <li>Wspin 115-126km: kije, jedz przed nim - tu ważą się pozycje</li>
+          <li>Po 90km tempo spada do 9-11 min/km - trzymaj mniej niż typowy spadek</li>
+          <li>Podejście 115-126km (+632m do 1000m): kije, najedz się na Górzyńcu przed nim - tu ważą się pozycje</li>
           <li>Ostatnie 16km (9:00/km): Twój atut z DFBG - mocna końcówka</li>
         </ul>
       </div>
@@ -380,13 +375,13 @@ function checkGate(){
         <thead><tr><th>Odcinek do</th><th>km</th><th>Zegar</th><th>IsoActive</th><th>Beta Fuel</th><th>Kofeina</th><th>Jedzenie</th><th>Węgle (g) / tempo (g/h)</th></tr></thead>
         <tbody>
           <tr><td>Karkonoska</td><td>20</td><td>09:38</td><td>2</td><td>2</td><td>-</td><td>~20g węgli (1 banan)</td><td>153 / 58</td></tr>
-          <tr><td>Kapracz</td><td>32</td><td>11:11</td><td>1</td><td>1</td><td>-</td><td>~24g węgli (kajzerka/kanapka)</td><td>90 / 58</td></tr>
+          <tr><td>Karpacz</td><td>32</td><td>11:11</td><td>1</td><td>1</td><td>-</td><td>~24g węgli (kajzerka/kanapka)</td><td>90 / 58</td></tr>
           <tr><td>Kowarska</td><td>43</td><td>12:35</td><td>1</td><td>1</td><td>-</td><td>~15g węgli (banan); bulion na sód</td><td>81 / 58</td></tr>
           <tr><td>Szwajcarka</td><td>62</td><td>14:46</td><td>2</td><td>1</td><td>-</td><td>~34g węgli (ziemniaki z solą + banan); bulion na sód. Drop bag: latarka + warstwa</td><td>127 / 58</td></tr>
           <tr><td>Chatka Niedźwiadka</td><td>76</td><td>16:38</td><td>1</td><td>1</td><td>GO+Caff 75mg (zmierzch)</td><td>~27g węgli (banan + ziemniaki); bulion na sód</td><td>115 / 62</td></tr>
-          <tr><td>Góra Szybowcowa</td><td>88</td><td>18:40</td><td>2</td><td>1</td><td>-</td><td>~33g węgli (cola 330ml + ziemniaki); bulion na sód</td><td>126 / 62</td></tr>
+          <tr><td>Jeżów Sudecki</td><td>90</td><td>18:40</td><td>2</td><td>1</td><td>-</td><td>~33g węgli (cola 330ml + ziemniaki); bulion na sód</td><td>126 / 62</td></tr>
           <tr><td>Goduszyn</td><td>101</td><td>20:41</td><td>1</td><td>1</td><td>-</td><td>~59g węgli (ciepły posiłek + cola); bulion na sód</td><td>125 / 62</td></tr>
-          <tr><td>Górzyniec</td><td>115</td><td>22:56</td><td>1</td><td>1</td><td>GO+Caff 75mg (z Goduszyna)</td><td>~40g węgli (cola + ziemniaki); bulion na sód. Przed podejściem-pułapką +450m</td><td>128 / 57</td></tr>
+          <tr><td>Górzyniec</td><td>115</td><td>22:56</td><td>1</td><td>1</td><td>GO+Caff 75mg (z Goduszyna)</td><td>~40g węgli (cola + ziemniaki); bulion na sód. Najedz się przed podejściem-pułapką +632m</td><td>128 / 57</td></tr>
           <tr><td>Zwalisko</td><td>126</td><td>00:51</td><td>1</td><td>1</td><td>-</td><td>~43g węgli (cola + banan); bulion na sód</td><td>109 / 57</td></tr>
           <tr><td>META</td><td>142</td><td>03:15</td><td>1</td><td>-</td><td>GO+Caff 75mg (ze Zwaliska)</td><td>~88g węgli (cola x2 + co wchodzi); bulion na sód. +Nootropics jeśli się sypie</td><td>136 / 57</td></tr>
         </tbody>
