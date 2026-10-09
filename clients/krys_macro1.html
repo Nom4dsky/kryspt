@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>KRYS PT · Macro 1</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f5f2ec;color:#1a1a1a;min-height:100vh}
+a{color:inherit}
+
+/* GATE */
+#gate{position:fixed;inset:0;background:#f5f2ec;z-index:9999;display:flex;align-items:center;justify-content:center}
+#gate-box{text-align:center;padding:2rem}
+#gate-box h2{font-size:1.1rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem;color:#1a1a1a}
+#gate-input{display:block;width:240px;padding:.65rem 1rem;border:1.5px solid #c8b89a;border-radius:6px;background:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;margin:0 auto .75rem}
+#gate-input:focus{border-color:#c8960a}
+#gate button{padding:.65rem 1.6rem;background:#c8960a;color:#fff;border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;letter-spacing:.04em}
+#gate button:hover{background:#b07d08}
+#gate-error{color:#c0392b;font-size:.85rem;margin-top:.6rem;display:none}
+
+/* LAYOUT */
+header{padding:1.5rem 2rem 0;max-width:960px;margin:0 auto}
+header h1{font-size:1.05rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1a1a1a}
+header p.sub{font-size:.8rem;color:#666;margin-top:.2rem;letter-spacing:.03em}
+
+nav{max-width:960px;margin:.75rem auto 0;padding:0 2rem}
+.nav-scroll{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:.35rem .85rem;border:1.5px solid #c8b89a;border-radius:20px;background:transparent;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;color:#555;transition:all .15s;white-space:nowrap}
+.nav-btn:hover{border-color:#c8960a;color:#c8960a}
+.nav-btn.active{background:#c8960a;border-color:#c8960a;color:#fff;font-weight:600}
+.nav-btn.deload{border-color:#d85a30;color:#d85a30}
+.nav-btn.deload.active{background:#d85a30;border-color:#d85a30;color:#fff}
+
+main{max-width:960px;margin:0 auto;padding:1.5rem 2rem 3rem}
+.session{display:none}
+.session.active{display:block}
+
+/* CARDS */
+.card{background:#fff;border-radius:10px;padding:1.25rem 1.4rem;margin-bottom:1rem;border:1px solid #e8e2d8}
+.card h2{font-size:.95rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#c8960a;margin-bottom:.9rem}
+.card h3{font-size:.85rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#555;margin:.8rem 0 .4rem}
+.card p{font-size:.88rem;line-height:1.6;color:#333;margin-bottom:.4rem}
+.card ul{padding-left:1.1rem;margin-bottom:.4rem}
+.card ul li{font-size:.88rem;line-height:1.6;color:#333;margin-bottom:.1rem}
+
+/* DAY BLOCK */
+.day{border-left:3px solid #c8960a;padding:.4rem 0 .4rem .9rem;margin-bottom:.8rem}
+.day.deload-day{border-left-color:#d85a30}
+.day-label{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:.3rem}
+.day-title{font-size:.92rem;font-weight:600;color:#1a1a1a;margin-bottom:.35rem}
+.day ul{padding-left:1rem;margin-bottom:.2rem}
+.day ul li{font-size:.85rem;line-height:1.55;color:#333;margin-bottom:.1rem}
+.day p{font-size:.85rem;line-height:1.55;color:#333;margin-bottom:.2rem}
+
+/* OVERVIEW TABLE */
+.macro-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:.5rem}
+.macro-table th{text-align:left;padding:.45rem .6rem;border-bottom:2px solid #e8e2d8;color:#888;font-weight:600;letter-spacing:.05em;text-transform:uppercase;font-size:.75rem}
+.macro-table td{padding:.4rem .6rem;border-bottom:1px solid #f0ebe2;color:#333;vertical-align:top}
+.macro-table tr:hover td{background:#faf7f2}
+.macro-table td.deload-row{color:#d85a30;font-weight:500}
+.macro-table .wk{font-weight:700;color:#1a1a1a}
+
+/* HIGHLIGHT BOX */
+.info-box{background:#faf7f2;border:1px solid #e8e2d8;border-radius:8px;padding:.9rem 1.1rem;margin-bottom:.8rem}
+.info-box p{font-size:.85rem;line-height:1.6;color:#444}
+.info-box strong{color:#1a1a1a}
+
+/* WEEK HEADER */
+.week-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.3rem;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:2px solid #e8e2d8}
+.week-header h2{font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a}
+.week-header .week-meta{font-size:.8rem;color:#888}
+.week-badge{display:inline-block;padding:.15rem .6rem;border-radius:12px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-left:.5rem}
+.badge-b1{background:#e8f0e8;color:#3a6e3a}
+.badge-b2{background:#e8eef8;color:#2a4e8a}
+.badge-b3{background:#f0e8f0;color:#6a2a6a}
+.badge-deload{background:#fdeee8;color:#d85a30}
+
+@media(max-width:600px){
+  header,nav,main{padding-left:1rem;padding-right:1rem}
+  .macro-table{font-size:.75rem}
+  .macro-table th,.macro-table td{padding:.35rem .4rem}
+}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div id="gate-box">
+    <h2>KRYS PT · Access</h2>
+    <input type="password" id="gate-input" placeholder="Password" onkeydown="if(event.key==='Enter')checkGate()">
+    <button onclick="checkGate()">Enter</button>
+    <div id="gate-error">Incorrect password</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  if(sessionStorage.getItem('kryspt_macro1')==='ok'){
+    document.addEventListener('DOMContentLoaded',function(){
+      var g=document.getElementById('gate');if(g)g.style.display='none';
+    });
+  }
+})();
+function checkGate(){
+  var v=document.getElementById('gate-input').value;
+  if(v==='KrysHybrid'){
+    sessionStorage.setItem('kryspt_macro1','ok');
+    document.getElementById('gate').style.display='none';
+  } else {
+    document.getElementById('gate-error').style.display='block';
+  }
+}
+</script>
+
+<header>
+  <h1>KRYS PT · Macro 1</h1>
+  <p class="sub">Hybrid base — running, Olympic lifting, strength · 12 Oct 2026 – 3 Jan 2027</p>
+</header>
+
+<nav>
+  <div class="nav-scroll">
+    <button class="nav-btn active" onclick="showTab('overview',this)">Overview</button>
+    <button class="nav-btn" onclick="showTab('w1',this)">W1</button>
+    <button class="nav-btn" onclick="showTab('w2',this)">W2</button>
+    <button class="nav-btn" onclick="showTab('w3',this)">W3</button>
+    <button class="nav-btn deload" onclick="showTab('w4',this)">W4 ↓</button>
+    <button class="nav-btn" onclick="showTab('w5',this)">W5</button>
+    <button class="nav-btn" onclick="showTab('w6',this)">W6</button>
+    <button class="nav-btn" onclick="showTab('w7',this)">W7</button>
+    <button class="nav-btn deload" onclick="showTab('w8',this)">W8 ↓</button>
+    <button class="nav-btn" onclick="showTab('w9',this)">W9</button>
+    <button class="nav-btn" onclick="showTab('w10',this)">W10</button>
+    <button class="nav-btn" onclick="showTab('w11',this)">W11</button>
+    <button class="nav-btn deload" onclick="showTab('w12',this)">W12 ↓</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- OVERVIEW -->
+<div id="overview" class="session active">
+  <div class="card">
+    <h2>Macro 1 · Hybrid Base</h2>
+    <div class="info-box">
+      <p><strong>Dates:</strong> 12 Oct 2026 – 3 Jan 2027 &nbsp;|&nbsp; <strong>12 weeks</strong><br>
+      <strong>Target race:</strong> Jotunheimen Trail Run 73 km, July 2027</p>
+    </div>
+    <p>Build aerobic and structural base for January ultra prep, while banking strength and Olympic lifting quality before running volume forces lifting down to 1×/week. End state: ~60 km weeks, a 150 min long run, a first back-to-back, and strength held or higher.</p>
+    <h3>Order of work</h3>
+    <p>Follows Koop. Block 1 uphill power, Block 2 threshold, Block 3 steady state. Biggest load on most rested day (Saturday). Lifting follows NSCA logic: heaviest in general prep, trimmed as endurance volume rises.</p>
+  </div>
+
+  <div class="card">
+    <h2>12-Week Schedule</h2>
+    <table class="macro-table">
+      <thead>
+        <tr><th>Wk</th><th>Dates</th><th>Block</th><th>Tue quality</th><th>Long run</th><th>~km</th><th>~D+(m)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="wk">W1</td><td>12–18 Oct</td><td>B1</td><td>6×2 min Stairmaster</td><td>75 min</td><td>35</td><td>600</td></tr>
+        <tr><td class="wk">W2</td><td>19–25 Oct</td><td>B1</td><td>7×2 min Stairmaster</td><td>80 min</td><td>39</td><td>750</td></tr>
+        <tr><td class="wk">W3</td><td>26 Oct–1 Nov</td><td>B1</td><td>6×3 min Stairmaster</td><td>90 min</td><td>43</td><td>900</td></tr>
+        <tr><td class="wk deload-row">W4 ↓</td><td class="deload-row">2–8 Nov</td><td class="deload-row">B1</td><td class="deload-row">4×2 min Stairmaster</td><td class="deload-row">65 min</td><td class="deload-row">32</td><td class="deload-row">500</td></tr>
+        <tr><td class="wk">W5</td><td>9–15 Nov</td><td>B2</td><td>3×8 min tempo</td><td>95 min</td><td>42</td><td>1000</td></tr>
+        <tr><td class="wk">W6</td><td>16–22 Nov</td><td>B2</td><td>3×10 min tempo</td><td>105 min</td><td>46</td><td>1150</td></tr>
+        <tr><td class="wk">W7</td><td>23–29 Nov</td><td>B2</td><td>3×12 min tempo</td><td>115 min</td><td>50</td><td>1300</td></tr>
+        <tr><td class="wk deload-row">W8 ↓</td><td class="deload-row">30 Nov–6 Dec</td><td class="deload-row">B2</td><td class="deload-row">2×8 min tempo</td><td class="deload-row">75 min</td><td class="deload-row">36</td><td class="deload-row">750</td></tr>
+        <tr><td class="wk">W9</td><td>7–13 Dec</td><td>B3</td><td>40 min SSR</td><td>120 min</td><td>50</td><td>1400</td></tr>
+        <tr><td class="wk">W10</td><td>14–20 Dec</td><td>B3</td><td>50 min SSR</td><td>135 min + Sun 50</td><td>55</td><td>1550</td></tr>
+        <tr><td class="wk">W11</td><td>21–27 Dec</td><td>B3</td><td>45 min SSR</td><td>150 min + Sun 60</td><td>60</td><td>1700</td></tr>
+        <tr><td class="wk deload-row">W12 ↓</td><td class="deload-row">28 Dec–3 Jan</td><td class="deload-row">B3</td><td class="deload-row">30 min SSR</td><td class="deload-row">80 min</td><td class="deload-row">38</td><td class="deload-row">900</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.75rem;color:#999;margin-top:.6rem">km and D+ are approximate (±10%). Stairmaster climbing not counted in D+. Pace figures are estimates — use RPE.</p>
+  </div>
+
+  <div class="card">
+    <h2>Weekly Structure</h2>
+    <ul>
+      <li><strong>Mon:</strong> Easy run + drills + strides, core, carries, mobility. Block 3: optional or off.</li>
+      <li><strong>Tue:</strong> AM quality run (or Stairmaster in Block 1). PM Lift A, extensive plyo — at least 6 h gap.</li>
+      <li><strong>Wed:</strong> Easy run + strides (+ drills in Blocks 1–2).</li>
+      <li><strong>Thu:</strong> Lift B — intensive plyo, isometrics, technique and power, low fatigue.</li>
+      <li><strong>Fri:</strong> Easy trail with a power-hike section.</li>
+      <li><strong>Sat:</strong> Long run.</li>
+      <li><strong>Sun:</strong> Rest. Weeks 10 and 11: easy B2B run.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Intensity Guide</h2>
+    <ul>
+      <li><strong>Easy:</strong> RPE 3–4 (~5:50–6:30/km flat)</li>
+      <li><strong>Hard reps:</strong> RPE 8–9, 5K effort</li>
+      <li><strong>Tempo:</strong> RPE 6–7 (~4:50–5:05/km flat)</li>
+      <li><strong>SSR:</strong> RPE 5–6 (~5:15–5:35/km flat, rolling or climbing)</li>
+      <li><strong>Lifting:</strong> RPE 7 = 3 reps left · RPE 8 = 2 left · RPE 9 = 1 left</li>
+      <li><strong>Squat start:</strong> ~105–110 kg if April's 160 kg is still your max — go by RPE</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Warm-ups</h2>
+    <ul>
+      <li><strong>Runs:</strong> 5–10 min easy before drills or strides</li>
+      <li><strong>Quality runs:</strong> 15 min WU, 15 min CD</li>
+      <li><strong>Lifts:</strong> Walking lunge 2×8/leg, diagonal lunge 1×6/leg, then empty-bar hang clean or snatch ×5. Ramp sets before first main lift.</li>
+      <li><strong>Tue & Fri:</strong> Banded lateral walk 2×10 steps/side first</li>
+      <li><strong>After Lift A:</strong> Static stretch hip extensors and abductors, 2×30s each</li>
+      <li><strong>Session order:</strong> Warm-up → Plyometrics → Isometrics → Main lift → Accessories → Small muscles</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Plyo & Isometrics</h2>
+    <h3>Plyometrics</h3>
+    <ul>
+      <li><strong>Lift A (extensive):</strong> Low intensity, higher contacts, quick ankle work</li>
+      <li><strong>Lift B (intensive):</strong> Box jumps, broad jumps, bounding, split jumps — fewer contacts, full recovery</li>
+      <li>Mon/Wed run drills = running technique, not plyo load</li>
+      <li>Soft or flat surface. Stop when contacts slow down.</li>
+    </ul>
+    <h3>Isometrics</h3>
+    <ul>
+      <li>After plyo, before main lift — RPE 6, never to failure</li>
+      <li><strong>Lift A:</strong> Spanish squat hold + SL calf raise hold (from Block 2)</li>
+      <li><strong>Lift B:</strong> Split squat hold + overhead squat bottom hold</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Injury Prevention</h2>
+    <ul>
+      <li>Eccentric step-downs, calf raises, pogo and line hops, tibialis raises, hip abduction and SL work, core and carries, Monday prehab</li>
+      <li>Deloads every 4th week</li>
+      <li><strong>Pain rule:</strong> 0–3/10 carry on · 4–5 modify · 6+ stop and reassess</li>
+      <li>Load spikes cause more overuse injuries than weak muscle</li>
+      <li>Introduce descents gradually — none big in Block 1</li>
+      <li>Shoes: rotate two pairs once weekly volume passes ~45 km</li>
+      <li>Low energy availability raises stress-injury risk</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Progression & Load Control</h2>
+    <ul>
+      <li>Running: 10% a week or less outside deloads</li>
+      <li>Two sessions missing target RPE = repeat that week</li>
+      <li>Max 3 new things in one session</li>
+    </ul>
+    <h3>Log weekly</h3>
+    <ul>
+      <li>Stairmaster level and RPE or tempo splits</li>
+      <li>Load and RPE for clean, squat, front squat</li>
+      <li>Saturday leg feel</li>
+      <li>Any niggle (location, 0–10)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Mountain Days</h2>
+    <ul>
+      <li>Fri and Sat are flex slots — move long run to best-weather day</li>
+      <li>Plan by time and D+, not km</li>
+      <li>Weekly D+ may run up to ~20–25% over the table in good weather</li>
+      <li>Before a big descent day: light Lift B, skip step-downs</li>
+      <li>Next day after a big mountain day: easy or off</li>
+      <li>December in Oslo: ~6 h daylight — headlamp and microspikes</li>
+    </ul>
+  </div>
+</div>
+
+<!-- W1 -->
+<div id="w1" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 1 <span class="week-badge badge-b1">Block 1</span></h2>
+      <span class="week-meta">12–18 Oct · ~35 km · ~600 m D+</span>
+    </div>
+    <span class="week-meta">6×2 min Stairmaster · Long run 75 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 12 Oct</div>
+      <div class="day-title">Easy run + prehab + mobility</div>
+      <ul>
+        <li>Easy run 30 min rolling, RPE 3–4</li>
+        <li><strong>Drills</strong> 10 min soft ground: A-skip 2×20m, B-skip 2×20m, ankling 2×20m, pogo hops 2×20 contacts</li>
+        <li><strong>Strides</strong> 6×20s relaxed fast, 60s walk back</li>
+        <li><strong>Core:</strong> Roman chair sit-up 3×12 + side plank 2×30s/side</li>
+        <li><strong>Carry:</strong> Suitcase carry 3×30m/side</li>
+        <li><strong>Prehab:</strong> Seated or bent-knee calf raise 3×15 (3s down) · Short-foot drill 2×10 ×5s hold</li>
+        <li><strong>Mobility</strong> 10–15 min: 90/90 hips, hip flexor, knee-to-wall ankles, thoracic extension, overhead positions</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 13 Oct</div>
+      <div class="day-title">AM Stairmaster · PM Lift A (heavy)</div>
+      <p><strong>AM — Stairmaster reps</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10 steps/side (activation, before WU)</li>
+        <li>15 min WU → 6×2 min hard (RPE 8–9), 2 min easy between → 15 min CD · Total ~55 min</li>
+      </ul>
+      <p><strong>PM — Lift A</strong> (at least 6 h later)</p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 3×15 (stiff ankles, quick ground contact) · Forward-back line hops 2×10</li>
+        <li><em>Isometrics:</em> Spanish squat hold 3×30s @RPE 6, not to failure</li>
+        <li>Hang power clean 4×3 @RPE 6</li>
+        <li>Back squat 3×8 @RPE 7</li>
+        <li>High step-up 3×8/leg (knee-height box, light DBs)</li>
+        <li>Weighted chin-up 3×6–8 @RPE 7 <em>alternated</em> with Strict overhead press 3×6 @RPE 7</li>
+        <li>Hanging leg raise 3×12</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 14 Oct</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 30 min rolling, RPE 3–4</li>
+        <li>Drills 10 min (same as Mon)</li>
+        <li>Strides 6×20s</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 15 Oct</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Low box jump 3×3 (30–40 cm, step down) · Broad jump 3×3 (stick the landing)</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · Overhead squat bottom hold 2×15s, empty bar</li>
+        <li>Hang power snatch 5×3 light (RPE 5 — positions over load)</li>
+        <li>Overhead squat 3×5 @RPE 6</li>
+        <li>Front squat 3×6 @RPE 7</li>
+        <li>Reverse lunge 3×6/leg @RPE 7</li>
+        <li>Snatch-grip RDL 3×8 @RPE 7</li>
+        <li>Pull-up 3×8</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 (hold top 3s on last rep) · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 16 Oct</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10 steps/side (activation first)</li>
+        <li>Easy trail 30 min, target ~150 m D+</li>
+        <li>8 min easy → 2×5 min power hike steepest grade (RPE 5–6), 3 min easy jog between → easy to finish</li>
+        <li>No hill: treadmill 12–15%, walking</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 17 Oct</div>
+      <div class="day-title">Long run 75 min</div>
+      <ul>
+        <li>Trail, target ~300 m D+</li>
+        <li>Conversational pace. Walk steep sections.</li>
+        <li>Water and one snack — no fueling target yet</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 18 Oct</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W2 -->
+<div id="w2" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 2 <span class="week-badge badge-b1">Block 1</span></h2>
+      <span class="week-meta">19–25 Oct · ~39 km · ~750 m D+</span>
+    </div>
+    <span class="week-meta">7×2 min Stairmaster · Long run 80 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 19 Oct</div>
+      <div class="day-title">Easy run + prehab + mobility</div>
+      <ul>
+        <li>Easy run 35 min rolling, RPE 3–4</li>
+        <li>Drills 10 min: A-skip 2×20m, B-skip 2×20m, ankling 2×20m, pogo hops 2×20</li>
+        <li>Strides 6×20s</li>
+        <li><strong>Core:</strong> Landmine rotation 3×8/side + side plank 2×30s/side</li>
+        <li><strong>Carry:</strong> Suitcase carry 3×30m/side</li>
+        <li><strong>Prehab:</strong> Seated or bent-knee calf raise 3×15 (3s down) · Short-foot drill 2×10 ×5s hold</li>
+        <li><strong>Mobility</strong> 10–15 min same as W1</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 20 Oct</div>
+      <div class="day-title">AM Stairmaster · PM Lift A (heavy)</div>
+      <p><strong>AM — Stairmaster reps</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10 (activation)</li>
+        <li>15 min WU → 7×2 min hard (RPE 8–9), 2 min easy between → 15 min CD · Total ~60 min</li>
+        <li>Same level as W1, or +1 if RPE stayed under 9</li>
+      </ul>
+      <p><strong>PM — Lift A</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 3×15 · Forward-back line hops 2×10</li>
+        <li><em>Isometrics:</em> Spanish squat hold 3×30s @RPE 6</li>
+        <li>Hang power clean 4×3 @RPE 6</li>
+        <li>Back squat 3×8 @RPE 7.5 (add 2.5–5 kg)</li>
+        <li>High step-up 3×8/leg</li>
+        <li>Weighted chin-up 3×6–8 <em>alt</em> Strict overhead press 3×6 @RPE 7.5</li>
+        <li>Hanging leg raise 3×12</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 21 Oct</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 35 min rolling, RPE 3–4</li>
+        <li>Drills 10 min · Strides 6×20s</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 22 Oct</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Low box jump 3×3 (30–40 cm, step down) · Broad jump 3×3</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · OHS bottom hold 2×15s, empty bar</li>
+        <li>Hang power snatch 5×3 light</li>
+        <li>Overhead squat 3×5 @RPE 6</li>
+        <li>Front squat 3×6 @RPE 7</li>
+        <li>Reverse lunge 3×6/leg @RPE 7</li>
+        <li>Kettlebell swing 4×10 (hard hinge, no squat)</li>
+        <li>Pull-up 3×8</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 23 Oct</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10 (activation)</li>
+        <li>Easy trail 35 min, target ~150 m D+</li>
+        <li>2×5 min power hike, easy finish · No hill: treadmill 12–15%</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 24 Oct</div>
+      <div class="day-title">Long run 80 min</div>
+      <ul>
+        <li>Rolling to hilly trail, target ~350 m D+</li>
+        <li>Conversational. Water and one snack.</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 25 Oct</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W3 -->
+<div id="w3" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 3 <span class="week-badge badge-b1">Block 1</span></h2>
+      <span class="week-meta">26 Oct–1 Nov · ~43 km · ~900 m D+</span>
+    </div>
+    <span class="week-meta">6×3 min Stairmaster · Long run 90 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 26 Oct</div>
+      <div class="day-title">Easy run + prehab + mobility</div>
+      <ul>
+        <li>Easy run 35 min rolling, RPE 3–4</li>
+        <li>Drills 10 min: A-skip 2×20m, B-skip 2×20m, ankling 2×20m, pogo hops 2×20</li>
+        <li>Strides 6×20s</li>
+        <li><strong>Core:</strong> Roman chair sit-up 3×12 + side plank 2×30s/side</li>
+        <li><strong>Carry:</strong> Suitcase carry 3×30m/side</li>
+        <li>Prehab + mobility same as W1</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 27 Oct</div>
+      <div class="day-title">AM Stairmaster · PM Lift A (heavy)</div>
+      <p><strong>AM — Stairmaster reps</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 6×3 min hard (RPE 8–9), 3 min easy between → 15 min CD · Total ~65 min</li>
+      </ul>
+      <p><strong>PM — Lift A</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 3×15 · Forward-back line hops 2×10</li>
+        <li><em>Isometrics:</em> Spanish squat hold 3×30s @RPE 6</li>
+        <li>Hang power clean 4×3 @RPE 6.5</li>
+        <li>Back squat 3×8 @RPE 8</li>
+        <li>High step-up 3×8/leg</li>
+        <li>Weighted chin-up 3×6–8 <em>alt</em> Strict overhead press 3×6 @RPE 8</li>
+        <li>Hanging leg raise 3×12</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 28 Oct</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 40 min rolling, RPE 3–4</li>
+        <li>Drills 10 min · Strides 6×20s</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 29 Oct</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Low box jump 3×3 (30–40 cm, step down) · Broad jump 3×3</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · OHS bottom hold 2×15s, empty bar</li>
+        <li>Hang power snatch 5×3 light</li>
+        <li>Overhead squat 3×5 @RPE 6</li>
+        <li>Front squat 3×6 @RPE 7</li>
+        <li>Reverse lunge 3×6/leg @RPE 7</li>
+        <li>Snatch-grip RDL 3×8 @RPE 7</li>
+        <li>Pull-up 3×8</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 30 Oct</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 40 min, target ~200 m D+</li>
+        <li>2×5 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 31 Oct</div>
+      <div class="day-title">Long run 90 min</div>
+      <ul>
+        <li>Trail, target ~450 m D+</li>
+        <li>Longest so far. Keep easy, walk steep sections.</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 1 Nov</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W4 DELOAD -->
+<div id="w4" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 4 — Deload <span class="week-badge badge-deload">Deload</span></h2>
+      <span class="week-meta">2–8 Nov · ~32 km · ~500 m D+</span>
+    </div>
+    <span class="week-meta">4×2 min Stairmaster · Long run 65 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day deload-day">
+      <div class="day-label">Mon 2 Nov</div>
+      <div class="day-title">Easy run + prehab + mobility</div>
+      <ul>
+        <li>Easy run 30 min rolling, RPE 3–4</li>
+        <li>Drills 10 min: A-skip, B-skip, ankling 2×20m, pogo hops 2×20</li>
+        <li>Strides 6×20s</li>
+        <li><strong>Core:</strong> Landmine rotation 3×8/side + side plank 2×30s/side</li>
+        <li>Suitcase carry 3×30m/side · Prehab + mobility same</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Tue 3 Nov</div>
+      <div class="day-title">AM Stairmaster (deload) · PM Lift A (deload)</div>
+      <p><strong>AM — Stairmaster reps</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 4×2 min hard (RPE 8), 2 min easy between → 15 min CD · Total ~45–50 min</li>
+      </ul>
+      <p><strong>PM — Lift A (deload)</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 2×15 · Forward-back line hops 1×10</li>
+        <li><em>Isometrics:</em> Spanish squat hold 2×30s @RPE 6</li>
+        <li>Hang power clean 3×3 light</li>
+        <li>Back squat 2×6 @RPE 6</li>
+        <li>High step-up 2×8/leg</li>
+        <li>Chin-up 2×6 <em>alt</em> Strict overhead press 2×6 @RPE 6</li>
+        <li>Hanging leg raise 2×12</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Wed 4 Nov</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 30 min rolling, RPE 3–4</li>
+        <li>Drills same · Strides 6×20s</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Thu 5 Nov</div>
+      <div class="day-title">Lift B (deload)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Low box jump 2×3 (step down) · Broad jump 2×3</li>
+        <li><em>Isometrics:</em> Split squat hold 1×30s/leg @RPE 6 · OHS bottom hold 1×15s, empty bar</li>
+        <li>Hang power snatch 4×3 light</li>
+        <li>Overhead squat 2×5 @RPE 6</li>
+        <li>Front squat 2×6 @RPE 6</li>
+        <li>Landmine reverse lunge 2×6/leg</li>
+        <li>Kettlebell swing 3×10</li>
+        <li>Pull-up 2×8</li>
+        <li><em>Small muscles (deload):</em> SL calf raise 2×15 · Tibialis raise 1×20 · Hip abduction 1×15</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Fri 6 Nov</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 30 min, target ~100 m D+</li>
+        <li>2×5 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Sat 7 Nov</div>
+      <div class="day-title">Long run 65 min</div>
+      <ul>
+        <li>Trail, target ~250 m D+ · Flat to rolling, enjoy it</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Sun 8 Nov</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W5 -->
+<div id="w5" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 5 <span class="week-badge badge-b2">Block 2</span></h2>
+      <span class="week-meta">9–15 Nov · ~42 km · ~1000 m D+</span>
+    </div>
+    <span class="week-meta">3×8 min tempo · Long run 95 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 9 Nov</div>
+      <div class="day-title">Easy run + prehab + mobility</div>
+      <ul>
+        <li>Easy run 35 min rolling, RPE 3–4</li>
+        <li>Drills 10 min: A-skip, B-skip, ankling 2×20m, pogo hops 2×20</li>
+        <li>Strides 6×20s</li>
+        <li><strong>Core:</strong> Roman chair sit-up 3×12 + side plank 2×30s/side</li>
+        <li>Farmer carry 3×40m · Prehab + mobility same</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 10 Nov</div>
+      <div class="day-title">AM Tempo · PM Lift A (heavy)</div>
+      <p><strong>AM — Tempo</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 3×8 min tempo (RPE 6–7, ~4:50–5:05/km flat), 3 min easy jog between → 15 min CD · Total ~60 min</li>
+        <li>Flat or gentle rolling</li>
+      </ul>
+      <p><strong>PM — Lift A</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 3×15 · Lateral line hops 2×10/side · SL pogo 2×10/leg</li>
+        <li><em>Isometrics:</em> Spanish squat hold 3×45s @RPE 6 · SL calf raise hold 3×30s</li>
+        <li>Hang power clean + push press 3×(5+5)</li>
+        <li>Back squat 3×5 @RPE 7</li>
+        <li>Step-up 3×5/leg (heavier DBs)</li>
+        <li>Strict overhead press 3×5 @RPE 7</li>
+        <li>Roman chair sit-up 3×12</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 11 Nov</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 40 min rolling, RPE 3–4</li>
+        <li>Drills 10 min · Strides 6×20s</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 12 Nov</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Box jump 3×4 (40–50 cm, step down) · Bounding 3×20m (full recovery)</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · OHS bottom hold 2×15s, empty bar</li>
+        <li>Hang power snatch + overhead squat 3×(3+3)</li>
+        <li>Front squat 3×5 @RPE 7</li>
+        <li>Eccentric step-down 3×8/leg (4s down)</li>
+        <li>Snatch-grip RDL 3×6 @RPE 7</li>
+        <li>Half-kneeling landmine press 3×8/arm</li>
+        <li>Chin-up 3×5</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 13 Nov</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 40 min, target ~200 m D+</li>
+        <li>3×6 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 14 Nov</div>
+      <div class="day-title">Long run 95 min</div>
+      <ul>
+        <li>Rolling to hilly trail, target ~450 m D+</li>
+        <li>Easy. Take a snack and practice eating on the move.</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 15 Nov</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W6 -->
+<div id="w6" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 6 <span class="week-badge badge-b2">Block 2</span></h2>
+      <span class="week-meta">16–22 Nov · ~46 km · ~1150 m D+</span>
+    </div>
+    <span class="week-meta">3×10 min tempo · Long run 105 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 16 Nov</div>
+      <div class="day-title">Easy run + prehab + mobility</div>
+      <ul>
+        <li>Easy run 40 min rolling, RPE 3–4</li>
+        <li>Drills 10 min · Strides 6×20s</li>
+        <li><strong>Core:</strong> Roman chair sit-up 3×12 + side plank 2×30s/side</li>
+        <li>Farmer carry 3×40m · Prehab + mobility same</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 17 Nov</div>
+      <div class="day-title">AM Tempo · PM Lift A (heavy)</div>
+      <p><strong>AM — Tempo</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 3×10 min tempo (RPE 6–7), 3 min easy jog between → 15 min CD · Total ~65 min</li>
+      </ul>
+      <p><strong>PM — Lift A</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 3×15 · Lateral line hops 2×10/side · SL pogo 2×10/leg</li>
+        <li><em>Isometrics:</em> Spanish squat hold 3×45s @RPE 6 · SL calf raise hold 3×30s</li>
+        <li>Hang power clean + push press 3×(5+5), add load</li>
+        <li>Back squat 3×5 @RPE 8</li>
+        <li>Step-up 3×5/leg</li>
+        <li>Strict overhead press 3×5 @RPE 8</li>
+        <li>Roman chair sit-up 3×12</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 18 Nov</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 40 min rolling, RPE 3–4</li>
+        <li>Drills 10 min · Strides 6×20s</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 19 Nov</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Box jump 3×4 (40–50 cm, step down) · Bounding 3×20m</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · OHS bottom hold 2×15s</li>
+        <li>Hang power snatch + overhead squat 3×(3+3)</li>
+        <li>Front squat 3×5 @RPE 7.5</li>
+        <li>Eccentric step-down 3×8/leg (4s down)</li>
+        <li>Nordic curl 2×4, slow, stop short of failure <em>(optional — drop if hamstrings sore for Sat)</em></li>
+        <li>Half-kneeling landmine press 3×8/arm</li>
+        <li>Chin-up 3×5</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 20 Nov</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 40 min, target ~250 m D+</li>
+        <li>3×6 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 21 Nov</div>
+      <div class="day-title">Long run 105 min</div>
+      <ul>
+        <li>Trail, target ~550 m D+</li>
+        <li>First run over 90 min with fueling practice — carbs per hour at low end of tracker range. Log gut tolerance.</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 22 Nov</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W7 -->
+<div id="w7" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 7 <span class="week-badge badge-b2">Block 2</span></h2>
+      <span class="week-meta">23–29 Nov · ~50 km · ~1300 m D+</span>
+    </div>
+    <span class="week-meta">3×12 min tempo · Long run 115 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 23 Nov</div>
+      <div class="day-title">Easy run + prehab + mobility</div>
+      <ul>
+        <li>Easy run 40 min rolling, RPE 3–4</li>
+        <li>Drills 10 min · Strides 6×20s</li>
+        <li><strong>Core:</strong> Roman chair sit-up 3×12 + side plank 2×30s/side</li>
+        <li>Farmer carry 3×40m · Prehab + mobility same</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 24 Nov</div>
+      <div class="day-title">AM Tempo · PM Lift A (heavy — top set week)</div>
+      <p><strong>AM — Tempo</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 3×12 min tempo (RPE 6–7), 3 min easy jog between → 15 min CD · Total ~70 min</li>
+        <li>Do not chase pace on climbs</li>
+      </ul>
+      <p><strong>PM — Lift A</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 3×15 · Lateral line hops 2×10/side · SL pogo 2×10/leg</li>
+        <li><em>Isometrics:</em> Spanish squat hold 3×45s @RPE 6 · SL calf raise hold 3×30s</li>
+        <li>Hang power clean + push press 3×(5+5)</li>
+        <li>Back squat 3×5 @RPE 9 (top set week)</li>
+        <li>Step-up 3×5/leg</li>
+        <li>Strict overhead press 3×5 @RPE 8.5</li>
+        <li>Roman chair sit-up 3×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 25 Nov</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 45 min rolling, RPE 3–4</li>
+        <li>Drills 10 min · Strides 6×20s</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 26 Nov</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Box jump 3×4 (40–50 cm, step down) · Bounding 3×20m</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · OHS bottom hold 2×15s</li>
+        <li>Hang power snatch + overhead squat 3×(3+3)</li>
+        <li>Front squat 3×5 @RPE 8</li>
+        <li>Eccentric step-down 3×8/leg (4s down)</li>
+        <li>Snatch-grip RDL 3×6 @RPE 7</li>
+        <li>Half-kneeling landmine press 3×8/arm</li>
+        <li>Chin-up 3×5</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 27 Nov</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 45 min, target ~250 m D+</li>
+        <li>3×6 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 28 Nov</div>
+      <div class="day-title">Long run 115 min</div>
+      <ul>
+        <li>Trail, target ~600 m D+</li>
+        <li>Same fueling as W6 — nudge up only if gut was fine. Walk steep sections early to save the legs.</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 29 Nov</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W8 DELOAD -->
+<div id="w8" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 8 — Deload <span class="week-badge badge-deload">Deload</span></h2>
+      <span class="week-meta">30 Nov–6 Dec · ~36 km · ~750 m D+</span>
+    </div>
+    <span class="week-meta">2×8 min tempo · Long run 75 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day deload-day">
+      <div class="day-label">Mon 30 Nov</div>
+      <div class="day-title">Easy run + prehab + mobility</div>
+      <ul>
+        <li>Easy run 30 min rolling, RPE 3–4</li>
+        <li>Drills 10 min · Strides 6×20s</li>
+        <li><strong>Core:</strong> Roman chair sit-up 3×12 + side plank 2×30s/side</li>
+        <li>Farmer carry 3×40m · Prehab + mobility same</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Tue 1 Dec</div>
+      <div class="day-title">AM Tempo (deload) · PM Lift A (deload)</div>
+      <p><strong>AM — Tempo</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 2×8 min tempo (RPE 6), 3 min easy jog → 15 min CD · Total ~50 min</li>
+      </ul>
+      <p><strong>PM — Lift A (deload)</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 2×15 · Lateral line hops 1×10/side</li>
+        <li><em>Isometrics:</em> Spanish squat hold 2×45s @RPE 6 · SL calf raise hold 2×30s</li>
+        <li>Hang power clean + push press 2×(5+5) light</li>
+        <li>Back squat 2×5 @RPE 6</li>
+        <li>Step-up 2×5/leg</li>
+        <li>Strict overhead press 2×5 @RPE 6</li>
+        <li>Roman chair sit-up 2×12</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Wed 2 Dec</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 35 min rolling, RPE 3–4</li>
+        <li>Drills same · Strides 6×20s</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Thu 3 Dec</div>
+      <div class="day-title">Lift B (deload)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Box jump 2×4 (40–50 cm, step down) · Bounding 2×20m</li>
+        <li><em>Isometrics:</em> Split squat hold 1×30s/leg @RPE 6 · OHS bottom hold 1×15s</li>
+        <li>Hang power snatch + overhead squat 2×(3+3)</li>
+        <li>Front squat 2×5 @RPE 6</li>
+        <li>Eccentric step-down 2×8/leg</li>
+        <li>SL kettlebell RDL 2×8/leg</li>
+        <li>Half-kneeling landmine press 2×8/arm</li>
+        <li>Chin-up 2×5</li>
+        <li><em>Small muscles (deload):</em> SL calf raise 2×15 · Tibialis raise 1×20 · Hip abduction 1×15</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Fri 4 Dec</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 30 min, target ~150 m D+</li>
+        <li>3×6 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Sat 5 Dec</div>
+      <div class="day-title">Long run 75 min</div>
+      <ul>
+        <li>Trail, target ~350 m D+ · Deload. Easy, flat to rolling.</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Sun 6 Dec</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W9 -->
+<div id="w9" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 9 <span class="week-badge badge-b3">Block 3</span></h2>
+      <span class="week-meta">7–13 Dec · ~50 km · ~1400 m D+</span>
+    </div>
+    <span class="week-meta">40 min SSR · Long run 120 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 7 Dec</div>
+      <div class="day-title">Optional easy + prehab</div>
+      <ul>
+        <li>Optional 30 min easy, RPE 3 — skip if legs are heavy</li>
+        <li><strong>Core:</strong> Farmer carry 3×40m · Side plank 2×30s/side</li>
+        <li><strong>Prehab:</strong> Seated or bent-knee calf raise 3×15 (3s down) · Short-foot drill 2×10 ×5s hold</li>
+        <li><strong>Mobility</strong> 10–15 min</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 8 Dec</div>
+      <div class="day-title">AM SSR · PM Lift A (heavy)</div>
+      <p><strong>AM — SSR</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 40 min SSR (RPE 5–6, ~5:15–5:35/km flat), rolling or climbing terrain → 15 min CD · Total ~70 min</li>
+      </ul>
+      <p><strong>PM — Lift A</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 2×15 · Lateral line hops 2×10/side</li>
+        <li><em>Isometrics:</em> Spanish squat hold 2×30s · SL calf raise hold 2×30s</li>
+        <li>Hang power clean 3×3</li>
+        <li>Back squat 3×3 @RPE 8</li>
+        <li>Eccentric step-down 2×6/leg (4s down)</li>
+        <li>Weighted chin-up 3×5 <em>alt</em> Strict overhead press 3×5 @RPE 7</li>
+        <li>Hanging leg raise 3×12</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 9 Dec</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 45 min rolling, RPE 3–4</li>
+        <li>Strides 6×20s · No drills this block</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 10 Dec</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Box jump 3×5 (step down) · Split jump 3×5/leg (soft landing)</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · OHS bottom hold 2×15s</li>
+        <li>Kettlebell swing 3×10 heavy</li>
+        <li>Snatch technique 20 min: hang power snatch + overhead squat, light — film it</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 11 Dec</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 45 min, target ~250 m D+</li>
+        <li>3×8 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 12 Dec</div>
+      <div class="day-title">Long run 120 min</div>
+      <ul>
+        <li>Trail, target ~650 m D+</li>
+        <li>First 2 h run. Fueling as practiced. Last 20 min easy, finish with legs left.</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 13 Dec</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+<!-- W10 -->
+<div id="w10" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 10 <span class="week-badge badge-b3">Block 3</span></h2>
+      <span class="week-meta">14–20 Dec · ~55 km · ~1550 m D+</span>
+    </div>
+    <span class="week-meta">50 min SSR · Long 135 min + B2B Sun 50 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 14 Dec</div>
+      <div class="day-title">Off running + prehab</div>
+      <ul>
+        <li>Off from running after the weekend</li>
+        <li><strong>Prehab:</strong> Seated or bent-knee calf raise 3×15 (3s down) · Short-foot drill 2×10 ×5s hold</li>
+        <li><strong>Mobility</strong> 10–15 min</li>
+        <li>Farmer carry 3×40m if legs feel fine</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 15 Dec</div>
+      <div class="day-title">AM SSR · PM Lift A (heavy)</div>
+      <p><strong>AM — SSR</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 50 min SSR (RPE 5–6), rolling or climbing terrain → 15 min CD · Total ~80 min</li>
+      </ul>
+      <p><strong>PM — Lift A</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 2×15 · Lateral line hops 2×10/side</li>
+        <li><em>Isometrics:</em> Spanish squat hold 2×30s · SL calf raise hold 2×30s</li>
+        <li>Hang power clean 3×3</li>
+        <li>Back squat 3×3 @RPE 8</li>
+        <li>Eccentric step-down 2×6/leg (4s down)</li>
+        <li>Weighted chin-up 3×5 <em>alt</em> Strict overhead press 3×5 @RPE 7</li>
+        <li>Hanging leg raise 3×12</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 16 Dec</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 40 min rolling, RPE 3–4</li>
+        <li>Strides 6×20s · No drills this block</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 17 Dec</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Box jump 3×5 (step down) · Split jump 3×5/leg (soft landing)</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · OHS bottom hold 2×15s</li>
+        <li>Kettlebell swing 3×10 heavy</li>
+        <li>Snatch technique 20 min: hang power snatch + overhead squat, light — film it</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 18 Dec</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 40 min, target ~200 m D+</li>
+        <li>3×8 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 19 Dec</div>
+      <div class="day-title">Long run 135 min — Day 1 B2B</div>
+      <ul>
+        <li>Trail, target ~700 m D+</li>
+        <li>Day 1 of first B2B. Easy to steady, never above RPE 5. Fueling as practiced.</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 20 Dec</div>
+      <div class="day-title">B2B easy run 50 min</div>
+      <ul>
+        <li>Flat or rolling, RPE 3, ~150 m D+</li>
+        <li>Finish feeling like you could go on</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- W11 -->
+<div id="w11" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 11 <span class="week-badge badge-b3">Block 3</span></h2>
+      <span class="week-meta">21–27 Dec · ~60 km · ~1700 m D+</span>
+    </div>
+    <span class="week-meta">45 min SSR · Long 150 min + B2B Sun 60 min</span>
+  </div>
+
+  <div class="info-box" style="margin-bottom:1rem">
+    <p>Week lands on Christmas — swap with W12 if needed.</p>
+  </div>
+
+  <div class="card">
+    <div class="day">
+      <div class="day-label">Mon 21 Dec</div>
+      <div class="day-title">Off running + prehab</div>
+      <ul>
+        <li>Off from running after the weekend</li>
+        <li>Prehab same · Mobility 10–15 min</li>
+        <li>Farmer carry 3×40m if legs feel fine</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Tue 22 Dec</div>
+      <div class="day-title">AM SSR · PM Lift A (heavy)</div>
+      <p><strong>AM — SSR</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 45 min SSR (RPE 5–6), rolling or climbing terrain → 15 min CD · Total ~75 min</li>
+      </ul>
+      <p><strong>PM — Lift A</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 2×15 · Lateral line hops 2×10/side</li>
+        <li><em>Isometrics:</em> Spanish squat hold 2×30s · SL calf raise hold 2×30s</li>
+        <li>Hang power clean 3×3</li>
+        <li>Back squat 3×3 @RPE 8</li>
+        <li>Eccentric step-down 2×6/leg (4s down)</li>
+        <li>Weighted chin-up 3×5 <em>alt</em> Strict overhead press 3×5 @RPE 7</li>
+        <li>Hanging leg raise 3×12</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Wed 23 Dec</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 45 min rolling, RPE 3–4</li>
+        <li>Strides 6×20s · No drills this block</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Thu 24 Dec</div>
+      <div class="day-title">Lift B (technique, power)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Box jump 3×5 (step down) · Split jump 3×5/leg (soft landing)</li>
+        <li><em>Isometrics:</em> Split squat hold 2×30s/leg @RPE 6 · OHS bottom hold 2×15s</li>
+        <li>Kettlebell swing 3×10 heavy</li>
+        <li>Snatch technique 20 min: hang power snatch + overhead squat, light — film it</li>
+        <li><em>Small muscles:</em> SL calf raise 3×15 · Tibialis raise 2×20 · Hip abduction 2×15</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Fri 25 Dec</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 40 min, target ~200 m D+</li>
+        <li>3×8 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sat 26 Dec</div>
+      <div class="day-title">Long run 150 min — Day 1 B2B</div>
+      <ul>
+        <li>Trail, target ~800 m D+</li>
+        <li>Longest of the macro — 2.5 h. Day 1 of B2B. Easy to steady. Fueling as practiced.</li>
+      </ul>
+    </div>
+
+    <div class="day">
+      <div class="day-label">Sun 27 Dec</div>
+      <div class="day-title">B2B easy run 60 min</div>
+      <ul>
+        <li>Flat or rolling, RPE 3, ~150 m D+</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- W12 DELOAD -->
+<div id="w12" class="session">
+  <div class="week-header">
+    <div>
+      <h2>Week 12 — Deload <span class="week-badge badge-deload">Deload</span></h2>
+      <span class="week-meta">28 Dec–3 Jan · ~38 km · ~900 m D+</span>
+    </div>
+    <span class="week-meta">30 min SSR · Long run 80 min</span>
+  </div>
+
+  <div class="card">
+    <div class="day deload-day">
+      <div class="day-label">Mon 28 Dec</div>
+      <div class="day-title">Easy run + prehab</div>
+      <ul>
+        <li>Easy run 30 min, RPE 3</li>
+        <li><strong>Core:</strong> Farmer carry 3×40m + side plank 2×30s/side</li>
+        <li>Prehab + mobility same</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Tue 29 Dec</div>
+      <div class="day-title">AM SSR (deload) · PM Lift A (deload)</div>
+      <p><strong>AM — SSR</strong></p>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>15 min WU → 30 min SSR (RPE 5) → 15 min CD · Total ~60 min</li>
+      </ul>
+      <p><strong>PM — Lift A (deload)</strong></p>
+      <ul>
+        <li><em>Plyo extensive:</em> Pogo hops 1×15 · Lateral line hops 1×10/side</li>
+        <li><em>Isometrics:</em> Spanish squat hold 1×30s · SL calf raise hold 1×30s</li>
+        <li>Hang power clean 2×3 light</li>
+        <li>Back squat 2×3 @RPE 6</li>
+        <li>Chin-up 2×5 <em>alt</em> Strict overhead press 2×5 @RPE 6</li>
+        <li>Hanging leg raise 2×12</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Wed 30 Dec</div>
+      <div class="day-title">Easy run</div>
+      <ul>
+        <li>Easy run 30 min rolling, RPE 3–4</li>
+        <li>Strides 6×20s · No drills this block</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Thu 31 Dec</div>
+      <div class="day-title">Lift B (deload)</div>
+      <ul>
+        <li><em>Plyo intensive:</em> Box jump 2×5 (step down) · Split jump 2×5/leg (soft landing)</li>
+        <li><em>Isometrics:</em> Split squat hold 1×30s/leg @RPE 6 · OHS bottom hold 1×15s</li>
+        <li>Kettlebell swing 2×10</li>
+        <li>Snatch technique 15 min, light</li>
+        <li><em>Small muscles (deload):</em> SL calf raise 2×15 · Tibialis raise 1×20 · Hip abduction 1×15</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Fri 1 Jan</div>
+      <div class="day-title">Easy trail + power hike</div>
+      <ul>
+        <li>Banded lateral walk 2×10</li>
+        <li>Easy trail 30 min, target ~150 m D+</li>
+        <li>3×8 min power hike, easy finish</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Sat 2 Jan</div>
+      <div class="day-title">Long run 80 min</div>
+      <ul>
+        <li>Trail, target ~400 m D+</li>
+        <li>Deload. Easy, short, finish fresh.</li>
+      </ul>
+    </div>
+
+    <div class="day deload-day">
+      <div class="day-label">Sun 3 Jan</div>
+      <div class="day-title">Rest</div>
+      <p>Optional 20–30 min walk</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.session').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
