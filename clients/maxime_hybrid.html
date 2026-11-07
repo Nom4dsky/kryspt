@@ -2,515 +2,474 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Maxime — Training Protocol</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #f2f0eb;
-    color: #111;
-    font-family: 'Barlow', sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
-    padding: 32px 20px 80px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .page-nav {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-  }
-  .nav-btn {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 8px 12px;
-    background: none;
-    border: 1.5px solid #ccc;
-    border-radius: 3px;
-    cursor: pointer;
-    color: #888;
-  }
-  .nav-btn.active {
-    background: #111;
-    border-color: #111;
-    color: #f2f0eb;
-  }
-  .nav-btn.optional {
-    border-style: dashed;
-  }
-  .session { display: none; }
-  .session.active { display: block; }
-  .session-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 34px;
-    letter-spacing: -0.5px;
-    line-height: 1;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-  }
-  .session-sub {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #aaa;
-    margin-bottom: 28px;
-  }
-  .part-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #aaa;
-    margin: 20px 0 8px;
-  }
-  .block-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 6px;
-  }
-  .block { margin-bottom: 18px; }
-  .ex {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-bottom: 3px;
-  }
-  .ex-name { font-weight: 500; font-size: 15px; color: #111; }
-  .ex-tag { font-size: 13px; color: #888; font-weight: 400; }
-  .method-tag {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    background: #111;
-    color: #f2f0eb;
-    padding: 2px 5px;
-    border-radius: 2px;
-  }
-  .method-note {
-    font-size: 12px;
-    color: #999;
-    margin-top: 2px;
-    font-style: italic;
-  }
-  .divider {
-    border: none;
-    border-top: 1px solid #d8d5cf;
-    margin: 22px 0;
-  }
-  .wu-list { list-style: none; counter-reset: wu; }
-  .wu-list li {
-    counter-increment: wu;
-    font-size: 14px;
-    color: #555;
-    padding: 5px 0;
-    border-bottom: 1px solid #e5e2dc;
-    display: flex;
-    gap: 10px;
-    align-items: baseline;
-  }
-  .wu-list li::before {
-    content: counter(wu);
-    font-size: 10px;
-    color: #bbb;
-    font-weight: 700;
-    min-width: 14px;
-  }
-  .progression-box {
-    background: #eae8e3;
-    border-radius: 6px;
-    padding: 14px;
-    margin-top: 20px;
-  }
-  .progression-box .part-label { margin-top: 0; }
-  .prog-row {
-    font-size: 13px;
-    color: #555;
-    padding: 4px 0;
-    border-bottom: 1px solid #d8d5cf;
-    display: flex;
-    justify-content: space-between;
-  }
-  .prog-row:last-child { border-bottom: none; }
-  .complex-block {
-    background: #eae8e3;
-    border-radius: 6px;
-    padding: 16px;
-    margin-bottom: 18px;
-  }
-  .complex-row {
-    font-size: 14px;
-    color: #333;
-    padding: 6px 0;
-    border-bottom: 1px solid #d8d5cf;
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-  }
-  .complex-row:last-child { border-bottom: none; }
-  .complex-row .step-num {
-    font-size: 10px;
-    color: #bbb;
-    font-weight: 700;
-    min-width: 16px;
-  }
-  .complex-row .step-text { font-weight: 500; }
-  .complex-row .step-note { font-size: 12px; color: #999; font-style: italic; }
-  .elbow-note {
-    font-size: 12px;
-    color: #888;
-    padding: 10px 12px;
-    border: 1.5px dashed #ccc;
-    border-radius: 4px;
-    margin-top: 12px;
-  }
-  .footer {
-    margin-top: 56px;
-    font-size: 10px;
-    color: #bbb;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  #gate {
-    position: fixed; inset: 0; z-index: 9999;
-    background: #f2f0eb;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Barlow', sans-serif;
-  }
-  #gate-box { text-align: center; }
-  #gate-box h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase; color: #aaa; margin-bottom: 24px;
-  }
-  #gate-box input {
-    display: block; width: 220px; margin: 0 auto 10px;
-    padding: 10px 14px; border: 1.5px solid #ddd;
-    border-radius: 4px; font-size: 15px; background: #fff; color: #111; outline: none;
-  }
-  #gate-box input:focus { border-color: #111; }
-  #gate-box button {
-    width: 220px; padding: 10px 0;
-    background: #111; color: #f2f0eb;
-    border: none; border-radius: 4px;
-    font-size: 11px; font-weight: 700;
-    font-family: 'Barlow Condensed', sans-serif;
-    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
-  }
-  #gate-error { margin-top: 10px; font-size: 12px; color: #c0392b; display: none; }
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #f2f0eb;
+  color: #111;
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 32px 20px 80px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.page-nav {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.nav-btn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  background: none;
+  border: 1.5px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #888;
+}
+.nav-btn.active {
+  background: #111;
+  border-color: #111;
+  color: #f2f0eb;
+}
+.nav-btn.run {
+  border-color: #4a9d6f;
+  color: #4a9d6f;
+}
+.nav-btn.run.active {
+  background: #4a9d6f;
+  border-color: #4a9d6f;
+  color: #fff;
+}
+.session { display: none; }
+.session.active { display: block; }
+.session-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 34px;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.session-sub {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 28px;
+}
+.part-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin: 20px 0 8px;
+}
+.block { margin-bottom: 18px; }
+.ex {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 3px;
+}
+.ex-name { font-weight: 500; font-size: 15px; color: #111; }
+.ex-tag { font-size: 13px; color: #888; font-weight: 400; }
+.method-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: #111;
+  color: #f2f0eb;
+  padding: 2px 5px;
+  border-radius: 2px;
+}
+.method-note {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+  font-style: italic;
+}
+.divider {
+  border: none;
+  border-top: 1px solid #d8d5cf;
+  margin: 22px 0;
+}
+.run-card {
+  background: #eaf4ee;
+  border: 1.5px solid #4a9d6f;
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+}
+.run-card .rc-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4a9d6f;
+  margin-bottom: 6px;
+}
+.run-card .rc-main {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: #111;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.run-card .rc-cues {
+  list-style: none;
+  margin-top: 8px;
+}
+.run-card .rc-cues li {
+  font-size: 13px;
+  color: #555;
+  padding: 3px 0;
+  display: flex;
+  gap: 8px;
+}
+.run-card .rc-cues li::before {
+  content: "→";
+  color: #4a9d6f;
+  flex-shrink: 0;
+}
+.superset-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #999;
+  margin: 14px 0 6px;
+  padding-left: 10px;
+  border-left: 2px solid #ccc;
+}
+.superset-block {
+  border-left: 2px solid #ccc;
+  padding-left: 10px;
+  margin-bottom: 14px;
+}
+.video-link {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #888;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+  margin-top: 2px;
+}
+.video-link:hover { color: #111; border-color: #111; }
+.circuit-block {
+  background: #fff;
+  border: 1px solid #e0ddd7;
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.circuit-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+.circuit-ex {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+.circuit-ex:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.footer {
+  margin-top: 48px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ccc;
+  text-align: center;
+}
 </style>
 </head>
 <body>
-<div id="gate">
-  <div id="gate-box">
-    <h2>KRYS PT · Access</h2>
-    <input type="password" id="gate-input" placeholder="Password" onkeydown="if(event.key==='Enter')checkGate()">
-    <button onclick="checkGate()">Enter</button>
-    <div id="gate-error">Incorrect password</div>
-  </div>
-</div>
-<script>
-(function(){
-  if(sessionStorage.getItem('kryspt_maxime')==='ok'){
-    document.addEventListener('DOMContentLoaded',function(){
-      var g=document.getElementById('gate'); if(g) g.style.display='none';
-    });
-  }
-})();
-function checkGate(){
-  var v=document.getElementById('gate-input').value;
-  if(v==='Maxime2026'){
-    sessionStorage.setItem('kryspt_maxime','ok');
-    document.getElementById('gate').style.display='none';
-  } else {
-    document.getElementById('gate-error').style.display='block';
-  }
-}
-</script>
 
-<div class="page-nav">
-  <button class="nav-btn active" onclick="show('mon', this)">Monday</button>
-  <button class="nav-btn" onclick="show('wed', this)">Wednesday</button>
-  <button class="nav-btn" onclick="show('thu', this)">Thursday</button>
-  <button class="nav-btn" onclick="show('sat', this)">Saturday</button>
-  <button class="nav-btn optional" onclick="show('opt', this)">+ KB Day</button>
-</div>
+<nav class="page-nav">
+  <button class="nav-btn run active" onclick="show('d1',this)">Day 1</button>
+  <button class="nav-btn" onclick="show('d2',this)">Day 2</button>
+  <button class="nav-btn" onclick="show('d3',this)">Day 3</button>
+  <button class="nav-btn run" onclick="show('d4',this)">Day 4</button>
+  <button class="nav-btn" onclick="show('d5',this)">Day 5</button>
+</nav>
 
-<!-- MONDAY -->
-<div class="session active" id="mon">
-  <div class="session-title">Monday</div>
-  <div class="session-sub">Intervals or Easy Run + Accessory</div>
+<!-- DAY 1 -->
+<div class="session active" id="d1">
+  <div class="session-title">Day 1</div>
+  <div class="session-sub">Easy Run + Core · Zone 2</div>
 
-  <div class="part-label">Option A — Intervals</div>
-  <div class="block">
-    <div class="ex"><span class="ex-name">Warm-up</span><span class="ex-tag">10 min Z2 · easy pace</span></div>
-    <div class="ex"><span class="ex-name">Pickups</span><span class="ex-tag">3 x 10 sec · build to sprint pace · 30 sec easy between</span></div>
-    <div class="ex" style="margin-top:8px"><span class="ex-name">Work interval</span><span class="ex-tag">20 sec @ RPE 9 — maximal effort</span></div>
-    <div class="ex"><span class="ex-name">Rest interval</span><span class="ex-tag">2 min easy — same machine, slow pace</span></div>
-    <div class="ex"><span class="ex-name">Repeat</span><span class="ex-tag">7 rounds total</span></div>
-    <div class="method-note">assault bike / rower / ski erg · rotate weekly · stop early if output drops more than 10% vs round 1</div>
-    <div class="ex" style="margin-top:8px"><span class="ex-name">Cooldown</span><span class="ex-tag">10 min Z1-Z2</span></div>
-  </div>
-
-  <div class="progression-box" style="margin-bottom:18px">
-    <div class="part-label">Interval Progression</div>
-    <div class="prog-row"><span>Week 1</span><span>7 x 20 sec</span></div>
-    <div class="prog-row"><span>Week 2</span><span>8 x 20 sec</span></div>
-    <div class="prog-row"><span>Week 3</span><span>9 x 20 sec</span></div>
-    <div class="prog-row"><span>Week 4</span><span>7 x 30 sec</span></div>
-  </div>
-
-  <div class="part-label">Option B — Easy Run</div>
-  <div class="block">
-    <div class="ex"><span class="ex-name">Easy run</span><span class="ex-tag">30-40 min · HR max 140 bpm</span></div>
-    <div class="method-note">walk when HR climbs above 140</div>
-  </div>
-
-  <hr class="divider">
-
-  <div class="part-label">Shoulder + Lat Accessory · 45 sec rest</div>
-  <div class="block">
-    <div class="ex"><span class="ex-name">Cable lateral raise</span><span class="ex-tag">3 x 15-20 · light</span></div>
-    <div class="ex"><span class="ex-name">Lat pulldown</span><span class="ex-tag">3 x 12-15 · light-moderate</span></div>
-  </div>
-
-  <div class="part-label">Core · 2 sets each · 45 sec rest</div>
-  <div class="block">
-    <div class="ex"><span class="ex-name">Pallof press</span><span class="ex-tag">2 x 10 each side · anti-rotation</span></div>
-    <div class="ex"><span class="ex-name">Ab wheel rollout</span><span class="ex-tag">2 x 8-10 · anti-extension</span></div>
-    <div class="ex"><span class="ex-name">Hanging knee raise</span><span class="ex-tag">2 x 12 · flexion</span></div>
-    <div class="ex"><span class="ex-name">Side plank</span><span class="ex-tag">2 x 30 sec each side · lateral</span></div>
-  </div>
-</div>
-
-<!-- WEDNESDAY -->
-<div class="session" id="wed">
-  <div class="session-title">Wednesday</div>
-  <div class="session-sub">FBW — With PT</div>
-
-  <div class="part-label">Warm-Up · KB Shoulder + Thoracic</div>
-  <div class="block">
-    <ul class="wu-list">
-      <li>90/90 hip switch x 8 each side</li>
-      <li>Cat camel x 10</li>
-      <li>KB pullover on med ball x 10 · light</li>
-      <li>Floor angel slides x 10</li>
-      <li>Dowel butcher's block — 60 sec</li>
-      <li>KB halo x 5 each direction</li>
-      <li>Scapular pull-up hang x 5</li>
+  <div class="run-card">
+    <div class="rc-label">Run</div>
+    <div class="rc-main">45 min · Easy / Z2</div>
+    <ul class="rc-cues">
+      <li>Conversational pace throughout</li>
+      <li>Stay in HR zone 2 — if you can't hold a sentence, slow down</li>
     </ul>
   </div>
 
-  <hr class="divider">
+  <div class="part-label">Core block</div>
 
   <div class="block">
-    <div class="block-label">Compound 1 · straight sets · 2-3 min rest</div>
-    <div class="ex"><span class="ex-name">Zercher lift</span><span class="ex-tag">3 x 5 · RIR 2-3</span></div>
+    <div class="ex">
+      <span class="ex-name">A. Hollow body hold</span>
+      <span class="ex-tag">3 × 30s · 2 RIR · 60s rest</span>
+    </div>
   </div>
 
   <div class="block">
-    <div class="block-label">Superset · 60 sec then B2 · 90 sec then B1</div>
-    <div class="ex"><span class="ex-name">B1. Barbell bench press</span><span class="ex-tag">3 x 6-8 · RIR 2-3</span></div>
-    <div class="ex"><span class="ex-name">B2. Negative pull-up / dead hang hold</span><span class="ex-tag">3 x 3-5 · max control</span></div>
-    <div class="method-note">pronated grip · slow descent on negative · hold at bottom on dead hang</div>
+    <div class="ex">
+      <span class="ex-name">B. Cable crunch</span>
+      <span class="ex-tag">3 × 12 · 2 RIR · 60s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=W_dwbtaLup0" target="_blank">▶ Video</a>
   </div>
 
   <div class="block">
-    <div class="block-label">Accessory 1 · straight sets · 90 sec rest</div>
-    <div class="ex"><span class="ex-name">Seated wide grip cable row</span><span class="ex-tag">3 x 8-10 · RIR 2-3</span></div>
-  </div>
-
-  <div class="block">
-    <div class="block-label">Accessory 2 · straight sets · 90 sec rest</div>
-    <div class="ex"><span class="ex-name">Bulgarian split squat</span><span class="ex-tag">3 x 8 each · RIR 2-3</span></div>
-  </div>
-
-  <div class="block">
-    <div class="block-label">Accessory 3 · straight sets · 60 sec rest</div>
-    <div class="ex"><span class="ex-name">Plank</span><span class="ex-tag">3 x 15-30 sec</span></div>
+    <div class="ex">
+      <span class="ex-name">C. Eccentric dragon flag</span>
+      <span class="ex-tag">3 × 5 · 2 RIR · 60s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=rNpwcQuF0sQ" target="_blank">▶ Video</a>
   </div>
 </div>
 
-<!-- THURSDAY -->
-<div class="session" id="thu">
-  <div class="session-title">Thursday</div>
-  <div class="session-sub">Z2 + Mobility</div>
+<!-- DAY 2 -->
+<div class="session" id="d2">
+  <div class="session-title">Day 2</div>
+  <div class="session-sub">FBW #1 · Strength</div>
 
-  <div class="part-label">Run</div>
+  <div class="part-label">Main</div>
+
   <div class="block">
-    <div class="ex"><span class="ex-name">Easy run</span><span class="ex-tag">30-40 min · HR max 140 bpm</span></div>
-    <div class="method-note">walk when HR climbs above 140 · conversational pace throughout</div>
+    <div class="ex">
+      <span class="ex-name">A. Trap bar deadlift</span>
+      <span class="ex-tag">4 × 5 · 180s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=EsqwERaSTMI" target="_blank">▶ Video</a>
   </div>
 
-  <hr class="divider">
-
-  <div class="part-label">Mobility + Shoulder Prep</div>
   <div class="block">
-    <ul class="wu-list">
-      <li>Quadruped T-spine rotation x 8 each side</li>
-      <li>Floor angel slides x 10</li>
-      <li>KB pullover on med ball x 10 · light</li>
-      <li>Dowel butcher's block — 60 sec</li>
-      <li>Arm circle x 10 each direction</li>
-      <li>90/90 hip switch x 8 each side</li>
-      <li>Reverse lunge with posterior reach x 6 each side</li>
-      <li>KB windmill x 4 each side · light</li>
+    <div class="ex">
+      <span class="ex-name">B. Barbell bench press</span>
+      <span class="ex-tag">3 × 6–8 · 2 RIR · 90s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=ejI1Nlsul9k" target="_blank">▶ Video</a>
+  </div>
+
+  <div class="block">
+    <div class="ex">
+      <span class="ex-name">C. Lat pulldown</span>
+      <span class="ex-tag">3 × 8 · 2 RIR · 90s rest</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="ex">
+      <span class="ex-name">D. Seated cable row (wide grip)</span>
+      <span class="ex-tag">3 × 8 · 2 RIR · 90s rest</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="ex">
+      <span class="ex-name">E. Rear foot elevated split squat</span>
+      <span class="ex-tag">3 × 8/side · 2 RIR · 90s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=3fxmRoIE_fk" target="_blank">▶ Video</a>
+  </div>
+
+  <div class="block">
+    <div class="ex">
+      <span class="ex-name">F. Sled push heavy</span>
+      <span class="ex-tag">3 × 25m · 2 RIR · 90s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=yKAxMSmHrd0" target="_blank">▶ Video</a>
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="session" id="d3">
+  <div class="session-title">Day 3</div>
+  <div class="session-sub">KB Complex · Hard Intervals</div>
+
+  <div class="part-label">Main — 5 rounds, straight through</div>
+
+  <div class="circuit-block">
+    <div class="circuit-label">A1 → A2 → A3 → A4 → A5 → A6 · No rest between exercises · Rest between rounds</div>
+
+    <div class="circuit-ex">
+      <div class="ex">
+        <span class="ex-name">A1. KB halo</span>
+        <span class="ex-tag">5 × 10/side</span>
+      </div>
+      <div class="method-note">Straight to A2</div>
+    </div>
+
+    <div class="circuit-ex">
+      <div class="ex">
+        <span class="ex-name">A2. KB swing</span>
+        <span class="ex-tag">5 × 20</span>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=B_x0tp3HIbk" target="_blank">▶ Video</a>
+      <div class="method-note">Straight to A3</div>
+    </div>
+
+    <div class="circuit-ex">
+      <div class="ex">
+        <span class="ex-name">A3. KB clean</span>
+        <span class="ex-tag">5 × 5/side</span>
+      </div>
+      <div class="method-note">Straight to A4</div>
+    </div>
+
+    <div class="circuit-ex">
+      <div class="ex">
+        <span class="ex-name">A4. KB thruster</span>
+        <span class="ex-tag">5 × 10</span>
+      </div>
+      <div class="method-note">Single KB, hold in both hands · Straight to A5</div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=6QuhpfShOuM" target="_blank">▶ Video</a>
+    </div>
+
+    <div class="circuit-ex">
+      <div class="ex">
+        <span class="ex-name">A5. KB push press</span>
+        <span class="ex-tag">5 × 5/side</span>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=JDrRXqtF9pE" target="_blank">▶ Video</a>
+      <div class="method-note">Straight to A6</div>
+    </div>
+
+    <div class="circuit-ex">
+      <div class="ex">
+        <span class="ex-name">A6. KB plank drag</span>
+        <span class="ex-tag">5 × 10</span>
+      </div>
+      <div class="method-note">Rest, then back to A1</div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 4 -->
+<div class="session" id="d4">
+  <div class="session-title">Day 4</div>
+  <div class="session-sub">Z2 Run · Easy</div>
+
+  <div class="run-card">
+    <div class="rc-label">Run</div>
+    <div class="rc-main">45 min · Easy / Z2</div>
+    <ul class="rc-cues">
+      <li>Conversational pace throughout</li>
+      <li>Stay in HR zone 2 — if you can't hold a sentence, slow down</li>
+      <li>Recovery run — legs should feel better by the end</li>
     </ul>
   </div>
+</div>
 
-  <hr class="divider">
+<!-- DAY 5 -->
+<div class="session" id="d5">
+  <div class="session-title">Day 5</div>
+  <div class="session-sub">FBW #2 · Hypertrophy</div>
 
-  <div class="part-label">Golfer's Elbow</div>
+  <div class="part-label">Main</div>
+
   <div class="block">
-    <div class="ex"><span class="ex-name">Isometric wrist flexion hold</span><span class="ex-tag">3 x 30-45 sec</span></div>
-    <div class="ex"><span class="ex-name">Pronation / supination with DB</span><span class="ex-tag">3 x 15 each direction</span></div>
-    <div class="method-note">forearm supported · light load · slow and controlled</div>
+    <div class="ex">
+      <span class="ex-name">A. Leg press</span>
+      <span class="ex-tag">3 × 8 · 2 RIR · 90s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=p5dCqF7wWUw" target="_blank">▶ Video</a>
+  </div>
+
+  <div class="block">
+    <div class="ex">
+      <span class="ex-name">B. Romanian deadlift (barbell)</span>
+      <span class="ex-tag">3 × 8 · 2 RIR · 120s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=bT5OOBgY4bc" target="_blank">▶ Video</a>
+  </div>
+
+  <div class="part-label">Superset C</div>
+  <div class="superset-block">
+    <div class="block">
+      <div class="ex">
+        <span class="ex-name">C1. Half-kneeling landmine press</span>
+        <span class="ex-tag">3 × 8/side · 2 RIR</span>
+      </div>
+      <div class="method-note">Straight to C2</div>
+    </div>
+    <div class="block">
+      <div class="ex">
+        <span class="ex-name">C2. TRX row</span>
+        <span class="ex-tag">3 × 10 · 2 RIR · 60s rest</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="ex">
+      <span class="ex-name">D. Dip</span>
+      <span class="ex-tag">3 × 8 · 2 RIR · 90s rest</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="ex">
+      <span class="ex-name">E. DB lateral raise</span>
+      <span class="ex-tag">3 × 12 · 2 RIR · 60s rest</span>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=8aUc9snLOxU" target="_blank">▶ Video</a>
+  </div>
+
+  <div class="part-label">Superset F</div>
+  <div class="superset-block">
+    <div class="block">
+      <div class="ex">
+        <span class="ex-name">F1. EZ bar curl</span>
+        <span class="ex-tag">3 × 12 · 2 RIR</span>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=-gSM-kqNlUw" target="_blank">▶ Video</a>
+      <div class="method-note">Straight to F2</div>
+    </div>
+    <div class="block">
+      <div class="ex">
+        <span class="ex-name">F2. Rope cable tricep pushdown</span>
+        <span class="ex-tag">3 × 12 · 2 RIR · 60s rest</span>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=y6EdXBdL75A" target="_blank">▶ Video</a>
+    </div>
   </div>
 </div>
 
-<!-- SATURDAY -->
-<div class="session" id="sat">
-  <div class="session-title">Saturday</div>
-  <div class="session-sub">FBW — Solo</div>
-
-  <div class="part-label">Warm-Up</div>
-  <div class="block">
-    <ul class="wu-list">
-      <li>Neck rolls</li>
-      <li>Thoracic wall rotation</li>
-      <li>Cat camel</li>
-      <li>Thread the needle</li>
-      <li>World greatest stretch</li>
-      <li>Dowel butcher's block — 60 sec</li>
-      <li>Arm CARS</li>
-    </ul>
-  </div>
-
-  <hr class="divider">
-
-  <div class="block">
-    <div class="block-label">Compound 1 · straight sets · 2 min rest</div>
-    <div class="ex"><span class="ex-name">Leg press</span><span class="ex-tag">4 x 8-10</span><span class="method-tag">Drop set</span></div>
-    <div class="method-note">last set only · drop 20-25% · continue to near failure</div>
-  </div>
-
-  <div class="block">
-    <div class="block-label">Accessory 1 · straight sets · 90 sec rest</div>
-    <div class="ex"><span class="ex-name">Leg curl</span><span class="ex-tag">3 x 10-12</span><span class="method-tag">Drop set</span></div>
-    <div class="method-note">last set only · drop 20% · slow eccentric on drop set</div>
-  </div>
-
-  <div class="block">
-    <div class="block-label">Compound 2 · straight sets · 2 min rest</div>
-    <div class="ex"><span class="ex-name">Incline DB press</span><span class="ex-tag">4 x 8-10 · RIR 2-3</span></div>
-  </div>
-
-  <div class="block">
-    <div class="block-label">Accessory 2 · myo-reps</div>
-    <div class="ex"><span class="ex-name">Cable chest press seated</span><span class="ex-tag">activate x 10-12 · then mini sets</span><span class="method-tag">Myo-reps</span></div>
-    <div class="method-note">activate to RIR 1 · 5 breaths · 3-5 reps x 3-4 mini sets</div>
-  </div>
-
-  <div class="block">
-    <div class="block-label">Accessory 3 · myo-reps superset · 60 sec between exercises</div>
-    <div class="ex"><span class="ex-name">DB lateral raise</span><span class="ex-tag">activate x 12-15 · then mini sets</span><span class="method-tag">Myo-reps</span></div>
-    <div class="ex"><span class="ex-name">Cable rear delt fly</span><span class="ex-tag">activate x 12-15 · then mini sets</span><span class="method-tag">Myo-reps</span></div>
-    <div class="method-note">activate to RIR 1 · 5 breaths · 3-5 reps x 3-4 mini sets</div>
-  </div>
-
-  <div class="block">
-    <div class="block-label">Accessory 4 · myo-reps superset · 60 sec between exercises</div>
-    <div class="ex"><span class="ex-name">Triceps overhead extension rope</span><span class="ex-tag">activate x 10-12 · then mini sets</span><span class="method-tag">Myo-reps</span></div>
-    <div class="ex"><span class="ex-name">Cable biceps curl</span><span class="ex-tag">activate x 10-12 · then mini sets</span><span class="method-tag">Myo-reps</span></div>
-    <div class="method-note">activate to RIR 1 · 5 breaths · 3-5 reps x 3-4 mini sets</div>
-  </div>
-
-  <hr class="divider">
-
-  <div class="block">
-    <div class="block-label">Core · pick one · 3 sets</div>
-    <div class="ex"><span class="ex-name">Dragon flag progression</span><span class="ex-tag">max quality reps</span></div>
-    <div class="ex"><span class="ex-name">Bench candlestick</span><span class="ex-tag">8-10 reps</span></div>
-  </div>
-
-  <div class="progression-box">
-    <div class="part-label">Double Progression</div>
-    <div class="method-note" style="color:#555; font-style:normal; font-size:13px;">Hit top of rep range at target RIR on all sets · add 2.5-5 kg next session · adjust based on logged RIR, not a pre-set plan</div>
-  </div>
-</div>
-
-<!-- OPTIONAL KB DAY -->
-<div class="session" id="opt">
-  <div class="session-title">Optional</div>
-  <div class="session-sub">KB Complex · Tuesday or Sunday</div>
-
-  <div class="part-label" style="margin-bottom:4px;">4-6 rounds · 60-90 sec rest · pick one complex per session</div>
-  <div class="method-note" style="margin-bottom:18px;">continuous flow within each round · no rest between movements · rotate complexes week to week</div>
-
-  <!-- COMPLEX A -->
-  <div class="block-label">Marcus</div>
-  <div class="complex-block">
-    <div class="complex-row"><span class="step-num">1</span><span class="step-text">KB halo</span><span class="step-note">each direction · 5 reps</span></div>
-    <div class="complex-row"><span class="step-num">2</span><span class="step-text">Left: clean → press → front rack squat</span><span class="step-note">3 reps each</span></div>
-    <div class="complex-row"><span class="step-num">3</span><span class="step-text">Right: clean → press → front rack squat</span><span class="step-note">3 reps each</span></div>
-    <div class="complex-row"><span class="step-num">4</span><span class="step-text">KB halo</span><span class="step-note">each direction · 5 reps</span></div>
-  </div>
-  <div style="margin-bottom:22px;"></div>
-
-  <!-- COMPLEX B -->
-  <div class="block-label">Seneca</div>
-  <div class="complex-block">
-    <div class="complex-row"><span class="step-num">1</span><span class="step-text">Two-hand swing</span><span class="step-note">5 reps</span></div>
-    <div class="complex-row"><span class="step-num">2</span><span class="step-text">Two-hand deadlift high pull</span><span class="step-note">4 reps</span></div>
-    <div class="complex-row"><span class="step-num">3</span><span class="step-text">Goblet squat</span><span class="step-note">3 reps</span></div>
-  </div>
-  <div style="margin-bottom:22px;"></div>
-
-  <!-- COMPLEX C -->
-  <div class="block-label">Epictetus</div>
-  <div class="complex-block">
-    <div class="complex-row"><span class="step-num">1</span><span class="step-text">Single arm row — left</span><span class="step-note">6 reps</span></div>
-    <div class="complex-row"><span class="step-num">2</span><span class="step-text">Left: clean → press</span><span class="step-note">5 reps</span></div>
-    <div class="complex-row"><span class="step-num">3</span><span class="step-text">Single arm row — right</span><span class="step-note">6 reps</span></div>
-    <div class="complex-row"><span class="step-num">4</span><span class="step-text">Right: clean → press</span><span class="step-note">5 reps</span></div>
-  </div>
-  <div style="margin-bottom:22px;"></div>
-
-  <!-- COMPLEX D -->
-  <div class="block-label">Zeno</div>
-  <div class="complex-block">
-    <div class="complex-row"><span class="step-num">1</span><span class="step-text">Two-hand swing</span><span class="step-note">3 reps</span></div>
-    <div class="complex-row"><span class="step-num">2</span><span class="step-text">Left: clean → push press → overhead lunge</span><span class="step-note">3 reps each</span></div>
-    <div class="complex-row"><span class="step-num">3</span><span class="step-text">KB windmill — left</span><span class="step-note">2 reps · bell stays up</span></div>
-    <div class="complex-row"><span class="step-num">4</span><span class="step-text">Right: clean → push press → overhead lunge</span><span class="step-note">3 reps each</span></div>
-    <div class="complex-row"><span class="step-num">5</span><span class="step-text">KB windmill — right</span><span class="step-note">2 reps · bell stays up</span></div>
-  </div>
-  <div style="margin-bottom:22px;"></div>
-
-  <div class="progression-box">
-    <div class="part-label">How to progress</div>
-    <div class="prog-row"><span>Wk 1-2</span><span>4 rounds · same complex</span></div>
-    <div class="prog-row"><span>Wk 3-4</span><span>5 rounds · or heavier bell</span></div>
-    <div class="prog-row"><span>Wk 5+</span><span>6 rounds · or next complex up</span></div>
-  </div>
-</div>
-
-<div class="footer">KRYSPT · Maxime</div>
+<div class="footer">KRYSPT · Maxime · Hybrid · W1–6</div>
 
 <script>
 function show(id, btn) {
@@ -518,6 +477,7 @@ function show(id, btn) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
+  window.scrollTo(0, 0);
 }
 </script>
 </body>
