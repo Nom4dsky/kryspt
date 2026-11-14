@@ -49,7 +49,7 @@
 <style>
 :root{
   --bg:#F2F2EF; --paper:#FAFAF8; --ink:#141414; --muted:#5E5E5A; --line:#CBCBC5;
-  --orange:#EE5A1C; --solid:#CC3F0A; --solid-dark:#A83208; --otext:#B5330A;
+  --orange:#E5671F; --solid:#C4520E; --solid-dark:#9E4308; --otext:#A34707;
   --panel:#D8E0E1; --char:#191919; --cut:24px; --max:1180px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -154,21 +154,15 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,242,239,.94);backdro
 .plan .price{font:400 2.7rem 'Inter Tight';line-height:1.05}
 .plan .price small{font:500 .85rem 'Inter';color:var(--muted);letter-spacing:.04em}
 .plan .save{font-size:.82rem;font-weight:600;color:var(--otext);margin-top:6px;min-height:1.4em}
-.plan.best{background:var(--solid);color:#fff}
-.plan.best::after{color:#fff}
-.plan.best .name,.plan.best .save,.plan.best .price small{color:#FFE1D3}
-.plan.best ul{border-top-color:rgba(255,255,255,.45)}.plan.best li{border-bottom-color:rgba(255,255,255,.25)}
-.plan.best .btn-primary{background:#fff;color:var(--solid)}
-.plan.best .btn-primary:hover{background:var(--ink);color:#fff}
+.plan.best{background:#C5D4D8;color:var(--ink)}
+.plan.best::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--orange)}
 .plan{padding-top:56px}.plan .flag{position:absolute;top:20px;left:32px;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid #fff;padding:3px 9px}
 
 /* offers */
 .offers{display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:stretch}
 .offers .plan{padding-top:40px}
 .offers .tag{display:block;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;color:var(--otext)}
-.offers .plan.best .tag{color:#FFE1D3}
 .offers .plan .name{margin-bottom:16px;padding-right:30px;font-size:.8rem}
-.offers .plan.best p{color:#fff}
 .plan .price small{font-size:.9rem}
 .feat li{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:4px 22px;padding:13px 0;font-size:.92rem}
 .feat b{font-weight:600}
@@ -235,7 +229,7 @@ input,select,textarea{width:100%;padding:13px 0;border:0;border-bottom:1.5px sol
 textarea{min-height:90px;resize:vertical}
 form .btn{width:100%;margin-top:6px}
 .form-msg{display:none;margin-top:14px;padding:14px;background:var(--panel);font-weight:500;font-size:.92rem}
-.form-msg.show{display:block}.form-msg.err{background:#F6D4C6;color:#7A2A12}
+.form-msg.show{display:block}.form-msg.err{background:#F3DFC9;color:#6B3A0E}
 .privacy{font-size:.78rem;color:var(--muted);margin-top:14px}
 
 footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
@@ -559,7 +553,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
 
 <footer>
   <div class="wrap foot">
-    <div><b style="color:#fff;font-family:'Inter Tight',sans-serif;font-size:1rem;letter-spacing:.14em">KRYS<span style="color:#EE5A1C">.PT</span></b> &nbsp;© 2026 Przemyslaw Krys</div>
+    <div><b style="color:#fff;font-family:'Inter Tight',sans-serif;font-size:1rem;letter-spacing:.14em">KRYS<span style="color:#E5671F">.PT</span></b> &nbsp;© 2026 Przemyslaw Krys</div>
     <div>
       <a href="https://instagram.com/krys.pt" target="_blank" rel="noopener">Instagram</a>
       <a href="https://youtube.com/@kryspt" target="_blank" rel="noopener">YouTube</a>
