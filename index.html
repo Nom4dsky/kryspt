@@ -57,8 +57,9 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16.5px;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block;height:auto}
 a{color:inherit}
-h1,h2,h3{font-family:'Inter Tight','Inter',sans-serif;font-weight:400;line-height:1.1;text-transform:uppercase;letter-spacing:-.005em}
-h1{font-size:clamp(2.05rem,4.3vw,3.5rem)}
+h1,h2,h3{font-family:'Inter Tight','Inter',sans-serif;font-weight:400;line-height:1.1;text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
+p,li,blockquote,summary{text-wrap:pretty}
+h1{font-size:clamp(1.9rem,3.7vw,3.15rem)}
 h2{font-size:clamp(1.7rem,3.2vw,2.5rem)}
 h2::before,h1::before{content:"";display:inline-block;width:4px;height:.82em;background:var(--orange);margin-right:.32em;vertical-align:-.03em}
 h3{font-size:1.15rem;font-weight:500;line-height:1.2}
@@ -69,7 +70,7 @@ section{padding:96px 0;border-top:1px solid var(--line)}
 .eyebrow::before{content:"";width:32px;height:1px;background:var(--orange)}
 .lead{font-size:1.05rem;color:var(--muted);max-width:56ch}
 .center{text-align:left}.center .lead{margin:0}
-.sec-head{margin-bottom:56px}.sec-head h2{max-width:22ch}
+.sec-head{margin-bottom:56px}.sec-head h2{max-width:28ch}
 
 /* chamfer + arrow */
 .cut,.card,.frame,.photos img,.stat-card,form,.quote{clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
@@ -110,7 +111,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,242,239,.94);backdro
 .hero .lead{margin-bottom:34px}.hero h1{margin-top:0}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px}
 .proof{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:0}
-.proof div{padding:4px 28px;border-left:1px solid var(--line);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.4}
+.proof div{display:flex;flex-direction:column;justify-content:flex-end;white-space:nowrap;padding:4px 28px;border-left:1px solid var(--line);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.4}
 .proof div:first-child{padding-left:0;border-left:0}
 .proof b{display:block;font:400 1.9rem 'Inter Tight';letter-spacing:0;color:var(--ink);text-transform:none}
 .hero-photo{position:relative}
@@ -285,15 +286,16 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
   <div class="wrap"><div class="meta"><span>KRYS.PT</span><span data-en="Personal training · Sandvika &amp; online" data-pl="Trening personalny · Sandvika i online">Personal training · Sandvika &amp; online</span><span>EN / PL</span></div></div>
   <div class="wrap hero-grid">
     <div>
-      <h1 data-en="Get stronger, leaner and <em class='hl'>more energetic</em>, on a plan that fits your real life." data-pl="Bądź silniejszy, szczuplejszy i <em class='hl'>pełen energii</em>, z planem dopasowanym do twojego prawdziwego życia.">Get stronger, leaner and <em class="hl">more energetic</em>, on a plan that fits your real life.</h1>
+      <h1 data-en="Get stronger, leaner and <em class='hl'>more energetic</em>, on a plan that fits your real life." data-pl="Bądź silniejszy, szczuplejszy i <em class='hl'>pełen energii</em>, z planem dopasowanym do twojego życia.">Get stronger, leaner and <em class="hl">more energetic</em>, on a plan that fits your real life.</h1>
       <p class="lead" data-en="No extreme diets. No daily gym marathons. Just a clear plan, a coach who stays in touch, and progress you can actually feel. Beginners welcome." data-pl="Bez ekstremalnych diet i codziennych maratonów na siłowni. Jasny plan, trener, który jest w kontakcie, i postępy, które naprawdę czujesz. Początkujący mile widziani.">No extreme diets. No daily gym marathons. Just a clear plan, a coach who stays in touch, and progress you can actually feel. Beginners welcome.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contact" data-track="hero-book" data-en="Book a free 30-min call" data-pl="Umów bezpłatną rozmowę (30 min)">Book a free 30-min call</a>
         <a class="btn btn-ghost" href="#pricing" data-en="See pricing" data-pl="Zobacz cennik">See pricing</a>
       </div>
       <div class="proof">
-        <div><b style="color:var(--orange);letter-spacing:3px;font-size:1.3rem">★★★★★</b><span data-en="from client reviews" data-pl="w opiniach klientów">from client reviews</span></div>
-        <div><b>EN + PL</b><span data-en="coaching languages" data-pl="języki treningu">coaching languages</span></div>
+        <div><b>600+</b><span data-en="PT sessions" data-pl="sesji treningowych">PT sessions</span></div>
+        <div><b style="color:var(--orange);letter-spacing:3px;font-size:1.3rem">★★★★★</b><span data-en="5-star reviews" data-pl="opinie 5 gwiazdek">5-star reviews</span></div>
+        <div><b>EN + PL</b><span data-en="languages" data-pl="języki">languages</span></div>
       </div>
     </div>
     <div class="hero-photo">
