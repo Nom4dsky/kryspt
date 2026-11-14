@@ -1,0 +1,12 @@
+/* KRYS PT shared skin: brings the older pages in line with the new homepage.
+   Loaded after each page's own <style>, so these values win. */
+:root{
+  /* reviews + article pages */
+  --black:#1A1A1A; --dark:#3D4451; --silver:#CBD0D8; --orange:#C25A38; --cream:#F5F2ED;
+  --f:'Inter Tight','Inter',system-ui,sans-serif;
+  /* blog index */
+  --bg:#F5F2ED; --gray:#5A6070; --light-gray:#6E7482; --rule:#DDD6CB; --white:#fff;
+}
+body,body *{font-family:'Inter',system-ui,sans-serif}
+h1,h2,h3,.nav-logo,.foot-logo,.reviews-hero h1{font-family:'Inter Tight','Inter',system-ui,sans-serif;font-weight:500}
+h1,h2{letter-spacing:-.01em}
