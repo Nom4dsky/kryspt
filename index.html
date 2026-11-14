@@ -3,15 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personal Trainer Sandvika & Online Coach | KRYS PT</title>
-<meta name="description" content="Personal trainer in Sandvika (Oslo area) and online coaching. Get stronger, lose fat and build energy with a plan that fits your real life. Book a free consultation. English & Polish.">
+<title>Personal Trainer Sandvika &amp; Online Coach | KRYS PT</title>
+<meta name="description" content="Personal trainer in Sandvika and online coaching. Get stronger, lose fat and build energy with a plan that fits your life. Book a free consultation.">
 <link rel="canonical" href="https://kryspt.com/">
+<link rel="alternate" hreflang="en" href="https://kryspt.com/">
+<link rel="alternate" hreflang="pl" href="https://kryspt.com/?lang=pl">
+<link rel="alternate" hreflang="x-default" href="https://kryspt.com/">
 <meta name="theme-color" content="#F5F2ED">
 
 <!-- Social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KRYS PT">
-<meta property="og:title" content="Personal Trainer Sandvika & Online Coach | KRYS PT">
+<meta property="og:title" content="Personal Trainer Sandvika &amp; Online Coach | KRYS PT">
 <meta property="og:description" content="Get stronger, lose fat and build energy with a plan that fits your real life. Book a free consultation.">
 <meta property="og:url" content="https://kryspt.com/">
 <meta property="og:image" content="https://kryspt.com/images/og-image.jpg">
@@ -239,6 +242,14 @@ footer{background:#2A2F3A;color:#AEB4BF;padding:34px 0;font-size:.72rem;letter-s
 .foot{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
 .foot a{text-decoration:none;margin-right:22px}.foot a:hover{color:#fff}
 
+
+.skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--ink);color:#fff;padding:12px 18px;font:600 .8rem 'Inter',sans-serif;text-decoration:none;letter-spacing:.08em;text-transform:uppercase}
+.skip:focus{top:12px}
+.logo{min-height:44px}
+.menu-btn{min-height:44px}
+.fine a{display:inline-block;padding:12px 0}
+.foot a{display:inline-block;padding:14px 0}
+.proof b.stars-b{color:var(--otext)}
 .sticky-cta{display:none}
 .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
 .js .reveal.visible{opacity:1;transform:none}
@@ -266,10 +277,11 @@ footer{background:#2A2F3A;color:#AEB4BF;padding:34px 0;font-size:.72rem;letter-s
   .sticky-cta .btn{flex:1;padding:14px 8px;font-size:.72rem}
   details p{padding-left:0;padding-right:20px}
 }
-@media (max-width:480px){.btn{padding:16px 18px;letter-spacing:.08em;font-size:.74rem}.plan .price{font-size:2.2rem}body{font-size:16px}.wrap{padding:0 20px}form{padding:28px 22px}.card{padding:32px 24px 26px}.proof b{font-size:1.5rem}.proof div{font-size:.6rem;padding:4px 10px}}
+@media (max-width:480px){.proof{grid-template-columns:repeat(3,minmax(0,1fr));width:100%}.proof div{white-space:normal;padding:4px 8px}.proof div:first-child{padding-left:0}.lang button{padding:10px 14px}.btn{padding:16px 18px;letter-spacing:.08em;font-size:.74rem}.plan .price{font-size:2.2rem}body{font-size:16px}.wrap{padding:0 20px}form{padding:28px 22px}.card{padding:32px 24px 26px}.proof b{font-size:1.5rem}.proof div{font-size:.6rem;padding:4px 10px}}
 </style>
 </head>
-<body>
+<body id="top">
+<a class="skip" href="#main" data-en="Skip to content" data-pl="Przejdź do treści">Skip to content</a>
 
 <header>
   <div class="wrap nav">
@@ -290,7 +302,7 @@ footer{background:#2A2F3A;color:#AEB4BF;padding:34px 0;font-size:.72rem;letter-s
   </div>
 </header>
 
-<main id="top">
+<main id="main">
 
 <!-- HERO -->
 <section class="hero">
@@ -305,7 +317,7 @@ footer{background:#2A2F3A;color:#AEB4BF;padding:34px 0;font-size:.72rem;letter-s
       </div>
       <div class="proof">
         <div><b>600+</b><span data-en="PT sessions" data-pl="sesji treningowych">PT sessions</span></div>
-        <div><b style="color:var(--orange);letter-spacing:3px;font-size:1.3rem">★★★★★</b><span data-en="5-star reviews" data-pl="opinie 5 gwiazdek">5-star reviews</span></div>
+        <div><b class="stars-b" style="letter-spacing:3px;font-size:1.3rem" aria-label="5 stars">★★★★★</b><span data-en="5-star reviews" data-pl="opinie 5 gwiazdek">5-star reviews</span></div>
         <div><b>EN + PL</b><span data-en="languages" data-pl="języki">languages</span></div>
       </div>
     </div>
@@ -576,15 +588,18 @@ footer{background:#2A2F3A;color:#AEB4BF;padding:34px 0;font-size:.72rem;letter-s
 document.documentElement.classList.add('js');
 let lang = 'en';
 try { lang = localStorage.getItem('krys-lang') || ((navigator.language||'').toLowerCase().startsWith('pl') ? 'pl' : 'en'); } catch(e){}
+const qp = new URLSearchParams(location.search).get('lang'); if (qp === 'pl' || qp === 'en') lang = qp;
+const META = { en: { t: document.title, d: document.querySelector('meta[name=description]').content }, pl: { t: 'Trener personalny Sandvika i online | KRYS PT', d: 'Trener personalny w Sandvika i coaching online. Bądź silniejszy, zrzuć tkankę tłuszczową i zyskaj energię z planem dopasowanym do twojego życia. Umów bezpłatną konsultację.' } };
 
 function setLang(l){
   lang = l;
   try { localStorage.setItem('krys-lang', l); } catch(e){}
   document.documentElement.lang = l;
+  document.title = META[l].t; document.querySelector('meta[name=description]').content = META[l].d;
   document.querySelectorAll('[data-en]').forEach(el => { const v = el.dataset[l]; if (v !== undefined) el.innerHTML = v; });
   document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
 }
-document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => { setLang(b.dataset.lang); try { const u = new URL(location.href); u.searchParams.delete('lang'); history.replaceState(null, '', u.pathname + u.search + u.hash); } catch(e){} }));
 setLang(lang);
 
 // Mobile menu
