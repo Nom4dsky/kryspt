@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Personal Trainer Sandvika & Online Coach | KRYS PT</title>
-<meta name="description" content="Personal trainer in Sandvika (Oslo area) and online coaching. Get stronger, lose fat and build energy with a plan that fits your real life. Free 30-minute intro call. English & Polish.">
+<meta name="description" content="Personal trainer in Sandvika (Oslo area) and online coaching. Get stronger, lose fat and build energy with a plan that fits your real life. Book a free consultation. English & Polish.">
 <link rel="canonical" href="https://kryspt.com/">
 <meta name="theme-color" content="#F2F2EF">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KRYS PT">
 <meta property="og:title" content="Personal Trainer Sandvika & Online Coach | KRYS PT">
-<meta property="og:description" content="Get stronger, lose fat and build energy with a plan that fits your real life. Free 30-minute intro call.">
+<meta property="og:description" content="Get stronger, lose fat and build energy with a plan that fits your real life. Book a free consultation.">
 <meta property="og:url" content="https://kryspt.com/">
 <meta property="og:image" content="https://kryspt.com/images/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -161,6 +161,20 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,242,239,.94);backdro
 .plan.best .btn-primary{background:#fff;color:var(--solid)}
 .plan.best .btn-primary:hover{background:var(--ink);color:#fff}
 .plan{padding-top:56px}.plan .flag{position:absolute;top:20px;left:32px;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid #fff;padding:3px 9px}
+
+/* offers */
+.offers{display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:stretch}
+.offers .plan{padding-top:40px}
+.offers .tag{display:block;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:22px;color:var(--otext)}
+.offers .plan.best .tag{color:#FFE1D3}
+.offers .plan .name{margin-bottom:16px;padding-right:30px;font-size:.8rem}
+.offers .plan.best p{color:#fff}
+.plan .price small{font-size:.9rem}
+.feat li{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:4px 22px;padding:13px 0;font-size:.92rem}
+.feat b{font-weight:600}
+.plan:not(.best) .feat li{grid-template-columns:1fr;gap:2px}
+.plan .price small{display:inline-block;white-space:nowrap}
+.feat span{opacity:.92}
 .fine{margin-top:26px;color:var(--muted);font-size:.88rem}
 .fine a{text-underline-offset:4px}
 
@@ -236,7 +250,8 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
 @media (max-width:960px){
   section{padding:64px 0}
   .hero-grid,.about-grid,.contact-grid,.two{grid-template-columns:1fr;gap:44px}
-  .cards3,.prices{grid-template-columns:1fr}
+  .cards3,.prices,.offers{grid-template-columns:1fr}
+  .feat li{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
   .step,.step+.step{padding:24px 0 14px;border-left:0;border-top:1px solid var(--line)}
   .step:first-child{border-top:0}
@@ -254,7 +269,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
   .sticky-cta .btn{flex:1;padding:14px 8px;font-size:.72rem}
   details p{padding-left:0;padding-right:20px}
 }
-@media (max-width:480px){body{font-size:16px}.wrap{padding:0 20px}form{padding:28px 22px}.card{padding:32px 24px 26px}.proof b{font-size:1.5rem}.proof div{font-size:.6rem;padding:4px 10px}}
+@media (max-width:480px){.btn{padding:16px 18px;letter-spacing:.08em;font-size:.74rem}.plan .price{font-size:2.2rem}body{font-size:16px}.wrap{padding:0 20px}form{padding:28px 22px}.card{padding:32px 24px 26px}.proof b{font-size:1.5rem}.proof div{font-size:.6rem;padding:4px 10px}}
 </style>
 </head>
 <body>
@@ -265,8 +280,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" data-en="Menu" data-pl="Menu">Menu</button>
     <nav class="nav-links" id="navLinks" aria-label="Main">
       <a class="link" href="#how" data-en="How it works" data-pl="Jak to działa">How it works</a>
-      <a class="link" href="#services" data-en="Services" data-pl="Usługi">Services</a>
-      <a class="link" href="#pricing" data-en="Pricing" data-pl="Cennik">Pricing</a>
+      <a class="link" href="#services" data-en="Services &amp; pricing" data-pl="Usługi i cennik">Services &amp; pricing</a>
       <a class="link" href="#reviews" data-en="Reviews" data-pl="Opinie">Reviews</a>
       <a class="link" href="#about" data-en="About" data-pl="O mnie">About</a>
       <a class="link" href="/blog" data-en="Blog" data-pl="Blog">Blog</a>
@@ -274,7 +288,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
         <button type="button" data-lang="en" class="active">EN</button>
         <button type="button" data-lang="pl">PL</button>
       </div>
-      <a class="btn btn-primary btn-sm nav-cta" href="#contact" data-track="nav-book" data-en="Book free call" data-pl="Bezpłatna rozmowa">Book free call</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="#contact" data-track="nav-book" data-en="Free consultation" data-pl="Bezpłatna konsultacja">Free consultation</a>
     </nav>
   </div>
 </header>
@@ -289,8 +303,8 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
       <h1 data-en="Get stronger, leaner and <em class='hl'>more energetic</em>, on a plan that fits your real life." data-pl="Bądź silniejszy, szczuplejszy i <em class='hl'>pełen energii</em>, z planem dopasowanym do twojego życia.">Get stronger, leaner and <em class="hl">more energetic</em>, on a plan that fits your real life.</h1>
       <p class="lead" data-en="No extreme diets. No daily gym marathons. Just a clear plan, a coach who stays in touch, and progress you can actually feel. Beginners welcome." data-pl="Bez ekstremalnych diet i codziennych maratonów na siłowni. Jasny plan, trener, który jest w kontakcie, i postępy, które naprawdę czujesz. Początkujący mile widziani.">No extreme diets. No daily gym marathons. Just a clear plan, a coach who stays in touch, and progress you can actually feel. Beginners welcome.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#contact" data-track="hero-book" data-en="Book a free 30-min call" data-pl="Umów bezpłatną rozmowę (30 min)">Book a free 30-min call</a>
-        <a class="btn btn-ghost" href="#pricing" data-en="See pricing" data-pl="Zobacz cennik">See pricing</a>
+        <a class="btn btn-primary" href="#contact" data-track="hero-book" data-en="Book a free consultation" data-pl="Umów bezpłatną konsultację">Book a free consultation</a>
+        <a class="btn btn-ghost" href="#services" data-en="See pricing" data-pl="Zobacz cennik">See pricing</a>
       </div>
       <div class="proof">
         <div><b>600+</b><span data-en="PT sessions" data-pl="sesji treningowych">PT sessions</span></div>
@@ -300,7 +314,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
     </div>
     <div class="hero-photo">
       <div class="frame"><img src="images/profile.webp" width="799" height="1200" alt="Przemyslaw Krys, personal trainer in Sandvika, standing in the gym" fetchpriority="high"></div>
-      <div class="stat-card"><i aria-hidden="true">↗</i><small data-en="Clients coached" data-pl="Klientów w treningu">Clients coached</small><b>40+</b><span data-en="Free 30-min intro call · no hard sell" data-pl="Bezpłatna rozmowa (30 min) · bez presji">Free 30-min intro call · no hard sell</span></div>
+      <div class="stat-card"><i aria-hidden="true">↗</i><small data-en="Clients coached" data-pl="Klientów w treningu">Clients coached</small><b>40+</b><span data-en="Personal training and online coaching" data-pl="Trening personalny i coaching online">Personal training and online coaching</span></div>
     </div>
   </div>
 </section>
@@ -329,7 +343,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
       <h2 data-en="Simple from the very first step." data-pl="Prosto od pierwszego kroku.">Simple from the very first step.</h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><h3 data-en="Free 30-minute call" data-pl="Bezpłatna rozmowa (30 min)">Free 30-minute call</h3><p data-en="We talk about where you are, what you want and what’s got in the way before. No commitment." data-pl="Rozmawiamy o tym, gdzie jesteś, czego chcesz i co przeszkadzało wcześniej. Bez zobowiązań.">We talk about where you are, what you want and what’s got in the way before. No commitment.</p></div>
+      <div class="step reveal"><h3 data-en="Start with a consultation" data-pl="Zacznij od konsultacji">Start with a consultation</h3><p data-en="We talk about where you are, what you want and what’s got in the way before. No commitment." data-pl="Rozmawiamy o tym, gdzie jesteś, czego chcesz i co przeszkadzało wcześniej. Bez zobowiązań.">We talk about where you are, what you want and what’s got in the way before. No commitment.</p></div>
       <div class="step reveal"><h3 data-en="Your plan, built around your week" data-pl="Plan zbudowany wokół twojego tygodnia">Your plan, built around your week</h3><p data-en="Training that fits your schedule, experience and any aches or injuries, plus simple nutrition habits." data-pl="Trening dopasowany do twojego grafiku, doświadczenia i ewentualnych bólów czy kontuzji, plus proste nawyki żywieniowe.">Training that fits your schedule, experience and any aches or injuries, plus simple nutrition habits.</p></div>
       <div class="step reveal"><h3 data-en="Train, check in, adjust" data-pl="Trenuj, raportuj, koryguj">Train, check in, adjust</h3><p data-en="Regular check-ins and contact between sessions. I don’t disappear after sending the plan. We adjust as life happens." data-pl="Regularne sprawdzanie postępów i kontakt między sesjami. Nie znikam po wysłaniu planu. Korygujemy, gdy życie się zmienia.">Regular check-ins and contact between sessions. I don’t disappear after sending the plan. We adjust as life happens.</p></div>
     </div>
@@ -357,88 +371,48 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICES & PRICING -->
 <section id="services">
+  <span id="pricing"></span>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow" data-en="Services" data-pl="Usługi">Services</span>
+      <span class="eyebrow" data-en="Services &amp; pricing" data-pl="Usługi i cennik">Services &amp; pricing</span>
       <h2 data-en="Two ways to work together." data-pl="Dwa sposoby współpracy.">Two ways to work together.</h2>
+      <p class="lead" style="margin-top:16px" data-en="Train beside me in Sandvika, or with me online from anywhere." data-pl="Trenuj ze mną na miejscu w Sandvika albo online, z dowolnego miejsca.">Train beside me in Sandvika, or with me online from anywhere.</p>
     </div>
-    <div class="two">
-      <div class="card service reveal">
-        <span class="tag" data-en="In person · Sandvika" data-pl="Stacjonarnie · Sandvika">In person · Sandvika</span>
-        <h3 data-en="Personal training" data-pl="Trening personalny">Personal training</h3>
-        <p style="margin-top:10px" data-en="For people who want someone right beside them, not just a plan on their phone." data-pl="Dla osób, które chcą mieć kogoś obok, nie tylko plan w telefonie.">For people who want someone right beside them, not just a plan on their phone.</p>
-        <ul>
-          <li data-en="Every session planned, never improvised" data-pl="Każda sesja zaplanowana, nigdy improwizowana">Every session planned, never improvised</li>
-          <li data-en="Learn proper technique and why it matters" data-pl="Nauka techniki i zrozumienie dlaczego jest ważna">Learn proper technique and why it matters</li>
-          <li data-en="Book flexible clip packages via SATS" data-pl="Elastyczne pakiety klipów przez SATS">Book flexible clip packages via SATS</li>
-        </ul>
-        <a class="btn btn-primary" href="https://www.sats.no/personlig-trener/osloakershus/sats-sandvika-panorama/przemyslaw-krys" target="_blank" rel="noopener" data-track="sats-book" data-en="Book via SATS" data-pl="Rezerwuj przez SATS">Book via SATS</a>
-      </div>
-      <div class="card service reveal">
-        <span class="tag" data-en="Anywhere · Online" data-pl="Gdziekolwiek · Online">Anywhere · Online</span>
-        <h3 data-en="Online coaching" data-pl="Coaching online">Online coaching</h3>
-        <p style="margin-top:10px" data-en="For people outside Oslo, or who prefer to train independently, but with purpose." data-pl="Dla osób spoza Oslo albo tych, którzy wolą trenować samodzielnie, ale z sensem.">For people outside Oslo, or who prefer to train independently, but with purpose.</p>
-        <ul>
-          <li data-en="Personal programme in an easy-to-use app" data-pl="Indywidualny program w wygodnej aplikacji">Personal programme in an easy-to-use app</li>
-          <li data-en="Exercise videos so you always know how" data-pl="Filmy instruktażowe, zawsze wiesz jak">Exercise videos so you always know how</li>
-          <li data-en="Direct contact + regular progress check-ins" data-pl="Bezpośredni kontakt + regularne sprawdzanie postępów">Direct contact + regular progress check-ins</li>
-          <li data-en="Nutrition habits &amp; calorie guidance" data-pl="Nawyki żywieniowe i wskazówki kaloryczne">Nutrition habits &amp; calorie guidance</li>
-        </ul>
-        <a class="btn btn-primary" href="#contact" data-track="online-start" data-en="Start with a free call" data-pl="Zacznij od bezpłatnej rozmowy">Start with a free call</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow" data-en="Pricing" data-pl="Cennik">Pricing</span>
-      <h2 data-en="Clear prices. No surprises." data-pl="Jasne ceny. Bez niespodzianek.">Clear prices. No surprises.</h2>
-      <p class="lead" style="margin-top:14px" data-en="Online coaching is monthly with no lock-in beyond the plan you choose. Your free call confirms what fits." data-pl="Coaching online rozliczany miesięcznie. Podczas bezpłatnej rozmowy ustalimy, co do ciebie pasuje.">Online coaching is monthly with no lock-in beyond the plan you choose. Your free call confirms what fits.</p>
-    </div>
-    <!-- ⚠ PRICES: confirm or edit these three numbers before publishing -->
-    <div class="prices">
+    <div class="offers">
       <div class="card plan reveal">
-        <div class="name" data-en="Personal training · Sandvika" data-pl="Trening personalny · Sandvika">Personal training · Sandvika</div>
+        <span class="tag" data-en="In person · Sandvika" data-pl="Stacjonarnie · Sandvika">In person · Sandvika</span>
+        <div class="name" data-en="1:1 Personal training" data-pl="Trening personalny 1:1">1:1 Personal training</div>
         <div class="price" data-en="Via SATS" data-pl="Przez SATS">Via SATS</div>
-        <div class="save" data-en="Bigger package = lower price per session" data-pl="Większy pakiet = niższa cena za sesję">Bigger package = lower price per session</div>
-        <ul>
-          <li data-en="Packages from 1 to 50 sessions" data-pl="Pakiety od 1 do 50 sesji">Packages from 1 to 50 sessions</li>
-          <li data-en="Interest-free instalments" data-pl="Raty bez dodatkowych kosztów">Interest-free instalments</li>
-          <li data-en="Search trainer: Przemyslaw Krys, level 2" data-pl="Wybierz trenera: Przemyslaw Krys, lvl 2">Search trainer: Przemyslaw Krys, level 2</li>
+        <div class="save" data-en="Bigger package, lower price per session" data-pl="Większy pakiet, niższa cena za sesję">Bigger package, lower price per session</div>
+        <p style="margin-top:14px" data-en="For people who want someone right beside them, not just a plan on their phone." data-pl="Dla osób, które chcą mieć kogoś obok, nie tylko plan w telefonie.">For people who want someone right beside them, not just a plan on their phone.</p>
+        <ul class="feat">
+          <li><b data-en="Planned sessions" data-pl="Zaplanowane sesje">Planned sessions</b><span data-en="Every session is planned, never improvised." data-pl="Każda sesja jest zaplanowana, nigdy improwizowana.">Every session is planned, never improvised.</span></li>
+          <li><b data-en="Technique coaching" data-pl="Nauka techniki">Technique coaching</b><span data-en="Learn proper technique and why it matters." data-pl="Uczysz się poprawnej techniki i rozumiesz, dlaczego jest ważna.">Learn proper technique and why it matters.</span></li>
+          <li><b data-en="Flexible packages" data-pl="Elastyczne pakiety">Flexible packages</b><span data-en="From 1 to 50 sessions, with interest-free instalments." data-pl="Od 1 do 50 sesji, z ratami bez dodatkowych kosztów.">From 1 to 50 sessions, with interest-free instalments.</span></li>
+          <li><b data-en="How to book" data-pl="Jak zarezerwować">How to book</b><span data-en="Choose a package on SATS and select trainer Przemyslaw Krys, level 2." data-pl="Wybierz pakiet w SATS i trenera Przemyslaw Krys, lvl 2.">Choose a package on SATS and select trainer Przemyslaw Krys, level 2.</span></li>
         </ul>
         <a class="btn btn-ghost" href="https://www.sats.no/personlig-trener/osloakershus/sats-sandvika-panorama/przemyslaw-krys" target="_blank" rel="noopener" data-track="sats-packages" data-en="View packages on SATS" data-pl="Zobacz pakiety w SATS">View packages on SATS</a>
       </div>
-      <div class="card plan reveal">
-        <div class="name" data-en="Online coaching · Monthly" data-pl="Coaching online · Miesięczny">Online coaching · Monthly</div>
-        <div class="price">1,800 kr<small data-en=" / month" data-pl=" / miesiąc"> / month</small></div>
-        <div class="save" data-en="Try the process, stay flexible" data-pl="Sprawdź współpracę, zachowaj elastyczność">Try the process, stay flexible</div>
-        <ul>
-          <li data-en="Personal training plan in the app" data-pl="Indywidualny plan treningowy w aplikacji">Personal training plan in the app</li>
-          <li data-en="Contact between sessions (Mon–Sat)" data-pl="Kontakt między sesjami (pon.–sob.)">Contact between sessions (Mon–Sat)</li>
-          <li data-en="Regular progress check-ins" data-pl="Regularne sprawdzanie postępów">Regular progress check-ins</li>
-          <li data-en="Nutrition habits &amp; calorie review" data-pl="Nawyki żywieniowe i bilans kaloryczny">Nutrition habits &amp; calorie review</li>
-        </ul>
-        <a class="btn btn-ghost" href="#contact" data-track="price-1m" data-interest="online-1m" data-en="Book free call" data-pl="Umów rozmowę">Book free call</a>
-      </div>
       <div class="card plan best reveal">
-        <span class="flag" data-en="Most chosen" data-pl="Najczęściej wybierany">Most chosen</span>
-        <div class="name" data-en="Online coaching · 3 months" data-pl="Coaching online · 3 miesiące">Online coaching · 3 months</div>
-        <div class="price">1,500 kr<small data-en=" / month" data-pl=" / miesiąc"> / month</small></div>
-        <div class="save" data-en="Save 900 kr vs. paying monthly" data-pl="Oszczędzasz 900 kr względem płatności miesięcznych">Save 900 kr vs. paying monthly</div>
-        <ul>
-          <li data-en="Everything in Monthly" data-pl="Wszystko z planu miesięcznego">Everything in Monthly</li>
-          <li data-en="Time to build habits that actually stick" data-pl="Czas na nawyki, które naprawdę zostają">Time to build habits that actually stick</li>
-          <li data-en="Plan reviewed &amp; progressed every few weeks" data-pl="Plan przeglądany i rozwijany co kilka tygodni">Plan reviewed &amp; progressed every few weeks</li>
+        <span class="tag" data-en="Anywhere · Online" data-pl="Gdziekolwiek · Online">Anywhere · Online</span>
+        <div class="name" data-en="Online coaching" data-pl="Coaching online">Online coaching</div>
+        <div class="price" data-en="From 1,500 kr<small> / month</small>" data-pl="Od 1 500 kr<small> / miesiąc</small>">From 1,500 kr<small> / month</small></div>
+        <div class="save" data-en="Final price depends on your goals and package" data-pl="Ostateczna cena zależy od twoich celów i pakietu">Final price depends on your goals and package</div>
+        <p style="margin-top:14px" data-en="A real coach behind every step, wherever you train. Everything runs through one app, with me checking in on your progress." data-pl="Prawdziwy trener przy każdym kroku, gdziekolwiek trenujesz. Wszystko w jednej aplikacji, a ja pilnuję twoich postępów.">A real coach behind every step, wherever you train. Everything runs through one app, with me checking in on your progress.</p>
+        <ul class="feat">
+          <li><b data-en="Personal training plan" data-pl="Plan treningowy">Personal training plan</b><span data-en="Built around your goals, schedule and equipment, in an easy-to-use app." data-pl="Zbudowany wokół twoich celów, grafiku i dostępnego sprzętu, w wygodnej aplikacji.">Built around your goals, schedule and equipment, in an easy-to-use app.</span></li>
+          <li><b data-en="Exercise video library" data-pl="Filmy instruktażowe">Exercise video library</b><span data-en="Clear video demos, so you always know how each movement should look." data-pl="Czytelne nagrania, dzięki którym zawsze wiesz, jak ma wyglądać każde ćwiczenie.">Clear video demos, so you always know how each movement should look.</span></li>
+          <li><b data-en="Video technique analysis" data-pl="Analiza techniki na wideo">Video technique analysis</b><span data-en="Send me a clip of your lift and get specific feedback to fix your form." data-pl="Wyślij mi nagranie ćwiczenia, a dostaniesz konkretne wskazówki, jak poprawić technikę.">Send me a clip of your lift and get specific feedback to fix your form.</span></li>
+          <li><b data-en="Progress tracking" data-pl="Śledzenie postępów">Progress tracking</b><span data-en="Training logs, body measurements and weight trends, so you can see what is working." data-pl="Dzienniki treningowe, pomiary ciała i trend wagi, żebyś widział, co działa.">Training logs, body measurements and weight trends, so you can see what is working.</span></li>
+          <li><b data-en="Regular check-ins" data-pl="Regularne check-iny">Regular check-ins</b><span data-en="Scheduled reviews where we look at your progress and adjust the plan." data-pl="Zaplanowane przeglądy postępów i korekty planu.">Scheduled reviews where we look at your progress and adjust the plan.</span></li>
+          <li><b data-en="Direct contact" data-pl="Bezpośredni kontakt">Direct contact</b><span data-en="Message me between check-ins. I reply within a few hours, Monday to Saturday." data-pl="Pisz do mnie między check-inami. Odpowiadam w ciągu kilku godzin, od poniedziałku do soboty.">Message me between check-ins. I reply within a few hours, Monday to Saturday.</span></li>
+          <li><b data-en="Nutrition habits" data-pl="Nawyki żywieniowe">Nutrition habits</b><span data-en="Guidance on calorie balance and eating habits (not full diet plans)." data-pl="Wskazówki dotyczące bilansu kalorycznego i nawyków żywieniowych (bez pełnych planów dietetycznych).">Guidance on calorie balance and eating habits (not full diet plans).</span></li>
         </ul>
-        <a class="btn btn-primary" href="#contact" data-track="price-3m" data-interest="online-3m" data-en="Book free call" data-pl="Umów rozmowę">Book free call</a>
+        <a class="btn btn-primary" href="#contact" data-track="online-book" data-interest="online" data-en="Book a free consultation" data-pl="Umów bezpłatną konsultację">Book a free consultation</a>
       </div>
     </div>
-    <p class="fine" data-en="Not sure which fits? The free call is exactly for that. No pressure, no obligation." data-pl="Nie wiesz, co wybrać? Po to jest bezpłatna rozmowa. Bez presji i zobowiązań.">Not sure which fits? The free call is exactly for that. No pressure, no obligation.</p>
   </div>
 </section>
 
@@ -493,7 +467,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
       <p data-en="I came to fitness the long way round: years of physically draining work, with sport always stubbornly in the background: cycling, martial arts, the gym. Eventually I got certified in the UK, moved to Norway, and started training people at SATS Sandvika." data-pl="Do fitnessu doszedłem okrężną drogą: lata wyczerpującej pracy fizycznej, a w tle zawsze uparcie wracający sport: rower, sztuki walki, siłownia. W końcu zrobiłem certyfikaty w UK, przeprowadziłem się do Norwegii i zacząłem trenować ludzi w SATS Sandvika.">I came to fitness the long way round: years of physically draining work, with sport always stubbornly in the background: cycling, martial arts, the gym. Eventually I got certified in the UK, moved to Norway, and started training people at SATS Sandvika.</p>
       <p data-en="That’s why I coach the way I do: calm, practical, and built for imperfect weeks. Most clients tell me the same thing after a few months: they feel stronger, the stairs don’t drain them, the trousers fit differently, the day is easier. That kind of change doesn’t make magazine covers. It tends to stick." data-pl="Dlatego trenuję tak, jak trenuję: spokojnie, praktycznie i z myślą o niedoskonałych tygodniach. Większość klientów po kilku miesiącach mówi to samo: czują się silniejsi, schody nie męczą, spodnie leżą inaczej, dzień jest łatwiejszy. Taka zmiana nie trafia na okładki magazynów. Za to zostaje na dłużej.">That’s why I coach the way I do: calm, practical, and built for imperfect weeks. Most clients tell me the same thing after a few months: they feel stronger, the stairs don’t drain them, the trousers fit differently, the day is easier. That kind of change doesn’t make magazine covers. It tends to stick.</p>
       <div class="quote" data-en="“People don’t need a perfect plan. They need a plan that holds up under imperfect conditions.”" data-pl="„Ludzie nie potrzebują perfekcyjnego planu. Potrzebują planu, który działa mimo niedoskonałych warunków.”">“People don’t need a perfect plan. They need a plan that holds up under imperfect conditions.”</div>
-      <div class="cta-row" style="margin-top:28px"><a class="btn btn-primary" href="#contact" data-track="about-book" data-en="Book a free call" data-pl="Umów bezpłatną rozmowę">Book a free call</a></div>
+      <div class="cta-row" style="margin-top:28px"><a class="btn btn-primary" href="#contact" data-track="about-book" data-en="Book a free consultation" data-pl="Umów bezpłatną konsultację">Book a free consultation</a></div>
     </div>
   </div>
 </section>
@@ -538,10 +512,10 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
   <div class="wrap contact-grid">
     <div class="reveal">
       <span class="eyebrow" data-en="Let’s talk" data-pl="Porozmawiajmy">Let’s talk</span>
-      <h2 data-en="Book your free 30&#8209;minute call." data-pl="Umów bezpłatną rozmowę (30 min).">Book your free 30&#8209;minute call.</h2>
+      <h2 data-en="Book a free consultation." data-pl="Umów bezpłatną konsultację.">Book a free consultation.</h2>
       <p class="lead" data-en="Tell me where you are and where you want to be. I’ll tell you honestly whether and how I can help." data-pl="Powiedz, gdzie jesteś i dokąd chcesz dotrzeć. Powiem ci szczerze, czy i jak mogę pomóc.">Tell me where you are and where you want to be. I’ll tell you honestly whether and how I can help.</p>
       <ul class="facts">
-        <li data-en="No commitment, no hard sell" data-pl="Bez zobowiązań, bez presji">No commitment, no hard sell</li>
+        <li data-en="No commitment, just a straight conversation" data-pl="Bez zobowiązań, po prostu szczera rozmowa">No commitment, just a straight conversation</li>
         <li data-en="You leave with a clear next step, even if it’s not with me" data-pl="Wychodzisz z jasnym kolejnym krokiem, nawet jeśli nie ze mną">You leave with a clear next step, even if it’s not with me</li>
         <li data-en="I reply within a few hours, Mon–Sat" data-pl="Odpowiadam w ciągu kilku godzin, pon.–sob.">I reply within a few hours, Mon–Sat</li>
       </ul>
@@ -560,8 +534,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
           <select id="f-int" name="interest">
             <option value="" data-en="Select…" data-pl="Wybierz…">Select…</option>
             <option value="pt-oslo" data-en="Personal training · Sandvika" data-pl="Trening personalny · Sandvika">Personal training · Sandvika</option>
-            <option value="online-1m" data-en="Online coaching · Monthly" data-pl="Coaching online · Miesięczny">Online coaching · Monthly</option>
-            <option value="online-3m" data-en="Online coaching · 3 months" data-pl="Coaching online · 3 miesiące">Online coaching · 3 months</option>
+            <option value="online" data-en="Online coaching" data-pl="Coaching online">Online coaching</option>
             <option value="unsure" data-en="Not sure yet" data-pl="Jeszcze nie wiem">Not sure yet</option>
           </select></div>
         <div class="fg"><label for="f-goal" data-en="What’s your main goal right now?" data-pl="Jaki jest twój główny cel?">What’s your main goal right now?</label>
@@ -575,7 +548,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
             <option value="other" data-en="Something else" data-pl="Coś innego">Something else</option>
           </select></div>
         <div class="fg"><label for="f-msg" data-en="Anything else I should know? (optional)" data-pl="Coś jeszcze, co powinienem wiedzieć? (opcjonalnie)">Anything else I should know? (optional)</label><textarea id="f-msg" name="message"></textarea></div>
-        <button type="submit" class="btn btn-primary" data-track="form-submit" data-en="Book my free call" data-pl="Umów moją rozmowę">Book my free call</button>
+        <button type="submit" class="btn btn-primary" data-track="form-submit" data-en="Book a free consultation" data-pl="Umów bezpłatną konsultację">Book a free consultation</button>
         <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
         <p class="privacy" data-en="I only use your details to reply to you. No spam." data-pl="Używam twoich danych tylko do odpowiedzi. Żadnego spamu.">I only use your details to reply to you. No spam.</p>
       </form>
@@ -598,7 +571,7 @@ footer{background:#111;color:#9a9a94;padding:34px 0;font-size:.72rem;letter-spac
 </footer>
 
 <div class="sticky-cta">
-  <a class="btn btn-primary" href="#contact" data-track="sticky-book" data-en="Book free call" data-pl="Bezpłatna rozmowa">Book free call</a>
+  <a class="btn btn-primary" href="#contact" data-track="sticky-book" data-en="Free consultation" data-pl="Bezpłatna konsultacja">Free consultation</a>
   <a class="btn btn-ghost" href="https://wa.me/4740342138" target="_blank" rel="noopener" data-track="sticky-wa">WhatsApp</a>
 </div>
 
