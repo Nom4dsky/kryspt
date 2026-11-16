@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#E9E5DB">
+<meta name="color-scheme" content="light">
 <title>My program | KRYS PT</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,6 @@
 /* Same look as KRYS PT HUB: warm stone, clay accent, flat bordered cards, Sora headings. */
 :root{--bg:#E9E5DB;--panel:#F5F2EB;--ink:#0E1A1F;--mute:#5A6468;--line:#D6D1C6;--line2:#BDB7A8;--accent:#B86A4A;--accent-ink:#fff;--accent-soft:#EBD7CC;--good:#5B6F5F;--link:#2E4A5A;--field:#fff;color-scheme:light;
   --f-display:'Sora','Inter',system-ui,sans-serif;--f-body:'Inter',system-ui,sans-serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1A1F;--panel:#16262D;--ink:#E6E1D5;--mute:#9AA5A3;--line:#24373F;--line2:#344B54;--accent:#D07C5B;--accent-ink:#140A06;--accent-soft:#33231D;--good:#86A08B;--link:#8FB4C8;--field:#0E1A1F;color-scheme:dark}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--f-body);padding:0 max(14px,env(safe-area-inset-right,0px)) calc(48px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px))}
@@ -36,6 +36,15 @@ h1{font:600 clamp(1.4rem,6vw,1.9rem)/1.15 var(--f-display);margin:10px 0 4px;tex
 .daytitle{font:600 1.2rem var(--f-display);margin:22px 0 2px}
 .daymeta{color:var(--mute);font-size:.9rem;margin:0 0 6px}
 .sec{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:18px 0 8px}
+.ss{border:1px solid var(--accent);border-radius:12px;padding:10px;margin-bottom:10px;background:var(--accent-soft)}
+.sshead{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 2px 10px}
+.pill{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);border-radius:99px;padding:3px 10px}
+.sstxt{font-size:.85rem;color:var(--ink)}
+.ss .card{margin-bottom:8px}.ss .card:last-child{margin-bottom:0}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:24px;padding:0 7px;border-radius:6px;background:var(--ink);color:var(--bg);font:600 12px var(--f-mono);margin-right:8px;vertical-align:1px}
+.tech{margin:8px 0 0;font-size:.85rem;color:var(--ink);background:var(--accent-soft);border-radius:8px;padding:8px 10px}
+.fmt{background:var(--accent-soft);border-radius:10px;padding:10px 12px;margin:0 0 8px;font-size:.9rem}
+.endu{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .ex.done{border-color:var(--good)}
 .ex-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
 .ex-name{font:600 1rem/1.25 var(--f-body);margin:0}
@@ -91,7 +100,7 @@ async function decode(h){
 const PROG={d:'double',l:'load',h:'hold'};
 function norm(o){
   return {id:o.i||('p'+(o.n||'').length),name:o.n||'Program',client:o.c||'',weeks:Math.max(1,+o.w||4),
-    days:o.d.map(d=>({name:d.n||'',lines:(d.l||[]).map(a=>({sec:a[0]||'',n:a[1]||'',sets:a[2]||'',reps:a[3]||'',rir:a[4]||'',rest:a[5]||'',note:a[6]||'',prog:PROG[a[7]]||'',step:a[8]||'',v:a[9]?('https://www.youtube.com/watch?v='+a[9]):''}))}))}}
+    days:o.d.map(d=>({name:d.n||'',lines:(d.l||[]).map(a=>({sec:a[0]||'',n:a[1]||'',sets:a[2]||'',reps:a[3]||'',rir:a[4]||'',rest:a[5]||'',note:a[6]||'',prog:PROG[a[7]]||'',step:a[8]||'',v:a[9]?('https://www.youtube.com/watch?v='+a[9]):'',label:a[10]||'',ss:a[11]==='1',tech:a[12]||''})),e:d.e||null,f:d.f||{}}))}}
 function start(P){
   document.title=P.name+' | KRYS PT';
   $('who').textContent=P.client?('For '+P.client):'';
@@ -111,16 +120,25 @@ function start(P){
     $('days').innerHTML=P.days.map((d,i)=>'<button type="button" data-d="'+i+'" aria-pressed="'+(day===i)+'">'+esc(d.name||('Day '+(i+1)))+'</button>').join('')}
   function render(){
     tabs();const d=P.days[day];let h='<div class="daytitle">'+esc(d.name||('Day '+(day+1)))+'</div><p class="daymeta">Week '+week+' of '+P.weeks+'</p>';
-    if(!d.lines.length)h+='<div class="card"><b>No exercises listed.</b><p class="note">Do this session as agreed with Krys and log how it went below.</p></div>';
-    let sec=null;
-    d.lines.forEach((l,i)=>{
-      if(l.sec&&l.sec!==sec){sec=l.sec;h+='<div class="sec">'+esc(sec)+'</div>'}
+    if(!d.lines.length&&!d.e)h+='<div class="card"><b>No exercises listed.</b><p class="note">Do this session as agreed with Krys and log how it went below.</p></div>';
+    if(d.e){h+='<div class="card"><b>'+esc(({run:'Run',bike:'Bike',row:'Row',swim:'Swim',ski:'Ski',walk:'Walk'})[d.e.mode]||d.e.mode||'Endurance')+(d.e.min?' · '+esc(d.e.min)+' min':'')+'</b>'+(d.e.end?'<div class="endu"><span class="chip">'+esc(d.e.end==='easy'?'Easy':d.e.end==='hard'?'Hard':d.e.end)+'</span></div>':'')+(d.e.note?'<p class="note">'+esc(d.e.note)+'</p>':'')+'</div>'}
+    function card(l,i,inGroup){
       const e=ent(week,day,i),pt=progTxt(l);
-      h+='<div class="card ex'+(e.done?' done':'')+'"><div class="ex-top"><p class="ex-name">'+esc(l.n)+'</p><a class="vid" href="'+esc(l.v||('https://www.youtube.com/results?search_query='+encodeURIComponent(l.n+' technique')))+'" target="_blank" rel="noopener noreferrer">'+(l.v?'Video':'Find video')+' ↗</a></div>'+
-      '<div class="spec"><span><b>'+esc(l.sets)+' × '+esc(l.reps)+'</b></span>'+(l.rir?'<span>RIR <b>'+esc(l.rir)+'</b></span>':'')+(l.rest?'<span>Rest <b>'+esc(l.rest)+' s</b></span>':'')+'</div>'+
-      (l.note?'<p class="note">'+esc(l.note)+'</p>':'')+(pt?'<p class="hint">'+esc(pt)+'</p>':'')+
+      return '<div class="card ex'+(e.done?' done':'')+'"><div class="ex-top"><p class="ex-name">'+(l.label?'<span class="badge">'+esc(l.label)+'</span>':'')+esc(l.n)+'</p><a class="vid" href="'+esc(l.v||('https://www.youtube.com/results?search_query='+encodeURIComponent(l.n+' technique')))+'" target="_blank" rel="noopener noreferrer">'+(l.v?'Video':'Find video')+' ↗</a></div>'+
+      '<div class="spec"><span><b>'+esc(l.sets)+' × '+esc(l.reps)+'</b></span>'+(l.rir?'<span>RIR <b>'+esc(l.rir)+'</b></span>':'')+((l.rest&&!l.ss)?'<span>Rest <b>'+esc(l.rest)+' s</b></span>':'')+(l.ss?'<span>No rest, go to next</span>':'')+'</div>'+
+      (l.tech?'<p class="tech">'+esc(l.tech)+'</p>':'')+(l.note?'<p class="note">'+esc(l.note)+'</p>':'')+(pt?'<p class="hint">'+esc(pt)+'</p>':'')+
       '<div class="logrow"><div><label for="kg-'+i+'">Weight (kg)</label><input type="text" inputmode="decimal" id="kg-'+i+'" data-i="'+i+'" data-f="kg" value="'+esc(e.kg||'')+'" autocomplete="off"></div><div><label for="rp-'+i+'">Reps per set</label><input type="text" id="rp-'+i+'" data-i="'+i+'" data-f="reps" placeholder="8, 8, 7" value="'+esc(e.reps||'')+'" autocomplete="off"></div></div>'+
-      '<label class="chk'+(e.done?' on':'')+'"><input type="checkbox" data-i="'+i+'" data-f="done"'+(e.done?' checked':'')+'> Done</label></div>'});
+      '<label class="chk'+(e.done?' on':'')+'"><input type="checkbox" data-i="'+i+'" data-f="done"'+(e.done?' checked':'')+'> Done</label></div>'}
+    let sec=null,i=0;const L=d.lines;
+    while(i<L.length){
+      const l=L[i];
+      if(l.sec&&l.sec!==sec){sec=l.sec;h+='<div class="sec">'+esc(sec)+'</div>';const f=d.f&&d.f[sec];
+        if(f&&f.f==='int')h+='<div class="fmt"><b>Intervals:</b> '+esc(f.rounds||'')+' rounds · '+esc(f.work||'')+' s work · '+esc(f.rest||'')+' s rest</div>'}
+      if(l.ss){let j=i;while(j<L.length&&L[j].ss)j++;const end=Math.min(j,L.length-1),g=L.slice(i,end+1),last=g[g.length-1];
+        const names=g.map((x,n)=>x.label||String(n+1)).join(' → ');
+        h+='<div class="ss"><div class="sshead"><span class="pill">'+(g.length>2?'Giant set':'Superset')+'</span><span class="sstxt">Do '+esc(names)+' back to back, then rest'+(last.rest?' <b>'+esc(last.rest)+' s</b>':'')+'. Repeat for all sets.</span></div>'+g.map((x,n)=>card(x,i+n,true)).join('')+'</div>';
+        i=end+1}
+      else{h+=card(l,i,false);i++}}
     const s=sess(week,day);
     h+='<div class="lbl">How did the session feel?</div><div class="feel" role="group" aria-label="Session feel, 1 easy to 5 very hard">'+[1,2,3,4,5].map(n=>'<button type="button" data-feel="'+n+'" aria-pressed="'+(s.feel===n)+'">'+n+'</button>').join('')+'</div><p class="hint">1 is easy, 5 is very hard</p>'+
     '<label class="lbl" for="cm" style="display:block">Comment for Krys (optional)</label><textarea id="cm" placeholder="Anything that felt off, pain, or a win.">'+esc(s.note||'')+'</textarea>';
