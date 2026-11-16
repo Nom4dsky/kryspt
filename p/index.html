@@ -60,8 +60,8 @@ textarea{min-height:76px;resize:vertical}
 .chk{display:flex;align-items:center;gap:9px;margin-top:10px;min-height:44px;font-weight:600;cursor:pointer;border:1px solid var(--line2);border-radius:8px;padding:0 12px}
 .chk input{width:20px;height:20px;accent-color:var(--accent)}
 .chk.on{background:var(--accent-soft);border-color:var(--accent)}
-.feel{display:flex;gap:6px}
-.feel button{flex:1;max-width:64px;height:46px;border:1px solid var(--line2);background:none;border-radius:8px;font:600 15px var(--f-body);color:var(--ink);cursor:pointer}
+.feel{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.feel button{height:46px;border:1px solid var(--line2);background:none;border-radius:8px;font:600 15px var(--f-body);color:var(--ink);cursor:pointer}
 .feel button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .btn{border:1px solid var(--line2);background:var(--panel);color:var(--ink);border-radius:8px;padding:12px 16px;min-height:46px;font:600 14px var(--f-body);cursor:pointer}
 .btn.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -140,14 +140,14 @@ function start(P){
         i=end+1}
       else{h+=card(l,i,false);i++}}
     const s=sess(week,day);
-    h+='<div class="lbl">How did the session feel?</div><div class="feel" role="group" aria-label="Session feel, 1 easy to 5 very hard">'+[1,2,3,4,5].map(n=>'<button type="button" data-feel="'+n+'" aria-pressed="'+(s.feel===n)+'">'+n+'</button>').join('')+'</div><p class="hint">1 is easy, 5 is very hard</p>'+
+    h+='<div class="lbl">How did the session feel?</div><div class="feel" role="group" aria-label="Session feel, 1 very easy to 10 maximal effort">'+[1,2,3,4,5,6,7,8,9,10].map(n=>'<button type="button" data-feel="'+n+'" aria-pressed="'+(s.feel===n)+'">'+n+'</button>').join('')+'</div><p class="hint">1 is very easy, 10 is maximal effort</p>'+
     '<label class="lbl" for="cm" style="display:block">Comment for Krys (optional)</label><textarea id="cm" placeholder="Anything that felt off, pain, or a win.">'+esc(s.note||'')+'</textarea>';
     $('day').innerHTML=h;save()}
   function lines(w,d){
     const D=P.days[d],s=S['s.'+w+'.'+d]||{};let any=!!(s.feel||s.note),out=[];
     D.lines.forEach((l,i)=>{const e=S[k(w,d,i)];if(e&&(e.kg||e.reps||e.done)){any=true;out.push(l.n+' | '+l.sets+'x'+l.reps+' | kg: '+(e.kg||'-')+' | reps: '+(e.reps||'-')+' | done: '+(e.done?'yes':'no'))}});
     if(!any)return null;const t=new Date(),ds=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
-    return ['week: '+w+' | day: '+(d+1)+' | name: '+(D.name||'')+' | date: '+ds+' | feel: '+(s.feel||'-')].concat(out,s.note?['note: '+String(s.note).replace(/\s+/g,' ')]:[],['---']).join('\n')}
+    return ['week: '+w+' | day: '+(d+1)+' | name: '+(D.name||'')+' | date: '+ds+' | feel: '+(s.feel?s.feel+'/10':'-')].concat(out,s.note?['note: '+String(s.note).replace(/\s+/g,' ')]:[],['---']).join('\n')}
   function build(all){const b=[];if(all){for(let w=1;w<=P.weeks;w++)for(let d=0;d<P.days.length;d++){const x=lines(w,d);if(x)b.push(x)}}else{const x=lines(week,day);if(x)b.push(x)}
     return b.length?['KRYSLOG v1','id: '+P.id,'client: '+P.client,'program: '+P.name,'---'].concat(b).join('\n'):''}
   async function copy(all){const t=build(all),o=$('out'),m=$('msg');o.value=t;
