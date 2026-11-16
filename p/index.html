@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#E9E5DB">
+<title>My program | KRYS PT</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Same look as KRYS PT HUB: warm stone, clay accent, flat bordered cards, Sora headings. */
+:root{--bg:#E9E5DB;--panel:#F5F2EB;--ink:#0E1A1F;--mute:#5A6468;--line:#D6D1C6;--line2:#BDB7A8;--accent:#B86A4A;--accent-ink:#fff;--accent-soft:#EBD7CC;--good:#5B6F5F;--link:#2E4A5A;--field:#fff;color-scheme:light;
+  --f-display:'Sora','Inter',system-ui,sans-serif;--f-body:'Inter',system-ui,sans-serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1A1F;--panel:#16262D;--ink:#E6E1D5;--mute:#9AA5A3;--line:#24373F;--line2:#344B54;--accent:#D07C5B;--accent-ink:#140A06;--accent-soft:#33231D;--good:#86A08B;--link:#8FB4C8;--field:#0E1A1F;color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--f-body);padding:0 max(14px,env(safe-area-inset-right,0px)) calc(48px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px))}
+.wrap{max-width:680px;margin:0 auto}
+.top{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top,0px)) 0 10px}
+.logo{display:flex;align-items:center;gap:9px;font:600 .95rem var(--f-display);letter-spacing:.12em}
+.logo svg{width:22px;height:22px;fill:var(--ink)}
+.who{margin-left:auto;font:500 11px var(--f-mono);color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+h1{font:600 clamp(1.4rem,6vw,1.9rem)/1.15 var(--f-display);margin:10px 0 4px;text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 12px}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line2);background:none;color:var(--mute);border-radius:99px;padding:4px 11px;font-size:12.5px;white-space:nowrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:10px}
+.lbl{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:20px 0 8px}
+.seg{display:flex;gap:4px;overflow-x:auto;background:var(--line);padding:3px;border-radius:10px;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:none;border:0;background:none;white-space:nowrap;padding:9px 14px;min-height:40px;border-radius:8px;font:600 14px var(--f-body);color:var(--mute);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--ink)}
+.daytitle{font:600 1.2rem var(--f-display);margin:22px 0 2px}
+.daymeta{color:var(--mute);font-size:.9rem;margin:0 0 6px}
+.sec{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:18px 0 8px}
+.ex.done{border-color:var(--good)}
+.ex-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ex-name{font:600 1rem/1.25 var(--f-body);margin:0}
+.vid{flex:none;font:500 12px var(--f-mono);color:var(--link);text-decoration:none;border:1px solid var(--line2);border-radius:99px;padding:4px 10px;white-space:nowrap}
+.spec{display:flex;flex-wrap:wrap;gap:4px 14px;margin:8px 0 0;font-size:.9rem;color:var(--mute)}
+.spec b{color:var(--ink);font-weight:600}
+.note{margin:8px 0 0;font-size:.88rem;color:var(--mute)}
+.hint{margin:6px 0 0;font-size:.8rem;color:var(--mute)}
+.logrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:8px;margin-top:12px}
+.logrow label{display:block;font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
+input[type=text],textarea{width:100%;font:400 16px var(--f-body);padding:10px;min-height:44px;border:1px solid var(--line2);background:var(--field);color:var(--ink);border-radius:8px}
+textarea{min-height:76px;resize:vertical}
+.chk{display:flex;align-items:center;gap:9px;margin-top:10px;min-height:44px;font-weight:600;cursor:pointer;border:1px solid var(--line2);border-radius:8px;padding:0 12px}
+.chk input{width:20px;height:20px;accent-color:var(--accent)}
+.chk.on{background:var(--accent-soft);border-color:var(--accent)}
+.feel{display:flex;gap:6px}
+.feel button{flex:1;max-width:64px;height:46px;border:1px solid var(--line2);background:none;border-radius:8px;font:600 15px var(--f-body);color:var(--ink);cursor:pointer}
+.feel button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn{border:1px solid var(--line2);background:var(--panel);color:var(--ink);border-radius:8px;padding:12px 16px;min-height:46px;font:600 14px var(--f-body);cursor:pointer}
+.btn.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+#out{font:400 12.5px/1.5 var(--f-mono);min-height:140px}
+.msg{min-height:1.3em;color:var(--good);font-weight:600;font-size:.88rem}
+details.how{margin:12px 0}
+details.how summary{cursor:pointer;font-weight:600;list-style:none}
+details.how summary::-webkit-details-marker{display:none}
+details.how summary::after{content:"+";float:right;color:var(--accent);font-size:1.2rem;line-height:1}
+details.how[open] summary::after{content:"–"}
+details.how p{color:var(--mute);font-size:.9rem;margin:8px 0 0}
+.empty{padding:40px 8px;text-align:center}
+.empty h1{margin-top:0}
+footer{margin-top:28px;color:var(--mute);font-size:.8rem}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:380px){.logrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <div class="top"><div class="logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 20 9.5 6l3.5 6.3L15.5 9 22 20z"/></svg>KRYS PT</div><div class="who" id="who"></div></div>
+  <div id="view"></div>
+</div>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function b64u(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const b=atob(s),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u}
+async function decode(h){
+  const m=/^#?1\.([A-Za-z0-9_-]+)$/.exec(h||'');if(!m)return null;
+  try{const ds=new DecompressionStream('deflate-raw');
+    const buf=await new Response(new Blob([b64u(m[1])]).stream().pipeThrough(ds)).arrayBuffer();
+    const o=JSON.parse(new TextDecoder().decode(buf));
+    if(!o||o.v!==1||!Array.isArray(o.d))return null;return o}catch(e){return null}}
+const PROG={d:'double',l:'load',h:'hold'};
+function norm(o){
+  return {id:o.i||('p'+(o.n||'').length),name:o.n||'Program',client:o.c||'',weeks:Math.max(1,+o.w||4),
+    days:o.d.map(d=>({name:d.n||'',lines:(d.l||[]).map(a=>({sec:a[0]||'',n:a[1]||'',sets:a[2]||'',reps:a[3]||'',rir:a[4]||'',rest:a[5]||'',note:a[6]||'',prog:PROG[a[7]]||'',step:a[8]||'',v:a[9]?('https://www.youtube.com/watch?v='+a[9]):''}))}))}}
+function start(P){
+  document.title=P.name+' | KRYS PT';
+  $('who').textContent=P.client?('For '+P.client):'';
+  const KEY='kryslog:'+P.id;let S={};try{S=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  let week=1,day=0;try{const h=JSON.parse(localStorage.getItem(KEY+':pos')||'{}');if(h.w)week=Math.min(h.w,P.weeks);if(h.d!=null)day=Math.min(h.d,P.days.length-1)}catch(e){}
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));localStorage.setItem(KEY+':pos',JSON.stringify({w:week,d:day}))}catch(e){}};
+  const k=(w,d,i)=>w+'.'+d+'.'+i,ent=(w,d,i)=>S[k(w,d,i)]||(S[k(w,d,i)]={}),sess=(w,d)=>S['s.'+w+'.'+d]||(S['s.'+w+'.'+d]={});
+  const progTxt=l=>{const st=l.step?(l.step+' kg'):'a little';
+    return l.prog==='double'?'When you hit the top reps on every set, add '+st+' next time.':l.prog==='load'?'When all sets are clean, add '+st+' next time.':l.prog==='hold'?'Keep the load the same and aim for better quality.':''};
+  $('view').innerHTML='<h1>'+esc(P.name)+'</h1><div class="row"><span class="chip">'+P.weeks+' weeks</span><span class="chip">'+P.days.length+' sessions a week</span></div>'+
+   '<div class="card" style="margin-top:12px"><details class="how"><summary>How to use this page</summary><p><b>Sets × reps</b> is the target. <b>RIR</b> is reps in reserve: RIR 2 means stop with about two good reps left.</p><p>Tap the video chip to see the exercise. Enter the weight and the reps you did, then tick the exercise when it is done.</p><p>Your entries stay on this phone. After a session, copy your log at the bottom and send it to me as a message.</p></details></div>'+
+   '<div class="lbl">Week</div><div class="seg" id="weeks"></div><div class="lbl">Session</div><div class="seg" id="days"></div><div id="day"></div>'+
+   '<div class="lbl">Send your log to Krys</div><div class="card"><p class="sub" style="margin-top:0">Copy the text and paste it into a message to me.</p><div class="btns"><button class="btn pri" id="copyDay" type="button">Copy this session</button><button class="btn" id="copyAll" type="button">Copy everything</button></div><div class="msg" id="msg" role="status" aria-live="polite"></div><label class="lbl" for="out" style="display:block;margin-top:8px">Log text</label><textarea id="out" readonly></textarea></div>'+
+   '<footer>Program by Przemyslaw Krys · <a href="https://kryspt.com" style="color:var(--link)">kryspt.com</a></footer>';
+  function tabs(){
+    $('weeks').innerHTML=Array.from({length:P.weeks},(_,i)=>'<button type="button" data-w="'+(i+1)+'" aria-pressed="'+(week===i+1)+'">'+(i+1)+'</button>').join('');
+    $('days').innerHTML=P.days.map((d,i)=>'<button type="button" data-d="'+i+'" aria-pressed="'+(day===i)+'">'+esc(d.name||('Day '+(i+1)))+'</button>').join('')}
+  function render(){
+    tabs();const d=P.days[day];let h='<div class="daytitle">'+esc(d.name||('Day '+(day+1)))+'</div><p class="daymeta">Week '+week+' of '+P.weeks+'</p>';
+    if(!d.lines.length)h+='<div class="card"><b>No exercises listed.</b><p class="note">Do this session as agreed with Krys and log how it went below.</p></div>';
+    let sec=null;
+    d.lines.forEach((l,i)=>{
+      if(l.sec&&l.sec!==sec){sec=l.sec;h+='<div class="sec">'+esc(sec)+'</div>'}
+      const e=ent(week,day,i),pt=progTxt(l);
+      h+='<div class="card ex'+(e.done?' done':'')+'"><div class="ex-top"><p class="ex-name">'+esc(l.n)+'</p><a class="vid" href="'+esc(l.v||('https://www.youtube.com/results?search_query='+encodeURIComponent(l.n+' technique')))+'" target="_blank" rel="noopener noreferrer">'+(l.v?'Video':'Find video')+' ↗</a></div>'+
+      '<div class="spec"><span><b>'+esc(l.sets)+' × '+esc(l.reps)+'</b></span>'+(l.rir?'<span>RIR <b>'+esc(l.rir)+'</b></span>':'')+(l.rest?'<span>Rest <b>'+esc(l.rest)+' s</b></span>':'')+'</div>'+
+      (l.note?'<p class="note">'+esc(l.note)+'</p>':'')+(pt?'<p class="hint">'+esc(pt)+'</p>':'')+
+      '<div class="logrow"><div><label for="kg-'+i+'">Weight (kg)</label><input type="text" inputmode="decimal" id="kg-'+i+'" data-i="'+i+'" data-f="kg" value="'+esc(e.kg||'')+'" autocomplete="off"></div><div><label for="rp-'+i+'">Reps per set</label><input type="text" id="rp-'+i+'" data-i="'+i+'" data-f="reps" placeholder="8, 8, 7" value="'+esc(e.reps||'')+'" autocomplete="off"></div></div>'+
+      '<label class="chk'+(e.done?' on':'')+'"><input type="checkbox" data-i="'+i+'" data-f="done"'+(e.done?' checked':'')+'> Done</label></div>'});
+    const s=sess(week,day);
+    h+='<div class="lbl">How did the session feel?</div><div class="feel" role="group" aria-label="Session feel, 1 easy to 5 very hard">'+[1,2,3,4,5].map(n=>'<button type="button" data-feel="'+n+'" aria-pressed="'+(s.feel===n)+'">'+n+'</button>').join('')+'</div><p class="hint">1 is easy, 5 is very hard</p>'+
+    '<label class="lbl" for="cm" style="display:block">Comment for Krys (optional)</label><textarea id="cm" placeholder="Anything that felt off, pain, or a win.">'+esc(s.note||'')+'</textarea>';
+    $('day').innerHTML=h;save()}
+  function lines(w,d){
+    const D=P.days[d],s=S['s.'+w+'.'+d]||{};let any=!!(s.feel||s.note),out=[];
+    D.lines.forEach((l,i)=>{const e=S[k(w,d,i)];if(e&&(e.kg||e.reps||e.done)){any=true;out.push(l.n+' | '+l.sets+'x'+l.reps+' | kg: '+(e.kg||'-')+' | reps: '+(e.reps||'-')+' | done: '+(e.done?'yes':'no'))}});
+    if(!any)return null;const t=new Date(),ds=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
+    return ['week: '+w+' | day: '+(d+1)+' | name: '+(D.name||'')+' | date: '+ds+' | feel: '+(s.feel||'-')].concat(out,s.note?['note: '+String(s.note).replace(/\s+/g,' ')]:[],['---']).join('\n')}
+  function build(all){const b=[];if(all){for(let w=1;w<=P.weeks;w++)for(let d=0;d<P.days.length;d++){const x=lines(w,d);if(x)b.push(x)}}else{const x=lines(week,day);if(x)b.push(x)}
+    return b.length?['KRYSLOG v1','id: '+P.id,'client: '+P.client,'program: '+P.name,'---'].concat(b).join('\n'):''}
+  async function copy(all){const t=build(all),o=$('out'),m=$('msg');o.value=t;
+    if(!t){m.style.color='var(--mute)';m.textContent='Nothing logged yet for '+(all?'this program':'this session')+'.';return}
+    m.style.color='var(--good)';try{await navigator.clipboard.writeText(t);m.textContent='Copied. Paste it into a message to Krys.'}catch(e){o.focus();o.select();m.textContent='Select the text below, copy it and paste it into a message to Krys.'}}
+  document.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;
+    if(b.dataset.w){week=+b.dataset.w;render()}else if(b.dataset.d!=null&&b.dataset.d!==''){day=+b.dataset.d;render()}
+    else if(b.dataset.feel){const s=sess(week,day);s.feel=s.feel===+b.dataset.feel?null:+b.dataset.feel;render()}});
+  document.addEventListener('input',ev=>{const t=ev.target;if(t.id==='cm'){sess(week,day).note=t.value;save();return}
+    if(t.dataset&&t.dataset.f){const e=ent(week,day,+t.dataset.i);if(t.dataset.f==='done'){e.done=t.checked;const c=t.closest('.ex');c.classList.toggle('done',t.checked);c.querySelector('.chk').classList.toggle('on',t.checked)}else e[t.dataset.f]=t.value;save()}});
+  $('copyDay').onclick=()=>copy(false);$('copyAll').onclick=()=>copy(true);render();
+}
+function empty(t,p){$('view').innerHTML='<div class="empty"><h1>'+t+'</h1><p class="sub">'+p+'</p></div>'}
+async function boot(){
+  if(!location.hash||location.hash.length<4)return empty('Open your program link','This page shows the program Krys sent you. Open the full link from his message.');
+  if(!('DecompressionStream' in window))return empty('Please update your browser','This page needs a newer browser. Open the link in Safari or Chrome.');
+  const o=await decode(location.hash);
+  if(!o)return empty('This link looks incomplete','Copy the whole link from Krys’s message, or ask him to send it again.');
+  start(norm(o))}
+window.addEventListener('hashchange',()=>location.reload());boot();
+})();
+</script>
+</body>
+</html>
