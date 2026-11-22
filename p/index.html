@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#E9E5DB">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light">
 <title>My program | KRYS PT</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Same look as KRYS PT HUB: warm stone, clay accent, flat bordered cards, Sora headings. */
-:root{--bg:#E9E5DB;--panel:#F5F2EB;--ink:#0E1A1F;--mute:#5A6468;--line:#D6D1C6;--line2:#BDB7A8;--accent:#B86A4A;--accent-ink:#fff;--accent-soft:#EBD7CC;--good:#5B6F5F;--link:#2E4A5A;--field:#fff;color-scheme:light;
-  --f-display:'Sora','Inter',system-ui,sans-serif;--f-body:'Inter',system-ui,sans-serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}
+/* Paper: white page, black ink, hairline borders. Built for reading on a phone mid-workout. */
+:root{--bg:#FFFFFF;--panel:#FFFFFF;--ink:#000000;--mute:#5C5C5C;--line:#DADADA;--line2:#BDBDBD;--accent:#000000;--accent-ink:#FFFFFF;--accent-soft:#F2F2F2;--good:#000000;--link:#000000;--field:#FFFFFF;color-scheme:light;
+  --f-display:'Inter',system-ui,sans-serif;--f-body:'Inter',system-ui,sans-serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--f-body);padding:0 max(14px,env(safe-area-inset-right,0px)) calc(48px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px))}
@@ -79,6 +79,19 @@ details.how p{color:var(--mute);font-size:.9rem;margin:8px 0 0}
 footer{margin-top:28px;color:var(--mute);font-size:.8rem}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (max-width:380px){.logrow{grid-template-columns:1fr}}
+
+/* Paper details */
+h1,.daytitle{font-weight:700;letter-spacing:-.01em}
+.card{border-radius:14px}
+.ss{background:#FFFFFF;border:2px solid #000;border-radius:16px}
+.sec{color:#000;font-weight:700}
+.vid{border-color:#000;color:#000}
+.ex.done{border:2px solid #000}
+.chk.on{background:#000;color:#fff;border-color:#000}
+.chk input{accent-color:#000}
+.seg{background:#F0F0F0}
+.seg button[aria-pressed="true"]{background:#000;color:#fff}
+.badge{background:#000;color:#fff}
 </style>
 </head>
 <body>
@@ -110,7 +123,7 @@ function start(P){
   const k=(w,d,i)=>w+'.'+d+'.'+i,ent=(w,d,i)=>S[k(w,d,i)]||(S[k(w,d,i)]={}),sess=(w,d)=>S['s.'+w+'.'+d]||(S['s.'+w+'.'+d]={});
   const progTxt=l=>{const st=l.step?(l.step+' kg'):'a little';
     return l.prog==='double'?'When you hit the top reps on every set, add '+st+' next time.':l.prog==='load'?'When all sets are clean, add '+st+' next time.':l.prog==='hold'?'Keep the load the same and aim for better quality.':''};
-  $('view').innerHTML='<h1>'+esc(P.name)+'</h1><div class="row"><span class="chip">'+P.weeks+' weeks</span><span class="chip">'+P.days.length+' sessions a week</span></div>'+
+  $('view').innerHTML='<h1>'+esc(P.name)+'</h1><div class="row"><span class="chip">'+P.weeks+(+P.weeks===1?' week':' weeks')+'</span><span class="chip">'+P.days.length+(P.days.length===1?' session':' sessions')+' a week</span></div>'+
    '<div class="card" style="margin-top:12px"><details class="how"><summary>How to use this page</summary><p><b>Sets × reps</b> is the target. <b>RIR</b> is reps in reserve: RIR 2 means stop with about two good reps left.</p><p>Tap the video chip to see the exercise. Enter the weight and the reps you did, then tick the exercise when it is done.</p><p>Your entries stay on this phone. After a session, copy your log at the bottom and send it to me as a message.</p></details></div>'+
    '<div class="lbl">Week</div><div class="seg" id="weeks"></div><div class="lbl">Session</div><div class="seg" id="days"></div><div id="day"></div>'+
    '<div class="lbl">Send your log to Krys</div><div class="card"><p class="sub" style="margin-top:0">Copy the text and paste it into a message to me.</p><div class="btns"><button class="btn pri" id="copyDay" type="button">Copy this session</button><button class="btn" id="copyAll" type="button">Copy everything</button></div><div class="msg" id="msg" role="status" aria-live="polite"></div><label class="lbl" for="out" style="display:block;margin-top:8px">Log text</label><textarea id="out" readonly></textarea></div>'+
