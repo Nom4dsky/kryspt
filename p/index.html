@@ -122,7 +122,7 @@ async function decode(h){
 const PROG={d:'double',l:'load',h:'hold'};
 function norm(o){
   return {id:o.i||('p'+(o.n||'').length),name:o.n||'Program',client:o.c||'',weeks:Math.max(1,+o.w||4),
-    days:o.d.map(d=>({name:d.n||'',lines:(d.l||[]).map(a=>({sec:a[0]||'',n:a[1]||'',sets:a[2]||'',reps:a[3]||'',rir:a[4]||'',rest:a[5]||'',note:a[6]||'',prog:PROG[a[7]]||'',step:a[8]||'',v:a[9]?('https://www.youtube.com/watch?v='+a[9]):'',label:a[10]||'',ss:a[11]==='1',tech:a[12]||''})),e:d.e||null,f:d.f||{}}))}}
+    days:o.d.map(d=>({name:d.n||'',lines:(d.l||[]).map(a=>({sec:a[0]||'',n:a[1]||'',sets:a[2]||'',reps:a[3]||'',rir:a[4]||'',rest:a[5]||'',note:a[6]||'',prog:PROG[a[7]]||'',step:a[8]||'',v:a[9]?('https://www.youtube.com/watch?v='+a[9]):'',label:a[10]||'',ss:a[11]==='1',tech:a[12]||'',load:a[13]||'',ps:a[14]==='1'})),e:d.e||null,f:d.f||{}}))}}
 function start(P){
   document.title=P.name+' | KRYS PT';
   $('who').textContent=P.client?('For '+P.client):'';
@@ -141,6 +141,7 @@ function start(P){
     $('weeks').innerHTML=Array.from({length:P.weeks},(_,i)=>'<button type="button" data-w="'+(i+1)+'" aria-pressed="'+(week===i+1)+'">'+(i+1)+'</button>').join('');
     $('days').innerHTML=P.days.map((d,i)=>'<button type="button" data-d="'+i+'" aria-pressed="'+(day===i)+'">'+esc(d.name||('Day '+(i+1)))+'</button>').join('')}
   /* one row per set: kg + reps; weight carries forward as a hint */
+  const sugKg=(l,w)=>{const v=String(l.load||'');if(!v)return '';const a=v.split(',');return (a.length>1?(a[(w||week)-1]||a[a.length-1]):a[0]).trim()};
   const splitR=v=>String(v||'').split(/[\s,;]+/).filter(Boolean);
   const wsOf=e=>Array.isArray(e.ws)?e.ws:(e.kg?[String(e.kg)]:[]);
   const rsOf=e=>Array.isArray(e.rs)?e.rs:splitR(e.reps);
@@ -149,9 +150,9 @@ function start(P){
   const repHint=l=>{const m=/\d+/.exec(String(l.reps||''));return m?m[0]:''};
   function setBoxes(l,e,i){const n=setsOf(l,e),W=wsOf(e),R=rsOf(e),rh=repHint(l);
     let h='<div class="sets" role="group" aria-label="Sets for '+esc(l.n)+'"><span class="sh">Set</span><span class="sh">kg</span><span class="sh">Reps</span>';
-    for(let j=0;j<n;j++)h+='<span class="sn">'+(j+1)+'</span><input type="text" inputmode="decimal" data-i="'+i+'" data-f="w" data-j="'+j+'" value="'+esc(W[j]||'')+'" placeholder="'+esc(prevKg(W,j))+'" aria-label="Set '+(j+1)+' weight in kg" autocomplete="off"><input type="text" inputmode="numeric" data-i="'+i+'" data-f="r" data-j="'+j+'" value="'+esc(R[j]||'')+'" placeholder="'+esc(rh)+'" aria-label="Set '+(j+1)+' reps" autocomplete="off">';
-    return h+'</div><button type="button" class="addset" data-addset="'+i+'">+ Add a set</button>'}
-  function setLog(e){const W=wsOf(e),R=rsOf(e),n=Math.max(W.length,R.length),kg=[],rp=[];let last='';
+    const sk=sugKg(l);for(let j=0;j<n;j++)h+='<span class="sn">'+(j+1)+'</span><input type="text" inputmode="decimal" data-i="'+i+'" data-f="w" data-j="'+j+'" data-sug="'+esc(sk)+'" value="'+esc(W[j]||'')+'" placeholder="'+esc(prevKg(W,j)||sk)+'" aria-label="Set '+(j+1)+' weight in kg" autocomplete="off"><input type="text" inputmode="numeric" data-i="'+i+'" data-f="r" data-j="'+j+'" value="'+esc(R[j]||'')+'" placeholder="'+esc(rh)+'" aria-label="Set '+(j+1)+' reps" autocomplete="off">';
+    return h+'</div>'+(sk?'<p class="hint">The grey weight is what Krys planned. Leave it if you used it, or type what you lifted.</p>':'')+'<button type="button" class="addset" data-addset="'+i+'">+ Add a set</button>'}
+  function setLog(e,sk){const W=wsOf(e),R=rsOf(e),n=Math.max(W.length,R.length),kg=[],rp=[];let last=sk||'';
     for(let j=0;j<n;j++){const w=String(W[j]||'').trim();if(w)last=w;const r=String(R[j]||'').trim();if(r){rp.push(r);kg.push(w||last||'-')}}
     let kgt=kg.length?(kg.every(x=>x===kg[0])?kg[0]:kg.join(' ')):(W.find(x=>String(x||'').trim())||'');
     return {kg:kgt,reps:rp.join(' ')}}
@@ -163,7 +164,7 @@ function start(P){
     function card(l,i,inGroup){
       const e=ent(week,day,i),pt=progTxt(l);
       return '<div class="card ex'+(e.done?' done':'')+'"><div class="ex-top"><p class="ex-name">'+(l.label?'<span class="badge">'+esc(l.label)+'</span>':'')+esc(l.n)+'</p><a class="vid" href="'+esc(l.v||('https://www.youtube.com/results?search_query='+encodeURIComponent(l.n+' technique')))+'" target="_blank" rel="noopener noreferrer">'+(l.v?'Video':'Find video')+' ↗</a></div>'+
-      '<div class="spec"><span><b>'+esc(l.sets)+' × '+esc(l.reps)+'</b></span>'+(l.rir?'<span>RIR <b>'+esc(l.rir)+'</b></span>':'')+((l.rest&&!l.ss)?'<span>Rest <b>'+esc(l.rest)+' s</b></span>':'')+(l.ss?'<span>No rest, go to next</span>':'')+'</div>'+
+      '<div class="spec"><span><b>'+esc(l.sets)+' × '+esc(l.reps)+(l.ps?' per side':'')+'</b></span>'+(sugKg(l)?'<span>Weight <b>'+esc(sugKg(l))+' kg</b></span>':'')+(l.rir?'<span>RIR <b>'+esc(l.rir)+'</b></span>':'')+((l.rest&&!l.ss)?'<span>Rest <b>'+esc(l.rest)+' s</b></span>':'')+(l.ss?'<span>No rest, go to next</span>':'')+'</div>'+
       (l.tech?'<p class="tech">'+esc(l.tech)+'</p>':'')+(l.note?'<p class="note">'+esc(l.note)+'</p>':'')+(pt?'<p class="hint">'+esc(pt)+'</p>':'')+
       setBoxes(l,e,i)+
       '<label class="chk'+(e.done?' on':'')+'"><input type="checkbox" data-i="'+i+'" data-f="done"'+(e.done?' checked':'')+'> Done</label></div>'}
@@ -183,7 +184,7 @@ function start(P){
     $('day').innerHTML=h;save()}
   function lines(w,d){
     const D=P.days[d],s=S['s.'+w+'.'+d]||{};let any=!!(s.feel||s.note),out=[];
-    D.lines.forEach((l,i)=>{const e=S[k(w,d,i)];if(hasLog(e)){any=true;const g=setLog(e);out.push(l.n+' | '+l.sets+'x'+l.reps+' | kg: '+(g.kg||'-')+' | reps: '+(g.reps||'-')+' | done: '+(e.done?'yes':'no'))}});
+    D.lines.forEach((l,i)=>{const e=S[k(w,d,i)];if(hasLog(e)){any=true;const g=setLog(e,sugKg(l,w));out.push(l.n+' | '+l.sets+'x'+l.reps+' | kg: '+(g.kg||'-')+' | reps: '+(g.reps||'-')+' | done: '+(e.done?'yes':'no'))}});
     if(!any)return null;const t=new Date(),ds=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
     return ['week: '+w+' | day: '+(d+1)+' | name: '+(D.name||'')+' | date: '+ds+' | feel: '+(s.feel?s.feel+'/10':'-')].concat(out,s.note?['note: '+String(s.note).replace(/\s+/g,' ')]:[],['---']).join('\n')}
   function build(all){const b=[];if(all){for(let w=1;w<=P.weeks;w++)for(let d=0;d<P.days.length;d++){const x=lines(w,d);if(x)b.push(x)}}else{const x=lines(week,day);if(x)b.push(x)}
@@ -198,7 +199,7 @@ function start(P){
   document.addEventListener('input',ev=>{const t=ev.target;if(t.id==='cm'){sess(week,day).note=t.value;save();return}
     if(t.dataset&&t.dataset.f){const e=ent(week,day,+t.dataset.i);if(t.dataset.f==='done'){e.done=t.checked;const c=t.closest('.ex');c.classList.toggle('done',t.checked);c.querySelector('.chk').classList.toggle('on',t.checked)}
       else if(t.dataset.f==='w'||t.dataset.f==='r'){if(!Array.isArray(e.ws))e.ws=wsOf(e).slice();if(!Array.isArray(e.rs))e.rs=rsOf(e).slice();delete e.kg;delete e.reps;const j=+t.dataset.j,A=t.dataset.f==='w'?e.ws:e.rs;while(A.length<=j)A.push('');A[j]=t.value;
-        if(t.dataset.f==='w'){const box=t.closest('.sets');box.querySelectorAll('input[data-f="w"]').forEach(x=>{const jj=+x.dataset.j;if(jj>j)x.placeholder=prevKg(e.ws,jj)})}}
+        if(t.dataset.f==='w'){const box=t.closest('.sets');box.querySelectorAll('input[data-f="w"]').forEach(x=>{const jj=+x.dataset.j;if(jj>j)x.placeholder=prevKg(e.ws,jj)||x.dataset.sug||''})}}
       else e[t.dataset.f]=t.value;save()}});
   $('copyDay').onclick=()=>copy(false);$('copyAll').onclick=()=>copy(true);render();
 }
