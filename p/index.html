@@ -165,7 +165,7 @@ function start(P){
       const e=ent(week,day,i),pt=progTxt(l);
       return '<div class="card ex'+(e.done?' done':'')+'"><div class="ex-top"><p class="ex-name">'+(l.label?'<span class="badge">'+esc(l.label)+'</span>':'')+esc(l.n)+'</p><a class="vid" href="'+esc(l.v||('https://www.youtube.com/results?search_query='+encodeURIComponent(l.n+' technique')))+'" target="_blank" rel="noopener noreferrer">'+(l.v?'Video':'Find video')+' ↗</a></div>'+
       '<div class="spec"><span><b>'+esc(l.sets)+' × '+esc(l.reps)+(l.ps?' per side':'')+'</b></span>'+(sugKg(l)?'<span>Weight <b>'+esc(sugKg(l))+' kg</b></span>':'')+(l.rir?'<span>RIR <b>'+esc(l.rir)+'</b></span>':'')+((l.rest&&!l.ss)?'<span>Rest <b>'+esc(l.rest)+' s</b></span>':'')+(l.ss?'<span>No rest, go to next</span>':'')+'</div>'+
-      (l.tech?'<p class="tech">'+esc(l.tech)+'</p>':'')+(l.note?'<p class="note">'+esc(l.note)+'</p>':'')+(pt?'<p class="hint">'+esc(pt)+'</p>':'')+
+      (l.tech?'<p class="tech">'+esc(l.tech)+'</p>':'')+(l.note?'<p class="note">'+esc(l.note)+'</p>':'')+
       setBoxes(l,e,i)+
       '<label class="chk'+(e.done?' on':'')+'"><input type="checkbox" data-i="'+i+'" data-f="done"'+(e.done?' checked':'')+'> Done</label></div>'}
     let sec=null,i=0;const L=d.lines;
