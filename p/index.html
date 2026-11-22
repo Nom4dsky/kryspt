@@ -92,6 +92,15 @@ h1,.daytitle{font-weight:700;letter-spacing:-.01em}
 .seg{background:#F0F0F0}
 .seg button[aria-pressed="true"]{background:#000;color:#fff}
 .badge{background:#000;color:#fff}
+
+/* one row per set */
+.sets{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,1fr);gap:6px 8px;align-items:center;margin-top:12px}
+.sets .sh{font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.sets .sn{font:700 15px var(--f-body);text-align:center;color:var(--ink)}
+.sets input{width:100%;min-height:46px;font:500 17px var(--f-body);text-align:center;padding:8px;border:1px solid var(--line2);border-radius:10px;background:var(--field);color:var(--ink)}
+.sets input:focus{outline:2px solid var(--ink);outline-offset:0;border-color:var(--ink)}
+.sets input::placeholder{color:#B3B3B3}
+.addset{margin-top:8px;border:0;background:none;padding:6px 2px;font:600 13px var(--f-body);color:var(--ink);text-decoration:underline;cursor:pointer}
 </style>
 </head>
 <body>
@@ -131,6 +140,22 @@ function start(P){
   function tabs(){
     $('weeks').innerHTML=Array.from({length:P.weeks},(_,i)=>'<button type="button" data-w="'+(i+1)+'" aria-pressed="'+(week===i+1)+'">'+(i+1)+'</button>').join('');
     $('days').innerHTML=P.days.map((d,i)=>'<button type="button" data-d="'+i+'" aria-pressed="'+(day===i)+'">'+esc(d.name||('Day '+(i+1)))+'</button>').join('')}
+  /* one row per set: kg + reps; weight carries forward as a hint */
+  const splitR=v=>String(v||'').split(/[\s,;]+/).filter(Boolean);
+  const wsOf=e=>Array.isArray(e.ws)?e.ws:(e.kg?[String(e.kg)]:[]);
+  const rsOf=e=>Array.isArray(e.rs)?e.rs:splitR(e.reps);
+  function setsOf(l,e){const m=/\d+/.exec(String(l.sets||''));const base=m?Math.min(10,Math.max(1,+m[0])):3;return Math.max(base,+e.n||0,wsOf(e).length,rsOf(e).length)}
+  const prevKg=(W,j)=>{for(let x=j-1;x>=0;x--)if(String(W[x]||'').trim())return String(W[x]).trim();return ''};
+  const repHint=l=>{const m=/\d+/.exec(String(l.reps||''));return m?m[0]:''};
+  function setBoxes(l,e,i){const n=setsOf(l,e),W=wsOf(e),R=rsOf(e),rh=repHint(l);
+    let h='<div class="sets" role="group" aria-label="Sets for '+esc(l.n)+'"><span class="sh">Set</span><span class="sh">kg</span><span class="sh">Reps</span>';
+    for(let j=0;j<n;j++)h+='<span class="sn">'+(j+1)+'</span><input type="text" inputmode="decimal" data-i="'+i+'" data-f="w" data-j="'+j+'" value="'+esc(W[j]||'')+'" placeholder="'+esc(prevKg(W,j))+'" aria-label="Set '+(j+1)+' weight in kg" autocomplete="off"><input type="text" inputmode="numeric" data-i="'+i+'" data-f="r" data-j="'+j+'" value="'+esc(R[j]||'')+'" placeholder="'+esc(rh)+'" aria-label="Set '+(j+1)+' reps" autocomplete="off">';
+    return h+'</div><button type="button" class="addset" data-addset="'+i+'">+ Add a set</button>'}
+  function setLog(e){const W=wsOf(e),R=rsOf(e),n=Math.max(W.length,R.length),kg=[],rp=[];let last='';
+    for(let j=0;j<n;j++){const w=String(W[j]||'').trim();if(w)last=w;const r=String(R[j]||'').trim();if(r){rp.push(r);kg.push(w||last||'-')}}
+    let kgt=kg.length?(kg.every(x=>x===kg[0])?kg[0]:kg.join(' ')):(W.find(x=>String(x||'').trim())||'');
+    return {kg:kgt,reps:rp.join(' ')}}
+  const hasLog=e=>!!(e&&(e.done||wsOf(e).some(x=>String(x||'').trim())||rsOf(e).some(x=>String(x||'').trim())));
   function render(){
     tabs();const d=P.days[day];let h='<div class="daytitle">'+esc(d.name||('Day '+(day+1)))+'</div><p class="daymeta">Week '+week+' of '+P.weeks+'</p>';
     if(!d.lines.length&&!d.e)h+='<div class="card"><b>No exercises listed.</b><p class="note">Do this session as agreed with Krys and log how it went below.</p></div>';
@@ -140,7 +165,7 @@ function start(P){
       return '<div class="card ex'+(e.done?' done':'')+'"><div class="ex-top"><p class="ex-name">'+(l.label?'<span class="badge">'+esc(l.label)+'</span>':'')+esc(l.n)+'</p><a class="vid" href="'+esc(l.v||('https://www.youtube.com/results?search_query='+encodeURIComponent(l.n+' technique')))+'" target="_blank" rel="noopener noreferrer">'+(l.v?'Video':'Find video')+' ↗</a></div>'+
       '<div class="spec"><span><b>'+esc(l.sets)+' × '+esc(l.reps)+'</b></span>'+(l.rir?'<span>RIR <b>'+esc(l.rir)+'</b></span>':'')+((l.rest&&!l.ss)?'<span>Rest <b>'+esc(l.rest)+' s</b></span>':'')+(l.ss?'<span>No rest, go to next</span>':'')+'</div>'+
       (l.tech?'<p class="tech">'+esc(l.tech)+'</p>':'')+(l.note?'<p class="note">'+esc(l.note)+'</p>':'')+(pt?'<p class="hint">'+esc(pt)+'</p>':'')+
-      '<div class="logrow"><div><label for="kg-'+i+'">Weight (kg)</label><input type="text" inputmode="decimal" id="kg-'+i+'" data-i="'+i+'" data-f="kg" value="'+esc(e.kg||'')+'" autocomplete="off"></div><div><label for="rp-'+i+'">Reps per set</label><input type="text" id="rp-'+i+'" data-i="'+i+'" data-f="reps" placeholder="8, 8, 7" value="'+esc(e.reps||'')+'" autocomplete="off"></div></div>'+
+      setBoxes(l,e,i)+
       '<label class="chk'+(e.done?' on':'')+'"><input type="checkbox" data-i="'+i+'" data-f="done"'+(e.done?' checked':'')+'> Done</label></div>'}
     let sec=null,i=0;const L=d.lines;
     while(i<L.length){
@@ -158,7 +183,7 @@ function start(P){
     $('day').innerHTML=h;save()}
   function lines(w,d){
     const D=P.days[d],s=S['s.'+w+'.'+d]||{};let any=!!(s.feel||s.note),out=[];
-    D.lines.forEach((l,i)=>{const e=S[k(w,d,i)];if(e&&(e.kg||e.reps||e.done)){any=true;out.push(l.n+' | '+l.sets+'x'+l.reps+' | kg: '+(e.kg||'-')+' | reps: '+(e.reps||'-')+' | done: '+(e.done?'yes':'no'))}});
+    D.lines.forEach((l,i)=>{const e=S[k(w,d,i)];if(hasLog(e)){any=true;const g=setLog(e);out.push(l.n+' | '+l.sets+'x'+l.reps+' | kg: '+(g.kg||'-')+' | reps: '+(g.reps||'-')+' | done: '+(e.done?'yes':'no'))}});
     if(!any)return null;const t=new Date(),ds=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
     return ['week: '+w+' | day: '+(d+1)+' | name: '+(D.name||'')+' | date: '+ds+' | feel: '+(s.feel?s.feel+'/10':'-')].concat(out,s.note?['note: '+String(s.note).replace(/\s+/g,' ')]:[],['---']).join('\n')}
   function build(all){const b=[];if(all){for(let w=1;w<=P.weeks;w++)for(let d=0;d<P.days.length;d++){const x=lines(w,d);if(x)b.push(x)}}else{const x=lines(week,day);if(x)b.push(x)}
@@ -168,9 +193,13 @@ function start(P){
     m.style.color='var(--good)';try{await navigator.clipboard.writeText(t);m.textContent='Copied. Paste it into a message to Krys.'}catch(e){o.focus();o.select();m.textContent='Select the text below, copy it and paste it into a message to Krys.'}}
   document.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;
     if(b.dataset.w){week=+b.dataset.w;render()}else if(b.dataset.d!=null&&b.dataset.d!==''){day=+b.dataset.d;render()}
+    else if(b.dataset.addset!=null&&b.dataset.addset!==''){const l=P.days[day].lines[+b.dataset.addset],e=ent(week,day,+b.dataset.addset);e.n=setsOf(l,e)+1;render()}
     else if(b.dataset.feel){const s=sess(week,day);s.feel=s.feel===+b.dataset.feel?null:+b.dataset.feel;render()}});
   document.addEventListener('input',ev=>{const t=ev.target;if(t.id==='cm'){sess(week,day).note=t.value;save();return}
-    if(t.dataset&&t.dataset.f){const e=ent(week,day,+t.dataset.i);if(t.dataset.f==='done'){e.done=t.checked;const c=t.closest('.ex');c.classList.toggle('done',t.checked);c.querySelector('.chk').classList.toggle('on',t.checked)}else e[t.dataset.f]=t.value;save()}});
+    if(t.dataset&&t.dataset.f){const e=ent(week,day,+t.dataset.i);if(t.dataset.f==='done'){e.done=t.checked;const c=t.closest('.ex');c.classList.toggle('done',t.checked);c.querySelector('.chk').classList.toggle('on',t.checked)}
+      else if(t.dataset.f==='w'||t.dataset.f==='r'){if(!Array.isArray(e.ws))e.ws=wsOf(e).slice();if(!Array.isArray(e.rs))e.rs=rsOf(e).slice();delete e.kg;delete e.reps;const j=+t.dataset.j,A=t.dataset.f==='w'?e.ws:e.rs;while(A.length<=j)A.push('');A[j]=t.value;
+        if(t.dataset.f==='w'){const box=t.closest('.sets');box.querySelectorAll('input[data-f="w"]').forEach(x=>{const jj=+x.dataset.j;if(jj>j)x.placeholder=prevKg(e.ws,jj)})}}
+      else e[t.dataset.f]=t.value;save()}});
   $('copyDay').onclick=()=>copy(false);$('copyAll').onclick=()=>copy(true);render();
 }
 function empty(t,p){$('view').innerHTML='<div class="empty"><h1>'+t+'</h1><p class="sub">'+p+'</p></div>'}
